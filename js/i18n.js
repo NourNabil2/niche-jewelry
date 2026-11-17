@@ -12,9 +12,9 @@
         switch_lang_code: 'en',
         currency: '$',
         bangle_title: 'إسورة جلايدر™ بوجهين للدلايات',
-        save: 'حفظ التصميم',
+        save: 'حفظ',
         saved: 'تم الحفظ ✦',
-        export_glb: 'تصدير 3D',
+        export_glb: 'تصدير',
         close: 'إغلاق',
         loading: 'جاري التحميل...',
         back: 'رجوع',
@@ -118,7 +118,7 @@
       },
       customizer: {
         studio_title: 'استوديو جلايدر™ ثلاثي الأبعاد • ذهب خالص 14K',
-        back_to_catalog: 'العودة للمجموعات',
+        back_to_catalog: 'المجموعات',
         front_side: 'الواجهة الأمامية',
         back_side: 'الواجهة الخلفية',
         step_front_title: 'الخطوة 1: تخصيص الواجهة الأمامية',
@@ -362,9 +362,9 @@
         switch_lang_code: 'ar',
         currency: '$',
         bangle_title: 'Dual-Sided Glider Charm Bangle™',
-        save: 'Save Design',
+        save: 'Save',
         saved: 'Saved ✦',
-        export_glb: 'Export 3D',
+        export_glb: 'Export',
         close: 'Close',
         loading: 'Loading...',
         back: 'Back',
@@ -468,7 +468,7 @@
       },
       customizer: {
         studio_title: '3D Dual-Track Glider Atelier • Solid 14K Gold',
-        back_to_catalog: 'Back to Collections',
+        back_to_catalog: 'Collections',
         front_side: 'Front Side',
         back_side: 'Back Side',
         step_front_title: 'Step 1: Front Track Customization',
@@ -818,12 +818,14 @@
 
   function getLanguageSwitcherHTML(extraClass = '') {
     const lang = getLanguage();
-    const otherLangLabel = lang === 'ar' ? 'English' : 'العربية';
+    const isEn = lang === 'en';
+    const isAr = lang === 'ar';
 
     return `
-      <button type="button" class="lang-switcher-pill ${extraClass}" onclick="window.nicheI18n && window.nicheI18n.toggleLanguage()" title="Switch Language to ${otherLangLabel}">
-        <span class="lang-globe-icon">🌐</span>
-        <span class="lang-text">${otherLangLabel}</span>
+      <button type="button" class="lang-switcher-btn ${extraClass}" onclick="window.nicheI18n && window.nicheI18n.toggleLanguage()" title="Switch Language / تغيير اللغة" aria-label="Toggle Language between EN and AR">
+        <span class="lang-opt ${isEn ? 'active' : ''}">EN</span>
+        <span class="lang-sep">|</span>
+        <span class="lang-opt ${isAr ? 'active' : ''}">AR</span>
       </button>
     `;
   }

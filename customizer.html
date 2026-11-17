@@ -1087,6 +1087,9 @@
         max-width: 100vw;
         box-sizing: border-box;
         position: relative !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
       }
 
       .studio-subbar .subbar-title,
@@ -1099,18 +1102,50 @@
       }
 
       .studio-subbar .subbar-left {
-        flex-shrink: 0;
+        flex: 1 1 auto;
+        min-width: 0;
+        margin: 0 !important;
       }
 
-      .studio-subbar .header-actions {
-        gap: 6px;
-        flex-shrink: 0;
+      .studio-subbar .subbar-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #555;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .studio-subbar .subbar-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
       }
 
       .studio-subbar .btn-secondary {
         padding: 5px 8px;
-        font-size: 9.5px;
+        font-size: 10px;
         gap: 4px;
+        white-space: nowrap;
+        background: #ffffff;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xs, 4px);
+        margin: 0 !important;
+      }
+
+      html[dir="rtl"] .studio-subbar .subbar-actions {
+        margin: 0 !important;
+      }
+      html[dir="rtl"] .studio-subbar .subbar-left {
+        margin: 0 !important;
+      }
+      html[dir="rtl"] .subbar-back-arrow {
+        transform: scaleX(-1);
+        display: inline-block;
       }
 
       .viewport-panel {
@@ -1320,19 +1355,21 @@
 
   <!-- Studio Sub-Toolbar -->
   <div class="studio-subbar">
-    <div class="subbar-left" style="display:flex; align-items:center; gap:12px;">
-      <a href="collections.html" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#555;">&larr; <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">Collections</span></a>
-      <span class="subbar-sep" style="color:#ddd;">|</span>
-      <span class="subbar-title" style="font-size:11px; color:#8b661d; font-weight:600;"><span data-i18n="customizer.studio_title">3D Dual-Track Glider Atelier</span></span>
+    <div class="subbar-left">
+      <a href="collections.html" class="subbar-back-link">
+        <span class="subbar-back-arrow">&larr;</span> <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">Collections</span>
+      </a>
+      <span class="subbar-sep">|</span>
+      <span class="subbar-title"><span data-i18n="customizer.studio_title">3D Dual-Track Glider Atelier</span></span>
     </div>
-    <div class="header-actions">
+    <div class="subbar-actions">
       <button class="btn-secondary" id="saveWishlistBtn" title="Save Custom 3D Design to Wishlist">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span data-i18n="common.save">Save Design</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="subbar-btn-text" data-i18n="common.save">Save Design</span>
       </button>
       <button class="btn-secondary" id="exportGlbBtn" title="Export 3D Model">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span data-i18n="common.export_glb">Export 3D</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="subbar-btn-text" data-i18n="common.export_glb">Export 3D</span>
       </button>
       <button class="btn-primary" id="orderBtn">
         <span data-i18n="common.add_to_bag">Add To Bag</span> &bull; <span id="headerTotal">$500.00</span>

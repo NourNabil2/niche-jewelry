@@ -56,10 +56,13 @@
       </div>
       <header class="site-header" id="siteHeader">
         <div class="container header-inner">
-          <div class="header-left" style="display:flex; align-items:center; gap:12px;">
+          <div class="header-left">
             <button class="icon-btn mobile-menu-btn" id="openMobileMenu" aria-label="Menu">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             </button>
+            <div class="mobile-lang-wrap">
+              ${getLangSwitcher()}
+            </div>
             <nav class="header-nav">
               <a href="collections.html" class="nav-link ${activePage === 'collections.html' ? 'active' : ''}">${T('nav.shop_all')}</a>
               <a href="customizer.html" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">${T('nav.studio_3d')}</a>
@@ -73,7 +76,9 @@
           </a>
 
           <div class="header-actions">
-            ${getLangSwitcher()}
+            <div class="desktop-lang-wrap">
+              ${getLangSwitcher()}
+            </div>
             <button class="icon-btn" id="openSearchBtn" title="${T('nav.search')}" aria-label="Search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </button>
