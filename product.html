@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details &bull; NICH JEWELRY Fine Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/db.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <style>
+    .breadcrumb {
+      padding: 20px 0;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--text-dark);
+      text-decoration: underline;
+    }
+
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 54px;
+      align-items: start;
+      margin-bottom: 72px;
+    }
+
+    @media (max-width: 960px) {
+      .pdp-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    /* Left Gallery */
+    .pdp-main-media {
+      aspect-ratio: 1;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .pdp-main-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .pdp-main-media.is-charm img {
+      object-fit: contain;
+      padding: 20%;
+    }
+
+    .pdp-thumbs {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .pdp-thumb {
+      width: 78px;
+      height: 78px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-light);
+      background: var(--bg-warm);
+      cursor: pointer;
+      overflow: hidden;
+      padding: 0;
+      transition: border-color 0.2s;
+    }
+
+    .pdp-thumb.active {
+      border-color: var(--text-dark);
+    }
+
+    .pdp-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Right Options */
+    .pdp-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 3.2vw, 44px);
+      font-weight: 400;
+      line-height: 1.12;
+      margin: 6px 0 10px;
+    }
+
+    .pdp-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pdp-price {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .option-group-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pdp-metal-pills {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .pdp-metal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 11.5px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .pdp-metal-btn.active {
+      border-color: var(--text-dark);
+      box-shadow: 0 0 0 1px var(--text-dark);
+    }
+
+    .pdp-size-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .pdp-size-btn {
+      padding: 10px 6px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .pdp-size-btn.active {
+      background: var(--text-dark);
+      color: #ffffff;
+      border-color: var(--text-dark);
+    }
+
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 500px) {
+      .letter-grid { grid-template-columns: repeat(7, 1fr); }
+    }
+
+    .letter-btn {
+      padding: 7px 0;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .letter-btn.active {
+      background: var(--text-dark);
+      color: #fff;
+      border-color: var(--text-dark);
+    }
+
+    .gift-note-box {
+      width: 100%;
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12px;
+      margin-bottom: 20px;
+      outline: none;
+    }
+
+    .gift-note-box:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .pdp-cta-stack {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    /* Accordions */
+    .accordion-item {
+      border-top: 1px solid var(--border-light);
+    }
+
+    .accordion-item:last-child {
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+
+    .accordion-body {
+      display: none;
+      padding-bottom: 18px;
+      font-size: 13px;
+      color: var(--text-body);
+      line-height: 1.75;
+    }
+
+    .accordion-item.open .accordion-body {
+      display: block;
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 64px 0;
+      margin-bottom: 64px;
+    }
+
+    .reviews-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 44px;
+    }
+
+    @media (max-width: 860px) {
+      .reviews-layout { grid-template-columns: 1fr; }
+    }
+
+    .review-form-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ep-header-mount"></div>
+
+  <main class="container">
+    <nav class="breadcrumb" id="pdpBreadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="collections.html">Jewelry</a>
+      <span>/</span>
+      <span id="bcProductTitle" style="color:#1b1b1b;">Loading...</span>
+    </nav>
+
+    <section class="pdp-grid" id="pdpContainer"></section>
+  </main>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="reviews-layout">
+        <div>
+          <span class="eyebrow">Collector Feedback</span>
+          <h2 class="section-heading mt-1">Client Reviews</h2>
+          <div style="display:flex; align-items:center; gap:12px; margin:14px 0 24px;">
+            <span class="serif" style="font-size:44px; line-height:1;" id="avgRatingDisplay">4.9</span>
+            <div>
+              <div style="color:#c59b3f; letter-spacing:2px;">★★★★★</div>
+              <div style="font-size:11.5px; color:#737373;" id="totalReviewsDisplay">Based on verified reviews</div>
+            </div>
+          </div>
+
+          <div class="review-form-card">
+            <h3 class="serif" style="font-size:24px; margin-bottom:12px;">Write a Review</h3>
+            <form id="newReviewForm">
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Your Name</label>
+                <input type="text" id="revAuthorInput" required placeholder="e.g. Nadia M." style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
+              </div>
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Rating</label>
+                <select id="revRatingInput" style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
+                  <option value="5">★★★★★ (5 Stars — Obsessed)</option>
+                  <option value="4">★★★★☆ (4 Stars — Great)</option>
+                  <option value="3">★★★☆☆ (3 Stars — Good)</option>
+                </select>
+              </div>
+              <div style="margin-bottom:12px;">
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Headline</label>
+                <input type="text" id="revTitleInput" required placeholder="Summary of your experience" style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
+              </div>
+              <div style="margin-bottom:14px;">
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Your Review</label>
+                <textarea id="revBodyInput" rows="3" required placeholder="Share details about the finish, fit, or 3D studio..." style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Submit Verified Review</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="reviewsListContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Your Stack -->
+  <section class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:28px;">
+      <div>
+        <span class="eyebrow">Style Pairing</span>
+        <h2 class="section-heading mt-1">Complete Your Stack</h2>
+      </div>
+      <a href="collections.html" class="btn btn-outline btn-sm">View All</a>
+    </div>
+    <div class="product-grid" id="relatedGrid"></div>
+  </section>
+
+  <div id="ep-footer-mount"></div>
+
+  <script>
+    let currentProduct = null;
+    let pdpState = {
+      metal: 'yellow',
+      size: 'S',
+      letter: 'E',
+      qty: 1,
+      activeImg: ''
+    };
+
+    function renderPDP() {
+      const p = currentProduct;
+      if (!p) return;
+
+      document.title = `${p.title} • NICH JEWELRY`;
+      document.getElementById('bcProductTitle').textContent = p.title;
+
+      const inWish = window.EP_STORE.isProductInWishlist(p.id);
+      const thumbSrc = pdpState.activeImg || p.imagesByMetal[p.metal] || p.gallery[0];
+
+      // Build Thumbnails
+      const galleryThumbs = p.gallery.map((src, i) => `
+        <button class="pdp-thumb ${src === thumbSrc ? 'active' : ''}" onclick="setMainImg('${src}')">
+          <img src="${src}" alt="" style="${p.isCharmImage ? 'object-fit:contain; padding:10px;' : ''}">
+        </button>
+      `).join('');
+
+      // Metal Picker HTML
+      const metalHTML = (p.availableMetals && p.availableMetals.length > 0) ? `
+        <div class="option-group-label">
+          <span>Metal Finish</span>
+          <span style="color:#1b1b1b;">${window.EP_DB.metals[p.metal]?.name || p.metal}</span>
+        </div>
+        <div class="pdp-metal-pills">
+          ${p.availableMetals.map(m => `
+            <button class="pdp-metal-btn ${pdpState.metal === m ? 'active' : ''}" onclick="selectPDPMetal('${m}')">
+              <span class="mini-swatch ${m}"></span>
+              ${window.EP_DB.metals[m]?.name || m}
+            </button>
+          `).join('')}
+        </div>
+      ` : '';
+
+      // Size Picker HTML
+      const sizeHTML = p.hasSizes ? `
+        <div class="option-group-label">
+          <span>Wrist Size</span>
+          <a href="about.html#sizing" style="color:#8b661d; text-decoration:underline;">Size Guide &amp; Fit</a>
+        </div>
+        <div class="pdp-size-grid">
+          ${window.EP_DB.sizes.map(s => `
+            <button class="pdp-size-btn ${pdpState.size === s.key ? 'active' : ''}" onclick="selectPDPSize('${s.key}')">
+              <div style="font-size:11.5px; font-weight:700;">${s.key}</div>
+              <div style="font-size:9px; opacity:0.8;">${s.wristMm}</div>
+            </button>
+          `).join('')}
+        </div>
+      ` : '';
+
+      // Letter Picker (for A-Z pave initial charm)
+      const letterHTML = p.hasLetterPicker ? `
+        <div class="option-group-label">
+          <span>Choose Initial</span>
+          <span style="color:#1b1b1b;">Letter ${pdpState.letter.toUpperCase()}</span>
+        </div>
+        <div class="letter-grid">
+          ${window.EP_DB.charmsCatalog.letters.map(l => `
+            <button class="letter-btn ${pdpState.letter === l ? 'active' : ''}" onclick="selectPDPLetter('${l}')">
+              ${l.toUpperCase()}
+            </button>
+          `).join('')}
+        </div>
+      ` : '';
+
+      // Direct 3D Studio CTA for customizable bangles
+      const studioCTA = p.customizable3d ? `
+        <a href="customizer.html?metal=${pdpState.metal}&size=${pdpState.size}" class="btn btn-gold" style="width:100%; margin-bottom:22px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Personalize This Bangle in Live 3D Studio &rarr;
+        </a>
+      ` : '';
+
+      const container = document.getElementById('pdpContainer');
+      container.innerHTML = `
+        <div>
+          <div class="pdp-main-media ${p.isCharmImage ? 'is-charm' : ''}">
+            ${p.badge ? `<span class="product-badge ${p.customizable3d ? 'is-3d' : ''}">${p.badge}</span>` : ''}
+            <img src="${thumbSrc}" id="pdpMainImg" alt="${p.title}">
+          </div>
+          <div class="pdp-thumbs">${galleryThumbs}</div>
+        </div>
+
+        <div>
+          <span class="eyebrow">${p.category} &bull; SKU ${p.sku}</span>
+          <h1 class="pdp-title">${p.title}</h1>
+          <div class="pdp-rating-row">
+            <span style="color:#c59b3f; letter-spacing:2px;">★★★★★</span>
+            <a href="#reviews" style="color:#737373; text-decoration:underline;">${p.rating.toFixed(1)} (${window.EP_STORE.getReviews(p.id).length || p.reviewCount} reviews)</a>
+          </div>
+
+          <div class="pdp-price">
+            <span>$${p.price.toFixed(2)}</span>
+            ${p.compareAtPrice ? `<span style="font-size:18px; color:#999; text-decoration:line-through; font-weight:400;">$${p.compareAtPrice.toFixed(2)}</span>` : ''}
+          </div>
+
+          <p style="font-size:13.5px; color:#555; line-height:1.75; margin-bottom:24px;">
+            ${p.description}
+          </p>
+
+          ${metalHTML}
+          ${sizeHTML}
+          ${letterHTML}
+
+          <div class="option-group-label">
+            <span>Complimentary Linen Gift Box &amp; Handwritten Note (Optional)</span>
+          </div>
+          <input type="text" id="pdpGiftNote" class="gift-note-box" placeholder="Add a short message to include on your embossed card...">
+
+          <div class="pdp-cta-stack">
+            <div class="qty-controls" style="height:44px; padding:0 4px;">
+              <button type="button" onclick="changePDPQty(-1)" style="height:100%; width:32px;">-</button>
+              <span id="pdpQtyVal" style="padding:0 12px; font-size:13px;">${pdpState.qty}</span>
+              <button type="button" onclick="changePDPQty(1)" style="height:100%; width:32px;">+</button>
+            </div>
+            <button class="btn btn-primary" style="flex:1;" onclick="addPDPToBag()">
+              Add To Bag &bull; $${(p.price * pdpState.qty).toFixed(2)}
+            </button>
+            <button class="icon-btn" style="width:44px; height:44px; border:1px solid #e6e3dc; border-radius:4px;" onclick="togglePDPWish(this)" title="Save to Wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="${inWish ? '#c53030' : 'none'}" stroke="${inWish ? '#c53030' : 'currentColor'}" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+
+          ${studioCTA}
+
+          <div style="margin-top:16px;">
+            <div class="accordion-item open">
+              <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+                <span>Craftsmanship &amp; Specifications</span>
+                <span>+</span>
+              </button>
+              <div class="accordion-body">
+                <ul style="padding-left:18px; display:flex; flex-direction:column; gap:6px;">
+                  ${(p.specs || []).map(s => `<li>${s}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+                <span>Shipping &amp; 30-Day Complimentary Returns</span>
+                <span>+</span>
+              </button>
+              <div class="accordion-body">
+                Every piece ships in signature linen presentation packaging with full transit insurance. Complimentary shipping on orders over $150. Unworn stock pieces may be returned within 30 days.
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+                <span>Lifetime Glider Track Warranty</span>
+                <span>+</span>
+              </button>
+              <div class="accordion-body">
+                We guarantee the precision tolerances of your bangle's hinge, safety box clasp, and dual glider channels for life against mechanical defects.
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.setMainImg = function(src) {
+      pdpState.activeImg = src;
+      renderPDP();
+    };
+
+    window.selectPDPMetal = function(metalKey) {
+      pdpState.metal = metalKey;
+      pdpState.activeImg = currentProduct.imagesByMetal[metalKey] || currentProduct.gallery[0];
+      renderPDP();
+    };
+
+    window.selectPDPSize = function(sizeKey) {
+      pdpState.size = sizeKey;
+      renderPDP();
+    };
+
+    window.selectPDPLetter = function(letter) {
+      pdpState.letter = letter.toLowerCase();
+      pdpState.activeImg = `assets/charms/letter_${pdpState.letter}_pave.png`;
+      renderPDP();
+    };
+
+    window.changePDPQty = function(delta) {
+      pdpState.qty = Math.max(1, Math.min(10, pdpState.qty + delta));
+      renderPDP();
+    };
+
+    window.togglePDPWish = function() {
+      const added = window.EP_STORE.toggleProductWishlist(currentProduct.id);
+      window.EP_UI.toast(added ? 'Saved to your Wishlist ♥' : 'Removed from Wishlist', added ? '♥' : '•');
+      renderPDP();
+    };
+
+    window.addPDPToBag = function() {
+      const giftNote = (document.getElementById('pdpGiftNote')?.value || '').trim();
+      const thumb = pdpState.activeImg || currentProduct.imagesByMetal[pdpState.metal] || currentProduct.gallery[0];
+      window.EP_STORE.addToCart({
+        type: 'product',
+        productId: currentProduct.id,
+        title: currentProduct.title,
+        metal: pdpState.metal,
+        size: currentProduct.hasSizes ? pdpState.size : null,
+        letterChoice: currentProduct.hasLetterPicker ? pdpState.letter.toUpperCase() : null,
+        giftNote,
+        unitPrice: currentProduct.price,
+        qty: pdpState.qty,
+        image: thumb
+      });
+      window.EP_UI.toast(`${currentProduct.title} added to your bag!`);
+      window.EP_UI.openCart();
+    };
+
+    function renderReviews() {
+      if (!currentProduct) return;
+      const reviews = window.EP_STORE.getReviews(currentProduct.id);
+      const listBox = document.getElementById('reviewsListContainer');
+      const totalEl = document.getElementById('totalReviewsDisplay');
+      const avgEl = document.getElementById('avgRatingDisplay');
+
+      if (reviews.length === 0) {
+        avgEl.textContent = currentProduct.rating.toFixed(1);
+        totalEl.textContent = `No detailed reviews yet for this SKU — be the first below!`;
+        listBox.innerHTML = `<div class="review-card"><p style="font-size:13px; color:#737373;">Be the first collector to review ${currentProduct.title}.</p></div>`;
+        return;
+      }
+
+      const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+      avgEl.textContent = avg.toFixed(1);
+      totalEl.textContent = `Based on ${reviews.length} verified collector review${reviews.length > 1 ? 's' : ''}`;
+
+      listBox.innerHTML = reviews.map(r => `
+        <div class="review-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span style="color:#c59b3f; letter-spacing:2px;">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+            <span style="font-size:11px; color:#888;">${r.date}</span>
+          </div>
+          <h4 class="serif" style="font-size:21px; margin-bottom:6px;">${r.title}</h4>
+          <p style="font-size:13px; color:#444; line-height:1.65; margin-bottom:10px;">${r.body}</p>
+          <div style="font-size:11px; font-weight:600; color:#737373;">
+            ${r.author} ${r.location ? '&bull; ' + r.location : ''} &bull; <span style="color:#2f855a;">✓ Verified Buyer</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || 'glider-14k-gold';
+      currentProduct = window.EP_STORE.getProductById(id) || window.EP_STORE.getProducts()[0];
+
+      pdpState.metal = currentProduct.defaultMetal || 'yellow';
+      pdpState.activeImg = currentProduct.imagesByMetal[pdpState.metal] || currentProduct.gallery[0];
+
+      renderPDP();
+      renderReviews();
+
+      // Related 4 items (excluding current)
+      const related = window.EP_STORE.getProducts().filter(x => x.id !== currentProduct.id).slice(0, 4);
+      document.getElementById('relatedGrid').innerHTML = related.map(r => window.EP_UI.renderProductCard(r)).join('');
+
+      // Review Form Submit
+      document.getElementById('newReviewForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.EP_STORE.addReview(currentProduct.id, {
+          author: document.getElementById('revAuthorInput').value.trim(),
+          location: 'Atelier Collector',
+          rating: parseInt(document.getElementById('revRatingInput').value, 10),
+          title: document.getElementById('revTitleInput').value.trim(),
+          body: document.getElementById('revBodyInput').value.trim()
+        });
+        e.target.reset();
+        renderReviews();
+        window.EP_UI.toast('Thank you! Your review has been published.');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NICH JEWELRY &bull; Fine Jewelry &amp; 3D Glider Bangle Atelier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/db.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <style>
+    /* Editorial Hero */
+    .hero-section {
+      position: relative;
+      min-height: 78vh;
+      max-height: 820px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #ece7dd;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+    }
+
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(95deg, rgba(22, 20, 17, 0.72) 0%, rgba(22, 20, 17, 0.36) 52%, rgba(22, 20, 17, 0.08) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+      color: #ffffff;
+      padding: 64px 0;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 5.6vw, 72px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-sub {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 490px;
+      margin-bottom: 32px;
+    }
+
+    
+    /* Hero 2-Column Grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      z-index: 2;
+      padding: 64px 0;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 36px 0 32px;
+      }
+      .hero-content {
+        padding: 0;
+        max-width: 100%;
+      }
+    }
+
+    /* Interactive Atelier Vinyl Record Stage */
+    .hero-record-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      user-select: none;
+    }
+
+    .record-turntable-card {
+      position: relative;
+      width: 270px;
+      height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .record-turntable-card {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+      }
+    }
+
+    /* The Vinyl Record Disc */
+    .vinyl-disc {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #1b1917 0%, #161513 100%);
+      border: 1px solid rgba(228, 204, 160, 0.28);
+      animation: spinVinyl 16s linear infinite;
+      transition: transform 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 900px) {
+      .vinyl-disc {
+        width: 170px;
+        height: 170px;
+      }
+    }
+
+    .record-turntable-card:hover .vinyl-disc,
+    .record-turntable-card:active .vinyl-disc {
+      animation-duration: 7s;
+    }
+
+    /* Concentric Sound Grooves */
+    .vinyl-grooves {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(
+        circle at center,
+        transparent 0,
+        transparent 3px,
+        rgba(255, 255, 255, 0.04) 4px,
+        transparent 5px
+      );
+      pointer-events: none;
+    }
+
+    /* Vinyl Light Sheen (Specular Reflection) */
+    .vinyl-sheen {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 45deg,
+        rgba(255, 255, 255, 0.09) 0deg,
+        transparent 65deg,
+        rgba(255, 255, 255, 0.09) 130deg,
+        transparent 195deg,
+        rgba(255, 255, 255, 0.09) 260deg,
+        transparent 325deg,
+        rgba(255, 255, 255, 0.09) 360deg
+      );
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* Center Gold Medallion Label */
+    .vinyl-center-label {
+      position: absolute;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e4cca0 0%, #c59b3f 50%, #9e7526 100%);
+      border: 2px solid #dfc88e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .vinyl-center-label {
+        width: 62px;
+        height: 62px;
+      }
+    }
+
+    .vinyl-center-logo {
+      height: 18px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 900px) {
+      .vinyl-center-logo {
+        height: 13px;
+      }
+    }
+
+    .vinyl-spindle-hole {
+      width: 8px;
+      height: 8px;
+      background: #181715;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      margin-top: 3px;
+    }
+
+    /* Tone-Arm (Needle) */
+    .vinyl-tonearm {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 70px;
+      height: 120px;
+      pointer-events: none;
+      z-index: 4;
+      transform-origin: top right;
+      transform: rotate(-3deg);
+      transition: transform 0.4s var(--ease);
+    }
+
+    @media (max-width: 900px) {
+      .vinyl-tonearm {
+        width: 48px;
+        height: 85px;
+        top: 2px;
+        right: 2px;
+      }
+    }
+
+    .record-turntable-card:hover .vinyl-tonearm {
+      transform: rotate(8deg);
+    }
+
+    .tonearm-pivot {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #c59b3f;
+      border: 2px solid #e4cca0;
+    }
+
+    .tonearm-arm {
+      position: absolute;
+      top: 10px;
+      right: 7px;
+      width: 2.5px;
+      height: 90px;
+      background: linear-gradient(to bottom, #e4cca0 0%, #c59b3f 100%);
+      transform-origin: top center;
+      transform: rotate(24deg);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .tonearm-arm { height: 62px; }
+    }
+
+    .tonearm-headshell {
+      position: absolute;
+      bottom: 0;
+      left: -4px;
+      width: 10px;
+      height: 14px;
+      background: #181715;
+      border: 1px solid #c59b3f;
+      border-radius: 2px;
+    }
+
+    /* Spinning Text Ring (SVG) */
+    .vinyl-svg-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Live Session Caption */
+    .record-session-caption {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(24, 23, 21, 0.72);
+      border: 1px solid rgba(228, 204, 160, 0.35);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      color: #e4cca0;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      text-decoration: none;
+      transition: all 0.25s var(--ease);
+    }
+
+    .record-session-caption:hover {
+      background: rgba(24, 23, 21, 0.95);
+      border-color: #c59b3f;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .record-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #48bb78;
+      box-shadow: 0 0 8px #48bb78;
+      animation: pulseGreen 1.8s infinite;
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .press-strip {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-light);
+      padding: 20px 0;
+    }
+
+    .press-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #888;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .press-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-style: italic;
+      color: #4a463f;
+      letter-spacing: 0.06em;
+      text-transform: none;
+    }
+
+    /* Sections */
+    .page-section {
+      padding: 78px 0;
+    }
+
+    .section-header-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    /* Category Pills Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 960px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .cat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+    }
+
+    .cat-card:hover {
+      transform: translateY(-4px);
+      border-color: #181715;
+      border-color: var(--gold-primary);
+    }
+
+    .cat-card-img {
+      aspect-ratio: 1;
+      background: var(--bg-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .cat-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s var(--ease);
+    }
+
+    .cat-card:hover .cat-card-img img {
+      transform: scale(1.06);
+    }
+
+    .cat-card-title {
+      padding: 14px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* Split 3D Studio Feature Banner */
+    .spotlight-split {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 80px 0;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .split-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .studio-preview-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      /* clean flat */
+      position: relative;
+    }
+
+    .studio-preview-img-wrap {
+      aspect-ratio: 1;
+      background: var(--bg-warm);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .studio-preview-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.25s ease;
+    }
+
+    .metal-preview-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-light);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .metal-pill-switch {
+      display: flex;
+      gap: 8px;
+    }
+
+    .metal-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .metal-pill.active {
+      border-color: var(--text-dark);
+      background: var(--text-dark);
+      color: #ffffff;
+    }
+
+    .feature-steps {
+      margin: 28px 0 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 560px) {
+      .feature-steps { grid-template-columns: 1fr; }
+    }
+
+    .feature-step-box {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+
+    .feature-step-num {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--gold-deep);
+      margin-bottom: 4px;
+    }
+
+    .feature-step-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .feature-step-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Meet the Gliders Interactive Charm Strip */
+    .charm-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .charm-strip-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .charm-strip-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .glider-token-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 20px 14px;
+      text-align: center;
+      transition: all 0.25s var(--ease);
+    }
+
+    .glider-token-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-3px);
+      border-color: #181715;
+    }
+
+    .glider-token-card img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+      margin: 0 auto 12px;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* VIP Banner */
+    .vip-cta-banner {
+      background: linear-gradient(135deg, #1b1a17 0%, #2d2922 100%);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 54px 48px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .vip-cta-banner { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Sticky Header & Cart Drawer -->
+  <div id="ep-header-mount"></div>
+
+  <!-- 1. Editorial Hero Banner -->
+  <section class="hero-section">
+    <img src="assets/images/hero_editorial.jpg" alt="14K Gold Glider Charm Bangle worn stacked on warm travertine" class="hero-bg">
+    <div class="hero-scrim"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">The Signature 3D Atelier &bull; 14K Solid Gold</span>
+          <h1 class="hero-title">Crafted to Glide.<br>Designed by You.</h1>
+          <p class="hero-sub">
+            Experience fine jewelry personalization in real-time 3D. Arrange Mother of Pearl icons, diamond pav&eacute; letters, and solid 14K gold charms across both front and back channels of our hinged Glider Bangle&trade;.
+          </p>
+          <div class="hero-cta-row">
+            <a href="customizer.html" class="btn btn-gold">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              Design in 3D Studio
+            </a>
+            <a href="collections.html" class="btn" style="background:rgba(255,255,255,0.14); color:#fff; border-color:rgba(255,255,255,0.55); backdrop-filter:blur(6px);">
+              Shop Collections
+            </a>
+          </div>
+        </div>
+
+        <!-- Atelier Vinyl Record Player Animation -->
+        <div class="hero-record-stage">
+          <a href="customizer.html" class="record-turntable-card" title="Interactive Atelier Record • Click to Launch 3D Studio">
+            <div class="vinyl-disc">
+              <div class="vinyl-grooves"></div>
+              <div class="vinyl-sheen"></div>
+              
+              <!-- Circular Curved Typography SVG -->
+              <svg class="vinyl-svg-ring" viewBox="0 0 200 200">
+                <defs>
+                  <path id="vinylCirclePath" d="M 100, 100 m -72, 0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
+                </defs>
+                <text font-size="9" letter-spacing="2.6" fill="#e4cca0" font-weight="600" text-transform="uppercase">
+                  <textPath xlink:href="#vinylCirclePath" startOffset="0%">
+                    ✦ NICHE JEWELRY ATELIER • 3D GLIDER • 33⅓ RPM •
+                  </textPath>
+                </text>
+              </svg>
+
+              <!-- Center Gold Medallion Label -->
+              <div class="vinyl-center-label">
+                <img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" class="vinyl-center-logo">
+                <span style="font-size:7px; color:#ffffff; font-weight:700; letter-spacing:0.1em; margin-top:1px;">14K ATELIER</span>
+                <span class="vinyl-spindle-hole"></span>
+              </div>
+            </div>
+
+            <!-- Stylized Gold Tone-Arm -->
+            <div class="vinyl-tonearm">
+              <div class="tonearm-pivot"></div>
+              <div class="tonearm-arm">
+                <div class="tonearm-headshell"></div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Live Session Pill Link -->
+          <a href="customizer.html" class="record-session-caption" title="Launch 3D Studio Session">
+            <span class="record-pulse-dot"></span>
+            <span>33⅓ RPM &bull; Session 01 &bull; Tap to Design</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press & Guarantee Strip -->
+  <section class="press-strip">
+    <div class="container press-inner">
+      <span>Featured In</span>
+      <div class="press-logos">
+        <span>Vogue</span>
+        <span>Harper&rsquo;s Bazaar</span>
+        <span>Elle Atelier</span>
+        <span>Town &amp; Country</span>
+      </div>
+      <span style="color:#1b1b1b; font-weight:600;">Lifetime Track Warranty &bull; Solid 14K Gold</span>
+    </div>
+  </section>
+
+  <!-- 2. Shop by Category -->
+  <section class="page-section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">Curated Categories</span>
+          <h2 class="section-heading mt-1">Fine Jewelry Silhouettes</h2>
+        </div>
+        <a href="collections.html" class="btn btn-outline btn-sm">View Entire Catalog &rarr;</a>
+      </div>
+
+      <div class="category-grid">
+        <a href="collections.html?cat=bangles" class="cat-card">
+          <div class="cat-card-img">
+            <img src="assets/images/bangle_gold_studio.jpg" alt="Glider Bangles">
+          </div>
+          <div class="cat-card-title">Glider Bangles</div>
+        </a>
+        <a href="collections.html?cat=charms" class="cat-card">
+          <div class="cat-card-img" style="padding:26%;">
+            <img src="assets/charms/bee_gold.png" alt="Glider Charms" style="object-fit:contain;">
+          </div>
+          <div class="cat-card-title">Cutout Charms</div>
+        </a>
+        <a href="collections.html?cat=necklaces" class="cat-card">
+          <div class="cat-card-img">
+            <img src="assets/images/necklace_pendant_studio.jpg" alt="Necklaces">
+          </div>
+          <div class="cat-card-title">Medallion Necklaces</div>
+        </a>
+        <a href="collections.html?cat=earrings" class="cat-card">
+          <div class="cat-card-img">
+            <img src="assets/images/earrings_huggie_studio.jpg" alt="Earrings">
+          </div>
+          <div class="cat-card-title">Pav&eacute; Huggies</div>
+        </a>
+        <a href="collections.html?cat=rings" class="cat-card">
+          <div class="cat-card-img">
+            <img src="assets/images/ring_solitaire_studio.jpg" alt="Rings">
+          </div>
+          <div class="cat-card-title">Stacking Rings</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Interactive 3D Studio Feature Spotlight -->
+  <section class="spotlight-split">
+    <div class="container">
+      <div class="split-grid">
+        <div class="studio-preview-card">
+          <div class="studio-preview-img-wrap">
+            <span class="product-badge is-3d">Live 3D Available</span>
+            <img src="assets/images/bangle_gold_studio.jpg" id="spotlightMetalImg" alt="3D Glider Bangle Finish Preview">
+          </div>
+          <div class="metal-preview-bar">
+            <div class="metal-pill-switch">
+              <button class="metal-pill active" onclick="switchSpotlightMetal('yellow', this)">
+                <span class="mini-swatch yellow"></span> 14K Gold
+              </button>
+              <button class="metal-pill" onclick="switchSpotlightMetal('white', this)">
+                <span class="mini-swatch white"></span> 925 Silver
+              </button>
+              <button class="metal-pill" onclick="switchSpotlightMetal('rose', this)">
+                <span class="mini-swatch rose"></span> 14K Rose
+              </button>
+            </div>
+            <a href="customizer.html?metal=yellow" id="spotlightOpenStudioBtn" class="btn btn-gold btn-sm">
+              Open in 3D &rarr;
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <span class="eyebrow">Patented Dual-Track Engineering</span>
+          <h2 class="section-heading mt-1">Sculpt Your Story on Front &amp; Back Tracks.</h2>
+          <p style="font-size:14px; color:#555; line-height:1.75; margin-top:14px;">
+            Unlike static charm bracelets, our precision-milled 14K gold bangle features an open recessed glider rail on both faces. Drag charms directly into your preferred spacing, rotate pieces in 90&deg; increments, and inspect every millimeter before commissioning your piece.
+          </p>
+
+          <div class="feature-steps">
+            <div class="feature-step-box">
+              <div class="feature-step-num">01</div>
+              <div class="feature-step-title">Front &amp; Back Channels</div>
+              <div class="feature-step-desc">Customize initials on the front and secret meaningful charms on the back side.</div>
+            </div>
+            <div class="feature-step-box">
+              <div class="feature-step-num">02</div>
+              <div class="feature-step-title">Direct 3D Drag &amp; Drop</div>
+              <div class="feature-step-desc">Grab any charm in 3D space and slide it along the track effortlessly.</div>
+            </div>
+            <div class="feature-step-box">
+              <div class="feature-step-num">03</div>
+              <div class="feature-step-title">90&deg; Precision Rotation</div>
+              <div class="feature-step-desc">Orient icons &amp; symbols vertically or horizontally with one click.</div>
+            </div>
+            <div class="feature-step-box">
+              <div class="feature-step-num">04</div>
+              <div class="feature-step-title">Save &amp; Export .GLB</div>
+              <div class="feature-step-desc">Save custom builds directly to your Wishlist or export a real 3D CAD file.</div>
+            </div>
+          </div>
+
+          <a href="customizer.html" class="btn btn-primary">Launch Full 3D Customizer &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Best Sellers Product Grid -->
+  <section class="page-section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">Atelier Favorites</span>
+          <h2 class="section-heading mt-1">Signature Best Sellers</h2>
+        </div>
+        <a href="collections.html" class="btn btn-outline btn-sm">Shop All Pieces &rarr;</a>
+      </div>
+      <div class="product-grid" id="homeBestSellersGrid"></div>
+    </div>
+  </section>
+
+  <!-- 5. Meet the Glider Charms Interactive Strip -->
+  <section class="page-section" style="background:var(--bg-warm); border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);">
+    <div class="container">
+      <div class="text-center mb-3">
+        <span class="eyebrow">14K Gold &amp; Natural Diamonds</span>
+        <h2 class="section-heading mt-1">Meet the Cutout Glider Charms</h2>
+        <p style="font-size:13.5px; color:#666; max-width:560px; margin:10px auto 0;">
+          Click any signature token to try it directly inside the 3D Bangle Studio or explore its solid gold craftsmanship.
+        </p>
+      </div>
+      <div class="charm-strip-grid" id="homeCharmsStrip"></div>
+    </div>
+  </section>
+
+  <!-- 6. Craftsmanship Editorial Split -->
+  <section class="page-section">
+    <div class="container">
+      <div class="split-grid">
+        <div>
+          <span class="eyebrow">Responsible Luxury</span>
+          <h2 class="section-heading mt-1">Recycled 14K Gold &amp; Conflict-Free Diamonds.</h2>
+          <p style="font-size:14px; color:#555; line-height:1.8; margin:16px 0 24px;">
+            Every NICH JEWELRY piece is cast to order in small batches using 100% recycled 14K solid gold and sterling silver. Each charm track undergoes microscopic tolerance inspection so your charms glide with silk-like smoothness for decades to come.
+          </p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="about.html" class="btn btn-outline">Read Our Story</a>
+            <a href="about.html#sizing" class="btn btn-ghost">Wrist Sizing Calculator</a>
+          </div>
+        </div>
+        <div style="border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-md); border:1px solid var(--border-light);">
+          <img src="assets/images/craftsmanship_editorial.jpg" alt="14K Gold Jewelry Craftsmanship on Travertine Stone" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Verified Client Reviews -->
+  <section class="page-section" style="padding-top:10px;">
+    <div class="container">
+      <div class="text-center mb-3">
+        <span class="eyebrow">Collector Notes</span>
+        <h2 class="section-heading mt-1">Loved Across 40+ Countries</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div style="color:#c59b3f; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p class="serif" style="font-size:21px; line-height:1.35;">“Being able to drag my initials around on the 3D bracelet and place my Bee charm on the back channel made the experience unforgettable.”</p>
+          <div style="margin-top:auto; font-size:11px; color:#737373; font-weight:600; text-transform:uppercase; letter-spacing:0.12em;">
+            Sophia M. &bull; New York &bull; Verified Collector
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div style="color:#c59b3f; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p class="serif" style="font-size:21px; line-height:1.35;">“The warm Italian 14K gold matches my everyday heirloom stack flawlessly. The concealed box clasp feels indestructible.”</p>
+          <div style="margin-top:auto; font-size:11px; color:#737373; font-weight:600; text-transform:uppercase; letter-spacing:0.12em;">
+            Nadia K. &bull; Dubai &bull; Verified Collector
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div style="color:#c59b3f; font-size:14px; letter-spacing:2px;">★★★★★</div>
+          <p class="serif" style="font-size:21px; line-height:1.35;">“Bought the 925 Silver Glider with pav&eacute; diamond letters for my sister’s graduation. She never takes it off.”</p>
+          <div style="margin-top:auto; font-size:11px; color:#737373; font-weight:600; text-transform:uppercase; letter-spacing:0.12em;">
+            Claire V. &bull; London &bull; Verified Collector
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Collector VIP CTA Banner -->
+  <section class="container">
+    <div class="vip-cta-banner">
+      <div>
+        <span class="eyebrow" style="color:var(--gold-primary);">Atelier Welcome Privilege</span>
+        <h2 class="serif" style="font-size:clamp(28px, 3vw, 40px); font-weight:400; margin-top:6px;">
+          Save 15% on Your First Custom Glider Build
+        </h2>
+        <p style="font-size:13px; color:#c8c1b6; margin-top:6px;">
+          Apply promo code <strong style="color:#c59b3f;">NICH15</strong> inside your bag or at checkout.
+        </p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button class="btn btn-gold" onclick="navigator.clipboard?.writeText('NICH15'); EP_UI.toast('Code NICH15 copied!');">
+          Copy Code: NICH15
+        </button>
+        <a href="customizer.html" class="btn" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.35);">
+          Start Designing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <div id="ep-footer-mount"></div>
+
+  <script>
+    const spotlightImgs = {
+      yellow: 'assets/images/bangle_gold_studio.jpg',
+      white:  'assets/images/bangle_silver_studio.jpg',
+      rose:   'assets/images/bangle_rose_studio.jpg'
+    };
+
+    window.switchSpotlightMetal = function(metalKey, btnEl) {
+      document.querySelectorAll('.metal-pill').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      const img = document.getElementById('spotlightMetalImg');
+      const studioBtn = document.getElementById('spotlightOpenStudioBtn');
+      if (img) img.src = spotlightImgs[metalKey];
+      if (studioBtn) studioBtn.href = `customizer.html?metal=${metalKey}`;
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render Featured 4 Best Sellers
+      const featuredIds = ['glider-14k-gold', 'glider-925-silver', 'necklace-mop-medallion', 'ring-bezel-stack'];
+      const bestGrid = document.getElementById('homeBestSellersGrid');
+      if (bestGrid && window.EP_STORE && window.EP_UI) {
+        const items = featuredIds.map(id => EP_STORE.getProductById(id)).filter(Boolean);
+        bestGrid.innerHTML = items.map(p => EP_UI.renderProductCard(p)).join('');
+      }
+
+      // Render Interactive Charms Strip
+      const charmsStrip = document.getElementById('homeCharmsStrip');
+      if (charmsStrip && window.EP_DB) {
+        const symbolMap = {
+          bee: 'charm-bee-mop',
+          martini: 'charm-martini-olive',
+          cherries: 'charm-cherries-enamel',
+          heart: 'charm-pave-heart',
+          eye: 'charm-evil-eye',
+          star: 'glider-14k-gold'
+        };
+        charmsStrip.innerHTML = EP_DB.charmsCatalog.symbols.map(c => `
+          <div class="glider-token-card">
+            <img src="${c.imgUrl}" alt="${c.title}">
+            <div style="font-size:12px; font-weight:600; margin-bottom:4px;">${c.title}</div>
+            <div style="font-size:11px; color:#737373; margin-bottom:12px;">$${c.price}.00</div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <a href="customizer.html?charm=${c.id}" class="btn btn-gold btn-sm" style="width:100%; padding:7px;">Try in 3D</a>
+              <a href="product.html?id=${symbolMap[c.id] || 'glider-14k-gold'}" style="font-size:10px; font-weight:600; color:#555; text-decoration:underline;">View Piece</a>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>
