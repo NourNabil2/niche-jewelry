@@ -30,8 +30,13 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url);
-  let pathname = decodeURIComponent(parsedUrl.pathname);
+  let pathname;
+  try {
+    const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:8080'}`);
+    pathname = decodeURIComponent(parsedUrl.pathname);
+  } catch (e) {
+    pathname = '/';
+  }
 
   // Security check - prevent path traversal
   const safePath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
