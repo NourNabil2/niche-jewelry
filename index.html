@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/db.js"></script>
   <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
   <style>
     /* Editorial Hero */
@@ -666,18 +667,16 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
-          <span class="hero-eyebrow">The Signature 3D Atelier &bull; 14K Solid Gold</span>
-          <h1 class="hero-title">Crafted to Glide.<br>Designed by You.</h1>
-          <p class="hero-sub">
-            Experience fine jewelry personalization in real-time 3D. Arrange Mother of Pearl icons, diamond pav&eacute; letters, and solid 14K gold charms across both front and back channels of our hinged Glider Bangle&trade;.
-          </p>
+          <span class="hero-eyebrow" data-i18n="hero.eyebrow">The Signature 3D Atelier &bull; 14K Solid Gold</span>
+          <h1 class="hero-title" data-i18n="hero.title">Crafted to Glide.<br>Designed by You.</h1>
+          <p class="hero-sub" data-i18n="hero.sub">Experience fine jewelry personalization in real-time 3D. Arrange Mother of Pearl icons, diamond pavé letters, and solid 14K gold charms across both front and back channels of our hinged Glider Bangle™.</p>
           <div class="hero-cta-row">
             <a href="customizer.html" class="btn btn-gold">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-              Design in 3D Studio
+              <span data-i18n="hero.cta_studio">Design in 3D Studio</span>
             </a>
             <a href="collections.html" class="btn" style="background:rgba(255,255,255,0.14); color:#fff; border-color:rgba(255,255,255,0.55); backdrop-filter:blur(6px);">
-              Shop Collections
+              <span data-i18n="hero.cta_shop">Shop Collections</span>
             </a>
           </div>
         </div>
@@ -696,7 +695,7 @@
                 </defs>
                 <text font-size="9" letter-spacing="2.6" fill="#e4cca0" font-weight="600" text-transform="uppercase">
                   <textPath xlink:href="#vinylCirclePath" startOffset="0%">
-                    ✦ NICHE JEWELRY ATELIER • 3D GLIDER • 33⅓ RPM •
+                    <tspan id="vinylSvgText" data-i18n="hero.record_ring">✦ NICHE JEWELRY ATELIER • 3D GLIDER • 33⅓ RPM •</tspan>
                   </textPath>
                 </text>
               </svg>
@@ -704,7 +703,7 @@
               <!-- Center Gold Medallion Label -->
               <div class="vinyl-center-label">
                 <img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" class="vinyl-center-logo">
-                <span style="font-size:7px; color:#ffffff; font-weight:700; letter-spacing:0.1em; margin-top:1px;">14K ATELIER</span>
+                <span style="font-size:7px; color:#ffffff; font-weight:700; letter-spacing:0.1em; margin-top:1px;" data-i18n="hero.record_badge">14K ATELIER</span>
                 <span class="vinyl-spindle-hole"></span>
               </div>
             </div>
@@ -721,7 +720,7 @@
           <!-- Live Session Pill Link -->
           <a href="customizer.html" class="record-session-caption" title="Launch 3D Studio Session">
             <span class="record-pulse-dot"></span>
-            <span>33⅓ RPM &bull; Session 01 &bull; Tap to Design</span>
+            <span data-i18n="hero.record_session">33⅓ RPM &bull; Session 01 &bull; Tap to Design</span>
           </a>
         </div>
       </div>
@@ -976,7 +975,9 @@
       if (studioBtn) studioBtn.href = `customizer.html?metal=${metalKey}`;
     };
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function renderHomeDynamicSections() {
+      const T = (k) => window.nicheI18n ? window.nicheI18n.t(k) : k;
+
       // Render Featured 4 Best Sellers
       const featuredIds = ['glider-14k-gold', 'glider-925-silver', 'necklace-mop-medallion', 'ring-bezel-stack'];
       const bestGrid = document.getElementById('homeBestSellersGrid');
@@ -1000,14 +1001,25 @@
           <div class="glider-token-card">
             <img src="${c.imgUrl}" alt="${c.title}">
             <div style="font-size:12px; font-weight:600; margin-bottom:4px;">${c.title}</div>
-            <div style="font-size:11px; color:#737373; margin-bottom:12px;">$${c.price}.00</div>
+            <div style="font-size:11px; color:#737373; margin-bottom:12px;">${c.price}.00</div>
             <div style="display:flex; flex-direction:column; gap:6px;">
-              <a href="customizer.html?charm=${c.id}" class="btn btn-gold btn-sm" style="width:100%; padding:7px;">Try in 3D</a>
-              <a href="product.html?id=${symbolMap[c.id] || 'glider-14k-gold'}" style="font-size:10px; font-weight:600; color:#555; text-decoration:underline;">View Piece</a>
+              <a href="customizer.html?charm=${c.id}" class="btn btn-gold btn-sm" style="width:100%; padding:7px;">${T('common.design_in_3d')}</a>
+              <a href="product.html?id=${symbolMap[c.id] || 'glider-14k-gold'}" style="font-size:10px; font-weight:600; color:#555; text-decoration:underline;">${T('common.view_piece')}</a>
             </div>
           </div>
         `).join('');
       }
+
+      if (window.nicheI18n) {
+        window.nicheI18n.applyDataI18n();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderHomeDynamicSections();
+      window.addEventListener('niche:languageChange', () => {
+        renderHomeDynamicSections();
+      });
     });
   </script>
 </body>

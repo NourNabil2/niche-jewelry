@@ -227,6 +227,10 @@
       return this.getWishlist().some(w => w.type === 'product' && w.productId === productId);
     },
 
+    isWishlisted(productId) {
+      return this.isProductInWishlist(productId);
+    },
+
     toggleProductWishlist(productId) {
       const list = this.getWishlist();
       const idx = list.findIndex(w => w.type === 'product' && w.productId === productId);

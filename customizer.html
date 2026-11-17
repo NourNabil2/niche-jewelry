@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/db.js"></script>
   <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
   <style>
     :root {
@@ -1320,21 +1321,21 @@
   <!-- Studio Sub-Toolbar -->
   <div class="studio-subbar">
     <div class="subbar-left" style="display:flex; align-items:center; gap:12px;">
-      <a href="collections.html" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#555;">&larr; <span class="subbar-back-text">Collections</span></a>
+      <a href="collections.html" style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#555;">&larr; <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">Collections</span></a>
       <span class="subbar-sep" style="color:#ddd;">|</span>
-      <span class="subbar-title" style="font-size:11px; color:#8b661d; font-weight:600;">3D Dual-Track Glider Atelier</span>
+      <span class="subbar-title" style="font-size:11px; color:#8b661d; font-weight:600;"><span data-i18n="customizer.studio_title">3D Dual-Track Glider Atelier</span></span>
     </div>
     <div class="header-actions">
       <button class="btn-secondary" id="saveWishlistBtn" title="Save Custom 3D Design to Wishlist">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span>Save ♥</span>
+        <span data-i18n="common.save">Save Design</span>
       </button>
       <button class="btn-secondary" id="exportGlbBtn" title="Export 3D Model">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Export .GLB</span>
+        <span data-i18n="common.export_glb">Export 3D</span>
       </button>
       <button class="btn-primary" id="orderBtn">
-        Add To Bag &bull; <span id="headerTotal">$500.00</span>
+        <span data-i18n="common.add_to_bag">Add To Bag</span> &bull; <span id="headerTotal">$500.00</span>
       </button>
     </div>
   </div>
@@ -1353,18 +1354,18 @@
       <div class="viewport-side-toggle">
         <button class="side-pill-btn active" id="btnSideFront" onclick="goToStep(1)">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/></svg>
-          <span>Front (أمام)</span>
+          <span data-i18n="customizer.front_side">Front Side</span>
         </button>
         <button class="side-pill-btn" id="btnSideBack" onclick="goToStep(2)">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16V8"/></svg>
-          <span>Back (خلف)</span>
+          <span data-i18n="customizer.back_side">Back Side</span>
         </button>
       </div>
 
       <!-- Floating Drag Help Pill -->
       <div class="floating-drag-indicator" id="floatingDragIndicator">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
-        <span>اسحب الأشكال بالماوس لتحريكها في أي مكان (Drag charms to move freely)</span>
+        <span data-i18n="customizer.drag_tip_bar">Drag charms with mouse or touch to glide along channels</span>
       </div>
 
       <!-- Canvas Mount -->
@@ -1388,10 +1389,10 @@
 
       <!-- Camera View Angles -->
       <div class="camera-views">
-        <button class="view-chip active" data-view="front">Front</button>
-        <button class="view-chip" data-view="back">Back</button>
-        <button class="view-chip" data-view="clasp">Clasp</button>
-        <button class="view-chip" data-view="top">Top</button>
+        <button class="view-chip active" data-view="front" data-i18n="customizer.view_front_btn">Front</button>
+        <button class="view-chip" data-view="back" data-i18n="customizer.view_back_btn">Back</button>
+        <button class="view-chip" data-view="clasp" data-i18n="customizer.view_clasp_btn">Clasp</button>
+        <button class="view-chip" data-view="top" data-i18n="customizer.view_top_btn">Top</button>
       </div>
     </div>
 
@@ -1464,26 +1465,26 @@
         </div>
 
         <!-- Metal Selection -->
-        <div class="section-title">Select Metal Finish</div>
+        <div class="section-title" data-i18n="customizer.metal_section_title">Select Metal Finish</div>
         <div class="metal-selector">
           <div class="metal-option active" data-metal="yellow">
             <div class="metal-swatch swatch-gold"></div>
-            <div class="metal-name">14K Yellow</div>
+            <div class="metal-name" data-i18n="common.yellow_gold">14K Yellow Gold</div>
           </div>
           <div class="metal-option" data-metal="white">
             <div class="metal-swatch swatch-silver"></div>
-            <div class="metal-name">925 Silver</div>
+            <div class="metal-name" data-i18n="common.sterling_silver">925 Sterling Silver</div>
           </div>
           <div class="metal-option" data-metal="rose">
             <div class="metal-swatch swatch-rose"></div>
-            <div class="metal-name">14K Rose</div>
+            <div class="metal-name" data-i18n="common.rose_gold">14K Rose Gold</div>
           </div>
         </div>
 
         <!-- Size Selection -->
         <div class="section-title">
-          <span>Select Wrist Size</span>
-          <a href="about.html#sizing" target="_blank" style="font-size:9px; color:#8b661d; text-decoration:underline;">Size Guide</a>
+          <span data-i18n="customizer.size_section_title">Select Wrist Size</span>
+          <a href="about.html#sizing" target="_blank" style="font-size:9px; color:#8b661d; text-decoration:underline;" data-i18n="common.size_guide">Size Guide</a>
         </div>
         <div class="size-selector">
           <div class="size-option active" data-size="XS">XS (5.5")</div>
@@ -1496,13 +1497,13 @@
         <div class="section-title">
           <span id="activeTrayTitle">Front Track Charms</span>
           <div style="display: flex; align-items: center; gap: 8px;">
-            <button class="tray-mini-btn" onclick="autoCenterCharms()" title="إعادة توسيط الأشكال بالتساوي">توسيط بالتساوي</button>
+            <button class="tray-mini-btn" onclick="autoCenterCharms()" data-i18n="customizer.center_evenly">Distribute Evenly</button>
             <span style="font-size: 10px; color: #c59b3f;" id="trackStatus">2 / 8 Charms</span>
           </div>
         </div>
         <div class="drag-instruction-banner">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg>
-          <div><strong>حرية الحركة:</strong> اضغط واسحب أي شكل بالماوس أو اللمس لوضعه في أي مكان تريده على السوار.</div>
+          <div data-i18n="customizer.free_glide_tip">Free Glide Motion: Click or drag any charm along the track to position it anywhere.</div>
         </div>
         <div class="placed-charms-tray">
           <div class="placed-charms-list" id="placedCharmsList">
@@ -1513,10 +1514,10 @@
         <!-- Charm Type Selector -->
         <div class="section-title">Add a Charm</div>
         <div class="charm-type-tabs">
-          <button class="type-pill active" data-type="symbols">Icons & Symbols</button>
-          <button class="type-pill" data-type="solid-letters">Solid Gold Letters</button>
-          <button class="type-pill" data-type="pave-letters">Pavé Diamonds</button>
-          <button class="type-pill" data-type="numbers">Numbers</button>
+          <button class="type-pill active" data-type="symbols" data-i18n="customizer.cat_symbols">Icons & Symbols</button>
+          <button class="type-pill" data-type="solid-letters" data-i18n="customizer.cat_letters">Pavé Diamond Letters</button>
+          <button class="type-pill" data-type="pave-letters" data-i18n="customizer.cat_letters">Pavé Diamonds</button>
+          <button class="type-pill" data-type="numbers" data-i18n="customizer.cat_numbers">Numbers</button>
         </div>
 
         <!-- Dynamic Charm Grid -->
@@ -1527,23 +1528,23 @@
 
       <!-- Step 3: Review View -->
       <div class="sidebar-content" id="stepContentReview" style="display: none;">
-        <div class="section-title">Design Summary & Review</div>
+        <div class="section-title" data-i18n="customizer.step_review_title">Design Summary & Review</div>
         <div style="background: #faf8f5; border: 1px solid var(--border-light); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
           <p style="font-size: 13px; margin-bottom: 10px;"><strong>Metal:</strong> <span id="revMetal">14K Yellow Gold</span></p>
           <p style="font-size: 13px; margin-bottom: 10px;"><strong>Size:</strong> <span id="revSize">XS (5.5 inches)</span></p>
           <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
-            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;">✦ Front Side Charms (الجهة الأمامية):</p>
+            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;"><span data-i18n="customizer.review_front_charms">Front Track Charms</span>:</p>
             <p style="font-size: 12px; margin-bottom: 8px;" id="revFrontList">Mother of Pearl Bee &bull; Martini with Olive</p>
           </div>
           <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
-            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;">✦ Back Side Charms (الجهة الخلفية):</p>
+            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;"><span data-i18n="customizer.review_back_charms">Back Track Charms</span>:</p>
             <p style="font-size: 12px;" id="revBackList">None</p>
           </div>
         </div>
 
         <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="setView('front')">View Front (معاينة الأمام)</button>
-          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="setView('back')">View Back (معاينة الخلف)</button>
+          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="setView('front')" data-i18n="customizer.view_front_btn">View Front</button>
+          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="setView('back')" data-i18n="customizer.view_back_btn">View Back</button>
         </div>
 
         <button class="btn-secondary" style="width: 100%; justify-content: center; padding: 12px;" id="downloadCadModel">
@@ -2667,12 +2668,12 @@
         document.getElementById('stepContentCustomizer').style.display = 'block';
         document.getElementById('stepContentReview').style.display = 'none';
 
-        stepBannerTextEl.innerHTML = `<strong>الخطوة 1: تخصيص الواجهة الأمامية (Front Side)</strong><br>أضف الأشكال والحروف للجهة الأمامية من الإسورة.`;
-        stepBannerTagEl.textContent = 'FRONT';
-        activeTrayTitleEl.textContent = 'Front Track Charms (الواجهة الأمامية)';
+        stepBannerTextEl.innerHTML = `<strong>${window.nicheI18n ? window.nicheI18n.t("customizer.step_front_title") : "الخطوة 1: تخصيص الواجهة الأمامية"}</strong><br>${window.nicheI18n ? window.nicheI18n.t("customizer.step_front_desc") : "أضيفي الأشكال والحروف للوجه الأمامي من الإسورة."}`;
+        stepBannerTagEl.textContent = (window.nicheI18n ? window.nicheI18n.t('customizer.step_badge_front') : 'Front').toUpperCase();
+        activeTrayTitleEl.textContent = window.nicheI18n ? window.nicheI18n.t('customizer.front_side') : 'الواجهة الأمامية';
 
         btnPrevStepEl.style.display = 'none';
-        btnNextStepEl.innerHTML = `التالي: تخصيص الجهة الخلفية &rarr;`;
+        btnNextStepEl.innerHTML = window.nicheI18n ? window.nicheI18n.t("customizer.next_to_back") : "التالي: تخصيص الواجهة الخلفية &larr;";
 
         document.getElementById('btnSideFront').classList.add('active');
         document.getElementById('btnSideBack').classList.remove('active');
@@ -2683,12 +2684,12 @@
         document.getElementById('stepContentCustomizer').style.display = 'block';
         document.getElementById('stepContentReview').style.display = 'none';
 
-        stepBannerTextEl.innerHTML = `<strong>الخطوة 2: تخصيص الواجهة الخلفية (Back Side)</strong><br>اختر الأشكال والحروف التي تود إضافتها في الجهة المقابلة.`;
-        stepBannerTagEl.textContent = 'BACK';
-        activeTrayTitleEl.textContent = 'Back Track Charms (الواجهة الخلفية)';
+        stepBannerTextEl.innerHTML = `<strong>${window.nicheI18n ? window.nicheI18n.t("customizer.step_back_title") : "الخطوة 2: تخصيص الواجهة الخلفية"}</strong><br>${window.nicheI18n ? window.nicheI18n.t("customizer.step_back_desc") : "نسّقي دلايات الوجه الخلفي لتكتمل إطلالة الإسورة المزدوجة."}`;
+        stepBannerTagEl.textContent = (window.nicheI18n ? window.nicheI18n.t('customizer.step_badge_back') : 'Back').toUpperCase();
+        activeTrayTitleEl.textContent = window.nicheI18n ? window.nicheI18n.t('customizer.back_side') : 'الواجهة الخلفية';
 
         btnPrevStepEl.style.display = 'flex';
-        btnNextStepEl.innerHTML = `التالي: مراجعة الطلب &rarr;`;
+        btnNextStepEl.innerHTML = window.nicheI18n ? window.nicheI18n.t("customizer.next_to_review") : "التالي: مراجعة الطلب &larr;";
 
         document.getElementById('btnSideFront').classList.remove('active');
         document.getElementById('btnSideBack').classList.add('active');
@@ -2699,7 +2700,7 @@
         document.getElementById('stepContentReview').style.display = 'block';
 
         btnPrevStepEl.style.display = 'flex';
-        btnNextStepEl.innerHTML = `إضافة للسلة وإتمام الشراء &bull; <span id="footerTotal">$500.00</span>`;
+        btnNextStepEl.innerHTML = `${window.nicheI18n ? window.nicheI18n.t("customizer.finish_and_buy") : "أضيفي الإسورة المخصصة للحقيبة ✦"} &bull; <span id="footerTotal">${totalPriceEl.textContent}</span>`;
       }
 
       updateUI();
@@ -2754,7 +2755,8 @@
 
       // Render Active Tray
       if (activeList.length === 0) {
-        placedCharmsListEl.innerHTML = `<div class="empty-tray-tip">لم يتم إضافة أشكال في هذه الجهة بعد. اختر أي شكل من الأسفل لإضافته.</div>`;
+        const T = (k, p) => window.nicheI18n ? window.nicheI18n.t(k, p) : k;
+        placedCharmsListEl.innerHTML = `<div class="empty-tray-tip">${T('customizer.tray_empty_tip')}</div>`;
       } else {
         let html = activeList.map((c, idx) => {
           const isSelected = state.selectedCharmIndex === idx;
@@ -2770,7 +2772,7 @@
                 ${rot > 0 ? `<span class="flipped-badge">${rot}°</span>` : ''}
               </div>
               <div class="tray-actions">
-                <button class="tray-nav-btn flip-btn" title="تدوير 90 درجة (Rotate 90°)" onclick="rotateCharm90('${state.activeSide}', ${idx}, event)">
+                <button class="tray-nav-btn flip-btn" title="${window.nicheI18n ? window.nicheI18n.t('customizer.rotate_90') : 'Rotate 90°'}" onclick="rotateCharm90('${state.activeSide}', ${idx}, event)">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
                 </button>
                 <button class="tray-nav-btn" title="Move Left / Swap" ${isFirst ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx - 1}, event)">&lsaquo;</button>
@@ -2786,7 +2788,7 @@
           html += `
             <div class="tray-replacement-hint">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              محدد للاستبدال: اضغط على أي شكل بالأسفل لاستبدال "${sel.title}".
+              ${window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'محددة للاستبدال: اضغطي على أي دلاية بالأسفل لاستبدالها' : 'Selected for replacement: tap any charm below to substitute'}
             </div>
           `;
         }
@@ -2796,9 +2798,9 @@
 
       // Review Strings
       document.getElementById('revFrontList').textContent = 
-        state.frontCharms.length > 0 ? state.frontCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : 'لا يوجد (None)';
+        state.frontCharms.length > 0 ? state.frontCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
       document.getElementById('revBackList').textContent = 
-        state.backCharms.length > 0 ? state.backCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : 'لا يوجد (None)';
+        state.backCharms.length > 0 ? state.backCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
     }
 
     // Charm Catalog Definitions

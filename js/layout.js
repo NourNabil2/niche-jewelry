@@ -1,5 +1,6 @@
 /* ==========================================================================
    NICH JEWELRY — GLOBAL HEADER, CART DRAWER, SEARCH & FOOTER
+   Bilingual i18n integrated (Arabic & English)
    ========================================================================== */
 
 (function () {
@@ -7,6 +8,20 @@
     const path = window.location.pathname;
     const parts = path.split('/');
     return parts[parts.length - 1] || 'index.html';
+  }
+
+  function T(key, params = {}) {
+    if (window.nicheI18n && typeof window.nicheI18n.t === 'function') {
+      return window.nicheI18n.t(key, params);
+    }
+    return key;
+  }
+
+  function getLangSwitcher(extraClass = '') {
+    if (window.nicheI18n && typeof window.nicheI18n.getLanguageSwitcherHTML === 'function') {
+      return window.nicheI18n.getLanguageSwitcherHTML(extraClass);
+    }
+    return '';
   }
 
   function showToast(msg, icon = '✦') {
@@ -32,13 +47,12 @@
   function renderHeaderFooter() {
     const activePage = currentFile();
     const isCustomizer = activePage === 'customizer.html';
+    const lang = window.nicheI18n ? window.nicheI18n.getLanguage() : 'ar';
 
     // Top Header Markup
     const headerHTML = `
       <div class="announcement-bar">
-        <span>Complimentary Insured Delivery Over $150</span>
-        <span class="announcement-dot">&bull;</span>
-        <span>Use Code <strong id="copyPromoBtn" title="Click to copy NICH15">NICH15</strong> for 15% Off</span>
+        <span>${T('nav.announcement')}</span>
       </div>
       <header class="site-header" id="siteHeader">
         <div class="container header-inner">
@@ -47,10 +61,10 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             </button>
             <nav class="header-nav">
-              <a href="collections.html" class="nav-link ${activePage === 'collections.html' ? 'active' : ''}">Shop All</a>
-              <a href="customizer.html" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">3D Studio</a>
-              <a href="collections.html?cat=charms" class="nav-link">Charms</a>
-              <a href="about.html" class="nav-link ${activePage === 'about.html' ? 'active' : ''}">Our Story</a>
+              <a href="collections.html" class="nav-link ${activePage === 'collections.html' ? 'active' : ''}">${T('nav.shop_all')}</a>
+              <a href="customizer.html" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">${T('nav.studio_3d')}</a>
+              <a href="collections.html?cat=charms" class="nav-link">${T('nav.charms')}</a>
+              <a href="about.html" class="nav-link ${activePage === 'about.html' ? 'active' : ''}">${T('nav.our_story')}</a>
             </nav>
           </div>
 
@@ -59,18 +73,19 @@
           </a>
 
           <div class="header-actions">
-            <button class="icon-btn" id="openSearchBtn" title="Search Jewelry" aria-label="Search">
+            ${getLangSwitcher()}
+            <button class="icon-btn" id="openSearchBtn" title="${T('nav.search')}" aria-label="Search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </button>
-            <a href="account.html" class="icon-btn nav-account-btn" title="My Account & Orders" aria-label="Account">
+            <a href="account.html" class="icon-btn nav-account-btn" title="${T('nav.account')}" aria-label="Account">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               <span id="accountDot" style="position:absolute; bottom:4px; right:4px; width:6px; height:6px; border-radius:50%; background:#c59b3f; display:none;"></span>
             </a>
-            <a href="wishlist.html" class="icon-btn" title="Wishlist & Saved 3D Designs" aria-label="Wishlist">
+            <a href="wishlist.html" class="icon-btn" title="${T('nav.wishlist')}" aria-label="Wishlist">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               <span class="badge-count hidden" id="navWishlistCount">0</span>
             </a>
-            <button class="icon-btn" id="openCartDrawerBtn" title="Shopping Bag" aria-label="Bag">
+            <button class="icon-btn" id="openCartDrawerBtn" title="${T('nav.bag')}" aria-label="Bag">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
               <span class="badge-count gold hidden" id="navCartCount">0</span>
             </button>
@@ -83,16 +98,19 @@
         <div class="mobile-nav-panel">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
             <a href="index.html" style="display:inline-block;"><img src="assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
-            <button class="icon-btn" id="closeMobileMenu">&times;</button>
+            <div style="display:flex; align-items:center; gap:8px;">
+              ${getLangSwitcher()}
+              <button class="icon-btn" id="closeMobileMenu">&times;</button>
+            </div>
           </div>
-          <a href="index.html" class="mobile-nav-link">Home</a>
-          <a href="collections.html" class="mobile-nav-link">Shop All</a>
-          <a href="customizer.html" class="mobile-nav-link" style="color:#8b661d;">3D Glider Studio ✦</a>
-          <a href="collections.html?cat=bangles" class="mobile-nav-link">Glider Bangles</a>
-          <a href="collections.html?cat=charms" class="mobile-nav-link">Charms</a>
-          <a href="wishlist.html" class="mobile-nav-link">Wishlist & Saved 3D</a>
-          <a href="account.html" class="mobile-nav-link">My Account & Orders</a>
-          <a href="about.html" class="mobile-nav-link">Our Story & Sizing</a>
+          <a href="index.html" class="mobile-nav-link">${lang === 'ar' ? 'الرئيسية' : 'Home'}</a>
+          <a href="collections.html" class="mobile-nav-link">${T('nav.shop_all')}</a>
+          <a href="customizer.html" class="mobile-nav-link" style="color:#8b661d;">${T('nav.studio_3d')} ✦</a>
+          <a href="collections.html?cat=bangles" class="mobile-nav-link">${T('footer.bangles')}</a>
+          <a href="collections.html?cat=charms" class="mobile-nav-link">${T('nav.charms')}</a>
+          <a href="wishlist.html" class="mobile-nav-link">${T('nav.wishlist')}</a>
+          <a href="account.html" class="mobile-nav-link">${T('nav.drawer_orders')}</a>
+          <a href="about.html" class="mobile-nav-link">${T('nav.our_story')}</a>
         </div>
       </div>
 
@@ -101,7 +119,7 @@
         <div class="search-modal">
           <div class="search-input-row">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="globalSearchInput" placeholder="Search 14K bangles, bee charm, pavé initials, rings..." autocomplete="off">
+            <input type="text" id="globalSearchInput" placeholder="${lang === 'ar' ? 'ابحثي في أساور 14K، دلاية النحلة، الحروف، الخواتم...' : 'Search 14K bangles, bee charm, pavé initials, rings...'}" autocomplete="off">
             <button class="icon-btn" id="closeSearchBtn" style="font-size:22px;">&times;</button>
           </div>
           <div class="search-results" id="globalSearchResults"></div>
@@ -112,31 +130,31 @@
       <div class="drawer-backdrop" id="cartBackdrop"></div>
       <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
         <div class="cart-drawer-header">
-          <h2 class="cart-drawer-title">Your Jewelry Bag (<span id="drawerCartCount">0</span>)</h2>
+          <h2 class="cart-drawer-title">${T('cart.title')} (<span id="drawerCartCount">0</span>)</h2>
           <button class="icon-btn" id="closeCartDrawerBtn" style="font-size:24px; line-height:1;">&times;</button>
         </div>
         <div class="shipping-progress-box" id="shippingProgressBox"></div>
         <div class="cart-drawer-items" id="cartDrawerItems"></div>
         <div class="cart-drawer-footer" id="cartDrawerFooter">
           <div class="promo-inline">
-            <input type="text" id="drawerPromoInput" placeholder="Promo Code (e.g. NICH15)">
-            <button class="btn btn-outline btn-sm" id="drawerApplyPromoBtn">Apply</button>
+            <input type="text" id="drawerPromoInput" placeholder="${T('cart.promo_label')} (NICH15)">
+            <button class="btn btn-outline btn-sm" id="drawerApplyPromoBtn">${T('cart.apply')}</button>
           </div>
           <div id="drawerPromoActive" style="display:none; font-size:11px; color:#2b6cb0; margin-bottom:10px; justify-content:space-between; align-items:center;"></div>
           <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
-            <span>Subtotal</span>
+            <span>${T('cart.subtotal')}</span>
             <strong id="drawerSubtotal">$0.00</strong>
           </div>
           <div id="drawerDiscountRow" style="display:none; justify-content:space-between; font-size:12px; color:#2f855a; margin-bottom:6px;">
-            <span>Promo Discount</span>
+            <span>${lang === 'ar' ? 'خصم الكوبون' : 'Promo Discount'}</span>
             <span id="drawerDiscountAmt">-$0.00</span>
           </div>
           <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:600; padding-top:8px; border-top:1px solid #e6e3dc; margin-bottom:14px;">
-            <span>Estimated Total</span>
+            <span>${lang === 'ar' ? 'المجموع النهائي' : 'Estimated Total'}</span>
             <span class="serif" style="font-size:22px;" id="drawerTotal">$0.00</span>
           </div>
           <a href="checkout.html" class="btn btn-primary" style="width:100%;" id="drawerCheckoutBtn">
-            Proceed to Checkout &rarr;
+            ${T('cart.checkout_btn')} &rarr;
           </a>
         </div>
       </aside>
@@ -156,61 +174,61 @@
           <div class="container">
             <!-- Atelier Trust Strip -->
             <div class="footer-trust-strip">
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> Solid 14K Recycled Gold</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> Patented Dual-Track Glider™</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> Complimentary Insured Shipping</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> Lifetime Atelier Warranty</div>
+              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_gold')}</div>
+              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_glider')}</div>
+              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_shipping')}</div>
+              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_warranty')}</div>
             </div>
 
             <div class="footer-grid">
               <div>
                 <a href="index.html" style="display:inline-block; margin-bottom:14px;"><img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:38px; width:auto; display:block;"></a>
                 <p class="footer-desc">
-                  Thoughtfully engineered fine jewelry crafted in solid 14K recycled gold and 925 sterling silver. Home of the patented Dual-Sided Glider Charm Bangle™.
+                  ${T('footer.brand_desc')}
                 </p>
                 <div style="margin-top:18px; display:flex; gap:10px;">
-                  <a href="customizer.html" class="btn btn-gold btn-sm">Launch 3D Studio ✦</a>
+                  <a href="customizer.html" class="btn btn-gold btn-sm">${T('footer.launch_studio')}</a>
                 </div>
               </div>
               <div>
-                <div class="footer-col-title">Shop Jewelry</div>
+                <div class="footer-col-title">${T('footer.shop_title')}</div>
                 <ul class="footer-links">
-                  <li><a href="collections.html?cat=bangles">Glider Bangles</a></li>
-                  <li><a href="collections.html?cat=charms">Cutout Glider Charms</a></li>
-                  <li><a href="collections.html?cat=necklaces">Medallion Necklaces</a></li>
-                  <li><a href="collections.html?cat=earrings">Pavé Huggie Hoops</a></li>
-                  <li><a href="collections.html?cat=rings">Stacking Rings</a></li>
+                  <li><a href="collections.html?cat=bangles">${T('footer.bangles')}</a></li>
+                  <li><a href="collections.html?cat=charms">${T('footer.cutout_charms')}</a></li>
+                  <li><a href="collections.html?cat=necklaces">${T('footer.necklaces')}</a></li>
+                  <li><a href="collections.html?cat=earrings">${T('footer.earrings')}</a></li>
+                  <li><a href="collections.html?cat=rings">${T('footer.rings')}</a></li>
                 </ul>
               </div>
               <div>
-                <div class="footer-col-title">Atelier & Care</div>
+                <div class="footer-col-title">${T('footer.atelier_title')}</div>
                 <ul class="footer-links">
-                  <li><a href="about.html">Our Story & Ethics</a></li>
-                  <li><a href="about.html#sizing">Wrist Size Guide</a></li>
-                  <li><a href="about.html#care">14K Gold & Silver Care</a></li>
-                  <li><a href="wishlist.html">Saved 3D Designs</a></li>
-                  <li><a href="account.html">Track Your Order</a></li>
+                  <li><a href="about.html">${T('footer.our_ethics')}</a></li>
+                  <li><a href="about.html#sizing">${T('footer.sizing_guide')}</a></li>
+                  <li><a href="about.html#care">${T('footer.gold_care')}</a></li>
+                  <li><a href="wishlist.html">${T('footer.saved_designs')}</a></li>
+                  <li><a href="account.html">${T('footer.track_order')}</a></li>
                 </ul>
               </div>
               <div>
-                <div class="footer-col-title">Join the Collector List</div>
-                <p style="font-size:12px; color:#a9a295;">Receive early access to limited enamel charms & enjoy 15% off with code <strong style="color:#c59b3f;">NICH15</strong>.</p>
+                <div class="footer-col-title">${T('footer.collector_title')}</div>
+                <p style="font-size:12px; color:#a9a295;">${T('footer.collector_sub')} <strong style="color:#c59b3f;">NICH15</strong>.</p>
                 <form class="footer-newsletter-capsule" id="footerNewsletterForm">
-                  <input type="email" id="footerNewsletterEmail" placeholder="Enter your email" required aria-label="Email address for collector list">
+                  <input type="email" id="footerNewsletterEmail" placeholder="${T('footer.email_placeholder')}" required aria-label="Email address for collector list">
                   <button type="submit" class="newsletter-submit-btn" aria-label="Join newsletter">
-                    <span>Join</span>
+                    <span>${T('footer.join_btn')}</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
                   </button>
                 </form>
               </div>
             </div>
             <div class="footer-bottom">
-              <span class="footer-copy">&copy; 2026 Niche Jewelry Atelier. Handcrafted Excellence.</span>
+              <span class="footer-copy">${T('footer.copyright')}</span>
               <div class="footer-payment-tags">
-                <span class="pay-tag">Solid 14K Gold</span>
-                <span class="pay-tag">925 Silver</span>
-                <span class="pay-tag">Insured Delivery</span>
-                <span class="pay-tag">Secure Checkout</span>
+                <span class="pay-tag">${T('footer.tag_gold')}</span>
+                <span class="pay-tag">${T('footer.tag_silver')}</span>
+                <span class="pay-tag">${T('footer.tag_delivery')}</span>
+                <span class="pay-tag">${T('footer.tag_secure')}</span>
               </div>
             </div>
           </div>
@@ -224,249 +242,276 @@
 
   function bindGlobalEvents() {
     // Promo copy click
-    const copyBtn = document.getElementById('copyPromoBtn');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard?.writeText('NICH15');
-        showToast('Promo code NICH15 copied to clipboard!');
+    document.getElementById('copyPromoBtn')?.addEventListener('click', () => {
+      navigator.clipboard?.writeText('NICH15').then(() => {
+        showToast(T('cart.promo_applied'), '✦');
+      }).catch(() => {
+        showToast('Code: NICH15', '✦');
       });
-    }
-
-    // Sticky scroll effect
-    window.addEventListener('scroll', () => {
-      const hdr = document.getElementById('siteHeader');
-      if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 20);
     });
 
     // Mobile nav drawer
-    const mobileDrawer = document.getElementById('mobileNavDrawer');
-    document.getElementById('openMobileMenu')?.addEventListener('click', () => mobileDrawer?.classList.add('open'));
-    document.getElementById('closeMobileMenu')?.addEventListener('click', () => mobileDrawer?.classList.remove('open'));
-    mobileDrawer?.addEventListener('click', (e) => {
-      if (e.target === mobileDrawer) mobileDrawer.classList.remove('open');
+    const openMenuBtn = document.getElementById('openMobileMenu');
+    const closeMenuBtn = document.getElementById('closeMobileMenu');
+    const navDrawer = document.getElementById('mobileNavDrawer');
+    openMenuBtn?.addEventListener('click', () => navDrawer?.classList.add('open'));
+    closeMenuBtn?.addEventListener('click', () => navDrawer?.classList.remove('open'));
+    navDrawer?.addEventListener('click', (e) => {
+      if (e.target === navDrawer) navDrawer.classList.remove('open');
     });
 
-    // Search modal
+    // Search overlay
+    const openSearchBtn = document.getElementById('openSearchBtn');
+    const closeSearchBtn = document.getElementById('closeSearchBtn');
     const searchOverlay = document.getElementById('searchOverlay');
     const searchInput = document.getElementById('globalSearchInput');
-    document.getElementById('openSearchBtn')?.addEventListener('click', () => {
+    const searchResults = document.getElementById('globalSearchResults');
+
+    function openSearch() {
       searchOverlay?.classList.add('open');
-      renderSearchResults('');
-      setTimeout(() => searchInput?.focus(), 60);
-    });
-    document.getElementById('closeSearchBtn')?.addEventListener('click', () => searchOverlay?.classList.remove('open'));
+      setTimeout(() => searchInput?.focus(), 120);
+    }
+    function closeSearch() {
+      searchOverlay?.classList.remove('open');
+      if (searchInput) searchInput.value = '';
+      if (searchResults) searchResults.innerHTML = '';
+    }
+
+    openSearchBtn?.addEventListener('click', openSearch);
+    closeSearchBtn?.addEventListener('click', closeSearch);
     searchOverlay?.addEventListener('click', (e) => {
-      if (e.target === searchOverlay) searchOverlay.classList.remove('open');
+      if (e.target === searchOverlay) closeSearch();
     });
-    searchInput?.addEventListener('input', (e) => renderSearchResults(e.target.value));
 
-    // Cart Drawer toggles
-    document.getElementById('openCartDrawerBtn')?.addEventListener('click', openCartDrawer);
-    document.getElementById('closeCartDrawerBtn')?.addEventListener('click', closeCartDrawer);
+    searchInput?.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q || !window.EP_DB) {
+        if (searchResults) searchResults.innerHTML = '';
+        return;
+      }
+      const matches = window.EP_DB.products.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        (p.charmIds || []).some(id => id.includes(q))
+      ).slice(0, 6);
+
+      if (matches.length === 0) {
+        searchResults.innerHTML = `<div style="padding:24px; text-align:center; color:#787268; font-size:13px;">No jewelry matching "${q}"</div>`;
+        return;
+      }
+
+      searchResults.innerHTML = matches.map(p => `
+        <a href="${p.customizable3d ? 'customizer.html?metal=' + p.defaultMetal : 'product.html?id=' + p.id}" class="search-result-item" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-bottom:1px solid #f0ede6; text-decoration:none; color:inherit;">
+          <img src="${p.gallery[0]}" style="width:48px; height:48px; object-fit:cover; border-radius:4px; background:#f4f0e8;">
+          <div style="flex:1;">
+            <div style="font-size:13px; font-weight:600;">${p.title}</div>
+            <div style="font-size:11px; color:#787268;">${p.category} &bull; $${p.price.toFixed(2)}</div>
+          </div>
+          <span style="font-size:11px; color:#c59b3f; font-weight:600;">${p.customizable3d ? T('common.design_in_3d') : T('common.view_piece')} &rarr;</span>
+        </a>
+      `).join('');
+    });
+
+    // Cart drawer
+    const openCartBtn = document.getElementById('openCartDrawerBtn');
+    const closeCartBtn = document.getElementById('closeCartDrawerBtn');
+    openCartBtn?.addEventListener('click', openCartDrawer);
+    closeCartBtn?.addEventListener('click', closeCartDrawer);
     document.getElementById('cartBackdrop')?.addEventListener('click', closeCartDrawer);
-
-    // Promo apply inside drawer
-    document.getElementById('drawerApplyPromoBtn')?.addEventListener('click', () => {
-      const input = document.getElementById('drawerPromoInput');
-      if (!input) return;
-      const res = window.EP_STORE.applyPromo(input.value);
-      showToast(res.message, res.ok ? '✓' : '!');
-      if (res.ok) input.value = '';
-    });
 
     // Footer newsletter
     document.getElementById('footerNewsletterForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const emailEl = document.getElementById('footerNewsletterEmail');
-      if (emailEl?.value) {
-        window.EP_STORE.subscribeNewsletter(emailEl.value);
+      if (emailEl && emailEl.value) {
+        showToast(T('footer.joined_success'), '✦');
         emailEl.value = '';
-        showToast('Welcome to the Atelier! Use code NICH15 at checkout.');
       }
+    });
+
+    // Promo apply inside drawer
+    document.getElementById('drawerApplyPromoBtn')?.addEventListener('click', () => {
+      const input = document.getElementById('drawerPromoInput');
+      const code = input ? input.value.trim() : '';
+      if (!window.EP_STORE) return;
+      const res = window.EP_STORE.applyPromo(code);
+      if (res.valid) {
+        showToast(`Promo Applied: ${res.discountPercent}% Off`, '✦');
+      } else {
+        showToast(res.message || 'Invalid promo code', '•');
+      }
+      syncBadgesAndDrawer();
     });
   }
 
-  function renderSearchResults(query) {
-    const box = document.getElementById('globalSearchResults');
-    if (!box) return;
-    const q = (query || '').trim().toLowerCase();
-    const products = window.EP_STORE.getProducts().filter(p =>
-      !q ||
-      p.title.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q) ||
-      p.sku.toLowerCase().includes(q)
-    );
-    if (products.length === 0) {
-      box.innerHTML = `<div style="padding:28px; text-align:center; color:#737373; font-size:13px;">No pieces matched "${query}". Try searching "Bee", "Bangle", or "Pavé".</div>`;
-      return;
-    }
-    box.innerHTML = products.slice(0, 7).map(p => {
-      const thumb = p.imagesByMetal[p.defaultMetal] || p.gallery[0];
-      return `
-        <a href="product.html?id=${p.id}" class="search-result-item">
-          <img src="${thumb}" alt="${p.title}" style="${p.isCharmImage ? 'object-fit:contain; padding:6px;' : ''}">
-          <div style="flex:1;">
-            <div style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#737373;">${p.category}</div>
-            <div style="font-size:13px; font-weight:600; color:#1b1b1b;">${p.title}</div>
-          </div>
-          <div style="font-size:13px; font-weight:600;">$${p.price.toFixed(2)}</div>
-        </a>
-      `;
-    }).join('');
-  }
-
   function openCartDrawer() {
-    document.getElementById('cartBackdrop')?.classList.add('open');
     document.getElementById('cartDrawer')?.classList.add('open');
+    document.getElementById('cartBackdrop')?.classList.add('open');
+    document.body.style.overflow = 'hidden';
     syncBadgesAndDrawer();
   }
 
   function closeCartDrawer() {
-    document.getElementById('cartBackdrop')?.classList.remove('open');
     document.getElementById('cartDrawer')?.classList.remove('open');
+    document.getElementById('cartBackdrop')?.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   function syncBadgesAndDrawer() {
     if (!window.EP_STORE) return;
-
     const cartCount = window.EP_STORE.getCartCount();
-    const wishCount = window.EP_STORE.getWishlist().length;
-    const user = window.EP_STORE.getUser();
+    const wishCount = window.EP_STORE.getWishlistCount();
 
-    const navCart = document.getElementById('navCartCount');
-    if (navCart) {
-      navCart.textContent = cartCount;
-      navCart.classList.toggle('hidden', cartCount === 0);
+    const navCartBadge = document.getElementById('navCartCount');
+    if (navCartBadge) {
+      navCartBadge.textContent = cartCount;
+      navCartBadge.classList.toggle('hidden', cartCount === 0);
     }
 
-    const navWish = document.getElementById('navWishlistCount');
-    if (navWish) {
-      navWish.textContent = wishCount;
-      navWish.classList.toggle('hidden', wishCount === 0);
+    const navWishBadge = document.getElementById('navWishlistCount');
+    if (navWishBadge) {
+      navWishBadge.textContent = wishCount;
+      navWishBadge.classList.toggle('hidden', wishCount === 0);
     }
 
-    const acctDot = document.getElementById('accountDot');
-    if (acctDot) {
-      acctDot.style.display = user.signedIn ? 'block' : 'none';
-    }
-
-    // Drawer elements
     const drawerCountEl = document.getElementById('drawerCartCount');
     if (drawerCountEl) drawerCountEl.textContent = cartCount;
 
-    const totals = window.EP_STORE.getTotalsBreakdown();
-    const shipBox = document.getElementById('shippingProgressBox');
-    if (shipBox) {
-      const pct = Math.min(100, (totals.afterDiscount / totals.freeThreshold) * 100);
-      const remaining = Math.max(0, totals.freeThreshold - totals.afterDiscount);
-      shipBox.innerHTML = totals.afterDiscount === 0
-        ? `<span>Complimentary insured shipping on orders over $${totals.freeThreshold}.</span>`
-        : remaining === 0
-          ? `<span style="color:#2f855a; font-weight:600;">✓ You've unlocked Complimentary Insured Shipping!</span><div class="shipping-bar-track"><div class="shipping-bar-fill" style="width:100%;"></div></div>`
-          : `<span>Add <strong>$${remaining.toFixed(2)}</strong> more for Complimentary Insured Shipping.</span><div class="shipping-bar-track"><div class="shipping-bar-fill" style="width:${pct}%;"></div></div>`;
+    // Render Cart Drawer Items
+    const itemsContainer = document.getElementById('cartDrawerItems');
+    const footerBox = document.getElementById('cartDrawerFooter');
+    const shippingBox = document.getElementById('shippingProgressBox');
+    if (!itemsContainer) return;
+
+    const items = window.EP_STORE.getCart();
+
+    if (items.length === 0) {
+      itemsContainer.innerHTML = `
+        <div class="empty-cart-state" style="padding:48px 24px; text-align:center;">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#a8a29e" stroke-width="1.3" style="margin:0 auto 16px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <h3 class="serif" style="font-size:22px; margin-bottom:8px;">${T('cart.empty_title')}</h3>
+          <p style="font-size:12.5px; color:#787268; margin-bottom:20px; line-height:1.6;">${T('cart.empty_sub')}</p>
+          <a href="customizer.html" class="btn btn-gold btn-sm" onclick="EP_UI.closeCart()">${T('cart.start_designing')}</a>
+        </div>
+      `;
+      if (shippingBox) shippingBox.innerHTML = '';
+      if (footerBox) footerBox.style.display = 'none';
+      return;
     }
 
-    const itemsBox = document.getElementById('cartDrawerItems');
-    const footerBox = document.getElementById('cartDrawerFooter');
-    const cart = window.EP_STORE.getCart();
+    if (footerBox) footerBox.style.display = 'block';
 
-    if (itemsBox) {
-      if (cart.length === 0) {
-        itemsBox.innerHTML = `
-          <div style="text-align:center; padding:60px 20px;">
-            <div class="serif" style="font-size:26px; margin-bottom:8px;">Your Jewelry Bag is Empty</div>
-            <p style="font-size:12px; color:#737373; margin-bottom:22px;">Start by building a bespoke piece in our 3D Studio or browse our signature collection.</p>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-              <a href="customizer.html" class="btn btn-gold btn-sm">Design in 3D Studio</a>
-              <a href="collections.html" class="btn btn-outline btn-sm">Explore Best Sellers</a>
-            </div>
+    // Free Shipping Progress
+    const subtotal = window.EP_STORE.getSubtotal();
+    const freeThreshold = 150;
+    const diff = freeThreshold - subtotal;
+    const pct = Math.min(100, Math.round((subtotal / freeThreshold) * 100));
+
+    if (shippingBox) {
+      shippingBox.innerHTML = diff <= 0
+        ? `<div class="free-shipping-achieved">✦ ${T('cart.free_insured')}!</div>`
+        : `
+          <div style="font-size:11.5px; margin-bottom:6px; color:#3d3934;">
+            Add <strong>$${diff.toFixed(2)}</strong> for <strong>Free Insured Delivery</strong>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" style="width:${pct}%;"></div>
           </div>
         `;
-        if (footerBox) footerBox.style.display = 'none';
-      } else {
-        if (footerBox) footerBox.style.display = 'block';
-        itemsBox.innerHTML = cart.map(item => {
-          const metalLabel = (window.EP_DB.metals[item.metal] && window.EP_DB.metals[item.metal].name) || item.metal || '';
-          let customHTML = '';
-          if (item.type === 'custom-bangle') {
-            const frontPills = (item.frontCharms || []).map(c => `<span class="mini-charm-pill"><img src="${c.imgUrl}" alt="">${c.title}</span>`).join('');
-            const backPills = (item.backCharms || []).map(c => `<span class="mini-charm-pill"><img src="${c.imgUrl}" alt="">${c.title}</span>`).join('');
-            customHTML = `
-              ${frontPills ? `<div style="font-size:10px; color:#737373; margin-top:4px;">Front:</div><div class="custom-charm-pills">${frontPills}</div>` : ''}
-              ${backPills ? `<div style="font-size:10px; color:#737373; margin-top:4px;">Back:</div><div class="custom-charm-pills">${backPills}</div>` : ''}
-              <a href="customizer.html?cartUid=${encodeURIComponent(item.uid)}" style="font-size:10px; font-weight:600; color:#8b661d; text-decoration:underline; display:inline-block; margin-top:4px;">Edit Design in 3D &rarr;</a>
-            `;
-          }
-          return `
-            <div class="cart-item-card">
-              <div class="cart-item-thumb">
-                <img src="${item.image}" alt="${item.title}">
-              </div>
-              <div class="cart-item-info">
-                <div style="display:flex; justify-content:space-between; gap:8px;">
-                  <div class="cart-item-name">${item.title}</div>
-                  <button onclick="EP_STORE.removeFromCart('${item.uid}')" style="background:none; border:none; cursor:pointer; color:#999; font-size:16px;" title="Remove">&times;</button>
-                </div>
-                <div class="cart-item-meta">
-                  ${metalLabel}${item.size ? ' &bull; Size ' + item.size : ''}${item.letterChoice ? ' &bull; Letter ' + item.letterChoice.toUpperCase() : ''}
-                </div>
-                ${item.giftNote ? `<div style="font-size:10px; font-style:italic; color:#8b661d; margin-bottom:4px;">Note: "${item.giftNote}"</div>` : ''}
-                ${customHTML}
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                  <div class="qty-controls">
-                    <button onclick="EP_STORE.updateCartQty('${item.uid}', -1)">-</button>
-                    <span>${item.qty}</span>
-                    <button onclick="EP_STORE.updateCartQty('${item.uid}', 1)">+</button>
-                  </div>
-                  <strong style="font-size:13px;">$${(item.unitPrice * item.qty).toFixed(2)}</strong>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
     }
 
+    // Render items list
+    itemsContainer.innerHTML = items.map(item => {
+      const isCustomBangle = item.type === 'custom-bangle';
+      const itemTitle = isCustomBangle ? T('common.bangle_title') : item.title;
+      let specs = [];
+      if (item.metal) {
+        const metalNames = { yellow: T('common.yellow_gold'), white: T('common.sterling_silver'), rose: T('common.rose_gold') };
+        specs.push(metalNames[item.metal] || item.metal);
+      }
+      if (item.size) specs.push(`${T('common.wrist_size')}: ${item.size}`);
+      if (isCustomBangle) {
+        const fc = (item.frontCharms || []).length;
+        const bc = (item.backCharms || []).length;
+        specs.push(`${T('customizer.step_badge_front')}: ${fc} · ${T('customizer.step_badge_back')}: ${bc}`);
+      }
+
+      return `
+        <div class="cart-item-row" data-cart-id="${item.cartId}">
+          <div class="cart-item-media">
+            <img src="${item.image || 'assets/images/bangle_gold_studio.jpg'}" alt="${itemTitle}">
+          </div>
+          <div class="cart-item-info">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <h4 class="cart-item-title">${itemTitle}</h4>
+              <button class="cart-item-remove" onclick="EP_STORE.removeFromCart('${item.cartId}')" title="${T('cart.remove_item')}">&times;</button>
+            </div>
+            <div class="cart-item-specs">${specs.join(' &bull; ')}</div>
+            <div class="cart-item-bottom">
+              <div class="cart-qty-ctrl">
+                <button onclick="EP_STORE.updateItemQty('${item.cartId}', ${item.qty - 1})">&minus;</button>
+                <span>${item.qty}</span>
+                <button onclick="EP_STORE.updateItemQty('${item.cartId}', ${item.qty + 1})">&plus;</button>
+              </div>
+              <div class="cart-item-price">$${(item.unitPrice * item.qty).toFixed(2)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Summary Totals
     const subEl = document.getElementById('drawerSubtotal');
     const discRow = document.getElementById('drawerDiscountRow');
     const discAmt = document.getElementById('drawerDiscountAmt');
     const totalEl = document.getElementById('drawerTotal');
     const promoTag = document.getElementById('drawerPromoActive');
 
-    if (subEl) subEl.textContent = `$${totals.subtotal.toFixed(2)}`;
-    if (totalEl) totalEl.textContent = `$${totals.afterDiscount.toFixed(2)}`;
+    if (subEl) subEl.textContent = `$${subtotal.toFixed(2)}`;
+
+    const discount = window.EP_STORE.getDiscount();
     if (discRow && discAmt) {
-      if (totals.discount > 0) {
+      if (discount > 0) {
         discRow.style.display = 'flex';
-        discAmt.textContent = `-$${totals.discount.toFixed(2)}`;
+        discAmt.textContent = `-$${discount.toFixed(2)}`;
       } else {
         discRow.style.display = 'none';
       }
     }
+
+    const grandTotal = window.EP_STORE.getGrandTotal();
+    if (totalEl) totalEl.textContent = `$${grandTotal.toFixed(2)}`;
+
+    const promo = window.EP_STORE.getActivePromo();
     if (promoTag) {
-      if (totals.promo) {
+      if (promo) {
         promoTag.style.display = 'flex';
-        promoTag.innerHTML = `<span>Applied: <strong>${totals.promo.code}</strong> (${totals.promo.label})</span><button onclick="EP_STORE.removePromo()" style="background:none;border:none;color:#c53030;cursor:pointer;font-size:10px;">Remove</button>`;
+        promoTag.innerHTML = `
+          <span>✦ Code <strong>${promo.code}</strong> (${promo.percent}% off) applied</span>
+          <button style="background:none; border:none; cursor:pointer; color:#787268; font-size:14px;" onclick="EP_STORE.clearPromo()">&times;</button>
+        `;
       } else {
         promoTag.style.display = 'none';
+        promoTag.innerHTML = '';
       }
     }
   }
 
   function renderProductCard(p) {
-    const thumb = p.imagesByMetal[p.defaultMetal] || p.gallery[0];
-    const inWish = window.EP_STORE.isProductInWishlist(p.id);
+    if (!window.EP_STORE) return '';
+    const inWish = window.EP_STORE.isProductInWishlist ? window.EP_STORE.isProductInWishlist(p.id) : (window.EP_STORE.isWishlisted ? window.EP_STORE.isWishlisted(p.id) : false);
+    const thumb = p.gallery[0] || '';
     const swatches = (p.availableMetals || []).map(m => `<span class="mini-swatch ${m}" title="${window.EP_DB.metals[m]?.name || m}"></span>`).join('');
     const badgeHTML = p.badge ? `<span class="product-badge ${p.customizable3d ? 'is-3d' : ''}">${p.badge}</span>` : '';
 
     const primaryAction = p.customizable3d
-      ? `<a href="customizer.html?metal=${p.defaultMetal}" class="btn btn-gold btn-sm" style="flex:1;">Design in 3D</a>`
-      : `<button class="btn btn-primary btn-sm" style="flex:1;" onclick="EP_UI.quickAddProduct('${p.id}')">Quick Add</button>`;
+      ? `<a href="customizer.html?metal=${p.defaultMetal}" class="btn btn-gold btn-sm" style="flex:1;">${T('common.design_in_3d')}</a>`
+      : `<button class="btn btn-primary btn-sm" style="flex:1;" onclick="EP_UI.quickAddProduct('${p.id}')">${T('common.view_piece')}</button>`;
 
     const mobileActionHTML = p.customizable3d
-      ? `<a href="customizer.html?metal=${p.defaultMetal}" class="btn-card-mobile btn-gold">Design in 3D ✦</a>`
-      : `<a href="product.html?id=${p.id}" class="btn-card-mobile btn-outline">View Piece</a>`;
+      ? `<a href="customizer.html?metal=${p.defaultMetal}" class="btn-card-mobile btn-gold">${T('common.design_in_3d')}</a>`
+      : `<a href="product.html?id=${p.id}" class="btn-card-mobile btn-outline">${T('common.view_piece')}</a>`;
 
     return `
       <div class="product-card" data-product-id="${p.id}">
@@ -480,7 +525,7 @@
           </a>
           <div class="product-quick-actions">
             ${primaryAction}
-            <a href="product.html?id=${p.id}" class="btn btn-ghost btn-sm">Details</a>
+            <a href="product.html?id=${p.id}" class="btn btn-ghost btn-sm">${T('common.details')}</a>
           </div>
         </div>
         <div class="product-card-body">
@@ -521,15 +566,20 @@
         image: p.imagesByMetal[metal] || p.gallery[0],
         qty: 1
       });
-      showToast(`${p.title} added to your bag!`);
+      showToast(`${p.title} ${T('common.bag_added')}`);
       openCartDrawer();
     },
     toggleWish(productId, btnEl) {
       const added = window.EP_STORE.toggleProductWishlist(productId);
       if (btnEl) btnEl.classList.toggle('active', added);
-      showToast(added ? 'Saved to your Wishlist ♥' : 'Removed from Wishlist', added ? '♥' : '•');
+      showToast(added ? T('common.saved') : 'Removed from Wishlist', added ? '♥' : '•');
     }
   };
+
+  // Re-render when language changes
+  window.addEventListener('niche:languageChange', () => {
+    renderHeaderFooter();
+  });
 
   document.addEventListener('DOMContentLoaded', () => {
     renderHeaderFooter();

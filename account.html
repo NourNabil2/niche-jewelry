@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/db.js"></script>
   <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
   <style>
     .account-header-banner {
@@ -134,28 +135,32 @@
     function renderAccount() {
       const root = document.getElementById('accountRoot');
       const user = window.EP_STORE.getUser();
+      const t = (k, params) => (window.nicheI18n ? window.nicheI18n.t(k, params) : k);
 
       if (!user.signedIn) {
         root.innerHTML = `
           <div class="container">
             <div class="auth-card">
               <div class="text-center mb-3">
-                <span class="eyebrow">Atelier Collector Portal</span>
-                <h1 class="section-heading mt-1" style="font-size:34px;">Sign In to Your Account</h1>
+                <span class="eyebrow">${t('account.portal_eyebrow')}</span>
+                <h1 class="section-heading mt-1" style="font-size:34px;">${t('account.sign_in_title')}</h1>
                 <p style="font-size:12.5px; color:#737373; margin-top:6px;">
-                  Access your custom 3D bangles, order tracking, and saved shipping preferences.
+                  ${t('account.sign_in_desc')}
                 </p>
               </div>
               <form id="demoLoginForm">
                 <div style="margin-bottom:14px;">
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">Full Name</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">${t('checkout.full_name')}</label>
                   <input type="text" id="loginName" class="p-input" required value="Layla Hassan">
                 </div>
                 <div style="margin-bottom:20px;">
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">Email Address</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">${t('account.email')}</label>
                   <input type="email" id="loginEmail" class="p-input" required value="layla@example.com">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Sign In / Register Instantly</button>
+                <button type="submit" class="btn btn-primary" style="width:100%;">${t('account.sign_in_btn')}</button>
+                <div style="text-align:center; font-size:11px; color:#737373; margin-top:10px;">
+                  ${t('account.demo_hint')}
+                </div>
               </form>
             </div>
           </div>
@@ -166,7 +171,7 @@
             document.getElementById('loginName').value.trim(),
             document.getElementById('loginEmail').value.trim()
           );
-          window.EP_UI.toast('Signed in cleanly!');
+          window.EP_UI.toast(t('account.sign_in_btn') + ' ✦');
         });
         return;
       }
@@ -176,22 +181,28 @@
 
       let tabHTML = '';
       if (currentTab === 'orders') {
-        const stages = ['Confirmed', 'Handcrafting', 'Quality Check', 'Insured Transit', 'Delivered'];
+        const stages = [
+          t('account.status_placed'),
+          t('account.status_crafted'),
+          t('account.status_qa'),
+          t('account.status_shipped'),
+          t('account.status_delivered')
+        ];
         tabHTML = orders.length === 0
-          ? `<div class="order-card"><p style="color:#737373;">You have not placed any orders yet.</p></div>`
+          ? `<div class="order-card"><p style="color:#737373;">${t('account.no_orders_yet')}</p></div>`
           : orders.map(o => {
-              const dateStr = new Date(o.createdAt).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+              const dateStr = new Date(o.createdAt).toLocaleDateString(window.nicheI18n?.getLanguage() === 'ar' ? 'ar-EG' : 'en-US', { year:'numeric', month:'short', day:'numeric' });
               const stepIdx = o.stepIndex !== undefined ? o.stepIndex : 0;
               return `
                 <div class="order-card">
                   <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding-bottom:14px; border-bottom:1px solid #f0ede6;">
                     <div>
-                      <span class="eyebrow">Order #${o.orderNumber}</span>
-                      <div style="font-size:12px; color:#737373; margin-top:2px;">Placed on ${dateStr} &bull; ${o.paymentMethod}</div>
+                      <span class="eyebrow">${t('checkout.order_number')} #${o.orderNumber}</span>
+                      <div style="font-size:12px; color:#737373; margin-top:2px;">${t('account.order_date')}: ${dateStr} &bull; ${o.paymentMethod}</div>
                     </div>
                     <div style="text-align:right;">
                       <span class="badge-pill" style="background:var(--gold-soft); border-color:var(--gold-primary); color:var(--gold-deep);">${o.status}</span>
-                      <div class="serif" style="font-size:22px; font-weight:600; margin-top:4px;">$${o.total.toFixed(2)}</div>
+                      <div class="serif" style="font-size:22px; font-weight:600; margin-top:4px; direction:ltr; display:inline-block;">$${o.total.toFixed(2)}</div>
                     </div>
                   </div>
 
@@ -205,24 +216,28 @@
                   </div>
 
                   <div style="display:flex; flex-direction:column; gap:12px;">
-                    ${o.items.map((it, idx) => `
-                      <div style="display:flex; gap:14px; align-items:center;">
-                        <img src="${it.image}" alt="" style="width:56px; height:56px; object-fit:contain; background:var(--bg-warm); border-radius:6px; padding:4px;">
-                        <div style="flex:1;">
-                          <div style="font-size:13px; font-weight:600;">${it.title} &times; ${it.qty}</div>
-                          <div style="font-size:11px; color:#737373;">
-                            ${window.EP_DB.metals[it.metal]?.name || it.metal}${it.size ? ' &bull; Size ' + it.size : ''}
-                          </div>
-                          ${it.type === 'custom-bangle' ? `
-                            <div style="font-size:10.5px; color:#9c7116;">
-                              Front: ${(it.frontCharms || []).map(c => c.title).join(', ') || 'None'} &bull;
-                              Back: ${(it.backCharms || []).map(c => c.title).join(', ') || 'None'}
+                    ${o.items.map((it, idx) => {
+                      const metalKey = it.metal || 'yellow';
+                      const metalName = t('common.' + (metalKey === 'yellow' ? 'yellow_gold' : metalKey === 'silver' ? 'sterling_silver' : 'rose_gold'));
+                      return `
+                        <div style="display:flex; gap:14px; align-items:center;">
+                          <img src="${it.image}" alt="" style="width:56px; height:56px; object-fit:contain; background:var(--bg-warm); border-radius:6px; padding:4px;">
+                          <div style="flex:1;">
+                            <div style="font-size:13px; font-weight:600;">${it.title} &times; ${it.qty}</div>
+                            <div style="font-size:11px; color:#737373;">
+                              ${metalName}${it.size ? ' &bull; ' + t('wishlist.size_label') + ' ' + it.size : ''}
                             </div>
-                          ` : ''}
+                            ${it.type === 'custom-bangle' ? `
+                              <div style="font-size:10.5px; color:#9c7116;">
+                                ${t('wishlist.front_track_label', { n: (it.frontCharms || []).length })} ${(it.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')} &bull;
+                                ${t('wishlist.back_track_label', { n: (it.backCharms || []).length })} ${(it.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}
+                              </div>
+                            ` : ''}
+                          </div>
+                          <button class="btn btn-outline btn-sm" onclick="reorderItem('${o.orderNumber}', ${idx})">${t('common.add_to_bag')}</button>
                         </div>
-                        <button class="btn btn-outline btn-sm" onclick="reorderItem('${o.orderNumber}', ${idx})">Reorder</button>
-                      </div>
-                    `).join('')}
+                      `;
+                    }).join('')}
                   </div>
                 </div>
               `;
@@ -230,43 +245,43 @@
       } else {
         tabHTML = `
           <div class="profile-card">
-            <h2 class="serif" style="font-size:28px; margin-bottom:18px;">Saved Profile &amp; Shipping Address</h2>
+            <h2 class="serif" style="font-size:28px; margin-bottom:18px;">${t('account.profile_heading')}</h2>
             <form id="profileForm">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
                 <div>
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Full Name</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.full_name')}</label>
                   <input type="text" id="profName" class="p-input" value="${user.fullName || ''}" required>
                 </div>
                 <div>
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Email</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('account.email')}</label>
                   <input type="email" id="profEmail" class="p-input" value="${user.email || ''}" required>
                 </div>
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
                 <div>
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Phone</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.phone')}</label>
                   <input type="text" id="profPhone" class="p-input" value="${user.phone || ''}">
                 </div>
                 <div>
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Country</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.country')}</label>
                   <input type="text" id="profCountry" class="p-input" value="${user.address?.country || ''}">
                 </div>
               </div>
               <div style="margin-bottom:14px;">
-                <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Street Address</label>
+                <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.street')}</label>
                 <input type="text" id="profStreet" class="p-input" value="${user.address?.street || ''}">
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px;">
                 <div>
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">City</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.city')}</label>
                   <input type="text" id="profCity" class="p-input" value="${user.address?.city || ''}">
                 </div>
                 <div>
-                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Postal Code</label>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.postal')}</label>
                   <input type="text" id="profPostal" class="p-input" value="${user.address?.postal || ''}">
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Save Preferences</button>
+              <button type="submit" class="btn btn-primary">${t('account.save_profile')}</button>
             </form>
           </div>
         `;
@@ -276,21 +291,21 @@
         <section class="account-header-banner">
           <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px;">
             <div>
-              <span class="eyebrow">${user.tier || 'Atelier Member'}</span>
-              <h1 class="section-heading mt-1">Welcome, ${user.fullName}</h1>
-              <p style="font-size:12.5px; color:#666;">${user.email} &bull; ${orders.length} Orders &bull; ${wishCount} Saved Items</p>
+              <span class="eyebrow">${t('account.header_eyebrow')}</span>
+              <h1 class="section-heading mt-1">${user.fullName}</h1>
+              <p style="font-size:12.5px; color:#666;">${user.email} &bull; ${orders.length} ${t('account.items')} &bull; ${wishCount} ${t('nav.wishlist')}</p>
             </div>
             <div style="display:flex; gap:10px;">
-              <a href="wishlist.html" class="btn btn-outline btn-sm">View Wishlist (${wishCount})</a>
-              <button class="btn btn-ghost btn-sm" onclick="EP_STORE.signOut(); EP_UI.toast('Signed out');">Sign Out</button>
+              <a href="wishlist.html" class="btn btn-outline btn-sm">${t('nav.wishlist')} (${wishCount})</a>
+              <button class="btn btn-ghost btn-sm" onclick="EP_STORE.signOut(); EP_UI.toast('${t('account.sign_out')}');">${t('account.sign_out')}</button>
             </div>
           </div>
         </section>
 
         <section class="container" style="padding-bottom:60px;">
           <div class="account-tabs">
-            <button class="acct-tab-btn ${currentTab === 'orders' ? 'active' : ''}" onclick="setAcctTab('orders')">Order History &amp; Tracking (${orders.length})</button>
-            <button class="acct-tab-btn ${currentTab === 'profile' ? 'active' : ''}" onclick="setAcctTab('profile')">Shipping Profile</button>
+            <button class="acct-tab-btn ${currentTab === 'orders' ? 'active' : ''}" onclick="setAcctTab('orders')">${t('account.tab_orders', { n: orders.length })}</button>
+            <button class="acct-tab-btn ${currentTab === 'profile' ? 'active' : ''}" onclick="setAcctTab('profile')">${t('account.tab_profile')}</button>
           </div>
           ${tabHTML}
         </section>
@@ -311,27 +326,12 @@
               postal: document.getElementById('profPostal').value.trim()
             }
           });
-          window.EP_UI.toast('Shipping preferences updated!');
+          window.EP_UI.toast(t('account.profile_saved'));
         });
       }
     }
 
-    window.setAcctTab = function(tab) {
-      currentTab = tab;
-      renderAccount();
-    };
-
-    window.reorderItem = function(orderNumber, itemIdx) {
-      const order = window.EP_STORE.getOrderByNumber(orderNumber);
-      const item = order?.items?.[itemIdx];
-      if (!item) return;
-      const clean = { ...item };
-      delete clean.uid;
-      window.EP_STORE.addToCart(clean);
-      window.EP_UI.toast(`${item.title} added back to your bag!`);
-      window.EP_UI.openCart();
-    };
-
+    window.addEventListener('niche:languageChange', renderAccount);
     document.addEventListener('DOMContentLoaded', () => {
       renderAccount();
       window.EP_STORE.subscribe(renderAccount);

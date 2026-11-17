@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/db.js"></script>
   <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
   <style>
     .breadcrumb {
@@ -308,9 +309,9 @@
 
   <main class="container">
     <nav class="breadcrumb" id="pdpBreadcrumb">
-      <a href="index.html">Home</a>
+      <a href="index.html" data-i18n="product.home">Home</a>
       <span>/</span>
-      <a href="collections.html">Jewelry</a>
+      <a href="collections.html" data-i18n="product.jewelry">Jewelry</a>
       <span>/</span>
       <span id="bcProductTitle" style="color:#1b1b1b;">Loading...</span>
     </nav>
@@ -323,40 +324,40 @@
     <div class="container">
       <div class="reviews-layout">
         <div>
-          <span class="eyebrow">Collector Feedback</span>
-          <h2 class="section-heading mt-1">Client Reviews</h2>
+          <span class="eyebrow" data-i18n="common.reviews">Collector Feedback</span>
+          <h2 class="section-heading mt-1" data-i18n="product.reviews_heading">Client Reviews</h2>
           <div style="display:flex; align-items:center; gap:12px; margin:14px 0 24px;">
             <span class="serif" style="font-size:44px; line-height:1;" id="avgRatingDisplay">4.9</span>
             <div>
               <div style="color:#c59b3f; letter-spacing:2px;">★★★★★</div>
-              <div style="font-size:11.5px; color:#737373;" id="totalReviewsDisplay">Based on verified reviews</div>
+              <div style="font-size:11.5px; color:#737373;" id="totalReviewsDisplay" data-i18n="common.based_on_reviews">Based on verified reviews</div>
             </div>
           </div>
 
           <div class="review-form-card">
-            <h3 class="serif" style="font-size:24px; margin-bottom:12px;">Write a Review</h3>
+            <h3 class="serif" style="font-size:24px; margin-bottom:12px;" data-i18n="product.write_review_title">Write a Review</h3>
             <form id="newReviewForm">
               <div style="margin-bottom:12px;">
-                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Your Name</label>
-                <input type="text" id="revAuthorInput" required placeholder="e.g. Nadia M." style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;" data-i18n="product.your_name">Your Name</label>
+                <input type="text" id="revAuthorInput" required data-i18n-placeholder="product.your_name" placeholder="e.g. Nadia M." style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
               </div>
               <div style="margin-bottom:12px;">
-                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Rating</label>
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;" data-i18n="product.rating_label">Rating</label>
                 <select id="revRatingInput" style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
-                  <option value="5">★★★★★ (5 Stars — Obsessed)</option>
-                  <option value="4">★★★★☆ (4 Stars — Great)</option>
-                  <option value="3">★★★☆☆ (3 Stars — Good)</option>
+                  <option value="5" data-i18n="product.rating_5">★★★★★ (5 Stars — Exceptional)</option>
+                  <option value="4" data-i18n="product.rating_4">★★★★☆ (4 Stars — Great)</option>
+                  <option value="3" data-i18n="product.rating_3">★★★☆☆ (3 Stars — Good)</option>
                 </select>
               </div>
               <div style="margin-bottom:12px;">
-                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Headline</label>
-                <input type="text" id="revTitleInput" required placeholder="Summary of your experience" style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;" data-i18n="product.headline">Headline</label>
+                <input type="text" id="revTitleInput" required data-i18n-placeholder="product.headline_placeholder" placeholder="Summary of your experience" style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;">
               </div>
               <div style="margin-bottom:14px;">
-                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;">Your Review</label>
-                <textarea id="revBodyInput" rows="3" required placeholder="Share details about the finish, fit, or 3D studio..." style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;"></textarea>
+                <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px;" data-i18n="product.your_review">Your Review</label>
+                <textarea id="revBodyInput" rows="3" required data-i18n-placeholder="product.your_review_placeholder" placeholder="Share details about the finish, fit, or 3D studio..." style="width:100%; padding:9px 11px; border:1px solid #e6e3dc; border-radius:4px; font-size:12px;"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Submit Verified Review</button>
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;" data-i18n="product.submit_review">Submit Verified Review</button>
             </form>
           </div>
         </div>
@@ -370,10 +371,10 @@
   <section class="container">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:28px;">
       <div>
-        <span class="eyebrow">Style Pairing</span>
-        <h2 class="section-heading mt-1">Complete Your Stack</h2>
+        <span class="eyebrow" data-i18n="product.complete_stack_eyebrow">Style Pairing</span>
+        <h2 class="section-heading mt-1" data-i18n="product.complete_stack_title">Complete Your Stack</h2>
       </div>
-      <a href="collections.html" class="btn btn-outline btn-sm">View All</a>
+      <a href="collections.html" class="btn btn-outline btn-sm" data-i18n="product.view_all">View All</a>
     </div>
     <div class="product-grid" id="relatedGrid"></div>
   </section>
@@ -393,6 +394,7 @@
     function renderPDP() {
       const p = currentProduct;
       if (!p) return;
+      const t = (k, params) => (window.nicheI18n ? window.nicheI18n.t(k, params) : k);
 
       document.title = `${p.title} • NICH JEWELRY`;
       document.getElementById('bcProductTitle').textContent = p.title;
@@ -407,17 +409,25 @@
         </button>
       `).join('');
 
+      // Metal helper
+      const getMetalLabel = (m) => {
+        if (m === 'yellow') return t('common.yellow_gold');
+        if (m === 'silver') return t('common.sterling_silver');
+        if (m === 'rose') return t('common.rose_gold');
+        return m;
+      };
+
       // Metal Picker HTML
       const metalHTML = (p.availableMetals && p.availableMetals.length > 0) ? `
         <div class="option-group-label">
-          <span>Metal Finish</span>
-          <span style="color:#1b1b1b;">${window.EP_DB.metals[p.metal]?.name || p.metal}</span>
+          <span>${t('product.metal_finish')}</span>
+          <span style="color:#1b1b1b;">${getMetalLabel(pdpState.metal || p.metal)}</span>
         </div>
         <div class="pdp-metal-pills">
           ${p.availableMetals.map(m => `
             <button class="pdp-metal-btn ${pdpState.metal === m ? 'active' : ''}" onclick="selectPDPMetal('${m}')">
               <span class="mini-swatch ${m}"></span>
-              ${window.EP_DB.metals[m]?.name || m}
+              ${getMetalLabel(m)}
             </button>
           `).join('')}
         </div>
@@ -426,8 +436,8 @@
       // Size Picker HTML
       const sizeHTML = p.hasSizes ? `
         <div class="option-group-label">
-          <span>Wrist Size</span>
-          <a href="about.html#sizing" style="color:#8b661d; text-decoration:underline;">Size Guide &amp; Fit</a>
+          <span>${t('product.wrist_size')}</span>
+          <a href="about.html#sizing" style="color:#8b661d; text-decoration:underline;">${t('product.size_guide_fit')}</a>
         </div>
         <div class="pdp-size-grid">
           ${window.EP_DB.sizes.map(s => `
@@ -442,8 +452,8 @@
       // Letter Picker (for A-Z pave initial charm)
       const letterHTML = p.hasLetterPicker ? `
         <div class="option-group-label">
-          <span>Choose Initial</span>
-          <span style="color:#1b1b1b;">Letter ${pdpState.letter.toUpperCase()}</span>
+          <span>${t('product.choose_initial')}</span>
+          <span style="color:#1b1b1b;">${t('product.initial_label', { letter: pdpState.letter.toUpperCase() })}</span>
         </div>
         <div class="letter-grid">
           ${window.EP_DB.charmsCatalog.letters.map(l => `
@@ -458,7 +468,7 @@
       const studioCTA = p.customizable3d ? `
         <a href="customizer.html?metal=${pdpState.metal}&size=${pdpState.size}" class="btn btn-gold" style="width:100%; margin-bottom:22px;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          Personalize This Bangle in Live 3D Studio &rarr;
+          ${t('product.customizer_cta')}
         </a>
       ` : '';
 
@@ -477,10 +487,10 @@
           <h1 class="pdp-title">${p.title}</h1>
           <div class="pdp-rating-row">
             <span style="color:#c59b3f; letter-spacing:2px;">★★★★★</span>
-            <a href="#reviews" style="color:#737373; text-decoration:underline;">${p.rating.toFixed(1)} (${window.EP_STORE.getReviews(p.id).length || p.reviewCount} reviews)</a>
+            <a href="#reviews" style="color:#737373; text-decoration:underline;">${p.rating.toFixed(1)} (${window.EP_STORE.getReviews(p.id).length || p.reviewCount} ${t('common.reviews')})</a>
           </div>
 
-          <div class="pdp-price">
+          <div class="pdp-price" style="direction:ltr; display:inline-flex; align-items:baseline; gap:12px;">
             <span>$${p.price.toFixed(2)}</span>
             ${p.compareAtPrice ? `<span style="font-size:18px; color:#999; text-decoration:line-through; font-weight:400;">$${p.compareAtPrice.toFixed(2)}</span>` : ''}
           </div>
@@ -494,9 +504,9 @@
           ${letterHTML}
 
           <div class="option-group-label">
-            <span>Complimentary Linen Gift Box &amp; Handwritten Note (Optional)</span>
+            <span>${t('product.gift_note_label')}</span>
           </div>
-          <input type="text" id="pdpGiftNote" class="gift-note-box" placeholder="Add a short message to include on your embossed card...">
+          <input type="text" id="pdpGiftNote" class="gift-note-box" placeholder="${t('product.gift_note_placeholder')}">
 
           <div class="pdp-cta-stack">
             <div class="qty-controls" style="height:44px; padding:0 4px;">
@@ -505,9 +515,9 @@
               <button type="button" onclick="changePDPQty(1)" style="height:100%; width:32px;">+</button>
             </div>
             <button class="btn btn-primary" style="flex:1;" onclick="addPDPToBag()">
-              Add To Bag &bull; $${(p.price * pdpState.qty).toFixed(2)}
+              ${t('product.add_to_bag_price', { price: (p.price * pdpState.qty).toFixed(2) })}
             </button>
-            <button class="icon-btn" style="width:44px; height:44px; border:1px solid #e6e3dc; border-radius:4px;" onclick="togglePDPWish(this)" title="Save to Wishlist">
+            <button class="icon-btn" style="width:44px; height:44px; border:1px solid #e6e3dc; border-radius:4px;" onclick="togglePDPWish(this)" title="${t('product.save_to_wishlist')}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="${inWish ? '#c53030' : 'none'}" stroke="${inWish ? '#c53030' : 'currentColor'}" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </button>
           </div>
@@ -517,38 +527,42 @@
           <div style="margin-top:16px;">
             <div class="accordion-item open">
               <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
-                <span>Craftsmanship &amp; Specifications</span>
+                <span>${t('product.acc_materials_title')}</span>
                 <span>+</span>
               </button>
               <div class="accordion-body">
-                <ul style="padding-left:18px; display:flex; flex-direction:column; gap:6px;">
+                <ul style="padding-left:18px; padding-right:18px; display:flex; flex-direction:column; gap:6px;">
                   ${(p.specs || []).map(s => `<li>${s}</li>`).join('')}
                 </ul>
               </div>
             </div>
             <div class="accordion-item">
               <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
-                <span>Shipping &amp; 30-Day Complimentary Returns</span>
+                <span>${t('product.acc_shipping_title')}</span>
                 <span>+</span>
               </button>
               <div class="accordion-body">
-                Every piece ships in signature linen presentation packaging with full transit insurance. Complimentary shipping on orders over $150. Unworn stock pieces may be returned within 30 days.
+                ${t('product.acc_shipping_body')}
               </div>
             </div>
             <div class="accordion-item">
               <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
-                <span>Lifetime Glider Track Warranty</span>
+                <span>${t('product.acc_warranty_title')}</span>
                 <span>+</span>
               </button>
               <div class="accordion-body">
-                We guarantee the precision tolerances of your bangle's hinge, safety box clasp, and dual glider channels for life against mechanical defects.
+                ${t('product.acc_warranty_body')}
               </div>
             </div>
           </div>
         </div>
       `;
     }
-
+    
+    window.addEventListener('niche:languageChange', () => {
+      renderPDP();
+      if (window.nicheI18n) window.nicheI18n.applyDataI18n();
+    });
     window.setMainImg = function(src) {
       pdpState.activeImg = src;
       renderPDP();
