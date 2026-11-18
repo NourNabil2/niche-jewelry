@@ -13,15 +13,15 @@
   <script src="js/i18n.js"></script>
   <script src="js/layout.js"></script>
   <style>
-    /* Editorial Hero */
+    /* Quiet Luxury Editorial Hero */
     .hero-section {
       position: relative;
-      min-height: 78vh;
+      min-height: 82vh;
       max-height: 820px;
       display: flex;
       align-items: center;
       overflow: hidden;
-      background: #ece7dd;
+      background: #0d0c0a;
     }
 
     .hero-bg {
@@ -30,346 +30,225 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 50%;
-      transition: transform 0.3s ease;
+      object-position: 68% 45%;
+      animation: subtlePantherZoom 26s ease-in-out infinite alternate;
+      transform-origin: center center;
+      will-change: transform;
     }
 
-    html[dir="rtl"] .hero-bg {
-      transform: scaleX(-1);
+    @keyframes subtlePantherZoom {
+      0% {
+        transform: scale(1.0);
+      }
+      100% {
+        transform: scale(1.045);
+      }
     }
 
+    /* Ambient Scrim: Deep velvety vignette for legibility while keeping jewelry luminous */
     .hero-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(95deg, rgba(12, 10, 8, 0.82) 0%, rgba(12, 10, 8, 0.48) 50%, rgba(12, 10, 8, 0.05) 100%);
+      background: linear-gradient(90deg, rgba(8, 7, 6, 0.92) 0%, rgba(8, 7, 6, 0.68) 42%, rgba(8, 7, 6, 0.18) 72%, rgba(8, 7, 6, 0.04) 100%);
+      pointer-events: none;
     }
 
     html[dir="rtl"] .hero-scrim {
-      background: linear-gradient(275deg, rgba(12, 10, 8, 0.86) 0%, rgba(12, 10, 8, 0.52) 50%, rgba(12, 10, 8, 0.08) 100%);
+      background: linear-gradient(270deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.70) 42%, rgba(8, 7, 6, 0.20) 72%, rgba(8, 7, 6, 0.04) 100%);
+    }
+
+    .hero-bottom-blend {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: linear-gradient(to top, #0d0c0a 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 620px;
+      max-width: 580px;
       color: #ffffff;
-      padding: 64px 0;
+      padding: 72px 0 80px;
+      animation: heroContentFade 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes heroContentFade {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--gold-primary);
-      margin-bottom: 16px;
-      display: inline-block;
+      color: var(--gold-primary, #c59b3f);
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--gold-primary, #c59b3f);
+      opacity: 0.8;
     }
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(42px, 5.6vw, 72px);
+      font-size: clamp(38px, 5.2vw, 68px);
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.08;
       margin-bottom: 20px;
-      letter-spacing: 0.01em;
+      color: #ffffff;
+      letter-spacing: -0.01em;
     }
 
     .hero-sub {
-      font-size: 14.5px;
+      font-size: 15px;
+      font-weight: 300;
       line-height: 1.75;
-      color: rgba(255, 255, 255, 0.88);
-      max-width: 490px;
-      margin-bottom: 32px;
-    }
-
-    
-    /* Hero 2-Column Grid */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 48px;
-      position: relative;
-      z-index: 2;
-      padding: 64px 0;
-      width: 100%;
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        padding: 36px 0 32px;
-      }
-      .hero-content {
-        padding: 0;
-        max-width: 100%;
-      }
-      .hero-scrim {
-        background: linear-gradient(180deg, rgba(12, 10, 8, 0.78) 0%, rgba(12, 10, 8, 0.50) 50%, rgba(12, 10, 8, 0.85) 100%) !important;
-      }
-    }
-
-    /* Interactive Atelier Vinyl Record Stage */
-    .hero-record-stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      user-select: none;
-    }
-
-    .record-turntable-card {
-      position: relative;
-      width: 270px;
-      height: 270px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    @media (max-width: 900px) {
-      .record-turntable-card {
-        width: 180px;
-        height: 180px;
-        margin: 0 auto;
-      }
-    }
-
-    /* The Vinyl Record Disc */
-    .vinyl-disc {
-      position: relative;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, #1b1917 0%, #161513 100%);
-      border: 1px solid rgba(228, 204, 160, 0.28);
-      animation: spinVinyl 16s linear infinite;
-      transition: transform 0.4s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @media (max-width: 900px) {
-      .vinyl-disc {
-        width: 170px;
-        height: 170px;
-      }
-    }
-
-    .record-turntable-card:hover .vinyl-disc,
-    .record-turntable-card:active .vinyl-disc {
-      animation-duration: 7s;
-    }
-
-    /* Concentric Sound Grooves */
-    .vinyl-grooves {
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      background: repeating-radial-gradient(
-        circle at center,
-        transparent 0,
-        transparent 3px,
-        rgba(255, 255, 255, 0.04) 4px,
-        transparent 5px
-      );
-      pointer-events: none;
-    }
-
-    /* Vinyl Light Sheen (Specular Reflection) */
-    .vinyl-sheen {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 45deg,
-        rgba(255, 255, 255, 0.09) 0deg,
-        transparent 65deg,
-        rgba(255, 255, 255, 0.09) 130deg,
-        transparent 195deg,
-        rgba(255, 255, 255, 0.09) 260deg,
-        transparent 325deg,
-        rgba(255, 255, 255, 0.09) 360deg
-      );
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    /* Center Gold Medallion Label */
-    .vinyl-center-label {
-      position: absolute;
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #e4cca0 0%, #c59b3f 50%, #9e7526 100%);
-      border: 2px solid #dfc88e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      text-align: center;
-    }
-
-    @media (max-width: 900px) {
-      .vinyl-center-label {
-        width: 62px;
-        height: 62px;
-      }
-    }
-
-    .vinyl-center-logo {
-      height: 18px;
-      width: auto;
-      display: block;
-      filter: brightness(0) invert(1);
-    }
-
-    @media (max-width: 900px) {
-      .vinyl-center-logo {
-        height: 13px;
-      }
-    }
-
-    .vinyl-spindle-hole {
-      width: 8px;
-      height: 8px;
-      background: #181715;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      margin-top: 3px;
-    }
-
-    /* Tone-Arm (Needle) */
-    .vinyl-tonearm {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 70px;
-      height: 120px;
-      pointer-events: none;
-      z-index: 4;
-      transform-origin: top right;
-      transform: rotate(-3deg);
-      transition: transform 0.4s var(--ease);
-    }
-
-    @media (max-width: 900px) {
-      .vinyl-tonearm {
-        width: 48px;
-        height: 85px;
-        top: 2px;
-        right: 2px;
-      }
-    }
-
-    .record-turntable-card:hover .vinyl-tonearm {
-      transform: rotate(8deg);
-    }
-
-    .tonearm-pivot {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #c59b3f;
-      border: 2px solid #e4cca0;
-    }
-
-    .tonearm-arm {
-      position: absolute;
-      top: 10px;
-      right: 7px;
-      width: 2.5px;
-      height: 90px;
-      background: linear-gradient(to bottom, #e4cca0 0%, #c59b3f 100%);
-      transform-origin: top center;
-      transform: rotate(24deg);
-      border-radius: 2px;
-    }
-
-    @media (max-width: 900px) {
-      .tonearm-arm { height: 62px; }
-    }
-
-    .tonearm-headshell {
-      position: absolute;
-      bottom: 0;
-      left: -4px;
-      width: 10px;
-      height: 14px;
-      background: #181715;
-      border: 1px solid #c59b3f;
-      border-radius: 2px;
-    }
-
-    /* Spinning Text Ring (SVG) */
-    .vinyl-svg-ring {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    /* Live Session Caption */
-    .record-session-caption {
-      margin-top: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(24, 23, 21, 0.72);
-      border: 1px solid rgba(228, 204, 160, 0.35);
-      border-radius: var(--radius-pill);
-      padding: 6px 16px;
-      color: #e4cca0;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-      text-decoration: none;
-      transition: all 0.25s var(--ease);
-    }
-
-    .record-session-caption:hover {
-      background: rgba(24, 23, 21, 0.95);
-      border-color: #c59b3f;
-      color: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .record-pulse-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #48bb78;
-      box-shadow: 0 0 8px #48bb78;
-      animation: pulseGreen 1.8s infinite;
-    }
-
-    @keyframes spinVinyl {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes pulseGreen {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      color: rgba(245, 243, 239, 0.85);
+      max-width: 480px;
+      margin-bottom: 34px;
     }
 
     .hero-cta-row {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 16px;
+    }
+
+    .hero-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #e4cca0 0%, #c59b3f 100%);
+      color: #12100d !important;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 2px;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(197, 155, 63, 0.25);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+
+    .hero-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(197, 155, 63, 0.40);
+    }
+
+    .hero-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff !important;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      padding: 13px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      transition: all 0.25s var(--ease);
+    }
+
+    .hero-btn-secondary:hover {
+      border-color: #e4cca0;
+      color: #e4cca0 !important;
+      background: rgba(228, 204, 160, 0.08);
+      transform: translateY(-1px);
+    }
+
+    /* Atelier Hallmark Bar */
+    .hero-hallmarks {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-top: 42px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      flex-wrap: wrap;
+    }
+
+    .hero-hallmark-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .hero-hallmark-bullet {
+      color: var(--gold-primary, #c59b3f);
+      font-size: 9px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-section {
+        min-height: 86vh;
+        max-height: none;
+        align-items: flex-end;
+      }
+      .hero-bg {
+        object-position: center 25%;
+      }
+      .hero-scrim {
+        background: linear-gradient(180deg, rgba(8, 7, 6, 0.20) 0%, rgba(8, 7, 6, 0.65) 45%, rgba(8, 7, 6, 0.95) 100%) !important;
+      }
+      .hero-content {
+        padding: 180px 0 44px;
+        text-align: center;
+        max-width: 100%;
+      }
+      .hero-eyebrow {
+        justify-content: center;
+      }
+      .hero-eyebrow::before {
+        display: none;
+      }
+      .hero-sub {
+        margin: 0 auto 28px;
+      }
+      .hero-cta-row {
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hero-btn-primary,
+      .hero-btn-secondary {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+      }
+      .hero-hallmarks {
+        justify-content: center;
+        gap: 14px;
+        margin-top: 32px;
+        padding-top: 20px;
+      }
     }
 
     .press-strip {
@@ -672,68 +551,40 @@
   <!-- Global Sticky Header & Cart Drawer -->
   <div id="ep-header-mount"></div>
 
-  <!-- 1. Editorial Hero Banner -->
+  <!-- 1. Editorial Quiet Luxury Hero Banner -->
   <section class="hero-section">
-    <img src="assets/images/hero_editorial.jpg" alt="14K Gold Glider Charm Bangle worn stacked on warm travertine" class="hero-bg">
+    <img src="assets/images/hero_editorial.jpg" alt="14K Gold Glider Charm Bangle worn beside majestic black panther" class="hero-bg">
     <div class="hero-scrim"></div>
+    <div class="hero-bottom-blend"></div>
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <span class="hero-eyebrow" data-i18n="hero.eyebrow">The Signature 3D Atelier &bull; 14K Solid Gold</span>
-          <h1 class="hero-title" data-i18n="hero.title">Crafted to Glide.<br>Designed by You.</h1>
-          <p class="hero-sub" data-i18n="hero.sub">Experience fine jewelry personalization in real-time 3D. Arrange Mother of Pearl icons, diamond pavé letters, and solid 14K gold charms across both front and back channels of our hinged Glider Bangle™.</p>
-          <div class="hero-cta-row">
-            <a href="customizer.html" class="btn btn-gold">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-              <span data-i18n="hero.cta_studio">Design in 3D Studio</span>
-            </a>
-            <a href="collections.html" class="btn" style="background:rgba(255,255,255,0.14); color:#fff; border-color:rgba(255,255,255,0.55); backdrop-filter:blur(6px);">
-              <span data-i18n="hero.cta_shop">Shop Collections</span>
-            </a>
-          </div>
+      <div class="hero-content">
+        <span class="hero-eyebrow" data-i18n="hero.eyebrow">The 3D Atelier &bull; 14K Solid Gold</span>
+        <h1 class="hero-title" data-i18n="hero.title">Crafted to Glide.<br>Designed by You.</h1>
+        <p class="hero-sub" data-i18n="hero.sub">Personalize your bespoke dual-track Glider Bangle&trade; in real-time 3D craftsmanship.</p>
+        <div class="hero-cta-row">
+          <a href="customizer.html" class="hero-btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span data-i18n="hero.cta_studio">Design in 3D Studio</span>
+          </a>
+          <a href="collections.html" class="hero-btn-secondary">
+            <span data-i18n="hero.cta_shop">Explore Collections &rarr;</span>
+          </a>
         </div>
 
-        <!-- Atelier Vinyl Record Player Animation -->
-        <div class="hero-record-stage">
-          <a href="customizer.html" class="record-turntable-card" title="Interactive Atelier Record • Click to Launch 3D Studio">
-            <div class="vinyl-disc">
-              <div class="vinyl-grooves"></div>
-              <div class="vinyl-sheen"></div>
-              
-              <!-- Circular Curved Typography SVG -->
-              <svg class="vinyl-svg-ring" viewBox="0 0 200 200">
-                <defs>
-                  <path id="vinylCirclePath" d="M 100, 100 m -72, 0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
-                </defs>
-                <text font-size="9" letter-spacing="2.6" fill="#e4cca0" font-weight="600" text-transform="uppercase">
-                  <textPath xlink:href="#vinylCirclePath" startOffset="0%">
-                    <tspan id="vinylSvgText" data-i18n="hero.record_ring">✦ NICHE JEWELRY ATELIER • 3D GLIDER • 33⅓ RPM •</tspan>
-                  </textPath>
-                </text>
-              </svg>
-
-              <!-- Center Gold Medallion Label -->
-              <div class="vinyl-center-label">
-                <img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" class="vinyl-center-logo">
-                <span style="font-size:7px; color:#ffffff; font-weight:700; letter-spacing:0.1em; margin-top:1px;" data-i18n="hero.record_badge">14K ATELIER</span>
-                <span class="vinyl-spindle-hole"></span>
-              </div>
-            </div>
-
-            <!-- Stylized Gold Tone-Arm -->
-            <div class="vinyl-tonearm">
-              <div class="tonearm-pivot"></div>
-              <div class="tonearm-arm">
-                <div class="tonearm-headshell"></div>
-              </div>
-            </div>
-          </a>
-
-          <!-- Live Session Pill Link -->
-          <a href="customizer.html" class="record-session-caption" title="Launch 3D Studio Session">
-            <span class="record-pulse-dot"></span>
-            <span data-i18n="hero.record_session">33⅓ RPM &bull; Session 01 &bull; Tap to Design</span>
-          </a>
+        <!-- Atelier Hallmark Bar -->
+        <div class="hero-hallmarks">
+          <span class="hero-hallmark-item">
+            <span class="hero-hallmark-bullet">✦</span>
+            <span data-i18n="hero.hallmark_gold">14K Recycled Solid Gold</span>
+          </span>
+          <span class="hero-hallmark-item">
+            <span class="hero-hallmark-bullet">✦</span>
+            <span data-i18n="hero.hallmark_glide">Patented Dual-Track Glide™</span>
+          </span>
+          <span class="hero-hallmark-item">
+            <span class="hero-hallmark-bullet">✦</span>
+            <span data-i18n="hero.hallmark_engraving">Complimentary Inner Engraving</span>
+          </span>
         </div>
       </div>
     </div>
