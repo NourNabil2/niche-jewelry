@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>NICH JEWELRY • الدليل الفني ولوحة التحكم وخطة التسويق</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+    body {
+      font-family: 'Cairo', sans-serif;
+      color: #1a1714;
+      background: #ffffff;
+      line-height: 1.6;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+    }
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+    
+    /* Cover Page */
+    .cover {
+      height: 94vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px solid #c59b3f;
+      padding: 40px;
+      box-sizing: border-box;
+      background: #12100d;
+      color: #f7f5f0;
+      text-align: center;
+    }
+    .cover-brand {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 42pt;
+      letter-spacing: 0.18em;
+      color: #e4cca0;
+      text-transform: uppercase;
+      margin-top: 40px;
+    }
+    .cover-sub {
+      font-size: 11pt;
+      letter-spacing: 0.35em;
+      color: #c59b3f;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .cover-title {
+      font-size: 24pt;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 60px;
+      line-height: 1.4;
+    }
+    .cover-desc {
+      font-size: 12pt;
+      color: #d1c9bd;
+      max-width: 520px;
+      margin: 20px auto 0;
+      line-height: 1.8;
+    }
+    .cover-badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .cover-badge {
+      border: 1px solid rgba(228, 204, 160, 0.4);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 9.5pt;
+      color: #e4cca0;
+    }
+    .cover-footer {
+      font-size: 9.5pt;
+      color: #888;
+      border-top: 1px solid rgba(228, 204, 160, 0.2);
+      padding-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Content Styling */
+    h1, h2, h3 {
+      color: #12100d;
+      font-weight: 700;
+    }
+    h2 {
+      font-size: 17pt;
+      border-bottom: 2px solid #c59b3f;
+      padding-bottom: 6px;
+      margin-top: 24px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 {
+      font-size: 13pt;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: #8b661d;
+    }
+    p, li {
+      font-size: 10.5pt;
+      color: #333333;
+      text-align: justify;
+    }
+    
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 9.5pt;
+    }
+    th, td {
+      border: 1px solid #d4cdbf;
+      padding: 8px 10px;
+      text-align: right;
+    }
+    th {
+      background-color: #f7f5f0;
+      color: #12100d;
+      font-weight: 700;
+    }
+    tr:nth-child(even) td {
+      background-color: #faf8f5;
+    }
+
+    /* Info Boxes */
+    .info-card {
+      background: #faf8f5;
+      border-right: 4px solid #c59b3f;
+      border-top: 1px solid #e8e3d8;
+      border-bottom: 1px solid #e8e3d8;
+      border-left: 1px solid #e8e3d8;
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    .info-card h4 {
+      margin: 0 0 6px;
+      font-size: 11pt;
+      color: #8b661d;
+    }
+    .info-card p {
+      margin: 0;
+      font-size: 9.5pt;
+    }
+
+    /* Key Value Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 14px 0;
+    }
+    .grid-item {
+      background: #fbfbfb;
+      border: 1px solid #e0dbce;
+      padding: 12px 14px;
+      border-radius: 4px;
+    }
+    .grid-item strong {
+      display: block;
+      color: #12100d;
+      font-size: 10pt;
+      margin-bottom: 3px;
+    }
+    .grid-item span {
+      font-size: 9pt;
+      color: #666;
+    }
+
+    code {
+      font-family: monospace;
+      background: #efebe4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 9pt;
+      color: #7b1fa2;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 8.5pt;
+      font-weight: 700;
+    }
+    .badge-gold { background: #fff8e1; color: #b78103; border: 1px solid #ffe082; }
+    .badge-green { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .badge-blue { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1: COVER ================= -->
+  <div class="cover page-break">
+    <div>
+      <div class="cover-brand">NICH JEWELRY</div>
+      <div class="cover-sub">HAUTE JOAILLERIE &bull; 3D GLIDER ATELIER &bull; KUWAIT</div>
+    </div>
+
+    <div>
+      <div class="cover-title">
+        الدليل الشامل للوحة تحكم الأتيليه<br>
+        وقاعدة بيانات MySQL واستراتيجية التسويق والبيكسل
+      </div>
+      <div class="cover-desc">
+        توثيق تقني ومعماري وإداري متكامل لمنصة التجارة الإلكترونية الفاخرة لدار نيش للمجوهرات، يتضمن إدارة المنتجات، الدلايات 3D، الأسعار، العروض والكوبونات، والربط الإعلاني مع Meta و TikTok و Snapchat و Google.
+      </div>
+
+      <div class="cover-badge-row">
+        <span class="cover-badge">PHP Laravel 11</span>
+        <span class="cover-badge">MySQL / MariaDB</span>
+        <span class="cover-badge">Three.js 3D Studio</span>
+        <span class="cover-badge">Cartier Noir Theme</span>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div>صادر عن: فريق التطوير والهندسة البرمجية • دار نيش للمجوهرات الفاخرة</div>
+      <div style="direction:ltr; margin-top:4px;">Version 2.4 Executive Release &bull; January 2026</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2: SYSTEM ARCHITECTURE & CREDENTIALS ================= -->
+  <div>
+    <h2><span>١.</span> بيانات الدخول الآمنة للوحة التحكم (Executive Access)</h2>
+    <p>
+      تم تأمين لوحة تحكم دار نيش للمجوهرات بنظام توثيق محمي بجلسات عمل مشفرة وفحص صلاحيات (Role-Based Access Control) لمنع أي دخول غير مصرح به. أي محاولة للوصول إلى أي صفحة داخلية يتم تحويلها تلقائياً إلى بوابة تسجيل الدخول.
+    </p>
+
+    <div class="info-card">
+      <h4>✦ بيانات دخول الصائغ المدير المعتمدة للدار</h4>
+      <p style="margin-top:6px;">
+        • <strong>رابط لوحة التحكم:</strong> <code>http://localhost:8000/admin/login</code> (أو عبر الرابط المباشر <code>/admin</code>)<br>
+        • <strong>البريد الإلكتروني للصائغ المدير:</strong> <code>admin@niche-jewelry.com</code><br>
+        • <strong>كلمة المرور المشفرة (Bcrypt):</strong> <code>NicheAtelier2026!</code><br>
+        • <strong>مستوى الصلاحية:</strong> <code>admin</code> (تحكم كامل في كافة مفاصل المتجر)
+      </p>
+    </div>
+
+    <h2><span>٢.</span> معمارية النظام والبيئة التقنية (Technical Architecture)</h2>
+    <p>
+      تم بناء المنصة وفق أحدث المعايير البرمجية لضمان سرعة فائقة، تجربة مستخدم سلسلة، وتوافق تام بين واجهات العرض ثلاثية الأبعاد وقاعدة البيانات:
+    </p>
+
+    <div class="grid-2">
+      <div class="grid-item">
+        <strong>Backend Engine (المحرك الخلفي)</strong>
+        <span>PHP 8.2+ مع Laravel 11، متحكمات مخصصة لكل قسم، ونظام Middlewares لحماية الجلسات وضبط اللغات (AR / EN).</span>
+      </div>
+      <div class="grid-item">
+        <strong>Database Layer (قاعدة البيانات)</strong>
+        <span>MySQL / MariaDB بـ 9 جداول مترابطة تضمن حفظ المنتجات، الدلايات، تصاميم العملاء، والطلبات بدقة الميكرون.</span>
+      </div>
+      <div class="grid-item">
+        <strong>Frontend & 3D WebGL (الواجهة)</strong>
+        <span>نظام قوالب Blade مع محرك Three.js للاستوديو التفاعلي ثلاثي الأبعاد، ودعم كامل للغتين العربية (RTL) والإنجليزية (LTR).</span>
+      </div>
+      <div class="grid-item">
+        <strong>Dual Currency Engine (العملات)</strong>
+        <span>دعم مدمج للدولار الأمريكي ($ USD) والدينار الكويتي (د.ك KWD) مع التحويل التلقائي وإمكانية التخصيص اليدوي لكل قطعة.</span>
+      </div>
+    </div>
+
+    <h3>مخطط تدفق العمليات (Architecture Flow)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>المرحلة</th>
+          <th>المسار / المكون</th>
+          <th>الوظيفة والمسؤولية</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>المتجر الحي للزوار</strong></td>
+          <td><code>/ar</code> أو <code>/en</code></td>
+          <td>تصفح الهيرو، التشكيلات الراقية، ومعاينة أسعار الذهب والقطع.</td>
+        </tr>
+        <tr>
+          <td><strong>استوديو الصياغة 3D</strong></td>
+          <td><code>/:locale/atelier</code></td>
+          <td>تخصيص الإسورة بوجهيها (16 دلاية)، دوران أفقي سلس، ونقش ليزري مجاني.</td>
+        </tr>
+        <tr>
+          <td><strong>فحص العروض الفوري</strong></td>
+          <td><code>POST /api/promo/validate</code></td>
+          <td>واجهة برمجية API تفحص صحة الكوبونات وتطبق الخصم لحظياً.</td>
+        </tr>
+        <tr>
+          <td><strong>لوحة التحكم المركزية</strong></td>
+          <td><code>/admin/*</code></td>
+          <td>إدارة الكتالوج، الدلايات، الطلبات، الكوبونات، البانرات، والبيكسل.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ================= PAGE 3: DATABASE SCHEMA & MODULES ================= -->
+  <div>
+    <h2><span>٣.</span> مخطط جداول قاعدة البيانات (MySQL Database Schema)</h2>
+    <p>تحتوي قاعدة البيانات على 9 جداول أساسية مهيكلة لضمان التكامل التام:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>الجدول (Table)</th>
+          <th>الوصف</th>
+          <th>الحقول الأساسية</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>users</code></td>
+          <td>حسابات المديرين والعملاء</td>
+          <td>id, name, email, password, role</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>products</code></td>
+          <td>قطع المجوهرات والكتالوج</td>
+          <td>slug, title_ar/en, base_price, price_kwd, images</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>charms</code></td>
+          <td>دلايات الاستوديو 3D</td>
+          <td>charm_code, name_ar/en, price, price_kwd, is_active</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>custom_designs</code></td>
+          <td>تكوينات الإسورة والدلايات</td>
+          <td>design_token, wrist_size, front/back_charms</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>orders</code></td>
+          <td>طلبات الشراء والتفصيل</td>
+          <td>order_number, total_amount, payment/fulfillment</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>settings</code></td>
+          <td>إعدادات وتخصيصات المتجر</td>
+          <td>key, value, group (theme, about, marketing)</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>promotions</code></td>
+          <td>كوبونات الخصم والعروض</td>
+          <td>code, discount_type, discount_value, min_order</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+        <tr>
+          <td><code>banners</code></td>
+          <td>البانرات والشرائح الإعلانية</td>
+          <td>placement, title, image_url, link_url, is_active</td>
+          <td><span class="badge-pill badge-green">نشط 100%</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2><span>٤.</span> تفصيل أقسام لوحة التحكم (Admin Panel Capabilities)</h2>
+    
+    <div class="grid-2">
+      <div class="grid-item">
+        <strong>١. إدارة المنتجات والأسعار (/admin/products)</strong>
+        <span>تعديل وحذف وإضافة قطع المجوهرات بالدولار ($ USD) والدينار الكويتي (د.ك KWD)، وإدارة حالة التوفر بالمخزون.</span>
+      </div>
+      <div class="grid-item">
+        <strong>٢. إدارة دلايات الاستوديو 3D (/admin/charms)</strong>
+        <span>التحكم في دلايات عرق اللؤلؤ والأحرف والرموز، تحديد السعر وتفعيل/تعطيل ظهورها في استوديو التصميم بنقرة واحدة.</span>
+      </div>
+      <div class="grid-item">
+        <strong>٣. محرك العروض والكوبونات (/admin/promotions)</strong>
+        <span>إنشاء كوبونات بنسب مئوية أو مبالغ نقدية ثابتة، تحديد حد أدنى للطلب، وتحديد عدد مرات الاستخدام المسموحة.</span>
+      </div>
+      <div class="grid-item">
+        <strong>٤. البانرات والشرائح الإعلانية (/admin/banners)</strong>
+        <span>إدارة بنرات الهيرو الرئيسي، الشريط العلوي، والبانر الوسطي مع التحكم في الروابط والصور ونصوص أزرار الشراء.</span>
+      </div>
+      <div class="grid-item">
+        <strong>٥. تخصيص الهيرو وتصميم المتجر (/admin/theme)</strong>
+        <span>تغيير نصوص الهيرو، صورة النمر الأسود، الشريط الإعلاني العلوي، وحقوق الفوتر دون الحاجة لأي كود برمجي.</span>
+      </div>
+      <div class="grid-item">
+        <strong>٦. قصة الدار والحرفية اليدوية (/admin/about)</strong>
+        <span>تحرير قصة تأسيس الدار، مراحل الصياغة الـ 18، دليل مقاسات المعصم، وبيانات التواصل المباشر مع كونسيرج الأتيليه.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ================= PAGE 4: MARKETING, PIXEL & GCC STRATEGY ================= -->
+  <div>
+    <h2><span>٥.</span> دليل ربط البيكسل الإعلاني وحقن الأحداث (Tracking & Pixels)</h2>
+    <p>
+      تم تزويد المتجر بنظام حقن ذكي عبر لوحة التحكم (`/admin/marketing`) يتيح ربط 5 منصات إعلانية فور إدخال معرّفاتها:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>المنصة الإعلانية</th>
+          <th>المعرّف المطلوب</th>
+          <th>الدور التسويقي في الخليج</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Meta Pixel</strong></td>
+          <td>Pixel ID (15-16 رقماً)</td>
+          <td>حملات إنستغرام وفيسبوك، الإعلانات المصورة وإعلانات الريلز.</td>
+        </tr>
+        <tr>
+          <td><strong>TikTok Pixel</strong></td>
+          <td>TikTok Pixel ID</td>
+          <td>إعلانات الفيديو القصيرة السريعة والوصول للشريحة الشابة.</td>
+        </tr>
+        <tr>
+          <td><strong>Snapchat Pixel</strong></td>
+          <td>Snap Pixel ID (UUID)</td>
+          <td>المنصة الأكثر استخداماً في الكويت والسعودية لبناء مبيعات الذهب.</td>
+        </tr>
+        <tr>
+          <td><strong>Google Analytics 4</strong></td>
+          <td>Measurement ID (G-XXXX)</td>
+          <td>تتبع مسار زوار الموقع ومعدل الارتداد والتحويلات المالية.</td>
+        </tr>
+        <tr>
+          <td><strong>Google Tag Manager</strong></td>
+          <td>Container ID (GTM-XXXX)</td>
+          <td>إدارة متقدمة للوسوم وربط منصات إعلانية إضافية بسهولة.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>الأحداث المعيارية المربوطة تلقائياً (Auto-Fired Standard Events)</h3>
+    <div class="info-card">
+      <p>
+        • <code>PageView</code>: يطلق في كل صفحات المتجر لبناء جمهور الزوار العام.<br>
+        • <code>ViewContent</code>: يطلق في صفحة تفاصيل المنتج واستوديو 3D مع اسم القطعة وسعرها وعملتها.<br>
+        • <code>AddToCart</code>: يطلق فور النقر على "إضافة للسلة" مع قائمة الدلايات وقيمة الإسورة الإجمالية.<br>
+        • <code>InitiateCheckout</code>: يطلق فور الدخول لصفحة إتمام الطلب <code>/checkout</code>.<br>
+        • <code>Purchase</code>: يطلق فور نجاح عملية الدفع حاملاً رقم الطلب وإجمالي المبيعات لتحسين خوارزميات الشراء في المنصات الإعلانية.
+      </p>
+    </div>
+
+    <h2><span>٦.</span> استراتيجية وخطة التسويق الرقمي لدول الخليج (GCC Marketing Playbook)</h2>
+    
+    <div class="grid-2">
+      <div class="grid-item">
+        <strong>المرحلة ١: بناء الأصالة والغموض (Top Funnel)</strong>
+        <span>فيديوهات ريلز وسناب تركز على النمر الأسود، الذهب الخالص 14K المقرب، وصوت انزلاق الدلايات السلس بنظام ASMR.</span>
+      </div>
+      <div class="grid-item">
+        <strong>المرحلة ٢: التخصيص التفاعلي (Middle Funnel)</strong>
+        <span>توجيه الإعلانات مباشرة إلى رابط استوديو 3D مع كود الخصم الترحيبي 15% <code>NICH15</code> لتحفيز التفاعل الشخصي.</span>
+      </div>
+      <div class="grid-item">
+        <strong>المرحلة ٣: الاسترداد والشراء (Bottom Funnel)</strong>
+        <span>إعادة استهداف زوار السلة المتروكة عبر رسائل كونسيرج الأتيليه وإعلانات الخصم الحصري، مع الشحن المؤمّن المجاني.</span>
+      </div>
+      <div class="grid-item">
+        <strong>المرحلة ٤: إهداء المؤثرين (Influencer Seeding)</strong>
+        <span>إهداء أساور منقوشة بأحرف وأسماء أبرز شخصيات الفخامة والموضة في الكويت والرياض ودبي لبناء مصداقية عريقة.</span>
+      </div>
+    </div>
+
+    <div style="margin-top:30px; text-align:center; padding:16px; border:1px dashed #c59b3f; border-radius:4px; background:#fffcf5;">
+      <strong style="color:#8b661d; font-size:11pt;">✦ وثيقة معتمدة • دار نيش للمجوهرات الراقية ✦</strong><br>
+      <span style="font-size:9pt; color:#666;">جميع الأنظمة، لوحة التحكم، قاعدة البيانات، والروابط تم تدقيقها وتعمل بكفاءة 100%.</span>
+    </div>
+  </div>
+
+</body>
+</html>

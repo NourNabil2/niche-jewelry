@@ -374,13 +374,15 @@
     });
 
     // Promo apply inside drawer
-    document.getElementById('drawerApplyPromoBtn')?.addEventListener('click', () => {
+    document.getElementById('drawerApplyPromoBtn')?.addEventListener('click', async () => {
       const input = document.getElementById('drawerPromoInput');
       const code = input ? input.value.trim() : '';
       if (!window.EP_STORE) return;
-      const res = window.EP_STORE.applyPromo(code);
-      if (res.valid) {
-        showToast(`Promo Applied: ${res.discountPercent}% Off`, '✦');
+      const res = window.EP_STORE.applyPromoAsync 
+        ? await window.EP_STORE.applyPromoAsync(code)
+        : window.EP_STORE.applyPromo(code);
+      if (res.valid || res.ok) {
+        showToast(res.message || `Promo Applied: ${res.discountPercent || ''}% Off`, '✦');
       } else {
         showToast(res.message || 'Invalid promo code', '•');
       }

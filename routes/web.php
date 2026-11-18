@@ -7,11 +7,19 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\ProductManagerController;
 use App\Http\Controllers\Admin\CharmManagerController;
 use App\Http\Controllers\Admin\OrderManagerController;
 use App\Http\Controllers\Admin\SettingManagerController;
+use App\Http\Controllers\Admin\PromotionManagerController;
+use App\Http\Controllers\Admin\BannerManagerController;
+use App\Http\Controllers\Admin\ThemeManagerController;
+use App\Http\Controllers\Admin\AboutManagerController;
+use App\Http\Controllers\Admin\MarketingManagerController;
 use App\Services\CurrencyService;
+use App\Models\Promotion;
+use Illuminate\Http\Request;
 
 // 1. Root redirect (default to Arabic 'ar')
 Route::get('/', function () {
@@ -24,7 +32,41 @@ Route::get('/currency/{code}', function ($code) {
     return back();
 })->name('currency.switch');
 
-// 3. Localized Storefront Routes (ar | en)
+// 3. API Coupon Validator Endpoint
+Route::post('/api/promo/validate', function (Request $request) {
+    $code = strtoupper(trim($request->input('code', '')));
+    $amount = (float)$request->input('order_amount', 0);
+
+    if (empty($code)) {
+        return response()->json(['success' => false, 'message' => 'يرجى إدخال كود الخصم'], 422);
+    }
+
+    $promo = Promotion::where('code', $code)->first();
+    if (!$promo) {
+        return response()->json(['success' => false, 'message' => 'كود الخصم غير موجود أو غير صالح'], 404);
+    }
+
+    $status = $promo->isValid($amount);
+    if (!$status['valid']) {
+        return response()->json(['success' => false, 'message' => $status['message']], 400);
+    }
+
+    $discount = $promo->calculateDiscount($amount);
+    $finalAmount = max(0, $amount - $discount);
+
+    return response()->json([
+        'success' => true,
+        'code' => $promo->code,
+        'title' => app()->getLocale() === 'ar' ? $promo->title_ar : ($promo->title_en ?: $promo->title_ar),
+        'discount_type' => $promo->discount_type,
+        'discount_value' => (float)$promo->discount_value,
+        'discount_amount' => round($discount, 2),
+        'final_amount' => round($finalAmount, 2),
+        'message' => 'تم تطبيق خصم بقيمة $' . number_format($discount, 2) . ' بنجاح!'
+    ]);
+})->name('api.promo.validate');
+
+// 4. Localized Storefront Routes (ar | en)
 Route::group([
     'prefix' => '{locale}',
     'where' => ['locale' => 'en|ar'],
@@ -75,9 +117,20 @@ Route::group([
     Route::get('/about.html', function ($locale) { return redirect("/$locale/about"); });
 });
 
-// 4. Admin Management Routes
-Route::group(['prefix' => 'admin'], function () {
+// 5. Admin Authentication Public Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+});
+
+// 6. Admin Protected Management Routes
+Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    // Profile & Credentials
+    Route::get('/profile', [AdminAuthController::class, 'showProfile'])->name('admin.profile');
+    Route::post('/profile', [AdminAuthController::class, 'updateProfile'])->name('admin.profile.update');
 
     // Products Management
     Route::get('/products', [ProductManagerController::class, 'index'])->name('admin.products.index');
@@ -99,6 +152,36 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/orders', [OrderManagerController::class, 'index'])->name('admin.orders.index');
     Route::get('/orders/{id}', [OrderManagerController::class, 'show'])->name('admin.orders.show');
     Route::put('/orders/{id}/status', [OrderManagerController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+
+    // Promotions & Discounts
+    Route::get('/promotions', [PromotionManagerController::class, 'index'])->name('admin.promotions.index');
+    Route::get('/promotions/create', [PromotionManagerController::class, 'create'])->name('admin.promotions.create');
+    Route::post('/promotions', [PromotionManagerController::class, 'store'])->name('admin.promotions.store');
+    Route::get('/promotions/{id}/edit', [PromotionManagerController::class, 'edit'])->name('admin.promotions.edit');
+    Route::put('/promotions/{id}', [PromotionManagerController::class, 'update'])->name('admin.promotions.update');
+    Route::post('/promotions/{id}/toggle', [PromotionManagerController::class, 'toggle'])->name('admin.promotions.toggle');
+    Route::delete('/promotions/{id}', [PromotionManagerController::class, 'destroy'])->name('admin.promotions.destroy');
+
+    // Banners & Sliders
+    Route::get('/banners', [BannerManagerController::class, 'index'])->name('admin.banners.index');
+    Route::get('/banners/create', [BannerManagerController::class, 'create'])->name('admin.banners.create');
+    Route::post('/banners', [BannerManagerController::class, 'store'])->name('admin.banners.store');
+    Route::get('/banners/{id}/edit', [BannerManagerController::class, 'edit'])->name('admin.banners.edit');
+    Route::put('/banners/{id}', [BannerManagerController::class, 'update'])->name('admin.banners.update');
+    Route::post('/banners/{id}/toggle', [BannerManagerController::class, 'toggle'])->name('admin.banners.toggle');
+    Route::delete('/banners/{id}', [BannerManagerController::class, 'destroy'])->name('admin.banners.destroy');
+
+    // Theme & Hero Design Customizer
+    Route::get('/theme', [ThemeManagerController::class, 'index'])->name('admin.theme.index');
+    Route::post('/theme', [ThemeManagerController::class, 'update'])->name('admin.theme.update');
+
+    // About & Heritage Page Editor
+    Route::get('/about', [AboutManagerController::class, 'index'])->name('admin.about.index');
+    Route::post('/about', [AboutManagerController::class, 'update'])->name('admin.about.update');
+
+    // Marketing & Tracking Pixels
+    Route::get('/marketing', [MarketingManagerController::class, 'index'])->name('admin.marketing.index');
+    Route::post('/marketing', [MarketingManagerController::class, 'update'])->name('admin.marketing.update');
 
     // Currency & Store Settings
     Route::get('/settings', [SettingManagerController::class, 'index'])->name('admin.settings.index');

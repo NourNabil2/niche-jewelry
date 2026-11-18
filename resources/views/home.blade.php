@@ -4,29 +4,38 @@
 
 @section('content')
 
-  <!-- 1. Editorial Quiet Luxury Hero Banner -->
+  <!-- 1. Editorial Quiet Luxury Hero Banner (Powered by Admin Theme Customizer) -->
+  @php
+    $isAr = app()->getLocale() == 'ar';
+    $heroBadge = \App\Models\Setting::get($isAr ? 'hero_badge_ar' : 'hero_badge_en', $isAr ? 'استوديو الصياغة ثلاثي الأبعاد ✦ ذهب نقي 14K' : '3D Atelier Studio ✦ Solid 14K Gold');
+    $heroTitle = \App\Models\Setting::get($isAr ? 'hero_title_ar' : 'hero_title_en', $isAr ? 'صُممت لتنزلق بنعومة. صياغة تعبّر عنكِ.' : 'Crafted to glide softly. Jewelry that expresses you.');
+    $heroSubtitle = \App\Models\Setting::get($isAr ? 'hero_subtitle_ar' : 'hero_subtitle_en', $isAr ? 'عيشي تجربة تخصيص المجوهرات الراقية في بيئة ثلاثية الأبعاد تفاعلية فورية. نشقي دلايات عرق اللؤلؤ الطبيعي، الحروف المرصعة بالماس، والأشكال المصنوعة من الذهب الخالص عيار 14K عبر مساري إسورة جلايدر™ بوجهيها الأمامي والخلفي.' : 'Experience fine jewelry personalization in an instant interactive 3D studio. Slide natural mother of pearl charms, diamond-set initials, and solid 14K gold motifs on the dual-track Glider™ bangle.');
+    $heroImage = \App\Models\Setting::get('hero_image_url', '/images/products/panther-hero.png');
+    $heroCtaPrimary = \App\Models\Setting::get($isAr ? 'hero_cta_primary_ar' : 'hero_cta_primary_en', $isAr ? 'صممي في استوديو الـ 3D' : 'Design in 3D Studio');
+    $heroCtaSecondary = \App\Models\Setting::get($isAr ? 'hero_cta_secondary_ar' : 'hero_cta_secondary_en', $isAr ? 'تصفحي المجموعات' : 'Explore Collections');
+  @endphp
   <section class="hero-section">
-    <img src="{{ asset('assets/images/hero_editorial.jpg') }}" alt="14K Gold Glider Charm Bangle worn beside majestic black panther" class="hero-bg">
+    <img src="{{ asset(ltrim($heroImage, '/')) }}" alt="14K Gold Glider Charm Bangle worn beside majestic black panther" class="hero-bg" onerror="this.src='{{ asset('assets/images/hero_editorial.jpg') }}'">
     <div class="hero-scrim"></div>
     <div class="hero-bottom-blend"></div>
     <div class="container">
       <div class="hero-content">
-        <span class="hero-eyebrow" data-i18n="hero.eyebrow">
-          {{ app()->getLocale() == 'ar' ? 'استوديو الصياغة ثلاثي الأبعاد • ذهب خالص 14K' : 'The 3D Atelier • 14K Solid Gold' }}
+        <span class="hero-eyebrow">
+          {{ $heroBadge }}
         </span>
-        <h1 class="hero-title" data-i18n="hero.title">
-          {!! app()->getLocale() == 'ar' ? 'صُممت لتنزلق بنعومة<br>صياغة تعبر عنكِ' : 'Crafted to Glide.<br>Designed by You.' !!}
+        <h1 class="hero-title">
+          {!! nl2br(e($heroTitle)) !!}
         </h1>
-        <p class="hero-sub" data-i18n="hero.sub">
-          {{ app()->getLocale() == 'ar' ? 'صممي إسورة جلايدر™ بوجهيها بحرية مطلقة في بيئة ثلاثية الأبعاد تنبض بالفخامة والحِرفية.' : 'Personalize your bespoke dual-track Glider Bangle™ in real-time 3D craftsmanship.' }}
+        <p class="hero-sub">
+          {{ $heroSubtitle }}
         </p>
         <div class="hero-cta-row">
           <a href="{{ route('studio') }}" class="hero-btn-primary">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <span data-i18n="hero.cta_studio">{{ app()->getLocale() == 'ar' ? 'صممي في الـ 3D ✦' : 'Design in 3D Studio ✦' }}</span>
+            <span>{{ $heroCtaPrimary }} ✦</span>
           </a>
           <a href="{{ route('collections') }}" class="hero-btn-secondary">
-            <span data-i18n="hero.cta_shop">{{ app()->getLocale() == 'ar' ? 'استكشفي المجموعات ←' : 'Explore Collections →' }}</span>
+            <span>{{ $heroCtaSecondary }} ←</span>
           </a>
         </div>
 

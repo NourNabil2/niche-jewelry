@@ -176,6 +176,39 @@
       return readJSON(STORAGE_KEYS.PROMO, null);
     },
 
+    async applyPromoAsync(codeRaw) {
+      const code = (codeRaw || '').trim().toUpperCase();
+      if (!code) return { ok: false, valid: false, message: 'يرجى كتابة رمز الكود' };
+      const subtotal = this.getCartSubtotal();
+      try {
+        const token = document.querySelector('meta[name="csrf-token"]')?.content;
+        const res = await fetch('/api/promo/validate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token || '' },
+          body: JSON.stringify({ code: code, order_amount: subtotal })
+        });
+        const data = await res.json();
+        if (data.success) {
+          const promoObj = {
+            code: data.code,
+            type: data.discount_type === 'percentage' ? 'percent' : 'fixed',
+            value: data.discount_value,
+            label: data.title,
+            discountPercent: data.discount_type === 'percentage' ? data.discount_value : null,
+            maxDiscount: data.discount_amount,
+            minSubtotal: 0
+          };
+          writeJSON(STORAGE_KEYS.PROMO, promoObj);
+          notify();
+          return { ok: true, valid: true, promo: promoObj, discountPercent: promoObj.discountPercent, message: data.message };
+        } else {
+          return { ok: false, valid: false, message: data.message };
+        }
+      } catch (err) {
+        return this.applyPromo(code);
+      }
+    },
+
     applyPromo(codeRaw) {
       const code = (codeRaw || '').trim().toUpperCase();
       const promo = window.EP_DB && window.EP_DB.promos[code];

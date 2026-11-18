@@ -386,10 +386,40 @@
       renderCheckoutPage();
     };
 
-    window.applyCheckoutPromo = function() {
-      const val = document.getElementById('chkPromoInput')?.value;
-      const res = window.EP_STORE.applyPromo(val);
-      window.EP_UI.toast(res.message, res.ok ? '✓' : '!');
+    window.applyCheckoutPromo = async function() {
+      const val = document.getElementById('chkPromoInput')?.value?.trim();
+      if (!val) {
+        window.EP_UI.toast('يرجى كتابة رمز الكود', '!');
+        return;
+      }
+      const subtotal = window.EP_STORE.getCartSubtotal();
+      try {
+        const res = await fetch('/api/promo/validate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
+          },
+          body: JSON.stringify({ code: val, order_amount: subtotal })
+        });
+        const data = await res.json();
+        if (data.success) {
+          const promoObj = {
+            code: data.code,
+            type: data.discount_type === 'percentage' ? 'pct' : 'fixed',
+            value: data.discount_value,
+            label: data.title,
+            maxDiscount: data.discount_amount
+          };
+          localStorage.setItem('ep_promo', JSON.stringify(promoObj));
+          window.EP_UI.toast(data.message, '✓');
+        } else {
+          window.EP_UI.toast(data.message || 'كود غير صالح', '!');
+        }
+      } catch (err) {
+        const fallback = window.EP_STORE.applyPromo(val);
+        window.EP_UI.toast(fallback.message, fallback.ok ? '✓' : '!');
+      }
       renderCheckoutPage();
     };
 
