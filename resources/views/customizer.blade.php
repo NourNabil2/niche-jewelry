@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="js/db.js"></script>
-  <script src="js/store.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/db.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/layout.js"></script>
   <style>
     :root {
       --bg-cream: #faf9f6;
@@ -3362,12 +3362,12 @@
 
     // Charm Catalog Definitions
     const symbolsCatalog = [
-      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: 'assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4 },
-      { id: 'martini', title: 'Martini with Olive', imgUrl: 'assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3 },
-      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: 'assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4 },
-      { id: 'heart', title: 'Solid Gold Heart', imgUrl: 'assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2 },
-      { id: 'eye', title: 'Evil Eye Charm', imgUrl: 'assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8 },
-      { id: 'star', title: 'Gold Star Charm', imgUrl: 'assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4 }
+      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4 },
+      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3 },
+      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4 },
+      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2 },
+      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8 },
+      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4 }
     ];
 
     const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -3899,3 +3899,4 @@
   </script>
 </body>
 </html>
+

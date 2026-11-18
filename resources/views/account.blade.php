@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collector Account &amp; Orders &bull; NICH JEWELRY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/db.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/layout.js"></script>
+  <style>
+    .account-header-banner {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border-light);
+      padding: 44px 0;
+    }
+
+    .account-tabs {
+      display: flex;
+      gap: 10px;
+      margin: 28px 0 24px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .acct-tab-btn {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .acct-tab-btn.active {
+      background: var(--text-dark);
+      color: #ffffff;
+      border-color: var(--text-dark);
+    }
+
+    .order-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .tracker-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 18px 0;
+      padding: 14px;
+      background: var(--bg-cream);
+      border-radius: var(--radius-sm);
+    }
+
+    @media (max-width: 680px) {
+      .tracker-steps { grid-template-columns: 1fr; }
+    }
+
+    .tracker-step {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tracker-step.done {
+      color: #1b1b1b;
+    }
+
+    .tracker-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      flex-shrink: 0;
+    }
+
+    .tracker-step.done .tracker-dot {
+      background: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(236, 190, 84, 0.25);
+    }
+
+    .auth-card {
+      max-width: 460px;
+      margin: 60px auto;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .profile-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      max-width: 680px;
+    }
+
+    .p-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-cream);
+      border-radius: 4px;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ep-header-mount"></div>
+  <main id="accountRoot"></main>
+  <div id="ep-footer-mount"></div>
+
+  <script>
+    let currentTab = 'orders'; // 'orders' | 'profile'
+
+    function renderAccount() {
+      const root = document.getElementById('accountRoot');
+      const user = window.EP_STORE.getUser();
+      const t = (k, params) => (window.nicheI18n ? window.nicheI18n.t(k, params) : k);
+
+      if (!user.signedIn) {
+        root.innerHTML = `
+          <div class="container">
+            <div class="auth-card">
+              <div class="text-center mb-3">
+                <span class="eyebrow">${t('account.portal_eyebrow')}</span>
+                <h1 class="section-heading mt-1" style="font-size:34px;">${t('account.sign_in_title')}</h1>
+                <p style="font-size:12.5px; color:#737373; margin-top:6px;">
+                  ${t('account.sign_in_desc')}
+                </p>
+              </div>
+              <form id="demoLoginForm">
+                <div style="margin-bottom:14px;">
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">${t('checkout.full_name')}</label>
+                  <input type="text" id="loginName" class="p-input" required value="Layla Hassan">
+                </div>
+                <div style="margin-bottom:20px;">
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">${t('account.email')}</label>
+                  <input type="email" id="loginEmail" class="p-input" required value="layla@example.com">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">${t('account.sign_in_btn')}</button>
+                <div style="text-align:center; font-size:11px; color:#737373; margin-top:10px;">
+                  ${t('account.demo_hint')}
+                </div>
+              </form>
+            </div>
+          </div>
+        `;
+        document.getElementById('demoLoginForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          window.EP_STORE.signIn(
+            document.getElementById('loginName').value.trim(),
+            document.getElementById('loginEmail').value.trim()
+          );
+          window.EP_UI.toast(t('account.sign_in_btn') + ' ✦');
+        });
+        return;
+      }
+
+      const orders = window.EP_STORE.getOrders();
+      const wishCount = window.EP_STORE.getWishlist().length;
+
+      let tabHTML = '';
+      if (currentTab === 'orders') {
+        const stages = [
+          t('account.status_placed'),
+          t('account.status_crafted'),
+          t('account.status_qa'),
+          t('account.status_shipped'),
+          t('account.status_delivered')
+        ];
+        tabHTML = orders.length === 0
+          ? `<div class="order-card"><p style="color:#737373;">${t('account.no_orders_yet')}</p></div>`
+          : orders.map(o => {
+              const dateStr = new Date(o.createdAt).toLocaleDateString(window.nicheI18n?.getLanguage() === 'ar' ? 'ar-EG' : 'en-US', { year:'numeric', month:'short', day:'numeric' });
+              const stepIdx = o.stepIndex !== undefined ? o.stepIndex : 0;
+              return `
+                <div class="order-card">
+                  <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding-bottom:14px; border-bottom:1px solid #f0ede6;">
+                    <div>
+                      <span class="eyebrow">${t('checkout.order_number')} #${o.orderNumber}</span>
+                      <div style="font-size:12px; color:#737373; margin-top:2px;">${t('account.order_date')}: ${dateStr} &bull; ${o.paymentMethod}</div>
+                    </div>
+                    <div style="text-align:right;">
+                      <span class="badge-pill" style="background:var(--gold-soft); border-color:var(--gold-primary); color:var(--gold-deep);">${o.status}</span>
+                      <div class="serif" style="font-size:22px; font-weight:600; margin-top:4px; direction:ltr; display:inline-block;">$${o.total.toFixed(2)}</div>
+                    </div>
+                  </div>
+
+                  <div class="tracker-steps">
+                    ${stages.map((st, idx) => `
+                      <div class="tracker-step ${idx <= stepIdx ? 'done' : ''}">
+                        <span class="tracker-dot"></span>
+                        <span>${st}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:12px;">
+                    ${o.items.map((it, idx) => {
+                      const metalKey = it.metal || 'yellow';
+                      const metalName = t('common.' + (metalKey === 'yellow' ? 'yellow_gold' : metalKey === 'silver' ? 'sterling_silver' : 'rose_gold'));
+                      return `
+                        <div style="display:flex; gap:14px; align-items:center;">
+                          <img src="${it.image}" alt="" style="width:56px; height:56px; object-fit:contain; background:var(--bg-warm); border-radius:6px; padding:4px;">
+                          <div style="flex:1;">
+                            <div style="font-size:13px; font-weight:600;">${it.title} &times; ${it.qty}</div>
+                            <div style="font-size:11px; color:#737373;">
+                              ${metalName}${it.size ? ' &bull; ' + t('wishlist.size_label') + ' ' + it.size : ''}
+                            </div>
+                            ${it.type === 'custom-bangle' ? `
+                              <div style="font-size:10.5px; color:#9c7116;">
+                                ${t('wishlist.front_track_label', { n: (it.frontCharms || []).length })} ${(it.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')} &bull;
+                                ${t('wishlist.back_track_label', { n: (it.backCharms || []).length })} ${(it.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}
+                              </div>
+                            ` : ''}
+                          </div>
+                          <button class="btn btn-outline btn-sm" onclick="reorderItem('${o.orderNumber}', ${idx})">${t('common.add_to_bag')}</button>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+                </div>
+              `;
+            }).join('');
+      } else {
+        tabHTML = `
+          <div class="profile-card">
+            <h2 class="serif" style="font-size:28px; margin-bottom:18px;">${t('account.profile_heading')}</h2>
+            <form id="profileForm">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+                <div>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.full_name')}</label>
+                  <input type="text" id="profName" class="p-input" value="${user.fullName || ''}" required>
+                </div>
+                <div>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('account.email')}</label>
+                  <input type="email" id="profEmail" class="p-input" value="${user.email || ''}" required>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+                <div>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.phone')}</label>
+                  <input type="text" id="profPhone" class="p-input" value="${user.phone || ''}">
+                </div>
+                <div>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.country')}</label>
+                  <input type="text" id="profCountry" class="p-input" value="${user.address?.country || ''}">
+                </div>
+              </div>
+              <div style="margin-bottom:14px;">
+                <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.street')}</label>
+                <input type="text" id="profStreet" class="p-input" value="${user.address?.street || ''}">
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px;">
+                <div>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.city')}</label>
+                  <input type="text" id="profCity" class="p-input" value="${user.address?.city || ''}">
+                </div>
+                <div>
+                  <label style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">${t('checkout.postal')}</label>
+                  <input type="text" id="profPostal" class="p-input" value="${user.address?.postal || ''}">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">${t('account.save_profile')}</button>
+            </form>
+          </div>
+        `;
+      }
+
+      root.innerHTML = `
+        <section class="account-header-banner">
+          <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px;">
+            <div>
+              <span class="eyebrow">${t('account.header_eyebrow')}</span>
+              <h1 class="section-heading mt-1">${user.fullName}</h1>
+              <p style="font-size:12.5px; color:#666;">${user.email} &bull; ${orders.length} ${t('account.items')} &bull; ${wishCount} ${t('nav.wishlist')}</p>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <a href="wishlist.html" class="btn btn-outline btn-sm">${t('nav.wishlist')} (${wishCount})</a>
+              <button class="btn btn-ghost btn-sm" onclick="EP_STORE.signOut(); EP_UI.toast('${t('account.sign_out')}');">${t('account.sign_out')}</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="container" style="padding-bottom:60px;">
+          <div class="account-tabs">
+            <button class="acct-tab-btn ${currentTab === 'orders' ? 'active' : ''}" onclick="setAcctTab('orders')">${t('account.tab_orders', { n: orders.length })}</button>
+            <button class="acct-tab-btn ${currentTab === 'profile' ? 'active' : ''}" onclick="setAcctTab('profile')">${t('account.tab_profile')}</button>
+          </div>
+          ${tabHTML}
+        </section>
+      `;
+
+      const pf = document.getElementById('profileForm');
+      if (pf) {
+        pf.addEventListener('submit', (e) => {
+          e.preventDefault();
+          window.EP_STORE.updateUserProfile({
+            fullName: document.getElementById('profName').value.trim(),
+            email: document.getElementById('profEmail').value.trim(),
+            phone: document.getElementById('profPhone').value.trim(),
+            address: {
+              street: document.getElementById('profStreet').value.trim(),
+              city: document.getElementById('profCity').value.trim(),
+              country: document.getElementById('profCountry').value.trim(),
+              postal: document.getElementById('profPostal').value.trim()
+            }
+          });
+          window.EP_UI.toast(t('account.profile_saved'));
+        });
+      }
+    }
+
+    window.addEventListener('niche:languageChange', renderAccount);
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAccount();
+      window.EP_STORE.subscribe(renderAccount);
+    });
+  </script>
+</body>
+</html>
+

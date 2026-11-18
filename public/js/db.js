@@ -33,12 +33,12 @@ window.EP_DB = {
 
   charmsCatalog: {
     symbols: [
-      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: 'assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4, price: 45 },
-      { id: 'martini', title: 'Martini with Olive', imgUrl: 'assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3, price: 45 },
-      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: 'assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4, price: 45 },
-      { id: 'heart', title: 'Solid Gold Heart', imgUrl: 'assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2, price: 45 },
-      { id: 'eye', title: 'Evil Eye Charm', imgUrl: 'assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8, price: 45 },
-      { id: 'star', title: 'Gold Star Charm', imgUrl: 'assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4, price: 45 }
+      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4, price: 45 },
+      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3, price: 45 },
+      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4, price: 45 },
+      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2, price: 45 },
+      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8, price: 45 },
+      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4, price: 45 }
     ],
     letters: 'abcdefghijklmnopqrstuvwxyz'.split(''),
     numbers: '0123456789'.split('')
@@ -56,15 +56,15 @@ window.EP_DB = {
       defaultMetal: 'yellow',
       availableMetals: ['yellow', 'white', 'rose'],
       imagesByMetal: {
-        yellow: 'assets/images/bangle_gold_studio.jpg',
-        white:  'assets/images/bangle_silver_studio.jpg',
-        rose:   'assets/images/bangle_rose_studio.jpg'
+        yellow: '/assets/images/bangle_gold_studio.jpg',
+        white:  '/assets/images/bangle_silver_studio.jpg',
+        rose:   '/assets/images/bangle_rose_studio.jpg'
       },
       gallery: [
-        'assets/images/bangle_gold_studio.jpg',
-        'assets/images/hero_editorial.jpg',
-        'assets/images/craftsmanship_editorial.jpg',
-        'assets/images/bangle_silver_studio.jpg'
+        '/assets/images/bangle_gold_studio.jpg',
+        '/assets/images/hero_editorial.jpg',
+        '/assets/images/craftsmanship_editorial.jpg',
+        '/assets/images/bangle_silver_studio.jpg'
       ],
       badge: '3D Studio',
       customizable3d: true,
@@ -91,14 +91,14 @@ window.EP_DB = {
       defaultMetal: 'white',
       availableMetals: ['white', 'yellow', 'rose'],
       imagesByMetal: {
-        white:  'assets/images/bangle_silver_studio.jpg',
-        yellow: 'assets/images/bangle_gold_studio.jpg',
-        rose:   'assets/images/bangle_rose_studio.jpg'
+        white:  '/assets/images/bangle_silver_studio.jpg',
+        yellow: '/assets/images/bangle_gold_studio.jpg',
+        rose:   '/assets/images/bangle_rose_studio.jpg'
       },
       gallery: [
-        'assets/images/bangle_silver_studio.jpg',
-        'assets/images/hero_editorial.jpg',
-        'assets/images/bangle_gold_studio.jpg'
+        '/assets/images/bangle_silver_studio.jpg',
+        '/assets/images/hero_editorial.jpg',
+        '/assets/images/bangle_gold_studio.jpg'
       ],
       badge: '3D Studio',
       customizable3d: true,
@@ -123,13 +123,13 @@ window.EP_DB = {
       defaultMetal: 'rose',
       availableMetals: ['rose', 'yellow', 'white'],
       imagesByMetal: {
-        rose:   'assets/images/bangle_rose_studio.jpg',
-        yellow: 'assets/images/bangle_gold_studio.jpg',
-        white:  'assets/images/bangle_silver_studio.jpg'
+        rose:   '/assets/images/bangle_rose_studio.jpg',
+        yellow: '/assets/images/bangle_gold_studio.jpg',
+        white:  '/assets/images/bangle_silver_studio.jpg'
       },
       gallery: [
-        'assets/images/bangle_rose_studio.jpg',
-        'assets/images/craftsmanship_editorial.jpg'
+        '/assets/images/bangle_rose_studio.jpg',
+        '/assets/images/craftsmanship_editorial.jpg'
       ],
       badge: '3D Studio',
       customizable3d: true,
@@ -154,13 +154,13 @@ window.EP_DB = {
       defaultMetal: 'yellow',
       availableMetals: ['yellow', 'white', 'rose'],
       imagesByMetal: {
-        yellow: 'assets/images/hero_editorial.jpg',
-        white:  'assets/images/bangle_silver_studio.jpg',
-        rose:   'assets/images/bangle_rose_studio.jpg'
+        yellow: '/assets/images/hero_editorial.jpg',
+        white:  '/assets/images/bangle_silver_studio.jpg',
+        rose:   '/assets/images/bangle_rose_studio.jpg'
       },
       gallery: [
-        'assets/images/hero_editorial.jpg',
-        'assets/images/bangle_gold_studio.jpg'
+        '/assets/images/hero_editorial.jpg',
+        '/assets/images/bangle_gold_studio.jpg'
       ],
       badge: 'Save $60',
       customizable3d: true,
@@ -183,8 +183,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/charms/bee_gold.png' },
-      gallery: ['assets/charms/bee_gold.png', 'assets/charms/bee_white.png'],
+      imagesByMetal: { yellow: '/assets/charms/bee_gold.png' },
+      gallery: ['/assets/charms/bee_gold.png', '/assets/charms/bee_white.png'],
       isCharmImage: true,
       badge: 'Best Seller',
       customizable3d: false,
@@ -208,8 +208,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/charms/martini_gold.png' },
-      gallery: ['assets/charms/martini_gold.png', 'assets/charms/martini_white.png'],
+      imagesByMetal: { yellow: '/assets/charms/martini_gold.png' },
+      gallery: ['/assets/charms/martini_gold.png', '/assets/charms/martini_white.png'],
       isCharmImage: true,
       badge: 'Cult Favorite',
       customizable3d: false,
@@ -232,8 +232,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/charms/heart_gold.png' },
-      gallery: ['assets/charms/heart_gold.png'],
+      imagesByMetal: { yellow: '/assets/charms/heart_gold.png' },
+      gallery: ['/assets/charms/heart_gold.png'],
       isCharmImage: true,
       badge: 'Natural Diamonds',
       customizable3d: false,
@@ -257,8 +257,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/charms/cherries.png' },
-      gallery: ['assets/charms/cherries.png'],
+      imagesByMetal: { yellow: '/assets/charms/cherries.png' },
+      gallery: ['/assets/charms/cherries.png'],
       isCharmImage: true,
       badge: 'New',
       customizable3d: false,
@@ -281,8 +281,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/charms/eye_gold.png' },
-      gallery: ['assets/charms/eye_gold.png'],
+      imagesByMetal: { yellow: '/assets/charms/eye_gold.png' },
+      gallery: ['/assets/charms/eye_gold.png'],
       isCharmImage: true,
       badge: null,
       customizable3d: false,
@@ -305,8 +305,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/charms/letter_e_pave.png' },
-      gallery: ['assets/charms/letter_e_pave.png', 'assets/charms/letter_a_pave.png', 'assets/charms/letter_m_pave.png', 'assets/charms/letter_s_pave.png'],
+      imagesByMetal: { yellow: '/assets/charms/letter_e_pave.png' },
+      gallery: ['/assets/charms/letter_e_pave.png', '/assets/charms/letter_a_pave.png', '/assets/charms/letter_m_pave.png', '/assets/charms/letter_s_pave.png'],
       isCharmImage: true,
       hasLetterPicker: true,
       badge: 'Customizable',
@@ -331,8 +331,8 @@ window.EP_DB = {
       compareAtPrice: 380,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/images/necklace_pendant_studio.jpg' },
-      gallery: ['assets/images/necklace_pendant_studio.jpg', 'assets/images/hero_editorial.jpg'],
+      imagesByMetal: { yellow: '/assets/images/necklace_pendant_studio.jpg' },
+      gallery: ['/assets/images/necklace_pendant_studio.jpg', '/assets/images/hero_editorial.jpg'],
       badge: 'Best Seller',
       customizable3d: false,
       hasSizes: false,
@@ -355,8 +355,8 @@ window.EP_DB = {
       compareAtPrice: null,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/images/earrings_huggie_studio.jpg' },
-      gallery: ['assets/images/earrings_huggie_studio.jpg'],
+      imagesByMetal: { yellow: '/assets/images/earrings_huggie_studio.jpg' },
+      gallery: ['/assets/images/earrings_huggie_studio.jpg'],
       badge: 'Sold as Pair',
       customizable3d: false,
       hasSizes: false,
@@ -379,8 +379,8 @@ window.EP_DB = {
       compareAtPrice: 360,
       defaultMetal: 'yellow',
       availableMetals: ['yellow'],
-      imagesByMetal: { yellow: 'assets/images/ring_solitaire_studio.jpg' },
-      gallery: ['assets/images/ring_solitaire_studio.jpg', 'assets/images/craftsmanship_editorial.jpg'],
+      imagesByMetal: { yellow: '/assets/images/ring_solitaire_studio.jpg' },
+      gallery: ['/assets/images/ring_solitaire_studio.jpg', '/assets/images/craftsmanship_editorial.jpg'],
       badge: 'Save $40',
       customizable3d: false,
       hasSizes: false,
@@ -441,10 +441,10 @@ window.EP_DB = {
           size: 'S',
           qty: 1,
           unitPrice: 500,
-          image: 'assets/images/bangle_gold_studio.jpg',
+          image: '/assets/images/bangle_gold_studio.jpg',
           frontCharms: [
-            { title: 'Mother of Pearl Bee', imgUrl: 'assets/charms/bee_gold.png', rotationDeg: 0 },
-            { title: 'Martini with Olive', imgUrl: 'assets/charms/martini_gold.png', rotationDeg: 0 }
+            { title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', rotationDeg: 0 },
+            { title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', rotationDeg: 0 }
           ],
           backCharms: []
         }
@@ -452,3 +452,4 @@ window.EP_DB = {
     }
   ]
 };
+

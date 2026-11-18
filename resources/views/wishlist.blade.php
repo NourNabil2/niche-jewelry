@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist &amp; Saved 3D Designs &bull; NICH JEWELRY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/db.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/layout.js"></script>
+  <style>
+    .wishlist-hero {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border-light);
+      padding: 48px 0 38px;
+      text-align: center;
+    }
+
+    .wishlist-section-title {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 400;
+      margin: 40px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .saved-3d-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 820px) {
+      .saved-3d-grid { grid-template-columns: 1fr; }
+    }
+
+    .saved-3d-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      box-shadow: var(--shadow-xs);
+    }
+
+    @media (max-width: 540px) {
+      .saved-3d-card { grid-template-columns: 1fr; }
+    }
+
+    .saved-3d-thumb {
+      background: var(--bg-warm);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .saved-3d-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .saved-3d-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .charm-preview-box {
+      background: var(--bg-cream);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      padding: 8px 10px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ep-header-mount"></div>
+
+  <section class="wishlist-hero">
+    <div class="container">
+      <span class="eyebrow" data-i18n="wishlist.eyebrow">Personal Atelier Vault</span>
+      <h1 class="section-heading mt-1" data-i18n="wishlist.title">Wishlist &amp; Saved 3D Designs</h1>
+      <p style="font-size:13.5px; color:#666; max-width:540px; margin:8px auto 0;" data-i18n="wishlist.sub">
+        Keep track of favorite fine jewelry pieces or reopen your saved Dual-Track 3D Bangle configurations anytime.
+      </p>
+    </div>
+  </section>
+
+  <main class="container" style="padding-bottom:60px;" id="wishlistMain"></main>
+
+  <div id="ep-footer-mount"></div>
+
+  <script>
+    function renderWishlistPage() {
+      const container = document.getElementById('wishlistMain');
+      const all = window.EP_STORE.getWishlist();
+      const t = (k, p) => (window.nicheI18n ? window.nicheI18n.t(k, p) : k);
+
+      if (all.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:80px 24px; margin-top:32px; background:#fff; border:1px solid #e6e3dc; border-radius:10px;">
+            <div class="serif" style="font-size:32px; margin-bottom:10px;">${t('wishlist.empty_title')}</div>
+            <p style="font-size:13.5px; color:#737373; max-width:440px; margin:0 auto 24px;">
+              ${t('wishlist.empty_sub')}
+            </p>
+            <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+              <a href="customizer.html" class="btn btn-gold">${t('wishlist.open_studio')}</a>
+              <a href="collections.html" class="btn btn-outline">${t('wishlist.browse_catalog')}</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const customDesigns = all.filter(w => w.type === 'custom-bangle');
+      const catalogItems = all.filter(w => w.type === 'product').map(w => ({
+        wish: w,
+        product: window.EP_STORE.getProductById(w.productId)
+      })).filter(x => x.product);
+
+      let html = '';
+
+      if (customDesigns.length > 0) {
+        html += `
+          <div class="wishlist-section-title">
+            <span>${t('wishlist.saved_bangles_title', { n: customDesigns.length })}</span>
+            <a href="customizer.html" class="btn btn-gold btn-sm">${t('wishlist.create_new_design')}</a>
+          </div>
+          <div class="saved-3d-grid">
+            ${customDesigns.map(d => {
+              const metalKey = d.metal || 'yellow';
+              const metalName = t('common.' + (metalKey === 'yellow' ? 'yellow_gold' : metalKey === 'silver' ? 'sterling_silver' : 'rose_gold'));
+              const frontPills = (d.frontCharms || []).map(c => `<span class="mini-charm-pill"><img src="${c.imgUrl}" alt="">${c.title}${c.rotationDeg ? ' (' + c.rotationDeg + '°)' : ''}</span>`).join('');
+              const backPills = (d.backCharms || []).map(c => `<span class="mini-charm-pill"><img src="${c.imgUrl}" alt="">${c.title}${c.rotationDeg ? ' (' + c.rotationDeg + '°)' : ''}</span>`).join('');
+              return `
+                <div class="saved-3d-card">
+                  <div class="saved-3d-thumb">
+                    <span class="product-badge is-3d">${t('wishlist.custom_3d_badge')}</span>
+                    <img src="${d.image}" alt="${d.title}">
+                  </div>
+                  <div class="saved-3d-body">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+                      <div>
+                        <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8b661d;">${metalName} &bull; ${t('wishlist.size_label')} ${d.size}</div>
+                        <h3 class="serif" style="font-size:22px; font-weight:500;">${d.title}</h3>
+                      </div>
+                      <button onclick="removeWish('${d.id}')" style="background:none; border:none; font-size:20px; color:#999; cursor:pointer;" title="${t('common.close')}">&times;</button>
+                    </div>
+
+                    <div class="charm-preview-box">
+                      <div style="font-weight:600; color:#555; margin-bottom:4px;">${t('wishlist.front_track_label', { n: (d.frontCharms || []).length })}</div>
+                      <div class="custom-charm-pills">${frontPills || `<span style="color:#999;">${t('wishlist.none')}</span>`}</div>
+                      <div style="font-weight:600; color:#555; margin:6px 0 4px;">${t('wishlist.back_track_label', { n: (d.backCharms || []).length })}</div>
+                      <div class="custom-charm-pills">${backPills || `<span style="color:#999;">${t('wishlist.none')}</span>`}</div>
+                      ${d.engraving ? `<div style="font-size:11px; color:#8b661d; margin-top:6px; font-weight:600;">✦ ${t('customizer.engraving_title')}: <span style="font-style:italic;">“${d.engraving}”</span></div>` : ''}
+                    </div>
+
+                    <div style="margin-top:auto; padding-top:8px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+                      <strong class="serif" style="font-size:24px; direction:ltr; display:inline-block;">$${d.price.toFixed(2)}</strong>
+                      <div style="display:flex; gap:8px;">
+                        <a href="customizer.html?designId=${encodeURIComponent(d.id)}" class="btn btn-outline btn-sm">${t('wishlist.edit_in_3d')}</a>
+                        <button class="btn btn-primary btn-sm" onclick="moveCustomDesignToBag('${d.id}')">${t('wishlist.move_to_bag')}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      if (catalogItems.length > 0) {
+        html += `
+          <div class="wishlist-section-title">
+            <span>${t('wishlist.saved_pieces_title', { n: catalogItems.length })}</span>
+          </div>
+          <div class="product-grid">
+            ${catalogItems.map(x => window.EP_UI.renderProductCard(x.product)).join('')}
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    window.removeWish = function(id) {
+      window.EP_STORE.removeWishlistItem(id);
+      const t = (k) => (window.nicheI18n ? window.nicheI18n.t(k) : k);
+      window.EP_UI.toast(t('wishlist.toast_removed'));
+    };
+
+    window.moveCustomDesignToBag = function(id) {
+      const d = window.EP_STORE.getWishlistItemById(id);
+      if (!d) return;
+      window.EP_STORE.addToCart({
+        type: 'custom-bangle',
+        productId: 'glider-14k-gold',
+        title: d.title,
+        metal: d.metal,
+        size: d.size,
+        unitPrice: d.price,
+        qty: 1,
+        image: d.image,
+        frontCharms: d.frontCharms || [],
+        backCharms: d.backCharms || [],
+        engraving: d.engraving || null,
+        engravingFont: d.engravingFont || 'roman'
+      });
+      const t = (k) => (window.nicheI18n ? window.nicheI18n.t(k) : k);
+      window.EP_UI.toast(t('wishlist.toast_moved_to_bag'));
+      window.EP_UI.openCart();
+    };
+
+    window.addEventListener('niche:languageChange', () => {
+      renderWishlistPage();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderWishlistPage();
+      window.EP_STORE.subscribe(renderWishlistPage);
+    });
+  </script>
+</body>
+</html>
+

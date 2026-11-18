@@ -72,7 +72,7 @@
           </div>
 
           <a href="index.html" class="brand-logo" aria-label="Niche Jewelry">
-            <img src="assets/images/niche-logo-dark.png" alt="Niche Jewelry" class="brand-logo-img">
+            <img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" class="brand-logo-img">
           </a>
 
           <div class="header-actions">
@@ -102,7 +102,7 @@
       <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <div class="mobile-nav-panel">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <a href="index.html" style="display:inline-block;"><img src="assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
+            <a href="index.html" style="display:inline-block;"><img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
             <div style="display:flex; align-items:center; gap:8px;">
               ${getLangSwitcher()}
               <button class="icon-btn" id="closeMobileMenu">&times;</button>
@@ -187,7 +187,7 @@
 
             <div class="footer-grid">
               <div>
-                <a href="index.html" style="display:inline-block; margin-bottom:14px;"><img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:38px; width:auto; display:block;"></a>
+                <a href="index.html" style="display:inline-block; margin-bottom:14px;"><img src="/assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:38px; width:auto; display:block;"></a>
                 <p class="footer-desc">
                   ${T('footer.brand_desc')}
                 </p>
@@ -448,7 +448,7 @@
       return `
         <div class="cart-item-row" data-cart-id="${item.cartId}">
           <div class="cart-item-media">
-            <img src="${item.image || 'assets/images/bangle_gold_studio.jpg'}" alt="${itemTitle}">
+            <img src="${item.image || '/assets/images/bangle_gold_studio.jpg'}" alt="${itemTitle}">
           </div>
           <div class="cart-item-info">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
@@ -596,3 +596,4 @@
     }
   });
 })();
+

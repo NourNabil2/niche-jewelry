@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="js/db.js"></script>
-  <script src="js/store.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/layout.js"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/db.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/layout.js"></script>
   <style>
     .checkout-layout {
       display: grid;
@@ -495,3 +495,4 @@
   </script>
 </body>
 </html>
+
