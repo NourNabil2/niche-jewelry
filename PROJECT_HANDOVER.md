@@ -266,6 +266,10 @@ node server.js
 | **Bespoke Charm PNG Uploader** | ✅ Complete | Dropzone file reader, instant transparent cutout generation, 10-layer physical 3D mesh placed on track with pricing ($65) and GLB export. |
 | **AR Try-On & Virtual Wrist Studio** | ✅ Complete | Interactive wrist draping simulator with 3 skin tones (Fair, Olive, Deep), dynamic QR code for instant mobile AR QuickLook, 3D GLB asset export. |
 | **PDP Sticky Mobile Action Bar** | ✅ Complete | IntersectionObserver trigger on `product.html`, thumbnail, dynamic metal/size specs, price & bag trigger. |
+| **Accordion Stepper Customizer** | ✅ Complete | Progressive disclosure 4-step accordion (Metal & Size $\to$ Charms $\to$ Engraving $\to$ Review), summary chips, kept floating action dock intact. |
+| **Horizontal Charm Orientation** | ✅ Complete | Restricted rotation to realistic horizontal orientation: Upright (0°), Facing Right (90°), Facing Left (270°), eliminating awkward upside-down positions. |
+| **Luxury Order Tracker Concierge** | ✅ Complete | Tiffany/Cartier inspired 5-stage milestone timeline, animated gold progress connection bar, milestone icons, dual currency ($ / KWD). |
+| **Zero-404 Route Interconnection** | ✅ Complete | `getRoute()` & `getProductHref()` dynamic route generator in `js/layout.js`, full Laravel route helpers in all Blade views, and graceful legacy `.html` redirects in `routes/web.php`. |
 | **MySQL Database Integration** | ✅ Complete | Connected to local MariaDB/MySQL `niche_jewelry` database, running migrations and seeders cleanly. |
 
 ---
