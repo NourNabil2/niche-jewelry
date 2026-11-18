@@ -213,15 +213,36 @@ flowchart TD
 
 ## 7. How to Run & Verify the Project
 
-### Running the Local Web Server
-```bash
-# Using Node.js built-in zero-dependency atelier server (Recommended)
-node server.js
+### Running the Full Laravel + MySQL Stack (Recommended)
+1. **Start MariaDB / MySQL Server:**
+   ```powershell
+   & "C:\xampp\mysql\bin\mysqld.exe" --defaults-file="C:\xampp\mysql\bin\my.ini" --console
+   ```
+2. **Start Laravel Development Server:**
+   ```powershell
+   & "C:\xampp\php\php.exe" "e:\niche-jewelry\artisan" serve --host=127.0.0.1 --port=8000
+   ```
+3. **Open in Browser:**
+   - Storefront Arabic (Default RTL): **`http://127.0.0.1:8000/ar`**
+   - Storefront English (LTR): **`http://127.0.0.1:8000/en`**
+   - 3D Interactive Atelier: **`http://127.0.0.1:8000/ar/atelier`**
+   - Collections Catalog: **`http://127.0.0.1:8000/ar/collections`**
+   - Product Page: **`http://127.0.0.1:8000/ar/product/glider-14k-gold`**
+   - Checkout Flow: **`http://127.0.0.1:8000/ar/checkout`**
+   - Collector Account: **`http://127.0.0.1:8000/ar/account`**
+   - Wishlist Vault: **`http://127.0.0.1:8000/ar/wishlist`**
+   - Heritage & About: **`http://127.0.0.1:8000/ar/about`**
+   - **Full Admin Panel Suite:** **`http://127.0.0.1:8000/admin`**
+     - Products CRUD: `http://127.0.0.1:8000/admin/products`
+     - 3D Charms Management: `http://127.0.0.1:8000/admin/charms`
+     - Orders & 3D Specs: `http://127.0.0.1:8000/admin/orders`
+     - Currency & Store Settings: `http://127.0.0.1:8000/admin/settings`
 
-# Or using Python in workspace root
-python -m http.server 8080 --directory "E:\niche-jewelry"
+### Running the Static Node Server (Alternative)
+```bash
+node server.js
+# Open http://localhost:8080/index.html
 ```
-Open in browser: **`http://localhost:8080/index.html`** or **`http://localhost:8080/customizer.html`**.
 
 ### Demo Promo Codes for Testing
 - **`NICH15` / `ELISE15`**: 15% off entire order.
@@ -234,16 +255,18 @@ Open in browser: **`http://localhost:8080/index.html`** or **`http://localhost:8
 
 | Feature / Track | Status | Implementation Details |
 |---|---|---|
+| **Quiet Luxury Hero Redesign** | ✅ Complete | Minimalist editorial aesthetic, removed spinning vinyl turntable and AI chips, high-res black panther & 14K gold diamond bangle, responsive mobile layout. |
+| **Storefront Layout & Image Bug Fix** | ✅ Complete | Consolidated component styles into `css/styles.css`, fixed all relative asset paths (`/ar/...` 404 issue) to absolute paths across all Blade views. |
+| **Full Bilingual Blade System** | ✅ Complete | Complete suite of views (`home`, `customizer`, `collections`, `product`, `checkout`, `account`, `wishlist`, `about`) with seamless Arabic RTL and English LTR support. |
+| **Dual Currency Engine (USD & KWD)** | ✅ Complete | Dedicated `price_kwd` schema (3 decimals), `CurrencyService`, `@currency` Blade directive, live currency switcher pill (`$ USD` / `د.ك KWD`), and admin manual/auto pricing. |
+| **Comprehensive Admin Panel Suite** | ✅ Complete | Admin layout with Cartier/Tiffany dark luxury styling, Product CRUD with image uploads, Charm CRUD with active drawer toggles, Order Inspector with 3D specs, and Store Settings. |
 | **3D Bangle CAD & Dual Rails** | ✅ Complete | Procedural ellipse, front/back channels, 925/14K hallmark, PBR alloys. |
-| **Pure Cutout Silhouette Charms** | ✅ Complete | 85 standalone alpha charms, 10-layer micro-extrusion, 90° rotation, collision swap. |
+| **Pure Cutout Silhouette Charms** | ✅ Complete | 85 standalone alpha charms, 10-layer micro-extrusion, 90° rotation, collision swap. Fixed all 33 letter/number thumbnail paths. |
 | **Atelier Inner Engraving Studio** | ✅ Complete | Real-time 3D canvas texture (1024×128) with debossed metallic relief, 3 typography fonts (Roman, Script, Modern), "Inside" camera preset, cart/wishlist/checkout receipt sync. |
 | **Bespoke Charm PNG Uploader** | ✅ Complete | Dropzone file reader, instant transparent cutout generation, 10-layer physical 3D mesh placed on track with pricing ($65) and GLB export. |
 | **AR Try-On & Virtual Wrist Studio** | ✅ Complete | Interactive wrist draping simulator with 3 skin tones (Fair, Olive, Deep), dynamic QR code for instant mobile AR QuickLook, 3D GLB asset export. |
 | **PDP Sticky Mobile Action Bar** | ✅ Complete | IntersectionObserver trigger on `product.html`, thumbnail, dynamic metal/size specs, price & bag trigger. |
-| **Pure Bilingual (AR / EN) System** | ✅ Complete | 100% Arabic (RTL) and English (LTR) language switching with zero mixed strings. |
-| **Persistent Local State Engine** | ✅ Complete | `EP_STORE` & `EP_DB` managing cart, promos, wishlist, collector account, 5-stage orders, and reviews. |
-| **Backend & Payment Gateway** | ⏳ Next Step | Transition `localStorage` to Node/Express backend or Supabase/Firebase, live Stripe Elements / Apple Pay Web SDK. |
-| **Additional 3D Jewelry Pieces** | ⏳ Next Step | Expand 3D Studio to support **Glider Necklaces** and **Glider Rings** using the established modular slider charm physics. |
+| **MySQL Database Integration** | ✅ Complete | Connected to local MariaDB/MySQL `niche_jewelry` database, running migrations and seeders cleanly. |
 
 ---
 *Authored by Antigravity Atelier Engineering • Ready for immediate continuation in any future workspace or chat session.*
