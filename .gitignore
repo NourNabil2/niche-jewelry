@@ -3,4 +3,16 @@ Thumbs.db
 node_modules/
 .vercel
 scratch/
-.env*
+.env
+.env.backup
+.env.production
+.env.*
+!.env.example
+
+/vendor
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+.phpunit.result.cache

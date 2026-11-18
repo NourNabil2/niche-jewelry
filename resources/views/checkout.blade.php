@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atelier Checkout &bull; NICH JEWELRY Fine Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/db.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/layout.js"></script>
+  <style>
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 42px;
+      padding: 40px 0 60px;
+      align-items: start;
+    }
+
+    @media (max-width: 920px) {
+      .checkout-layout { grid-template-columns: 1fr; }
+    }
+
+    .checkout-panel {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .checkout-step-heading {
+      font-family: var(--font-serif);
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 560px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .field-group {
+      margin-bottom: 14px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .field-group input, .field-group select {
+      width: 100%;
+      border: 1px solid var(--border-light);
+      background: var(--bg-cream);
+      border-radius: var(--radius-xs);
+      padding: 11px 12px;
+      font-size: 13px;
+      color: var(--text-dark);
+      outline: none;
+    }
+
+    .field-group input:focus {
+      border-color: var(--gold-primary);
+      background: #ffffff;
+    }
+
+    .radio-card {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+    }
+
+    .radio-card.active {
+      border-color: var(--text-dark);
+      background: var(--bg-cream);
+      box-shadow: 0 0 0 1px var(--text-dark);
+    }
+
+    .payment-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .payment-tab {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #ffffff;
+    }
+
+    .payment-tab.active {
+      background: var(--text-dark);
+      color: #ffffff;
+      border-color: var(--text-dark);
+    }
+
+    .summary-sticky {
+      position: sticky;
+      top: 90px;
+    }
+
+    .receipt-box {
+      max-width: 760px;
+      margin: 48px auto;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 44px 36px;
+      box-shadow: var(--shadow-md);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ep-header-mount"></div>
+
+  <main class="container" id="checkoutRoot"></main>
+
+  <div id="ep-footer-mount"></div>
+
+  <script>
+    let shippingMode = 'standard'; // 'standard' | 'express'
+    let paymentMode = 'card'; // 'card' | 'apple' | 'cod'
+    let confirmedOrder = null;
+
+    function computeCheckoutNumbers() {
+      const totals = window.EP_STORE.getTotalsBreakdown();
+      let shippingCost = 0;
+      if (totals.subtotal > 0) {
+        if (shippingMode === 'express') shippingCost = 25;
+        else shippingCost = totals.qualifiesFreeShipping ? 0 : 15;
+      }
+      const tax = Math.round(totals.afterDiscount * 0.08 * 100) / 100;
+      const finalTotal = Math.round((totals.afterDiscount + shippingCost + tax) * 100) / 100;
+      return { ...totals, shippingCost, tax, finalTotal };
+    }
+
+    function renderCheckoutPage() {
+      const root = document.getElementById('checkoutRoot');
+      const t = (k, params) => (window.nicheI18n ? window.nicheI18n.t(k, params) : k);
+
+      if (confirmedOrder) {
+        renderConfirmationReceipt(root, confirmedOrder);
+        return;
+      }
+
+      const cart = window.EP_STORE.getCart();
+      if (cart.length === 0) {
+        root.innerHTML = `
+          <div style="text-align:center; padding:84px 24px; margin:40px 0; background:#fff; border:1px solid #e6e3dc; border-radius:10px;">
+            <span class="eyebrow">${t('checkout.empty_eyebrow')}</span>
+            <h1 class="section-heading mt-1">${t('checkout.empty_title')}</h1>
+            <p style="font-size:13.5px; color:#737373; max-width:440px; margin:12px auto 24px;">
+              ${t('checkout.empty_desc')}
+            </p>
+            <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+              <a href="customizer.html" class="btn btn-gold">${t('checkout.open_studio')}</a>
+              <a href="collections.html" class="btn btn-outline">${t('checkout.browse_jewelry')}</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const user = window.EP_STORE.getUser();
+      const nums = computeCheckoutNumbers();
+
+      root.innerHTML = `
+        <div style="padding-top:28px;">
+          <span class="eyebrow">${t('checkout.eyebrow')}</span>
+          <h1 class="section-heading mt-1">${t('checkout.title')}</h1>
+        </div>
+
+        <form id="checkoutForm" class="checkout-layout">
+          <div>
+            <!-- 1. Shipping Details -->
+            <div class="checkout-panel">
+              <h2 class="checkout-step-heading">
+                <span>${t('checkout.step_shipping')}</span>
+                <span style="font-size:11px; font-family:var(--font-sans); color:#737373;">${t('checkout.required')}</span>
+              </h2>
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label>${t('checkout.full_name')}</label>
+                  <input type="text" id="chkName" required value="${user.fullName || 'Layla Hassan'}">
+                </div>
+                <div class="field-group">
+                  <label>${t('checkout.email')}</label>
+                  <input type="email" id="chkEmail" required value="${user.email || 'layla@example.com'}">
+                </div>
+              </div>
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label>${t('checkout.phone')}</label>
+                  <input type="tel" id="chkPhone" required value="${user.phone || '+20 100 555 0192'}">
+                </div>
+                <div class="field-group">
+                  <label>${t('checkout.country')}</label>
+                  <input type="text" id="chkCountry" required value="${(user.address && user.address.country) || 'Egypt'}">
+                </div>
+              </div>
+              <div class="field-group">
+                <label>${t('checkout.street')}</label>
+                <input type="text" id="chkStreet" required value="${(user.address && user.address.street) || '14 Zamalek Corniche El Nil'}">
+              </div>
+              <div class="form-grid-2">
+                <div class="field-group">
+                  <label>${t('checkout.city')}</label>
+                  <input type="text" id="chkCity" required value="${(user.address && user.address.city) || 'Cairo'}">
+                </div>
+                <div class="field-group">
+                  <label>${t('checkout.postal')}</label>
+                  <input type="text" id="chkPostal" required value="${(user.address && user.address.postal) || '11211'}">
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Delivery Speed -->
+            <div class="checkout-panel">
+              <h2 class="checkout-step-heading">${t('checkout.step_delivery')}</h2>
+              <div class="radio-card ${shippingMode === 'standard' ? 'active' : ''}" onclick="setShippingMode('standard')">
+                <div>
+                  <div style="font-size:13px; font-weight:600;">${t('checkout.shipping_standard_title')}</div>
+                  <div style="font-size:11px; color:#737373;">${t('checkout.shipping_standard_sub')}</div>
+                </div>
+                <strong style="direction:ltr;">${nums.qualifiesFreeShipping ? t('checkout.free') : '$15.00'}</strong>
+              </div>
+              <div class="radio-card ${shippingMode === 'express' ? 'active' : ''}" onclick="setShippingMode('express')">
+                <div>
+                  <div style="font-size:13px; font-weight:600;">${t('checkout.shipping_express_title')}</div>
+                  <div style="font-size:11px; color:#737373;">${t('checkout.shipping_express_sub')}</div>
+                </div>
+                <strong style="direction:ltr;">$25.00</strong>
+              </div>
+            </div>
+
+            <!-- 3. Payment Method -->
+            <div class="checkout-panel">
+              <h2 class="checkout-step-heading">${t('checkout.step_payment')}</h2>
+              <div class="payment-tabs">
+                <div class="payment-tab ${paymentMode === 'card' ? 'active' : ''}" onclick="setPaymentMode('card')">${t('checkout.tab_card')}</div>
+                <div class="payment-tab ${paymentMode === 'apple' ? 'active' : ''}" onclick="setPaymentMode('apple')">${t('checkout.tab_apple')}</div>
+                <div class="payment-tab ${paymentMode === 'cod' ? 'active' : ''}" onclick="setPaymentMode('cod')">${t('checkout.tab_cod')}</div>
+              </div>
+
+              ${paymentMode === 'card' ? `
+                <div class="field-group">
+                  <label>${t('checkout.card_num')}</label>
+                  <input type="text" id="chkCardNum" required value="4532  8910  4421  4242" maxlength="22" style="direction:ltr;">
+                </div>
+                <div class="form-grid-2">
+                  <div class="field-group">
+                    <label>${t('checkout.card_exp')}</label>
+                    <input type="text" id="chkCardExp" required value="09/29" style="direction:ltr;">
+                  </div>
+                  <div class="field-group">
+                    <label>${t('checkout.card_cvc')}</label>
+                    <input type="text" id="chkCardCvc" required value="842" style="direction:ltr;">
+                  </div>
+                </div>
+              ` : paymentMode === 'apple' ? `
+                <div style="padding:18px; background:var(--bg-cream); border:1px dashed #d7cfb9; border-radius:6px; text-align:center; font-size:12.5px; color:#555;">
+                  ${t('checkout.apple_hint')}
+                </div>
+              ` : `
+                <div style="padding:18px; background:var(--bg-cream); border:1px dashed #d7cfb9; border-radius:6px; text-align:center; font-size:12.5px; color:#555;">
+                  ${t('checkout.cod_hint')}
+                </div>
+              `}
+            </div>
+          </div>
+
+          <!-- Right Summary -->
+          <div class="checkout-panel summary-sticky">
+            <h2 class="checkout-step-heading">${t('checkout.order_summary_title')} (${cart.reduce((s, i) => s + i.qty, 0)})</h2>
+            <div style="display:flex; flex-direction:column; gap:14px; max-height:360px; overflow-y:auto; padding-right:4px; margin-bottom:18px;">
+              ${cart.map(item => {
+                const metalKey = item.metal || 'yellow';
+                const metalName = t('common.' + (metalKey === 'yellow' ? 'yellow_gold' : metalKey === 'silver' ? 'sterling_silver' : 'rose_gold'));
+                const charmsInfo = item.type === 'custom-bangle'
+                  ? `<div style="font-size:10.5px; color:#8b661d; margin-top:3px;">${t('wishlist.front_track_label', { n: (item.frontCharms || []).length })} ${(item.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}<br>${t('wishlist.back_track_label', { n: (item.backCharms || []).length })} ${(item.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}${item.engraving ? `<br>✦ ${t('customizer.engraving_title')}: “${item.engraving}”` : ''}</div>`
+                  : '';
+                return `
+                  <div style="display:flex; gap:12px; padding-bottom:12px; border-bottom:1px solid #f0ede6;">
+                    <img src="${item.image}" alt="" style="width:58px; height:58px; object-fit:contain; background:var(--bg-warm); border-radius:6px; padding:4px;">
+                    <div style="flex:1;">
+                      <div style="font-size:12.5px; font-weight:600;">${item.title}</div>
+                      <div style="font-size:10.5px; color:#737373;">${metalName}${item.size ? ' &bull; ' + item.size : ''}${item.letterChoice ? ' &bull; ' + t('product.initial_label', { letter: item.letterChoice }) : ''} &bull; ${t('cart.qty')} ${item.qty}</div>
+                      ${charmsInfo}
+                    </div>
+                    <strong style="font-size:12.5px; direction:ltr; display:inline-block;">$${(item.unitPrice * item.qty).toFixed(2)}</strong>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <div class="promo-inline">
+              <input type="text" id="chkPromoInput" placeholder="${t('checkout.promo_placeholder')}">
+              <button type="button" class="btn btn-outline btn-sm" onclick="applyCheckoutPromo()">${t('checkout.apply')}</button>
+            </div>
+            ${nums.promo ? `
+              <div style="display:flex; justify-content:space-between; font-size:11px; color:#2b6cb0; margin-bottom:10px;">
+                <span>${t('cart.promo_applied')}</span>
+                <button type="button" onclick="EP_STORE.removePromo(); renderCheckoutPage();" style="background:none;border:none;color:#c53030;cursor:pointer;">${t('cart.remove_item')}</button>
+              </div>
+            ` : ''}
+
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; border-top:1px solid var(--border-light); padding-top:14px;">
+              <div style="display:flex; justify-content:space-between;">
+                <span>${t('checkout.subtotal')}</span>
+                <span style="direction:ltr;">$${nums.subtotal.toFixed(2)}</span>
+              </div>
+              ${nums.discount > 0 ? `
+                <div style="display:flex; justify-content:space-between; color:#2f855a;">
+                  <span>${t('cart.promo_applied')}</span>
+                  <span style="direction:ltr;">-$${nums.discount.toFixed(2)}</span>
+                </div>
+              ` : ''}
+              <div style="display:flex; justify-content:space-between;">
+                <span>${t('checkout.shipping')}</span>
+                <span style="direction:ltr;">${nums.shippingCost === 0 ? t('checkout.free') : '$' + nums.shippingCost.toFixed(2)}</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span>${t('checkout.tax')}</span>
+                <span style="direction:ltr;">$${nums.tax.toFixed(2)}</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-light); padding-top:12px; margin-top:4px; align-items:baseline;">
+                <strong style="font-size:14px;">${t('checkout.total')}</strong>
+                <strong class="serif" style="font-size:30px; direction:ltr; display:inline-block;">$${nums.finalTotal.toFixed(2)}</strong>
+              </div>
+            </div>
+
+            <button type="submit" id="completeOrderBtn" class="btn btn-gold" style="width:100%; margin-top:18px; padding:15px;">
+              ${t('checkout.place_order')} &bull; $${nums.finalTotal.toFixed(2)}
+            </button>
+            <div style="text-align:center; font-size:10.5px; color:#737373; margin-top:10px;">
+              ${t('checkout.security_note')}
+            </div>
+          </div>
+        </form>
+      `;
+
+      document.getElementById('checkoutForm').addEventListener('submit', handleOrderSubmit);
+    }
+
+    window.setShippingMode = function(mode) {
+      shippingMode = mode;
+      renderCheckoutPage();
+    };
+
+    window.setPaymentMode = function(mode) {
+      paymentMode = mode;
+      renderCheckoutPage();
+    };
+
+    window.applyCheckoutPromo = function() {
+      const val = document.getElementById('chkPromoInput')?.value;
+      const res = window.EP_STORE.applyPromo(val);
+      window.EP_UI.toast(res.message, res.ok ? '✓' : '!');
+      renderCheckoutPage();
+    };
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('completeOrderBtn');
+      const t = (k) => (window.nicheI18n ? window.nicheI18n.t(k) : k);
+      btn.disabled = true;
+      btn.textContent = t('common.loading');
+
+      setTimeout(() => {
+        const nums = computeCheckoutNumbers();
+        const cart = window.EP_STORE.getCart();
+        const payLabel = paymentMode === 'card'
+          ? (t('checkout.tab_card') + ' (' + (document.getElementById('chkCardNum')?.value.slice(-4) || '4242') + ')')
+          : (paymentMode === 'apple' ? 'Apple Pay' : t('checkout.tab_cod'));
+
+        const order = window.EP_STORE.placeOrder({
+          shippingAddress: {
+            fullName: document.getElementById('chkName').value.trim(),
+            email: document.getElementById('chkEmail').value.trim(),
+            phone: document.getElementById('chkPhone').value.trim(),
+            street: document.getElementById('chkStreet').value.trim(),
+            city: document.getElementById('chkCity').value.trim(),
+            country: document.getElementById('chkCountry').value.trim(),
+            postal: document.getElementById('chkPostal').value.trim()
+          },
+          paymentMethod: payLabel,
+          promoCode: nums.promo ? nums.promo.code : null,
+          subtotal: nums.subtotal,
+          discount: nums.discount,
+          shippingCost: nums.shippingCost,
+          tax: nums.tax,
+          total: nums.finalTotal,
+          items: cart
+        });
+
+        confirmedOrder = order;
+        window.EP_UI.toast(`${t('checkout.receipt_eyebrow')} (#${order.orderNumber})`, '✓');
+        renderCheckoutPage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 650);
+    }
+
+    function renderConfirmationReceipt(root, order) {
+      const t = (k, p) => (window.nicheI18n ? window.nicheI18n.t(k, p) : k);
+      root.innerHTML = `
+        <div class="receipt-box">
+          <div style="text-align:center; padding-bottom:24px; border-bottom:1px solid #e6e3dc;">
+            <div style="width:52px; height:52px; margin:0 auto 14px; border-radius:50%; background:#faf4e6; border:1px solid #c59b3f; display:flex; align-items:center; justify-content:center; font-size:24px; color:#8b661d;">✓</div>
+            <span class="eyebrow">${t('checkout.receipt_eyebrow')}</span>
+            <h1 class="section-heading mt-1">${t('checkout.receipt_title')}, ${order.shippingAddress.fullName}</h1>
+            <p style="font-size:13px; color:#737373; margin-top:6px;">
+              ${t('checkout.order_number')}: <strong style="color:#1b1b1b; direction:ltr; display:inline-block;">#${order.orderNumber}</strong> &bull; ${order.shippingAddress.email}
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; padding:22px 0; border-bottom:1px solid #e6e3dc; font-size:12.5px;">
+            <div>
+              <div style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#737373; margin-bottom:6px;">${t('account.profile_heading')}</div>
+              <strong>${order.shippingAddress.fullName}</strong><br>
+              ${order.shippingAddress.street}<br>
+              ${order.shippingAddress.city}, ${order.shippingAddress.postal}<br>
+              ${order.shippingAddress.country}
+            </div>
+            <div>
+              <div style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#737373; margin-bottom:6px;">${t('checkout.step_payment')}</div>
+              <strong>${order.paymentMethod}</strong><br>
+              ${t('account.total_paid')}: <strong class="serif" style="font-size:20px; direction:ltr; display:inline-block;">$${order.total.toFixed(2)}</strong>
+            </div>
+          </div>
+
+          <div style="padding:22px 0;">
+            <div style="font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#737373; margin-bottom:12px;">${t('account.items')}</div>
+            ${order.items.map(item => `
+              <div style="display:flex; gap:14px; align-items:center; padding:10px 0; border-bottom:1px solid #f4f1ea;">
+                <img src="${item.image}" alt="" style="width:54px; height:54px; object-fit:contain; background:var(--bg-warm); border-radius:4px;">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:13px;">${item.title} &times; ${item.qty}</div>
+                  ${item.type === 'custom-bangle' ? `
+                    <div style="font-size:11px; color:#8b661d;">
+                      ${t('wishlist.front_track_label', { n: (item.frontCharms || []).length })} ${(item.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')} &bull;
+                      ${t('wishlist.back_track_label', { n: (item.backCharms || []).length })} ${(item.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}
+                      ${item.engraving ? `<br>✦ ${t('customizer.engraving_title')}: “${item.engraving}”` : ''}
+                    </div>
+                  ` : ''}
+                </div>
+                <strong style="direction:ltr; display:inline-block;">$${(item.unitPrice * item.qty).toFixed(2)}</strong>
+              </div>
+            `).join('')}
+          </div>
+
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px;">
+            <a href="account.html" class="btn btn-gold">${t('checkout.track_in_account')}</a>
+            <a href="collections.html" class="btn btn-ghost">${t('checkout.continue_shopping')}</a>
+          </div>
+        </div>
+      `;
+    }
+
+    window.addEventListener('niche:languageChange', renderCheckoutPage);
+    document.addEventListener('DOMContentLoaded', renderCheckoutPage);
+  </script>
+</body>
+</html>
