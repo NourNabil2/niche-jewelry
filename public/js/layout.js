@@ -405,8 +405,10 @@
 
   function syncBadgesAndDrawer() {
     if (!window.EP_STORE) return;
-    const cartCount = window.EP_STORE.getCartCount();
-    const wishCount = window.EP_STORE.getWishlistCount();
+    const cartCount = window.EP_STORE.getCartCount ? window.EP_STORE.getCartCount() : 0;
+    const wishCount = (typeof window.EP_STORE.getWishlistCount === 'function') 
+      ? window.EP_STORE.getWishlistCount() 
+      : ((window.EP_STORE && window.EP_STORE.getWishlist) ? window.EP_STORE.getWishlist().length : 0);
 
     const navCartBadge = document.getElementById('navCartCount');
     if (navCartBadge) {
@@ -448,7 +450,7 @@
     if (footerBox) footerBox.style.display = 'block';
 
     // Free Shipping Progress
-    const subtotal = window.EP_STORE.getSubtotal();
+    const subtotal = (window.EP_STORE.getSubtotal ? (window.EP_STORE.getSubtotal ? window.EP_STORE.getSubtotal() : (window.EP_STORE.getCartSubtotal ? window.EP_STORE.getCartSubtotal() : 0)) : (window.EP_STORE.getCartSubtotal ? window.EP_STORE.getCartSubtotal() : 0));
     const freeThreshold = 150;
     const diff = freeThreshold - subtotal;
     const pct = Math.min(100, Math.round((subtotal / freeThreshold) * 100));
@@ -518,7 +520,7 @@
 
     if (subEl) subEl.textContent = `$${subtotal.toFixed(2)}`;
 
-    const discount = window.EP_STORE.getDiscount();
+    const discount = (window.EP_STORE.getDiscount ? (window.EP_STORE.getDiscount ? window.EP_STORE.getDiscount() : (window.EP_STORE.getTotalsBreakdown ? window.EP_STORE.getTotalsBreakdown().discount : 0)) : (window.EP_STORE.getTotalsBreakdown ? window.EP_STORE.getTotalsBreakdown().discount : 0));
     if (discRow && discAmt) {
       if (discount > 0) {
         discRow.style.display = 'flex';

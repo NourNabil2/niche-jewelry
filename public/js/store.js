@@ -112,6 +112,10 @@
       return this.getCart().reduce((sum, item) => sum + (item.qty || 1), 0);
     },
 
+    getSubtotal() {
+      return this.getCartSubtotal();
+    },
+
     getCartSubtotal() {
       return this.getCart().reduce((sum, item) => sum + (item.unitPrice * (item.qty || 1)), 0);
     },
@@ -229,6 +233,10 @@
       notify();
     },
 
+    getDiscount() {
+      return this.getTotalsBreakdown().discount;
+    },
+
     getTotalsBreakdown() {
       const subtotal = this.getCartSubtotal();
       const promo = this.getPromo();
@@ -254,6 +262,10 @@
     // --- WISHLIST (Products + Custom 3D Bangles) ---
     getWishlist() {
       return readJSON(STORAGE_KEYS.WISHLIST, []);
+    },
+
+    getWishlistCount() {
+      return (this.getWishlist() || []).length;
     },
 
     isProductInWishlist(productId) {

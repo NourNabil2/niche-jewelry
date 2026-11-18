@@ -2084,6 +2084,39 @@
               </div>
             </div>
 
+            <!-- Instant Name to Charms (صياغة الاسم بالحروف الفورية) -->
+            <div class="name-to-charms-box" style="background:#fbf9f5; border:1px solid #e5dcce; border-radius:6px; padding:12px 14px; margin-top:14px; margin-bottom:14px; box-shadow:0 1px 4px rgba(0,0,0,0.02);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-size:12px; font-weight:700; color:#181715; display:flex; align-items:center; gap:5px;">
+                  <span style="color:#c59b3f; font-size:13px;">✦</span> صياغة الاسم بالحروف الفورية (Instant Name)
+                </span>
+                <span style="font-size:10.5px; color:#888;">حتى 8 أحرف</span>
+              </div>
+              
+              <div style="display:flex; gap:8px; margin-bottom:8px;">
+                <input type="text" id="nameToCharmsInput" placeholder="اكتبي اسمكِ هنا (مثال: NOUR)..." maxlength="8" style="flex:1; padding:8px 12px; border:1px solid #d4cdbf; border-radius:4px; font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; outline:none; background:#ffffff; color:#181715;" dir="ltr">
+                <button type="button" id="applyNameToCharmsBtn" class="btn btn-primary" style="padding:8px 14px; font-size:12px; white-space:nowrap; font-weight:700; cursor:pointer;">
+                  تركيب ✦
+                </button>
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; font-size:11px; color:#555;">
+                <div style="display:flex; gap:12px; align-items:center;">
+                  <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
+                    <input type="radio" name="nameCharmsStyle" value="gold" checked style="accent-color:#c59b3f;">
+                    <span style="font-weight:600;">ذهب 14K</span>
+                  </label>
+                  <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
+                    <input type="radio" name="nameCharmsStyle" value="pave" style="accent-color:#c59b3f;">
+                    <span style="font-weight:600;">بافيه ألماسي</span>
+                  </label>
+                </div>
+                <button type="button" id="clearTrackCharmsBtn" style="background:none; border:none; color:#c62828; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;">
+                  مسح دلايات المسار ✕
+                </button>
+              </div>
+            </div>
+
             <!-- Category Filter Pills -->
             <div class="acc-inner-label" style="margin-top:14px; margin-bottom:6px;">أضيفي دلاية جديدة:</div>
             <div class="charm-type-tabs">
@@ -3576,9 +3609,9 @@
       if (tagBack) tagBack.textContent = backCount;
 
       const formattedTotal = `$${grandTotal.toFixed(2)}`;
-      totalPriceEl.textContent = formattedTotal;
-      headerTotalEl.textContent = formattedTotal;
-      finalTotalBreakdownEl.textContent = formattedTotal;
+      if (totalPriceEl) totalPriceEl.textContent = formattedTotal;
+      if (headerTotalEl) headerTotalEl.textContent = formattedTotal;
+      if (finalTotalBreakdownEl) finalTotalBreakdownEl.textContent = formattedTotal;
 
       const stickyTot = document.getElementById('stickyTotal');
       if (stickyTot) stickyTot.textContent = formattedTotal;
@@ -3587,19 +3620,20 @@
       const stickyFlipLbl = document.getElementById('stickyFlipLabel');
       if (stickyFlipLbl) stickyFlipLbl.textContent = state.activeSide === 'front' ? 'Back' : 'Front';
 
-      frontCountBreakdownEl.textContent = frontCount;
-      frontPriceBreakdownEl.textContent = `$${frontTotal.toFixed(2)}`;
-      backCountBreakdownEl.textContent = backCount;
-      backPriceBreakdownEl.textContent = `$${backTotal.toFixed(2)}`;
+      if (frontCountBreakdownEl) frontCountBreakdownEl.textContent = frontCount;
+      if (frontPriceBreakdownEl) frontPriceBreakdownEl.textContent = `$${frontTotal.toFixed(2)}`;
+      if (backCountBreakdownEl) backCountBreakdownEl.textContent = backCount;
+      if (backPriceBreakdownEl) backPriceBreakdownEl.textContent = `$${backTotal.toFixed(2)}`;
 
       const activeList = state.activeSide === 'front' ? state.frontCharms : state.backCharms;
-      trackStatusEl.textContent = `${activeList.length} / 8 Charms`;
+      if (trackStatusEl) trackStatusEl.textContent = `${activeList.length} / 8 Charms`;
 
       // Render Active Tray with Left/Right Horizontal Orientation Controls
-      if (activeList.length === 0) {
-        const T = (k, p) => window.nicheI18n ? window.nicheI18n.t(k, p) : k;
-        placedCharmsListEl.innerHTML = `<div class="empty-tray-tip">${T('customizer.tray_empty_tip')}</div>`;
-      } else {
+      if (placedCharmsListEl) {
+        if (activeList.length === 0) {
+          const T = (k, p) => window.nicheI18n ? window.nicheI18n.t(k, p) : k;
+          placedCharmsListEl.innerHTML = `<div class="empty-tray-tip">${T('customizer.tray_empty_tip')}</div>`;
+        } else {
         let html = activeList.map((c, idx) => {
           const isSelected = state.selectedCharmIndex === idx;
           const isFirst = idx === 0;
@@ -3642,6 +3676,7 @@
 
         placedCharmsListEl.innerHTML = html;
       }
+    }
 
       // Review Step Strings
       const revMetalAndSize = document.getElementById('revMetalAndSize');
@@ -3687,6 +3722,7 @@
 
     function renderCharmGrid(type) {
       const grid = document.getElementById('charmGrid');
+      if (!grid) return;
       grid.innerHTML = '';
 
       let items = [];
@@ -3696,7 +3732,7 @@
         items = letters.map(l => ({
           id: `letter_${l}_gold`,
           title: l.toUpperCase(),
-          imgUrl: `assets/charms/letter_${l}_gold.png`,
+          imgUrl: `/assets/charms/letter_${l}_gold.png`,
           widthMm: 4.2,
           heightMm: 4.2
         }));
@@ -3704,7 +3740,7 @@
         items = letters.map(l => ({
           id: `letter_${l}_pave`,
           title: l.toUpperCase(),
-          imgUrl: `assets/charms/letter_${l}_pave.png`,
+          imgUrl: `/assets/charms/letter_${l}_pave.png`,
           widthMm: 4.2,
           heightMm: 4.2
         }));
@@ -3712,7 +3748,7 @@
         items = numbers.map(n => ({
           id: `num_${n}_gold`,
           title: n,
-          imgUrl: `assets/charms/num_${n}_gold.png`,
+          imgUrl: `/assets/charms/num_${n}_gold.png`,
           widthMm: 4.2,
           heightMm: 4.2
         }));
@@ -3722,8 +3758,8 @@
         const card = document.createElement('div');
         card.className = 'charm-card';
         card.innerHTML = `
-          <img src="${item.imgUrl}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="${item.title}">
-          <div class="charm-card-text" style="display:none;">${item.title}</div>
+          <img src="${item.imgUrl}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="${item.title}">
+          <div class="charm-card-text" style="display:none; font-family:'Cormorant Garamond', serif; font-size:18px; font-weight:700; color:#c59b3f; height:36px; align-items:center; justify-content:center;">${item.title}</div>
           <div class="charm-price-sub">$45</div>
         `;
         card.addEventListener('click', () => {
@@ -3732,6 +3768,111 @@
         grid.appendChild(card);
       });
     }
+
+    // ✦ INSTANT NAME TO CHARMS (صياغة الاسم بالحروف الفورية)
+    window.applyNameToTrack = function(nameText, styleChoice = null) {
+      if (!nameText) return;
+      const clean = nameText.trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+      if (clean.length === 0) return;
+
+      const style = styleChoice || (document.querySelector('input[name="nameCharmsStyle"]:checked')?.value || 'gold');
+      const side = state.activeSide || 'front';
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+
+      // Remove existing charms on this track from 3D scene & state
+      while (list.length > 0) {
+        const c = list.pop();
+        if (c.mesh) rootGroup.remove(c.mesh);
+      }
+
+      // Add each letter/number charm in sequence
+      for (let i = 0; i < clean.length; i++) {
+        const ch = clean[i];
+        let charmId = '';
+        let imgUrl = '';
+        if (ch >= 'A' && ch <= 'Z') {
+          const l = ch.toLowerCase();
+          charmId = `letter_${l}_${style}`;
+          imgUrl = `/assets/charms/letter_${l}_${style}.png`;
+        } else if (ch >= '0' && ch <= '9') {
+          charmId = `num_${ch}_${style}`;
+          imgUrl = `/assets/charms/num_${ch}_${style}.png`;
+        } else {
+          continue;
+        }
+
+        const item = {
+          id: charmId,
+          title: ch,
+          imgUrl: imgUrl,
+          widthMm: 4.2,
+          heightMm: 4.2,
+          rotationDeg: 0
+        };
+
+        const uid = 'charm_' + Date.now() + '_' + i + '_' + Math.floor(Math.random() * 10000);
+        const charmObj = create3DGliderCharm(item);
+        rootGroup.add(charmObj.group);
+
+        list.push({
+          uid,
+          side,
+          ...item,
+          mesh: charmObj.group,
+          facePivot: charmObj.facePivot,
+          s: null
+        });
+      }
+
+      // Evenly distribute the name charms along the rail
+      updateCharmPlacements(side, true);
+      updateUI();
+
+      if (window.nicheI18n) {
+        const isAr = window.nicheI18n.getLanguage() === 'ar';
+        const msg = isAr ? `تم تركيب حروف "${clean}" على الإسورة بنجاح!` : `Name "${clean}" applied to bangle!`;
+        window.EP_UI?.toast ? window.EP_UI.toast(msg, '✦') : console.log(msg);
+      }
+    };
+
+    window.clearActiveTrackCharms = function() {
+      const side = state.activeSide || 'front';
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      while (list.length > 0) {
+        const c = list.pop();
+        if (c.mesh) rootGroup.remove(c.mesh);
+      }
+      updateCharmPlacements(side, true);
+      updateUI();
+      const input = document.getElementById('nameToCharmsInput');
+      if (input) input.value = '';
+    };
+
+    // Name-to-charms event listeners
+    document.getElementById('applyNameToCharmsBtn')?.addEventListener('click', () => {
+      const input = document.getElementById('nameToCharmsInput');
+      if (input) window.applyNameToTrack(input.value);
+    });
+
+    document.getElementById('nameToCharmsInput')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        window.applyNameToTrack(e.target.value);
+      }
+    });
+
+    document.querySelectorAll('input[name="nameCharmsStyle"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const input = document.getElementById('nameToCharmsInput');
+        if (input && input.value.trim().length > 0) {
+          window.applyNameToTrack(input.value, radio.value);
+        }
+      });
+    });
+
+    document.getElementById('clearTrackCharmsBtn')?.addEventListener('click', () => {
+      window.clearActiveTrackCharms();
+    });
 
     // 6. Export to GLTF / GLB (Exports BOTH Front and Back Charms!)
     function exportToGLB() {
@@ -4130,63 +4271,81 @@
     renderCharmGrid('symbols');
 
     (function hydrateFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      const designId = params.get('designId');
-      const cartUid = params.get('cartUid');
-      const metalParam = params.get('metal');
-      const sizeParam = params.get('size');
-      const charmParam = params.get('charm');
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const designId = params.get('designId');
+        const cartUid = params.get('cartUid');
+        const metalParam = params.get('metal');
+        const sizeParam = params.get('size');
+        const charmParam = params.get('charm');
 
-      let loadedCustom = null;
-      if (designId && window.EP_STORE) {
-        loadedCustom = window.EP_STORE.getWishlistItemById(designId);
-        if (loadedCustom) state.editingDesignId = loadedCustom.id;
-      } else if (cartUid && window.EP_STORE) {
-        loadedCustom = window.EP_STORE.getCart().find(i => i.uid === cartUid);
-        if (loadedCustom) state.editingCartUid = loadedCustom.uid;
-      }
+        let loadedCustom = null;
+        if (designId && window.EP_STORE) {
+          loadedCustom = window.EP_STORE.getWishlistItemById(designId);
+          if (loadedCustom) state.editingDesignId = loadedCustom.id;
+        } else if (cartUid && window.EP_STORE) {
+          loadedCustom = window.EP_STORE.getCart().find(i => i.uid === cartUid);
+          if (loadedCustom) state.editingCartUid = loadedCustom.uid;
+        }
 
-      if (loadedCustom) {
-        if (loadedCustom.metal) setMetal(loadedCustom.metal);
-        if (loadedCustom.size) setBangleSize(loadedCustom.size);
-        if (loadedCustom.engraving) {
-          state.engravingText = loadedCustom.engraving;
-          state.engravingFont = loadedCustom.engravingFont || 'roman';
-          const engInput = document.getElementById('engravingInput');
-          if (engInput) engInput.value = state.engravingText;
-          const charCnt = document.getElementById('engravingCharCount');
-          if (charCnt) charCnt.textContent = `${state.engravingText.length} / 25 chars`;
-          document.querySelectorAll('.engraving-font-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.font === state.engravingFont);
-          });
-          redrawInnerEngraving();
-        }
-        (loadedCustom.frontCharms || []).forEach(c => addCharm(c, 'front'));
-        (loadedCustom.backCharms || []).forEach(c => addCharm(c, 'back'));
-      } else {
-        if (metalParam && ['yellow', 'white', 'rose'].includes(metalParam)) {
-          setMetal(metalParam);
-        }
-        if (sizeParam && ['XS', 'S', 'M', 'L'].includes(sizeParam)) {
-          setBangleSize(sizeParam);
-        }
-        if (charmParam) {
-          const found = symbolsCatalog.find(s => s.id === charmParam);
-          if (found) addCharm(found, 'front');
-          else {
+        if (loadedCustom) {
+          if (loadedCustom.metal) setMetal(loadedCustom.metal);
+          if (loadedCustom.size) setBangleSize(loadedCustom.size);
+          if (loadedCustom.engraving) {
+            state.engravingText = loadedCustom.engraving;
+            state.engravingFont = loadedCustom.engravingFont || 'roman';
+            const engInput = document.getElementById('engravingInput');
+            if (engInput) engInput.value = state.engravingText;
+            const charCnt = document.getElementById('engravingCharCount');
+            if (charCnt) charCnt.textContent = `${state.engravingText.length} / 25 chars`;
+            document.querySelectorAll('.engraving-font-btn').forEach(b => {
+              b.classList.toggle('active', b.dataset.font === state.engravingFont);
+            });
+            redrawInnerEngraving();
+          }
+          (loadedCustom.frontCharms || []).forEach(c => addCharm(c, 'front'));
+          (loadedCustom.backCharms || []).forEach(c => addCharm(c, 'back'));
+        } else {
+          if (metalParam && ['yellow', 'white', 'rose'].includes(metalParam)) {
+            setMetal(metalParam);
+          }
+          if (sizeParam && ['XS', 'S', 'M', 'L'].includes(sizeParam)) {
+            setBangleSize(sizeParam);
+          }
+          if (charmParam) {
+            const found = symbolsCatalog.find(s => s.id === charmParam);
+            if (found) addCharm(found, 'front');
+            else {
+              addCharm(symbolsCatalog[0], 'front');
+              addCharm(symbolsCatalog[1], 'front');
+            }
+          } else {
+            // Default starter design: Bee & Martini
             addCharm(symbolsCatalog[0], 'front');
             addCharm(symbolsCatalog[1], 'front');
           }
-        } else {
-          // Default starter design: Bee & Martini
-          addCharm(symbolsCatalog[0], 'front');
-          addCharm(symbolsCatalog[1], 'front');
         }
+        updateUI();
+      } catch (e) {
+        console.warn('Hydration notice:', e);
       }
-      updateUI();
     })();
 
     // Animation Loop with Smooth Lift and Glide Physics
+    window.goToStep = function(step) {
+      if (step === 1) {
+        if (window.switchActiveTrack) window.switchActiveTrack('front');
+        if (window.openAccordionStep) window.openAccordionStep(2);
+      } else if (step === 2) {
+        if (window.switchActiveTrack) window.switchActiveTrack('back');
+        if (window.openAccordionStep) window.openAccordionStep(2);
+      } else if (step === 3) {
+        if (window.openAccordionStep) window.openAccordionStep(4);
+      }
+    };
+    window.addCustomBangleToStoreBag = addCustomBangleToStoreBag;
+    window.saveCustomBangleToWishlist = saveCustomBangleToWishlist;
+
     function animate() {
       requestAnimationFrame(animate);
 

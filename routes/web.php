@@ -21,10 +21,15 @@ use App\Services\CurrencyService;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
 
-// 1. Root redirect (default to Arabic 'ar')
-Route::get('/', function () {
-    return redirect('/ar');
-});
+// 1. Root redirects (default to Arabic 'ar' with zero 404s)
+Route::get('/', function () { return redirect('/ar'); });
+Route::get('/atelier', function () { return redirect('/ar/atelier'); });
+Route::get('/collections', function () { return redirect('/ar/collections'); });
+Route::get('/about', function () { return redirect('/ar/about'); });
+Route::get('/checkout', function () { return redirect('/ar/checkout'); });
+Route::get('/account', function () { return redirect('/ar/account'); });
+Route::get('/wishlist', function () { return redirect('/ar/wishlist'); });
+Route::get('/customizer', function () { return redirect('/ar/atelier'); });
 
 // 2. Global Currency Switcher
 Route::get('/currency/{code}', function ($code) {
