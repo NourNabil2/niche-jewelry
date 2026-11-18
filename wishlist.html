@@ -167,6 +167,7 @@
                       <div class="custom-charm-pills">${frontPills || `<span style="color:#999;">${t('wishlist.none')}</span>`}</div>
                       <div style="font-weight:600; color:#555; margin:6px 0 4px;">${t('wishlist.back_track_label', { n: (d.backCharms || []).length })}</div>
                       <div class="custom-charm-pills">${backPills || `<span style="color:#999;">${t('wishlist.none')}</span>`}</div>
+                      ${d.engraving ? `<div style="font-size:11px; color:#8b661d; margin-top:6px; font-weight:600;">✦ ${t('customizer.engraving_title')}: <span style="font-style:italic;">“${d.engraving}”</span></div>` : ''}
                     </div>
 
                     <div style="margin-top:auto; padding-top:8px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
@@ -217,7 +218,9 @@
         qty: 1,
         image: d.image,
         frontCharms: d.frontCharms || [],
-        backCharms: d.backCharms || []
+        backCharms: d.backCharms || [],
+        engraving: d.engraving || null,
+        engravingFont: d.engravingFont || 'roman'
       });
       const t = (k) => (window.nicheI18n ? window.nicheI18n.t(k) : k);
       window.EP_UI.toast(t('wishlist.toast_moved_to_bag'));

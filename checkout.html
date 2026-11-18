@@ -311,7 +311,7 @@
                 const metalKey = item.metal || 'yellow';
                 const metalName = t('common.' + (metalKey === 'yellow' ? 'yellow_gold' : metalKey === 'silver' ? 'sterling_silver' : 'rose_gold'));
                 const charmsInfo = item.type === 'custom-bangle'
-                  ? `<div style="font-size:10.5px; color:#8b661d; margin-top:3px;">${t('wishlist.front_track_label', { n: (item.frontCharms || []).length })} ${(item.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}<br>${t('wishlist.back_track_label', { n: (item.backCharms || []).length })} ${(item.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}</div>`
+                  ? `<div style="font-size:10.5px; color:#8b661d; margin-top:3px;">${t('wishlist.front_track_label', { n: (item.frontCharms || []).length })} ${(item.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}<br>${t('wishlist.back_track_label', { n: (item.backCharms || []).length })} ${(item.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}${item.engraving ? `<br>✦ ${t('customizer.engraving_title')}: “${item.engraving}”` : ''}</div>`
                   : '';
                 return `
                   <div style="display:flex; gap:12px; padding-bottom:12px; border-bottom:1px solid #f0ede6;">
@@ -473,6 +473,7 @@
                     <div style="font-size:11px; color:#8b661d;">
                       ${t('wishlist.front_track_label', { n: (item.frontCharms || []).length })} ${(item.frontCharms || []).map(c => c.title).join(', ') || t('wishlist.none')} &bull;
                       ${t('wishlist.back_track_label', { n: (item.backCharms || []).length })} ${(item.backCharms || []).map(c => c.title).join(', ') || t('wishlist.none')}
+                      ${item.engraving ? `<br>✦ ${t('customizer.engraving_title')}: “${item.engraving}”` : ''}
                     </div>
                   ` : ''}
                 </div>

@@ -270,7 +270,6 @@
       });
 
       const countText = document.getElementById('resultsCountText');
-      const lang = window.nicheI18n ? window.nicheI18n.getLanguage() : 'ar';
       countText.textContent = lang === 'ar'
         ? `عرض ${list.length} قطعة من المجوهرات الراقية`
         : `Showing ${list.length} fine jewelry piece${list.length === 1 ? '' : 's'}`;

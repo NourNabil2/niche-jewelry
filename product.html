@@ -231,6 +231,93 @@
       margin-bottom: 12px;
     }
 
+    /* Mobile Sticky Action Bar */
+    .pdp-mobile-sticky-bar {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .pdp-mobile-sticky-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid var(--border-light);
+        padding: 10px 16px;
+        z-index: 995;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(110%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .pdp-mobile-sticky-bar.visible {
+        transform: translateY(0);
+      }
+
+      .pdp-sticky-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .pdp-sticky-img {
+        width: 44px;
+        height: 44px;
+        border-radius: var(--radius-xs);
+        border: 1px solid var(--border-light);
+        object-fit: cover;
+        background: var(--bg-warm);
+        flex-shrink: 0;
+      }
+
+      .pdp-sticky-meta {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .pdp-sticky-title {
+        font-family: var(--font-serif);
+        font-size: 13.5px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--text-dark);
+      }
+
+      .pdp-sticky-details {
+        font-size: 11px;
+        color: var(--gold-deep);
+        font-weight: 500;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .pdp-sticky-price {
+        font-weight: 700;
+        color: var(--text-dark);
+        font-size: 13px;
+        margin-inline-start: auto;
+      }
+
+      .pdp-sticky-cta {
+        padding: 10px 18px;
+        font-size: 11.5px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+    }
+
     /* Accordions */
     .accordion-item {
       border-top: 1px solid var(--border-light);
@@ -378,6 +465,23 @@
     </div>
     <div class="product-grid" id="relatedGrid"></div>
   </section>
+
+  <!-- PDP Mobile Sticky Bar -->
+  <aside class="pdp-mobile-sticky-bar" id="pdpMobileStickyBar" aria-label="Quick Purchase Bar">
+    <div class="pdp-sticky-info">
+      <img src="" id="pdpStickyImg" class="pdp-sticky-img" alt="">
+      <div class="pdp-sticky-meta">
+        <div class="pdp-sticky-title" id="pdpStickyTitle"></div>
+        <div class="pdp-sticky-details">
+          <span id="pdpStickyOptions"></span>
+          <span class="pdp-sticky-price" id="pdpStickyPrice"></span>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary pdp-sticky-cta" onclick="addPDPToBag()">
+      <span data-i18n="common.add_to_bag">Add To Bag</span>
+    </button>
+  </aside>
 
   <div id="ep-footer-mount"></div>
 
@@ -557,6 +661,8 @@
           </div>
         </div>
       `;
+      updatePDPStickyBar();
+      setupStickyObserver();
     }
     
     window.addEventListener('niche:languageChange', () => {
@@ -614,6 +720,50 @@
       window.EP_UI.toast(`${currentProduct.title} added to your bag!`);
       window.EP_UI.openCart();
     };
+
+    function updatePDPStickyBar() {
+      if (!currentProduct) return;
+      const t = (k, params) => (window.nicheI18n ? window.nicheI18n.t(k, params) : k);
+      const thumb = pdpState.activeImg || currentProduct.imagesByMetal[pdpState.metal] || currentProduct.gallery[0];
+      const imgEl = document.getElementById('pdpStickyImg');
+      const titleEl = document.getElementById('pdpStickyTitle');
+      const optEl = document.getElementById('pdpStickyOptions');
+      const priceEl = document.getElementById('pdpStickyPrice');
+
+      if (imgEl) imgEl.src = thumb;
+      if (titleEl) titleEl.textContent = currentProduct.title;
+
+      let parts = [];
+      if (pdpState.metal) {
+        const metalNames = { yellow: t('common.yellow_gold'), silver: t('common.sterling_silver'), rose: t('common.rose_gold') };
+        parts.push(metalNames[pdpState.metal] || pdpState.metal);
+      }
+      if (currentProduct.hasSizes && pdpState.size) parts.push(pdpState.size);
+      if (currentProduct.hasLetterPicker && pdpState.letter) parts.push(pdpState.letter.toUpperCase());
+      if (optEl) optEl.textContent = parts.join(' · ');
+
+      if (priceEl) priceEl.textContent = `$${(currentProduct.price * pdpState.qty).toFixed(2)}`;
+    }
+
+    let stickyObserverInstance = null;
+    function setupStickyObserver() {
+      const ctaStack = document.querySelector('.pdp-cta-stack');
+      const stickyBar = document.getElementById('pdpMobileStickyBar');
+      if (!ctaStack || !stickyBar) return;
+
+      if (stickyObserverInstance) {
+        stickyObserverInstance.disconnect();
+      }
+
+      stickyObserverInstance = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const isAbove = entry.boundingClientRect.top < 0;
+          stickyBar.classList.toggle('visible', !entry.isIntersecting && isAbove);
+        });
+      }, { threshold: 0 });
+
+      stickyObserverInstance.observe(ctaStack);
+    }
 
     function renderReviews() {
       if (!currentProduct) return;

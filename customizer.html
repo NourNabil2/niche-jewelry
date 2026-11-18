@@ -1336,6 +1336,323 @@
         display: none; /* Hide 'Top' view chip on ultra-small screens */
       }
     }
+
+    /* Engraving Card */
+    .engraving-section-card {
+      background: #faf8f5;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .engraving-section-card:hover {
+      border-color: var(--gold-border);
+    }
+    .engraving-card-header {
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: #fdfcf9;
+    }
+    .engraving-icon {
+      color: var(--gold-primary);
+      font-size: 13px;
+    }
+    .engraving-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+    .engraving-toggle-arrow {
+      font-size: 11px;
+      color: var(--gold-deep);
+      transition: transform 0.2s ease;
+    }
+    .engraving-card-body {
+      padding: 14px;
+      border-top: 1px solid var(--border-light);
+      background: #faf8f5;
+    }
+    .engraving-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .engraving-text-box {
+      width: 100%;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      padding: 9px 12px;
+      font-size: 12px;
+      background: #ffffff;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .engraving-text-box:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 2px rgba(197, 155, 63, 0.15);
+    }
+    .engraving-font-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .engraving-font-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .engraving-font-btn {
+      padding: 8px 4px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .engraving-font-btn:hover {
+      border-color: var(--gold-primary);
+    }
+    .engraving-font-btn.active {
+      border-color: var(--text-dark);
+      background: var(--text-dark);
+      color: #ffffff;
+    }
+    .engraving-font-btn.active span {
+      color: #ffffff !important;
+    }
+
+    /* Custom Charm Uploader */
+    .custom-charm-uploader {
+      margin-top: 12px;
+    }
+    .custom-uploader-dropzone {
+      border: 1.5px dashed var(--gold-border);
+      background: #faf8f5;
+      border-radius: var(--radius-sm);
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .custom-uploader-dropzone:hover,
+    .custom-uploader-dropzone.dragover {
+      background: #fdfcf9;
+      border-color: var(--gold-primary);
+    }
+    .custom-charm-preview-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      padding: 12px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+    }
+    .custom-preview-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-warm);
+      border: 1.5px solid var(--gold-primary);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .custom-preview-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .custom-title-input {
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 11.5px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      outline: none;
+    }
+    .custom-title-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    /* AR Modal & Wrist Simulator */
+    .ep-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 17, 15, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .ar-modal-dialog {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      max-width: 540px;
+      width: 100%;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.24);
+      overflow: hidden;
+      animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .ar-modal-header {
+      padding: 20px 24px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .ar-modal-close {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      color: #888;
+      transition: color 0.2s;
+    }
+    .ar-modal-close:hover {
+      color: var(--text-dark);
+    }
+    .ar-modal-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-light);
+      background: #faf8f5;
+    }
+    .ar-tab-btn {
+      flex: 1;
+      padding: 12px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .ar-tab-btn.active {
+      color: var(--text-dark);
+      border-bottom-color: var(--gold-primary);
+      background: #ffffff;
+    }
+    .ar-tab-pane {
+      padding: 20px 24px;
+    }
+    .wrist-visualizer-container {
+      background: #faf8f5;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .wrist-silhouette-stage {
+      height: 240px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #ffffff 0%, #f4f0e8 100%);
+      overflow: hidden;
+    }
+    .wrist-arm {
+      width: 130px;
+      height: 320px;
+      border-radius: 65px;
+      position: relative;
+      transform: rotate(38deg);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+      transition: background 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrist-arm.skin-tone-fair {
+      background: linear-gradient(135deg, #fcece3 0%, #ebd3c8 50%, #d8baa9 100%);
+    }
+    .wrist-arm.skin-tone-olive {
+      background: linear-gradient(135deg, #e3ba94 0%, #c49669 50%, #a47648 100%);
+    }
+    .wrist-arm.skin-tone-deep {
+      background: linear-gradient(135deg, #855335 0%, #683d23 50%, #4a2815 100%);
+    }
+    .wrist-bangle-overlay {
+      position: absolute;
+      width: 170px;
+      height: 90px;
+      border-radius: 50%;
+      border: 6px solid #e3b552;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22), inset 0 2px 4px rgba(255,255,255,0.6);
+      transform: rotate(-38deg);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrist-bangle-overlay.alloy-silver {
+      border-color: #dcdcdc;
+    }
+    .wrist-bangle-overlay.alloy-rose {
+      border-color: #e09f87;
+    }
+    .wrist-controls {
+      padding: 16px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+    }
+    .skin-tone-picker {
+      display: flex;
+      gap: 8px;
+    }
+    .skin-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .skin-btn:hover {
+      transform: scale(1.15);
+    }
+    .skin-btn.active {
+      border-color: var(--text-dark);
+      transform: scale(1.15);
+    }
+    .skin-btn.tone-fair { background: #ebd3c8; }
+    .skin-btn.tone-olive { background: #c49669; }
+    .skin-btn.tone-deep { background: #683d23; }
+    .ar-modal-footer {
+      padding: 14px 24px;
+      background: #faf8f5;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: flex-end;
+    }
   </style>
 
   <!-- Three.js ES Modules -->
@@ -1363,6 +1680,10 @@
       <span class="subbar-title"><span data-i18n="customizer.studio_title">3D Dual-Track Glider Atelier</span></span>
     </div>
     <div class="subbar-actions">
+      <button class="btn-secondary" id="arTryOnBtn" title="Launch Virtual AR Try-On">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <span class="subbar-btn-text" data-i18n="customizer.ar_tryon_btn">AR Try-On</span>
+      </button>
       <button class="btn-secondary" id="saveWishlistBtn" title="Save Custom 3D Design to Wishlist">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         <span class="subbar-btn-text" data-i18n="common.save">Save Design</span>
@@ -1430,6 +1751,7 @@
         <button class="view-chip" data-view="back" data-i18n="customizer.view_back_btn">Back</button>
         <button class="view-chip" data-view="clasp" data-i18n="customizer.view_clasp_btn">Clasp</button>
         <button class="view-chip" data-view="top" data-i18n="customizer.view_top_btn">Top</button>
+        <button class="view-chip" data-view="inside" data-i18n="customizer.view_inside_btn">Inside</button>
       </div>
     </div>
 
@@ -1530,6 +1852,48 @@
           <div class="size-option" data-size="L">L (7.0")</div>
         </div>
 
+        <!-- Inner Surface Engraving Section -->
+        <div class="engraving-section-card">
+          <div class="engraving-card-header" id="toggleEngravingBtn">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="engraving-icon">✦</span>
+              <span class="engraving-card-title" data-i18n="customizer.engraving_title">Complimentary Inner Engraving</span>
+            </div>
+            <span class="engraving-toggle-arrow" id="engravingArrow">&dtrif;</span>
+          </div>
+          <div class="engraving-card-body" id="engravingBody" style="display:none;">
+            <p class="engraving-desc" data-i18n="customizer.engraving_desc">Inscribe a meaningful date, initials, or bespoke motto along the inner surface beside the atelier hallmark.</p>
+            <div style="margin-bottom:12px;">
+              <input type="text" id="engravingInput" class="engraving-text-box" maxlength="25" placeholder="e.g. M & L • FOREVER" data-i18n-placeholder="customizer.engraving_placeholder">
+              <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:10px; color:#888;">
+                <span id="engravingCharCount">0 / 25 chars</span>
+                <span style="color:#c59b3f; font-weight:600;">Complimentary</span>
+              </div>
+            </div>
+            <div style="margin-bottom:14px;">
+              <div class="engraving-font-label" data-i18n="customizer.engraving_font_label">Engraving Typography</div>
+              <div class="engraving-font-pills">
+                <button type="button" class="engraving-font-btn active" data-font="roman">
+                  <span style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:14px;" data-i18n="customizer.engraving_font_roman">Atelier Roman</span>
+                </button>
+                <button type="button" class="engraving-font-btn" data-font="script">
+                  <span style="font-family:'Cormorant Garamond', cursive; font-style:italic; font-weight:600; font-size:14px;" data-i18n="customizer.engraving_font_script">Script Elegance</span>
+                </button>
+                <button type="button" class="engraving-font-btn" data-font="modern">
+                  <span style="font-family:'Montserrat', sans-serif; font-size:11px; font-weight:600;" data-i18n="customizer.engraving_font_modern">Modern Sans</span>
+                </button>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button type="button" class="btn-secondary" style="flex:1; justify-content:center; font-size:11px;" id="inspectEngravingBtn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <span>Inspect in 3D ✦</span>
+              </button>
+              <button type="button" class="tray-mini-btn" style="padding:6px 12px;" id="clearEngravingBtn" data-i18n="customizer.engraving_clear">Clear</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Placed Charms Section -->
         <div class="section-title">
           <span id="activeTrayTitle">Front Track Charms</span>
@@ -1555,11 +1919,35 @@
           <button class="type-pill" data-type="solid-letters" data-i18n="customizer.cat_letters">Pavé Diamond Letters</button>
           <button class="type-pill" data-type="pave-letters" data-i18n="customizer.cat_letters">Pavé Diamonds</button>
           <button class="type-pill" data-type="numbers" data-i18n="customizer.cat_numbers">Numbers</button>
+          <button class="type-pill" data-type="custom" data-i18n="customizer.cat_custom">✦ Custom Charm</button>
         </div>
 
         <!-- Dynamic Charm Grid -->
         <div class="charm-grid" id="charmGrid">
           <!-- Populated via JS -->
+        </div>
+
+        <!-- Bespoke Charm Uploader Container -->
+        <div id="customCharmUploader" class="custom-charm-uploader" style="display:none;">
+          <div class="custom-uploader-dropzone" id="customCharmDropzone">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c59b3f" stroke-width="1.8" style="margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div style="font-weight:600; font-size:12.5px; margin-bottom:4px;" data-i18n="customizer.upload_custom_title">Upload Bespoke Silhouette</div>
+            <p style="font-size:11px; color:#787268; line-height:1.5; margin-bottom:12px;" data-i18n="customizer.upload_custom_desc">Upload a transparent PNG to generate an instant 3D cutout charm with physical depth and metallic beveling.</p>
+            <label class="btn-secondary" style="cursor:pointer; display:inline-flex;">
+              <span data-i18n="customizer.upload_custom_btn">Choose PNG File</span>
+              <input type="file" id="customCharmFileInput" accept="image/png,image/svg+xml,image/webp" style="display:none;">
+            </label>
+          </div>
+          <div id="customCharmPreviewCard" class="custom-charm-preview-card" style="display:none;">
+            <div class="custom-preview-circle">
+              <img id="customCharmPreviewImg" src="" alt="Custom Charm Preview">
+            </div>
+            <div style="flex:1;">
+              <input type="text" id="customCharmTitleInput" class="custom-title-input" placeholder="Name your charm (e.g. My Crest)">
+              <div style="font-size:11px; color:#8b661d; font-weight:600; margin-top:4px;">Bespoke Cutout &bull; $65.00</div>
+            </div>
+            <button type="button" class="btn-primary btn-sm" id="addCustomCharmBtn" data-i18n="customizer.add_custom_to_track">Add to Track (+$65)</button>
+          </div>
         </div>
       </div>
 
@@ -1569,6 +1957,10 @@
         <div style="background: #faf8f5; border: 1px solid var(--border-light); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
           <p style="font-size: 13px; margin-bottom: 10px;"><strong>Metal:</strong> <span id="revMetal">14K Yellow Gold</span></p>
           <p style="font-size: 13px; margin-bottom: 10px;"><strong>Size:</strong> <span id="revSize">XS (5.5 inches)</span></p>
+          <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
+            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;" data-i18n="customizer.engraving_title">Inner Atelier Engraving:</p>
+            <p style="font-size: 12px;" id="revEngraving">None (Hallmark Only)</p>
+          </div>
           <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
             <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;"><span data-i18n="customizer.review_front_charms">Front Track Charms</span>:</p>
             <p style="font-size: 12px; margin-bottom: 8px;" id="revFrontList">Mother of Pearl Bee &bull; Martini with Olive</p>
@@ -1624,6 +2016,67 @@
     </div>
   </aside>
 
+  <!-- Atelier Virtual AR Try-On Modal -->
+  <div class="ep-modal-backdrop" id="arModal" style="display:none;">
+    <div class="ar-modal-dialog">
+      <div class="ar-modal-header">
+        <div>
+          <div class="tag-eyebrow" style="color:#c59b3f; font-size:10px; font-weight:700; letter-spacing:0.12em;">ATELIER INNOVATION</div>
+          <h3 class="serif" style="font-size:24px; color:#1b1b1b; margin-top:2px;" data-i18n="customizer.ar_modal_title">Atelier Virtual AR & Wrist Simulation</h3>
+        </div>
+        <button class="ar-modal-close" id="arModalCloseBtn">&times;</button>
+      </div>
+
+      <div class="ar-modal-tabs">
+        <button class="ar-tab-btn active" id="arTabWristBtn" data-i18n="customizer.ar_tab_wrist">Interactive Wrist Studio</button>
+        <button class="ar-tab-btn" id="arTabMobileBtn" data-i18n="customizer.ar_tab_mobile">Mobile AR QuickLook</button>
+      </div>
+
+      <!-- Tab 1: Virtual Wrist Studio -->
+      <div class="ar-tab-pane" id="arPaneWrist">
+        <div class="wrist-visualizer-container">
+          <div class="wrist-silhouette-stage" id="wristStage">
+            <div class="wrist-arm skin-tone-fair" id="wristArm">
+              <div class="wrist-bangle-overlay alloy-gold" id="wristBangleOverlay"></div>
+            </div>
+          </div>
+          <div class="wrist-controls">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;" data-i18n="customizer.ar_wrist_tone">Wrist Skin Tone</span>
+              <div class="skin-tone-picker">
+                <button type="button" class="skin-btn tone-fair active" data-tone="fair" title="Fair Porcelain"></button>
+                <button type="button" class="skin-btn tone-olive" data-tone="olive" title="Warm Olive"></button>
+                <button type="button" class="skin-btn tone-deep" data-tone="deep" title="Deep Bronze"></button>
+              </div>
+            </div>
+            <div style="font-size:11px; color:#787268; line-height:1.5;">
+              Simulated proportional wrist drape based on active size: <strong id="arSizeLabel" style="color:#1b1b1b;">XS (5.5")</strong>. Rotate and inspect the fit with your selected metal and charms.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Mobile AR QuickLook -->
+      <div class="ar-tab-pane" id="arPaneMobile" style="display:none;">
+        <div style="text-align:center; padding:10px 6px;">
+          <div class="qr-box-container">
+            <svg id="arQrSvg" width="160" height="160" viewBox="0 0 160 160" style="margin:0 auto; display:block; background:#fff; padding:10px; border-radius:8px; border:1px solid #e8e3d8;"></svg>
+          </div>
+          <h4 class="serif" style="font-size:18px; margin:16px 0 6px;" data-i18n="customizer.ar_scan_qr">Scan with camera to launch instant AR</h4>
+          <p style="font-size:12px; color:#787268; max-width:400px; margin:0 auto 16px;" data-i18n="customizer.ar_mobile_hint">Powered by Apple QuickLook & WebXR. No app installation required.</p>
+          <button type="button" class="btn-primary btn-sm" id="exportArAssetBtn" style="display:inline-flex; align-items:center; gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download 3D Model (.GLB)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ar-modal-footer">
+        <button type="button" class="btn-secondary" id="arModalCloseBottomBtn" data-i18n="customizer.ar_close">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Three.js App Logic -->
   <script type="module">
     import * as THREE from 'three';
@@ -1643,7 +2096,9 @@
       backCharms: [],  // Array of { uid, title, type, imgUrl, s, flipped, mesh, facePivot }
       selectedCharmIndex: -1,
       autoRotate: false,
-      currentCharmType: 'symbols'
+      currentCharmType: 'symbols',
+      engravingText: '',
+      engravingFont: 'roman'
     };
 
     // DOM Elements
@@ -1966,29 +2421,88 @@
     }
     rootGroup.add(knuckleGroup);
 
-    // Inner 925 Hallmark
+    // Inner 925 Hallmark & Custom Engraving Ribbon
     const stampCanvas = document.createElement('canvas');
-    stampCanvas.width = 256;
+    stampCanvas.width = 1024;
     stampCanvas.height = 128;
     const sCtx = stampCanvas.getContext('2d');
-    sCtx.clearRect(0, 0, 256, 128);
-    sCtx.fillStyle = '#8a6519';
-    sCtx.font = '600 40px "Montserrat", sans-serif';
-    sCtx.textAlign = 'center';
-    sCtx.textBaseline = 'middle';
-    sCtx.fillText('NJ 14K', 128, 64);
     const stampTexture = new THREE.CanvasTexture(stampCanvas);
-    const stampPlaneGeom = new THREE.PlaneGeometry(0.006, 0.003);
+    stampTexture.colorSpace = THREE.SRGBColorSpace;
+    const stampPlaneGeom = new THREE.PlaneGeometry(0.024, 0.0035);
     const stampPlaneMat = new THREE.MeshBasicMaterial({
       map: stampTexture,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.95,
       side: THREE.DoubleSide
     });
     const stampPlane = new THREE.Mesh(stampPlaneGeom, stampPlaneMat);
     stampPlane.position.set(0, 0.0238, 0.0005);
     stampPlane.rotation.x = Math.PI / 2;
     rootGroup.add(stampPlane);
+
+    function redrawInnerEngraving() {
+      sCtx.clearRect(0, 0, 1024, 128);
+
+      const isWhite = state.metal === 'white';
+      const isRose = state.metal === 'rose';
+      const primaryFill = isWhite ? '#444444' : (isRose ? '#8a4e3f' : '#8a6519');
+      const highlightFill = isWhite ? 'rgba(255,255,255,0.75)' : (isRose ? 'rgba(255,220,210,0.75)' : 'rgba(255,235,170,0.75)');
+
+      const hallmark = isWhite ? 'NICHE · 925' : (isRose ? 'NICHE · 14K ROSE' : 'NICHE · 14K');
+      const text = (state.engravingText || '').trim();
+
+      // Subtle metallic brushed background
+      const grad = sCtx.createLinearGradient(0, 0, 1024, 0);
+      grad.addColorStop(0, 'rgba(0,0,0,0)');
+      grad.addColorStop(0.12, 'rgba(0,0,0,0.05)');
+      grad.addColorStop(0.5, 'rgba(255,255,255,0.14)');
+      grad.addColorStop(0.88, 'rgba(0,0,0,0.05)');
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      sCtx.fillStyle = grad;
+      sCtx.fillRect(0, 8, 1024, 112);
+
+      sCtx.textBaseline = 'middle';
+
+      if (!text) {
+        // Hallmark only (centered)
+        sCtx.textAlign = 'center';
+        sCtx.font = '600 36px "Montserrat", sans-serif';
+        sCtx.fillStyle = highlightFill;
+        sCtx.fillText(`✦   ${hallmark}   ✦`, 512, 66);
+        sCtx.fillStyle = primaryFill;
+        sCtx.fillText(`✦   ${hallmark}   ✦`, 512, 64);
+      } else {
+        // Left: Hallmark, Center/Right: Personalized Inscription
+        sCtx.textAlign = 'left';
+        sCtx.font = '600 24px "Montserrat", sans-serif';
+        sCtx.fillStyle = highlightFill;
+        sCtx.fillText(`✦ ${hallmark}`, 40, 66);
+        sCtx.fillStyle = primaryFill;
+        sCtx.fillText(`✦ ${hallmark}`, 40, 64);
+
+        // Divider line
+        sCtx.fillStyle = primaryFill;
+        sCtx.fillRect(290, 36, 2, 56);
+
+        // Engraved Personal Text with realistic debossed depth
+        sCtx.textAlign = 'center';
+        let fontStyle = 'italic 500 34px "Cormorant Garamond", Georgia, serif';
+        if (state.engravingFont === 'script') {
+          fontStyle = 'italic 600 36px "Cormorant Garamond", cursive, serif';
+        } else if (state.engravingFont === 'modern') {
+          fontStyle = '600 26px "Montserrat", sans-serif';
+        }
+        sCtx.font = fontStyle;
+        sCtx.fillStyle = highlightFill;
+        sCtx.fillText(`“ ${text} ”`, 650, 66);
+        sCtx.fillStyle = primaryFill;
+        sCtx.fillText(`“ ${text} ”`, 650, 64);
+      }
+
+      stampTexture.needsUpdate = true;
+    }
+
+    redrawInnerEngraving();
 
     // 4. Glider Rail Math for BOTH Front & Back Channels
     const majorA = (28.5 + Dd - 0.55) * 0.001;
@@ -2653,6 +3167,7 @@
       document.getElementById('revMetal').textContent = 
         metalKey === 'yellow' ? '14K Yellow Gold' : 
         metalKey === 'white' ? '925 Sterling Silver' : '14K Rose Gold';
+      redrawInnerEngraving();
       updateUI();
     }
 
@@ -2661,7 +3176,8 @@
       front: { pos: [0, -0.15, 0.045], target: [0, 0, 0] },
       back: { pos: [0, 0.15, 0.045], target: [0, 0, 0] },
       clasp: { pos: [0.16, 0, 0.03], target: [0, 0, 0] },
-      top: { pos: [0, -0.01, 0.18], target: [0, 0, 0] }
+      top: { pos: [0, -0.01, 0.18], target: [0, 0, 0] },
+      inside: { pos: [0, -0.048, 0.038], target: [0, 0.024, 0] }
     };
 
     function setView(viewName) {
@@ -2758,9 +3274,9 @@
       const backCount = state.backCharms.length;
       const totalCount = frontCount + backCount;
 
-      const frontTotal = frontCount * state.charmPrice;
-      const backTotal = backCount * state.charmPrice;
-      const grandTotal = state.basePrice + (totalCount * state.charmPrice);
+      const frontTotal = state.frontCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      const backTotal = state.backCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      const grandTotal = state.basePrice + frontTotal + backTotal;
 
       const baseLabel = state.metal === 'white' ? '925 Sterling Silver Bangle:' : (state.metal === 'rose' ? '14K Rose Gold Bangle:' : '14K Yellow Gold Bangle:');
       const bLblEl = document.getElementById('baseBangleLabel');
@@ -2838,6 +3354,10 @@
         state.frontCharms.length > 0 ? state.frontCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
       document.getElementById('revBackList').textContent = 
         state.backCharms.length > 0 ? state.backCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
+      const revEng = document.getElementById('revEngraving');
+      if (revEng) {
+        revEng.textContent = state.engravingText ? `“${state.engravingText}” (${state.engravingFont.toUpperCase()})` : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'بدون نقش (ختم العيار فقط)' : 'None (Hallmark Only)');
+      }
     }
 
     // Charm Catalog Definitions
@@ -2958,9 +3478,216 @@
         document.querySelectorAll('.type-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         state.currentCharmType = btn.dataset.type;
-        renderCharmGrid(state.currentCharmType);
+        const grid = document.getElementById('charmGrid');
+        const uploader = document.getElementById('customCharmUploader');
+        if (state.currentCharmType === 'custom') {
+          if (grid) grid.style.display = 'none';
+          if (uploader) uploader.style.display = 'block';
+        } else {
+          if (grid) grid.style.display = 'grid';
+          if (uploader) uploader.style.display = 'none';
+          renderCharmGrid(state.currentCharmType);
+        }
       });
     });
+
+    // Custom Bespoke Charm Upload Handlers
+    let pendingCustomCharm = null;
+    function handleCustomCharmFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please choose a valid image file (PNG recommended).');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        pendingCustomCharm = {
+          imgUrl: dataUrl,
+          fileName: file.name.replace(/\.[^/.]+$/, "")
+        };
+        const previewCard = document.getElementById('customCharmPreviewCard');
+        const previewImg = document.getElementById('customCharmPreviewImg');
+        const titleInput = document.getElementById('customCharmTitleInput');
+        if (previewImg) previewImg.src = dataUrl;
+        if (titleInput) titleInput.value = pendingCustomCharm.fileName || 'Bespoke Charm';
+        if (previewCard) previewCard.style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    const dropzone = document.getElementById('customCharmDropzone');
+    const fileInput = document.getElementById('customCharmFileInput');
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) handleCustomCharmFile(e.target.files[0]);
+      });
+    }
+    if (dropzone) {
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleCustomCharmFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    document.getElementById('addCustomCharmBtn')?.addEventListener('click', () => {
+      if (!pendingCustomCharm) return;
+      const titleInput = document.getElementById('customCharmTitleInput');
+      const title = (titleInput?.value || '').trim() || 'Bespoke Cutout Charm';
+      const customItem = {
+        id: 'bespoke_' + Date.now(),
+        title: title,
+        imgUrl: pendingCustomCharm.imgUrl,
+        price: 65,
+        widthMm: 4.8,
+        heightMm: 4.8,
+        isCustom: true
+      };
+      addCharm(customItem);
+      if (window.EP_UI) {
+        window.EP_UI.toast(`Added custom "${title}" to ${state.activeSide} rail!`);
+      }
+    });
+
+    // Atelier Inner Engraving Handlers
+    function toggleEngravingCard() {
+      const body = document.getElementById('engravingBody');
+      const arrow = document.getElementById('engravingArrow');
+      if (!body) return;
+      const isOpen = body.style.display !== 'none';
+      body.style.display = isOpen ? 'none' : 'block';
+      if (arrow) arrow.innerHTML = isOpen ? '&dtrif;' : '&utrif;';
+    }
+    document.getElementById('toggleEngravingBtn')?.addEventListener('click', toggleEngravingCard);
+
+    const engravingInput = document.getElementById('engravingInput');
+    const engravingCharCount = document.getElementById('engravingCharCount');
+    if (engravingInput) {
+      engravingInput.addEventListener('input', (e) => {
+        state.engravingText = e.target.value.slice(0, 25);
+        if (engravingCharCount) engravingCharCount.textContent = `${state.engravingText.length} / 25 chars`;
+        redrawInnerEngraving();
+        updateUI();
+      });
+    }
+
+    document.querySelectorAll('.engraving-font-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.engraving-font-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.engravingFont = btn.dataset.font || 'roman';
+        redrawInnerEngraving();
+        updateUI();
+      });
+    });
+
+    document.getElementById('inspectEngravingBtn')?.addEventListener('click', () => {
+      setView('inside');
+    });
+
+    document.getElementById('clearEngravingBtn')?.addEventListener('click', () => {
+      state.engravingText = '';
+      if (engravingInput) engravingInput.value = '';
+      if (engravingCharCount) engravingCharCount.textContent = '0 / 25 chars';
+      redrawInnerEngraving();
+      updateUI();
+    });
+
+    // AR Try-On & Virtual Wrist Visualizer Handlers
+    function openARModal() {
+      const modal = document.getElementById('arModal');
+      if (modal) modal.style.display = 'flex';
+      renderARWristPreview();
+      generateARQRCode();
+    }
+
+    function closeARModal() {
+      const modal = document.getElementById('arModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    document.getElementById('arTryOnBtn')?.addEventListener('click', openARModal);
+    document.getElementById('arModalCloseBtn')?.addEventListener('click', closeARModal);
+    document.getElementById('arModalCloseBottomBtn')?.addEventListener('click', closeARModal);
+
+    document.getElementById('arTabWristBtn')?.addEventListener('click', () => {
+      document.getElementById('arTabWristBtn').classList.add('active');
+      document.getElementById('arTabMobileBtn').classList.remove('active');
+      document.getElementById('arPaneWrist').style.display = 'block';
+      document.getElementById('arPaneMobile').style.display = 'none';
+      renderARWristPreview();
+    });
+    document.getElementById('arTabMobileBtn')?.addEventListener('click', () => {
+      document.getElementById('arTabMobileBtn').classList.add('active');
+      document.getElementById('arTabWristBtn').classList.remove('active');
+      document.getElementById('arPaneMobile').style.display = 'block';
+      document.getElementById('arPaneWrist').style.display = 'none';
+    });
+
+    document.querySelectorAll('.skin-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tone = btn.dataset.tone;
+        const arm = document.getElementById('wristArm');
+        if (arm) arm.className = `wrist-arm skin-tone-${tone}`;
+      });
+    });
+
+    function renderARWristPreview() {
+      const bangleOverlay = document.getElementById('wristBangleOverlay');
+      if (bangleOverlay) {
+        bangleOverlay.className = `wrist-bangle-overlay alloy-${state.metal === 'white' ? 'silver' : (state.metal === 'rose' ? 'rose' : 'gold')}`;
+      }
+      const sizeLabel = document.getElementById('arSizeLabel');
+      if (sizeLabel) {
+        const sizeMap = { XS: 'XS (5.5")', S: 'S (6.0")', M: 'M (6.5")', L: 'L (7.0")' };
+        sizeLabel.textContent = sizeMap[state.size] || state.size;
+      }
+    }
+
+    function generateARQRCode() {
+      const svg = document.getElementById('arQrSvg');
+      if (!svg) return;
+      const qrCells = [
+        [1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1],
+        [1,0,1,1,1,0,1,0,1,0,1,0,1,1,1,0,1],
+        [1,0,1,1,1,0,1,0,0,1,1,0,1,1,1,0,1],
+        [1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,0,1],
+        [1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
+        [0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
+        [1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1],
+        [0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0],
+        [1,1,1,1,1,1,1,0,0,1,1,0,1,1,0,0,1],
+        [1,0,0,0,0,0,1,0,1,0,1,1,0,1,1,0,1],
+        [1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,1,0],
+        [1,0,1,1,1,0,1,0,1,1,0,1,0,1,0,0,1],
+        [1,0,1,1,1,0,1,0,1,0,1,0,1,1,0,1,1],
+        [1,0,0,0,0,0,1,0,0,1,1,1,0,0,1,0,1],
+        [1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1]
+      ];
+      const cellSize = 140 / qrCells.length;
+      let rects = '';
+      for (let r = 0; r < qrCells.length; r++) {
+        for (let c = 0; c < qrCells[r].length; c++) {
+          if (qrCells[r][c] === 1) {
+            rects += `<rect x="${10 + c * cellSize}" y="${10 + r * cellSize}" width="${cellSize - 0.4}" height="${cellSize - 0.4}" fill="#1b1b1b" rx="0.5"/>`;
+          }
+        }
+      }
+      svg.innerHTML = rects;
+    }
+
+    document.getElementById('exportArAssetBtn')?.addEventListener('click', exportToGLB);
 
     document.getElementById('toggleBreakdown').addEventListener('click', () => {
       const panel = document.getElementById('breakdownPanel');
@@ -2978,15 +3705,19 @@
         id: c.id,
         title: c.title,
         imgUrl: c.imgUrl,
+        price: c.price || state.charmPrice,
         widthMm: c.widthMm,
         heightMm: c.heightMm,
         rotationDeg: c.rotationDeg || 0,
-        s: c.s
+        s: c.s,
+        isCustom: !!c.isCustom
       }));
     }
 
     function computeCurrentTotal() {
-      return state.basePrice + ((state.frontCharms.length + state.backCharms.length) * state.charmPrice);
+      const frontTotal = state.frontCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      const backTotal = state.backCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      return state.basePrice + frontTotal + backTotal;
     }
 
     function addCustomBangleToStoreBag(goCheckout = false) {
@@ -3007,7 +3738,9 @@
         qty: 1,
         image: metalThumbs[state.metal],
         frontCharms: serializeCharmList(state.frontCharms),
-        backCharms: serializeCharmList(state.backCharms)
+        backCharms: serializeCharmList(state.backCharms),
+        engraving: state.engravingText || null,
+        engravingFont: state.engravingFont || 'roman'
       };
 
       if (state.editingCartUid) {
@@ -3033,7 +3766,9 @@
         size: state.size,
         price: computeCurrentTotal(),
         frontCharms: serializeCharmList(state.frontCharms),
-        backCharms: serializeCharmList(state.backCharms)
+        backCharms: serializeCharmList(state.backCharms),
+        engraving: state.engravingText || null,
+        engravingFont: state.engravingFont || 'roman'
       });
       state.editingDesignId = saved.id;
       if (window.EP_UI) {
@@ -3101,6 +3836,18 @@
       if (loadedCustom) {
         if (loadedCustom.metal) setMetal(loadedCustom.metal);
         if (loadedCustom.size) setBangleSize(loadedCustom.size);
+        if (loadedCustom.engraving) {
+          state.engravingText = loadedCustom.engraving;
+          state.engravingFont = loadedCustom.engravingFont || 'roman';
+          const engInput = document.getElementById('engravingInput');
+          if (engInput) engInput.value = state.engravingText;
+          const charCnt = document.getElementById('engravingCharCount');
+          if (charCnt) charCnt.textContent = `${state.engravingText.length} / 25 chars`;
+          document.querySelectorAll('.engraving-font-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.font === state.engravingFont);
+          });
+          redrawInnerEngraving();
+        }
         (loadedCustom.frontCharms || []).forEach(c => addCharm(c, 'front'));
         (loadedCustom.backCharms || []).forEach(c => addCharm(c, 'back'));
       } else {

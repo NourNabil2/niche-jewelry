@@ -440,6 +440,9 @@
         const fc = (item.frontCharms || []).length;
         const bc = (item.backCharms || []).length;
         specs.push(`${T('customizer.step_badge_front')}: ${fc} · ${T('customizer.step_badge_back')}: ${bc}`);
+        if (item.engraving) {
+          specs.push(`✦ “${item.engraving}”`);
+        }
       }
 
       return `
