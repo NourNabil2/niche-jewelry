@@ -6,8 +6,46 @@
 (function () {
   function currentFile() {
     const path = window.location.pathname;
+    if (path.includes('/atelier') || path.includes('customizer')) return 'customizer.html';
+    if (path.includes('/collections')) return 'collections.html';
+    if (path.includes('/about')) return 'about.html';
+    if (path.includes('/account')) return 'account.html';
+    if (path.includes('/wishlist')) return 'wishlist.html';
+    if (path.includes('/checkout')) return 'checkout.html';
+    if (path.includes('/product')) return 'product.html';
     const parts = path.split('/');
     return parts[parts.length - 1] || 'index.html';
+  }
+
+  function getRoute(page, query = '') {
+    const path = window.location.pathname;
+    const match = path.match(/^\/(ar|en)(\/|$)/);
+    const locale = match ? match[1] : (window.nicheI18n ? window.nicheI18n.getLanguage() : 'ar');
+    const isLaravel = !!match || window.location.port === '8000';
+
+    if (isLaravel) {
+      let segment = page.replace('.html', '');
+      if (segment === 'index') segment = '';
+      if (segment === 'customizer') segment = 'atelier';
+      const base = `/${locale}` + (segment ? `/${segment}` : '');
+      return query ? `${base}${query.startsWith('?') || query.startsWith('#') ? '' : '?'}${query}` : base;
+    }
+    return query ? `${page}${query.startsWith('?') || query.startsWith('#') ? '' : '?'}${query}` : page;
+  }
+
+  function getProductHref(p) {
+    if (p.customizable3d) {
+      return getRoute('customizer.html', `?metal=${p.defaultMetal || 'yellow'}`);
+    }
+    const path = window.location.pathname;
+    const match = path.match(/^\/(ar|en)(\/|$)/);
+    const locale = match ? match[1] : (window.nicheI18n ? window.nicheI18n.getLanguage() : 'ar');
+    const isLaravel = !!match || window.location.port === '8000';
+    if (isLaravel) {
+      const slug = p.slug || p.id;
+      return `/${locale}/product/${slug}`;
+    }
+    return `product.html?id=${p.id}`;
   }
 
   function T(key, params = {}) {
@@ -64,14 +102,14 @@
               ${getLangSwitcher()}
             </div>
             <nav class="header-nav">
-              <a href="collections.html" class="nav-link ${activePage === 'collections.html' ? 'active' : ''}">${T('nav.shop_all')}</a>
-              <a href="customizer.html" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">${T('nav.studio_3d')}</a>
-              <a href="collections.html?cat=charms" class="nav-link">${T('nav.charms')}</a>
-              <a href="about.html" class="nav-link ${activePage === 'about.html' ? 'active' : ''}">${T('nav.our_story')}</a>
+              <a href="${getRoute('collections.html')}" class="nav-link ${activePage === 'collections.html' ? 'active' : ''}">${T('nav.shop_all')}</a>
+              <a href="${getRoute('customizer.html')}" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">${T('nav.studio_3d')}</a>
+              <a href="${getRoute('collections.html', '?cat=charms')}" class="nav-link">${T('nav.charms')}</a>
+              <a href="${getRoute('about.html')}" class="nav-link ${activePage === 'about.html' ? 'active' : ''}">${T('nav.our_story')}</a>
             </nav>
           </div>
 
-          <a href="index.html" class="brand-logo" aria-label="Niche Jewelry">
+          <a href="${getRoute('index.html')}" class="brand-logo" aria-label="Niche Jewelry">
             <img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" class="brand-logo-img">
           </a>
 
@@ -82,11 +120,11 @@
             <button class="icon-btn" id="openSearchBtn" title="${T('nav.search')}" aria-label="Search">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </button>
-            <a href="account.html" class="icon-btn nav-account-btn" title="${T('nav.account')}" aria-label="Account">
+            <a href="${getRoute('account.html')}" class="icon-btn nav-account-btn" title="${T('nav.account')}" aria-label="Account">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               <span id="accountDot" style="position:absolute; bottom:4px; right:4px; width:6px; height:6px; border-radius:50%; background:#c59b3f; display:none;"></span>
             </a>
-            <a href="wishlist.html" class="icon-btn" title="${T('nav.wishlist')}" aria-label="Wishlist">
+            <a href="${getRoute('wishlist.html')}" class="icon-btn" title="${T('nav.wishlist')}" aria-label="Wishlist">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               <span class="badge-count hidden" id="navWishlistCount">0</span>
             </a>
@@ -102,20 +140,20 @@
       <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <div class="mobile-nav-panel">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <a href="index.html" style="display:inline-block;"><img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
+            <a href="${getRoute('index.html')}" style="display:inline-block;"><img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
             <div style="display:flex; align-items:center; gap:8px;">
               ${getLangSwitcher()}
               <button class="icon-btn" id="closeMobileMenu">&times;</button>
             </div>
           </div>
-          <a href="index.html" class="mobile-nav-link">${lang === 'ar' ? 'الرئيسية' : 'Home'}</a>
-          <a href="collections.html" class="mobile-nav-link">${T('nav.shop_all')}</a>
-          <a href="customizer.html" class="mobile-nav-link" style="color:#8b661d;">${T('nav.studio_3d')} ✦</a>
-          <a href="collections.html?cat=bangles" class="mobile-nav-link">${T('footer.bangles')}</a>
-          <a href="collections.html?cat=charms" class="mobile-nav-link">${T('nav.charms')}</a>
-          <a href="wishlist.html" class="mobile-nav-link">${T('nav.wishlist')}</a>
-          <a href="account.html" class="mobile-nav-link">${T('nav.drawer_orders')}</a>
-          <a href="about.html" class="mobile-nav-link">${T('nav.our_story')}</a>
+          <a href="${getRoute('index.html')}" class="mobile-nav-link">${lang === 'ar' ? 'الرئيسية' : 'Home'}</a>
+          <a href="${getRoute('collections.html')}" class="mobile-nav-link">${T('nav.shop_all')}</a>
+          <a href="${getRoute('customizer.html')}" class="mobile-nav-link" style="color:#8b661d;">${T('nav.studio_3d')} ✦</a>
+          <a href="${getRoute('collections.html', '?cat=bangles')}" class="mobile-nav-link">${T('footer.bangles')}</a>
+          <a href="${getRoute('collections.html', '?cat=charms')}" class="mobile-nav-link">${T('nav.charms')}</a>
+          <a href="${getRoute('wishlist.html')}" class="mobile-nav-link">${T('nav.wishlist')}</a>
+          <a href="${getRoute('account.html')}" class="mobile-nav-link">${T('nav.drawer_orders')}</a>
+          <a href="${getRoute('about.html')}" class="mobile-nav-link">${T('nav.our_story')}</a>
         </div>
       </div>
 
@@ -158,7 +196,7 @@
             <span>${lang === 'ar' ? 'المجموع النهائي' : 'Estimated Total'}</span>
             <span class="serif" style="font-size:22px;" id="drawerTotal">$0.00</span>
           </div>
-          <a href="checkout.html" class="btn btn-primary" style="width:100%;" id="drawerCheckoutBtn">
+          <a href="${getRoute('checkout.html')}" class="btn btn-primary" style="width:100%;" id="drawerCheckoutBtn">
             ${T('cart.checkout_btn')} &rarr;
           </a>
         </div>
@@ -187,32 +225,32 @@
 
             <div class="footer-grid">
               <div>
-                <a href="index.html" style="display:inline-block; margin-bottom:14px;"><img src="/assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:38px; width:auto; display:block;"></a>
+                <a href="${getRoute('index.html')}" style="display:inline-block; margin-bottom:14px;"><img src="/assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:38px; width:auto; display:block;"></a>
                 <p class="footer-desc">
                   ${T('footer.brand_desc')}
                 </p>
                 <div style="margin-top:18px; display:flex; gap:10px;">
-                  <a href="customizer.html" class="btn btn-gold btn-sm">${T('footer.launch_studio')}</a>
+                  <a href="${getRoute('customizer.html')}" class="btn btn-gold btn-sm">${T('footer.launch_studio')}</a>
                 </div>
               </div>
               <div>
                 <div class="footer-col-title">${T('footer.shop_title')}</div>
                 <ul class="footer-links">
-                  <li><a href="collections.html?cat=bangles">${T('footer.bangles')}</a></li>
-                  <li><a href="collections.html?cat=charms">${T('footer.cutout_charms')}</a></li>
-                  <li><a href="collections.html?cat=necklaces">${T('footer.necklaces')}</a></li>
-                  <li><a href="collections.html?cat=earrings">${T('footer.earrings')}</a></li>
-                  <li><a href="collections.html?cat=rings">${T('footer.rings')}</a></li>
+                  <li><a href="${getRoute('collections.html', '?cat=bangles')}">${T('footer.bangles')}</a></li>
+                  <li><a href="${getRoute('collections.html', '?cat=charms')}">${T('footer.cutout_charms')}</a></li>
+                  <li><a href="${getRoute('collections.html', '?cat=necklaces')}">${T('footer.necklaces')}</a></li>
+                  <li><a href="${getRoute('collections.html', '?cat=earrings')}">${T('footer.earrings')}</a></li>
+                  <li><a href="${getRoute('collections.html', '?cat=rings')}">${T('footer.rings')}</a></li>
                 </ul>
               </div>
               <div>
                 <div class="footer-col-title">${T('footer.atelier_title')}</div>
                 <ul class="footer-links">
-                  <li><a href="about.html">${T('footer.our_ethics')}</a></li>
-                  <li><a href="about.html#sizing">${T('footer.sizing_guide')}</a></li>
-                  <li><a href="about.html#care">${T('footer.gold_care')}</a></li>
-                  <li><a href="wishlist.html">${T('footer.saved_designs')}</a></li>
-                  <li><a href="account.html">${T('footer.track_order')}</a></li>
+                  <li><a href="${getRoute('about.html')}">${T('footer.our_ethics')}</a></li>
+                  <li><a href="${getRoute('about.html', '#sizing')}">${T('footer.sizing_guide')}</a></li>
+                  <li><a href="${getRoute('about.html', '#care')}">${T('footer.gold_care')}</a></li>
+                  <li><a href="${getRoute('wishlist.html')}">${T('footer.saved_designs')}</a></li>
+                  <li><a href="${getRoute('account.html')}">${T('footer.track_order')}</a></li>
                 </ul>
               </div>
               <div>
@@ -307,7 +345,7 @@
       }
 
       searchResults.innerHTML = matches.map(p => `
-        <a href="${p.customizable3d ? 'customizer.html?metal=' + p.defaultMetal : 'product.html?id=' + p.id}" class="search-result-item" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-bottom:1px solid #f0ede6; text-decoration:none; color:inherit;">
+        <a href="${getProductHref(p)}" class="search-result-item" style="display:flex; align-items:center; gap:14px; padding:12px 14px; border-bottom:1px solid #f0ede6; text-decoration:none; color:inherit;">
           <img src="${p.gallery[0]}" style="width:48px; height:48px; object-fit:cover; border-radius:4px; background:#f4f0e8;">
           <div style="flex:1;">
             <div style="font-size:13px; font-weight:600;">${p.title}</div>
@@ -397,7 +435,7 @@
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#a8a29e" stroke-width="1.3" style="margin:0 auto 16px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <h3 class="serif" style="font-size:22px; margin-bottom:8px;">${T('cart.empty_title')}</h3>
           <p style="font-size:12.5px; color:#787268; margin-bottom:20px; line-height:1.6;">${T('cart.empty_sub')}</p>
-          <a href="customizer.html" class="btn btn-gold btn-sm" onclick="EP_UI.closeCart()">${T('cart.start_designing')}</a>
+          <a href="${getRoute('customizer.html')}" class="btn btn-gold btn-sm" onclick="EP_UI.closeCart()">${T('cart.start_designing')}</a>
         </div>
       `;
       if (shippingBox) shippingBox.innerHTML = '';
@@ -513,13 +551,14 @@
     const swatches = (p.availableMetals || []).map(m => `<span class="mini-swatch ${m}" title="${window.EP_DB.metals[m]?.name || m}"></span>`).join('');
     const badgeHTML = p.badge ? `<span class="product-badge ${p.customizable3d ? 'is-3d' : ''}">${p.badge}</span>` : '';
 
+    const prodHref = getProductHref(p);
     const primaryAction = p.customizable3d
-      ? `<a href="customizer.html?metal=${p.defaultMetal}" class="btn btn-gold btn-sm" style="flex:1;">${T('common.design_in_3d')}</a>`
+      ? `<a href="${prodHref}" class="btn btn-gold btn-sm" style="flex:1;">${T('common.design_in_3d')}</a>`
       : `<button class="btn btn-primary btn-sm" style="flex:1;" onclick="EP_UI.quickAddProduct('${p.id}')">${T('common.view_piece')}</button>`;
 
     const mobileActionHTML = p.customizable3d
-      ? `<a href="customizer.html?metal=${p.defaultMetal}" class="btn-card-mobile btn-gold">${T('common.design_in_3d')}</a>`
-      : `<a href="product.html?id=${p.id}" class="btn-card-mobile btn-outline">${T('common.view_piece')}</a>`;
+      ? `<a href="${prodHref}" class="btn-card-mobile btn-gold">${T('common.design_in_3d')}</a>`
+      : `<a href="${prodHref}" class="btn-card-mobile btn-outline">${T('common.view_piece')}</a>`;
 
     return `
       <div class="product-card" data-product-id="${p.id}">
@@ -528,17 +567,17 @@
           <button class="wishlist-heart-btn ${inWish ? 'active' : ''}" onclick="EP_UI.toggleWish('${p.id}', this)" title="Save to Wishlist">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <a href="${p.customizable3d ? 'customizer.html?metal=' + p.defaultMetal : 'product.html?id=' + p.id}" class="product-card-img-link">
+          <a href="${prodHref}" class="product-card-img-link">
             <img src="${thumb}" alt="${p.title}" loading="lazy">
           </a>
           <div class="product-quick-actions">
             ${primaryAction}
-            <a href="product.html?id=${p.id}" class="btn btn-ghost btn-sm">${T('common.details')}</a>
+            <a href="${prodHref}" class="btn btn-ghost btn-sm">${T('common.details')}</a>
           </div>
         </div>
         <div class="product-card-body">
           <div class="product-card-category">${p.category} &bull; ★ ${p.rating.toFixed(1)}</div>
-          <a href="${p.customizable3d ? 'customizer.html?metal=' + p.defaultMetal : 'product.html?id=' + p.id}" class="product-card-title">${p.title}</a>
+          <a href="${prodHref}" class="product-card-title">${p.title}</a>
           <div class="product-card-footer">
             <div class="product-price">
               $${p.price.toFixed(2)}

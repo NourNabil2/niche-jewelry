@@ -119,8 +119,8 @@
               ${t('wishlist.empty_sub')}
             </p>
             <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-              <a href="customizer.html" class="btn btn-gold">${t('wishlist.open_studio')}</a>
-              <a href="collections.html" class="btn btn-outline">${t('wishlist.browse_catalog')}</a>
+              <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier" class="btn btn-gold">${t('wishlist.open_studio')}</a>
+              <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="btn btn-outline">${t('wishlist.browse_catalog')}</a>
             </div>
           </div>
         `;
@@ -139,7 +139,7 @@
         html += `
           <div class="wishlist-section-title">
             <span>${t('wishlist.saved_bangles_title', { n: customDesigns.length })}</span>
-            <a href="customizer.html" class="btn btn-gold btn-sm">${t('wishlist.create_new_design')}</a>
+            <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier" class="btn btn-gold btn-sm">${t('wishlist.create_new_design')}</a>
           </div>
           <div class="saved-3d-grid">
             ${customDesigns.map(d => {
@@ -173,7 +173,7 @@
                     <div style="margin-top:auto; padding-top:8px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
                       <strong class="serif" style="font-size:24px; direction:ltr; display:inline-block;">$${d.price.toFixed(2)}</strong>
                       <div style="display:flex; gap:8px;">
-                        <a href="customizer.html?designId=${encodeURIComponent(d.id)}" class="btn btn-outline btn-sm">${t('wishlist.edit_in_3d')}</a>
+                        <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier?designId=${encodeURIComponent(d.id)}" class="btn btn-outline btn-sm">${t('wishlist.edit_in_3d')}</a>
                         <button class="btn btn-primary btn-sm" onclick="moveCustomDesignToBag('${d.id}')">${t('wishlist.move_to_bag')}</button>
                       </div>
                     </div>

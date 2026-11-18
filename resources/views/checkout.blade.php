@@ -187,8 +187,8 @@
               ${t('checkout.empty_desc')}
             </p>
             <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-              <a href="customizer.html" class="btn btn-gold">${t('checkout.open_studio')}</a>
-              <a href="collections.html" class="btn btn-outline">${t('checkout.browse_jewelry')}</a>
+              <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier" class="btn btn-gold">${t('checkout.open_studio')}</a>
+              <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="btn btn-outline">${t('checkout.browse_jewelry')}</a>
             </div>
           </div>
         `;
@@ -483,8 +483,8 @@
           </div>
 
           <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px;">
-            <a href="account.html" class="btn btn-gold">${t('checkout.track_in_account')}</a>
-            <a href="collections.html" class="btn btn-ghost">${t('checkout.continue_shopping')}</a>
+            <a href="/{{ app()->getLocale() ?: 'ar' }}/account" class="btn btn-gold">${t('checkout.track_in_account')}</a>
+            <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="btn btn-ghost">${t('checkout.continue_shopping')}</a>
           </div>
         </div>
       `;

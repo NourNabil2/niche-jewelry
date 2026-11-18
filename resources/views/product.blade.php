@@ -396,9 +396,9 @@
 
   <main class="container">
     <nav class="breadcrumb" id="pdpBreadcrumb">
-      <a href="index.html" data-i18n="product.home">Home</a>
+      <a href="/{{ app()->getLocale() ?: 'ar' }}" data-i18n="product.home">Home</a>
       <span>/</span>
-      <a href="collections.html" data-i18n="product.jewelry">Jewelry</a>
+      <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" data-i18n="product.jewelry">Jewelry</a>
       <span>/</span>
       <span id="bcProductTitle" style="color:#1b1b1b;">Loading...</span>
     </nav>
@@ -461,7 +461,7 @@
         <span class="eyebrow" data-i18n="product.complete_stack_eyebrow">Style Pairing</span>
         <h2 class="section-heading mt-1" data-i18n="product.complete_stack_title">Complete Your Stack</h2>
       </div>
-      <a href="collections.html" class="btn btn-outline btn-sm" data-i18n="product.view_all">View All</a>
+      <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="btn btn-outline btn-sm" data-i18n="product.view_all">View All</a>
     </div>
     <div class="product-grid" id="relatedGrid"></div>
   </section>
@@ -541,7 +541,7 @@
       const sizeHTML = p.hasSizes ? `
         <div class="option-group-label">
           <span>${t('product.wrist_size')}</span>
-          <a href="about.html#sizing" style="color:#8b661d; text-decoration:underline;">${t('product.size_guide_fit')}</a>
+          <a href="/{{ app()->getLocale() ?: 'ar' }}/about#sizing" style="color:#8b661d; text-decoration:underline;">${t('product.size_guide_fit')}</a>
         </div>
         <div class="pdp-size-grid">
           ${window.EP_DB.sizes.map(s => `
@@ -570,7 +570,7 @@
 
       // Direct 3D Studio CTA for customizable bangles
       const studioCTA = p.customizable3d ? `
-        <a href="customizer.html?metal=${pdpState.metal}&size=${pdpState.size}" class="btn btn-gold" style="width:100%; margin-bottom:22px;">
+        <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier?metal=${pdpState.metal}&size=${pdpState.size}" class="btn btn-gold" style="width:100%; margin-bottom:22px;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           ${t('product.customizer_cta')}
         </a>

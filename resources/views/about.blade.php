@@ -128,7 +128,7 @@
         Every diamond pavé charm uses ethically sourced G-H VS natural stones set under microscope, paired with genuine iridescent Mother of Pearl and hand-fired Italian enamel.
       </p>
       <div style="margin-top:24px;">
-        <a href="customizer.html" class="btn btn-gold" data-i18n="about_page.craft_cta">Experience 3D Studio &rarr;</a>
+        <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier" class="btn btn-gold" data-i18n="about_page.craft_cta">Experience 3D Studio &rarr;</a>
       </div>
     </div>
   </section>
@@ -157,7 +157,7 @@
             <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#737373;" data-i18n="about_page.recommended_size">Recommended Bangle Size</div>
             <div class="serif" style="font-size:30px; font-weight:600; direction:ltr;" id="recommendedSizeLabel">S (6.0" Circumference)</div>
           </div>
-          <a href="customizer.html?size=S" id="recommendedStudioLink" class="btn btn-primary btn-sm">Customize Size S in 3D &rarr;</a>
+          <a href="/{{ app()->getLocale() ?: 'ar' }}/atelier?size=S" id="recommendedStudioLink" class="btn btn-primary btn-sm">Customize Size S in 3D &rarr;</a>
         </div>
 
         <table class="sizing-table">
@@ -239,7 +239,8 @@
       document.getElementById('recommendedSizeLabel').textContent = label;
       const link = document.getElementById('recommendedStudioLink');
       if (link) {
-        link.href = `customizer.html?size=${sizeKey}`;
+        const locale = window.nicheI18n?.getLanguage() === 'en' ? 'en' : 'ar';
+        link.href = `/${locale}/atelier?size=${sizeKey}`;
         const isAr = window.nicheI18n?.getLanguage() === 'ar';
         link.textContent = isAr ? `صممي مقاس ${sizeKey} في الـ 3D ←` : `Customize Size ${sizeKey} in 3D →`;
       }

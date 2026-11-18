@@ -61,6 +61,18 @@ Route::group([
     Route::get('/about', function () {
         return view('about');
     })->name('about');
+
+    // Graceful Legacy .html & Alias Redirects (Zero 404s)
+    Route::get('/customizer', function ($locale) { return redirect("/$locale/atelier"); });
+    Route::get('/customizer.html', function ($locale) { return redirect("/$locale/atelier"); });
+    Route::get('/atelier.html', function ($locale) { return redirect("/$locale/atelier"); });
+    Route::get('/index.html', function ($locale) { return redirect("/$locale"); });
+    Route::get('/collections.html', function ($locale) { return redirect("/$locale/collections"); });
+    Route::get('/product.html', function ($locale) { return redirect("/$locale/collections"); });
+    Route::get('/checkout.html', function ($locale) { return redirect("/$locale/checkout"); });
+    Route::get('/account.html', function ($locale) { return redirect("/$locale/account"); });
+    Route::get('/wishlist.html', function ($locale) { return redirect("/$locale/wishlist"); });
+    Route::get('/about.html', function ($locale) { return redirect("/$locale/about"); });
 });
 
 // 4. Admin Management Routes

@@ -446,112 +446,320 @@
       margin-top: 6px;
     }
 
-    /* Step-by-Step Wizard Progress Stepper */
-    .wizard-stepper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      background: #faf8f5;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .step-tab {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      padding: 6px 8px;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-
-    .step-tab:hover {
-      background: rgba(0,0,0,0.03);
-    }
-
-    .step-tab.active .step-number {
-      background: #1b1b1b;
-      color: #fff;
-    }
-
-    .step-tab.active .step-name {
-      color: #1b1b1b;
-      font-weight: 700;
-    }
-
-    .step-number {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #e6e6e6;
-      color: #777;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-
-    .step-info {
+    /* Atelier Progressive Disclosure Accordion */
+    .atelier-accordion {
       display: flex;
       flex-direction: column;
-    }
-
-    .step-name {
-      font-size: 11px;
-      font-weight: 600;
-      color: #777;
-      transition: all 0.2s;
-    }
-
-    .step-sub {
-      font-size: 9px;
-      color: var(--text-muted);
-    }
-
-    .step-divider {
-      height: 1px;
-      width: 16px;
-      background: #ddd;
-    }
-
-    /* Sidebar Content Scrollable */
-    .sidebar-content {
+      gap: 12px;
+      padding: 16px;
+      overflow-y: auto;
       flex: 1;
       min-height: 0;
-      overflow-y: auto;
-      padding: 20px 24px;
     }
 
-    .step-banner {
-      background: #fffdf7;
-      border: 1px solid #ebd498;
-      border-radius: 6px;
-      padding: 10px 14px;
-      margin-bottom: 18px;
+    .accordion-step {
+      background: #ffffff;
+      border: 1px solid #e8e3d8;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .accordion-step.active {
+      border-color: #c59b3f;
+      box-shadow: 0 3px 12px rgba(197, 155, 63, 0.12);
+    }
+
+    .accordion-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 16px;
+      cursor: pointer;
+      user-select: none;
+      background: #faf8f5;
+      transition: background 0.2s ease;
+    }
+
+    .accordion-step.active .accordion-step-header {
+      background: #fbf9f4;
+      border-bottom: 1px solid #f0ede6;
+    }
+
+    .accordion-step-header:hover {
+      background: #f5f1e8;
+    }
+
+    .acc-header-left {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 10px;
     }
 
-    .step-banner-text {
+    .acc-step-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e8e3d8;
+      color: #666;
       font-size: 11px;
-      color: #8b661d;
-      line-height: 1.4;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
     }
 
-    .step-banner-tag {
-      background: #c59b3f;
-      color: #fff;
-      font-size: 9px;
+    .accordion-step.active .acc-step-badge {
+      background: #181715;
+      color: #c59b3f;
+    }
+
+    .acc-title {
+      font-size: 13px;
       font-weight: 700;
-      padding: 3px 8px;
+      color: #181715;
+      line-height: 1.2;
+    }
+
+    .acc-subtitle {
+      font-size: 10.5px;
+      color: #8b661d;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .acc-arrow {
+      font-size: 11px;
+      color: #999;
+      transition: transform 0.25s ease;
+    }
+
+    .accordion-step.active .acc-arrow {
+      transform: rotate(180deg);
+      color: #c59b3f;
+    }
+
+    .accordion-step-body {
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .acc-inner-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    /* Minimalist Metal Selector */
+    .metal-selector-minimal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .metal-card-opt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 6px;
+      border: 1px solid #e8e3d8;
+      border-radius: 6px;
+      background: #faf9f7;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .metal-card-opt:hover {
+      border-color: #c59b3f;
+      background: #fff;
+    }
+
+    .metal-card-opt.active {
+      border-color: #181715;
+      background: #fff;
+      box-shadow: 0 0 0 1.5px #181715;
+    }
+
+    .metal-opt-name {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #181715;
+    }
+
+    /* Minimalist Size Selector */
+    .size-selector-minimal {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .size-opt-btn {
+      padding: 8px 4px;
+      border: 1px solid #e8e3d8;
+      border-radius: 6px;
+      background: #faf9f7;
+      font-size: 11px;
+      font-weight: 700;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .size-opt-btn:hover {
+      border-color: #c59b3f;
+      background: #fff;
+    }
+
+    .size-opt-btn.active {
+      background: #181715;
+      color: #ffffff;
+      border-color: #181715;
+    }
+
+    /* Track Switcher Segmented Pill */
+    .track-tab-switcher {
+      display: flex;
+      background: #f0ede6;
+      border-radius: 6px;
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .track-tab-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .track-tab-btn.active {
+      background: #ffffff;
+      color: #181715;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .track-count-tag {
+      font-size: 9.5px;
+      background: #f4ecdc;
+      color: #8b661d;
+      padding: 1px 6px;
       border-radius: 10px;
-      letter-spacing: 0.05em;
-      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    /* Placed Tray Items with Horizontal Rotation */
+    .tray-orientation-group {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      margin-inline-end: 4px;
+    }
+
+    .tray-rot-btn {
+      border: 1px solid #e8e3d8;
+      background: #faf9f7;
+      border-radius: 3px;
+      padding: 3px 6px;
+      font-size: 9.5px;
+      cursor: pointer;
+      color: #555;
+      transition: all 0.15s;
+    }
+
+    .tray-rot-btn:hover {
+      border-color: #c59b3f;
+      color: #181715;
+    }
+
+    .tray-rot-btn.active {
+      background: #181715;
+      color: #c59b3f;
+      border-color: #181715;
+      font-weight: 700;
+    }
+
+    .acc-footer-action {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #f0ede6;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .size-guide-link {
+      font-size: 10px;
+      color: #8b661d;
+      text-decoration: underline;
+    }
+
+    /* Review Box Luxury */
+    .review-box-luxury {
+      background: #faf8f5;
+      border: 1px solid #e8e3d8;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .rev-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding: 7px 0;
+      border-bottom: 1px dashed #e8e3d8;
+      color: #555;
+    }
+
+    .rev-row strong, .rev-row span:last-child {
+      color: #181715;
+      font-weight: 600;
+      text-align: end;
+      max-width: 60%;
+    }
+
+    .rev-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #181715;
+    }
+
+    .rev-total-usd {
+      font-size: 22px;
+      font-family: var(--font-serif);
+      color: #181715;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .rev-total-kwd {
+      font-size: 12px;
+      color: #c59b3f;
+      font-weight: 600;
+      direction: ltr;
     }
 
     .section-title {
@@ -1673,7 +1881,7 @@
   <!-- Studio Sub-Toolbar -->
   <div class="studio-subbar">
     <div class="subbar-left">
-      <a href="collections.html" class="subbar-back-link">
+      <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="subbar-back-link">
         <span class="subbar-back-arrow">&larr;</span> <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">Collections</span>
       </a>
       <span class="subbar-sep">|</span>
@@ -1785,211 +1993,238 @@
         </div>
       </div>
 
-      <!-- Guided Wizard Stepper -->
-      <div class="wizard-stepper">
-        <div class="step-tab active" id="tabStep1" onclick="goToStep(1)">
-          <div class="step-number">1</div>
-          <div class="step-info">
-            <span class="step-name">الجهة الأمامية</span>
-            <span class="step-sub">Front Track</span>
-          </div>
-        </div>
-        <div class="step-divider"></div>
-        <div class="step-tab" id="tabStep2" onclick="goToStep(2)">
-          <div class="step-number">2</div>
-          <div class="step-info">
-            <span class="step-name">الجهة الخلفية</span>
-            <span class="step-sub">Back Track</span>
-          </div>
-        </div>
-        <div class="step-divider"></div>
-        <div class="step-tab" id="tabStep3" onclick="goToStep(3)">
-          <div class="step-number">3</div>
-          <div class="step-info">
-            <span class="step-name">المعاينة</span>
-            <span class="step-sub">Review</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 1 & 2: Charm Customizer View -->
-      <div class="sidebar-content" id="stepContentCustomizer">
-        <!-- Step Info Banner -->
-        <div class="step-banner" id="stepBanner">
-          <div class="step-banner-text" id="stepBannerText">
-            <strong>الخطوة 1: تخصيص الواجهة الأمامية</strong><br>
-            أضف الأشكال والحروف للجهة الأمامية من الإسورة.
-          </div>
-          <div class="step-banner-tag" id="stepBannerTag">FRONT</div>
-        </div>
-
-        <!-- Metal Selection -->
-        <div class="section-title" data-i18n="customizer.metal_section_title">Select Metal Finish</div>
-        <div class="metal-selector">
-          <div class="metal-option active" data-metal="yellow">
-            <div class="metal-swatch swatch-gold"></div>
-            <div class="metal-name" data-i18n="common.yellow_gold">14K Yellow Gold</div>
-          </div>
-          <div class="metal-option" data-metal="white">
-            <div class="metal-swatch swatch-silver"></div>
-            <div class="metal-name" data-i18n="common.sterling_silver">925 Sterling Silver</div>
-          </div>
-          <div class="metal-option" data-metal="rose">
-            <div class="metal-swatch swatch-rose"></div>
-            <div class="metal-name" data-i18n="common.rose_gold">14K Rose Gold</div>
-          </div>
-        </div>
-
-        <!-- Size Selection -->
-        <div class="section-title">
-          <span data-i18n="customizer.size_section_title">Select Wrist Size</span>
-          <a href="about.html#sizing" target="_blank" style="font-size:9px; color:#8b661d; text-decoration:underline;" data-i18n="common.size_guide">Size Guide</a>
-        </div>
-        <div class="size-selector">
-          <div class="size-option active" data-size="XS">XS (5.5")</div>
-          <div class="size-option" data-size="S">S (6.0")</div>
-          <div class="size-option" data-size="M">M (6.5")</div>
-          <div class="size-option" data-size="L">L (7.0")</div>
-        </div>
-
-        <!-- Inner Surface Engraving Section -->
-        <div class="engraving-section-card">
-          <div class="engraving-card-header" id="toggleEngravingBtn">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span class="engraving-icon">✦</span>
-              <span class="engraving-card-title" data-i18n="customizer.engraving_title">Complimentary Inner Engraving</span>
-            </div>
-            <span class="engraving-toggle-arrow" id="engravingArrow">&dtrif;</span>
-          </div>
-          <div class="engraving-card-body" id="engravingBody" style="display:none;">
-            <p class="engraving-desc" data-i18n="customizer.engraving_desc">Inscribe a meaningful date, initials, or bespoke motto along the inner surface beside the atelier hallmark.</p>
-            <div style="margin-bottom:12px;">
-              <input type="text" id="engravingInput" class="engraving-text-box" maxlength="25" placeholder="e.g. M & L • FOREVER" data-i18n-placeholder="customizer.engraving_placeholder">
-              <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:10px; color:#888;">
-                <span id="engravingCharCount">0 / 25 chars</span>
-                <span style="color:#c59b3f; font-weight:600;">Complimentary</span>
+      <!-- Atelier Progressive Disclosure Stepper Accordion -->
+      <div class="atelier-accordion" id="atelierAccordion">
+        
+        <!-- Accordion Step 1: Metal & Size -->
+        <div class="accordion-step active" id="accStep1">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(1)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">1</span>
+              <div>
+                <div class="acc-title">اختيار المعدن والمقاس</div>
+                <div class="acc-subtitle" id="accSummaryMetal">ذهب أصفر 14K &bull; مقاس XS</div>
               </div>
             </div>
-            <div style="margin-bottom:14px;">
-              <div class="engraving-font-label" data-i18n="customizer.engraving_font_label">Engraving Typography</div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody1">
+            <div class="acc-inner-label">نوع وتشطيب المعدن:</div>
+            <div class="metal-selector-minimal">
+              <div class="metal-card-opt active" data-metal="yellow" onclick="selectMetal('yellow')">
+                <span class="mini-swatch swatch-gold" style="width:18px; height:18px; border-radius:50%; display:inline-block;"></span>
+                <span class="metal-opt-name">ذهب أصفر 14K</span>
+              </div>
+              <div class="metal-card-opt" data-metal="white" onclick="selectMetal('white')">
+                <span class="mini-swatch swatch-silver" style="width:18px; height:18px; border-radius:50%; display:inline-block;"></span>
+                <span class="metal-opt-name">فضة إسترليني 925</span>
+              </div>
+              <div class="metal-card-opt" data-metal="rose" onclick="selectMetal('rose')">
+                <span class="mini-swatch swatch-rose" style="width:18px; height:18px; border-radius:50%; display:inline-block;"></span>
+                <span class="metal-opt-name">ذهب وردي 14K</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; margin-bottom:6px;">
+              <span class="acc-inner-label">مقاس معصم الإسورة:</span>
+              <a href="/{{ app()->getLocale() ?: 'ar' }}/about#sizing" target="_blank" class="size-guide-link">دليل القياس ↗</a>
+            </div>
+            <div class="size-selector-minimal">
+              <button type="button" class="size-opt-btn active" data-size="XS" onclick="selectSize('XS')">XS (5.5")</button>
+              <button type="button" class="size-opt-btn" data-size="S" onclick="selectSize('S')">S (6.0")</button>
+              <button type="button" class="size-opt-btn" data-size="M" onclick="selectSize('M')">M (6.5")</button>
+              <button type="button" class="size-opt-btn" data-size="L" onclick="selectSize('L')">L (7.0")</button>
+            </div>
+
+            <div class="acc-footer-action">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openAccordionStep(2)">
+                <span>متابعة لتخصيص الدلايات</span> &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Step 2: Charms Studio (Front & Back) -->
+        <div class="accordion-step" id="accStep2">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(2)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">2</span>
+              <div>
+                <div class="acc-title">تخصيص وترتيب الدلايات</div>
+                <div class="acc-subtitle" id="accSummaryCharms">الأمامية (2) &bull; الخلفية (0)</div>
+              </div>
+            </div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody2" style="display:none;">
+            <!-- Track Switcher (Front vs Back) -->
+            <div class="track-tab-switcher">
+              <button type="button" class="track-tab-btn active" id="btnTrackFront" onclick="switchActiveTrack('front')">
+                <span>الواجهة الأمامية</span>
+                <span class="track-count-tag" id="trackTagFront">2</span>
+              </button>
+              <button type="button" class="track-tab-btn" id="btnTrackBack" onclick="switchActiveTrack('back')">
+                <span>الواجهة الخلفية</span>
+                <span class="track-count-tag" id="trackTagBack">0</span>
+              </button>
+            </div>
+
+            <!-- Placed Charms on Active Track -->
+            <div class="placed-charms-tray">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-size:11px; font-weight:700; color:#555;" id="placedTrayTrackTitle">الدلايات المركبة (المسار الأمامي)</span>
+                <button type="button" class="tray-mini-btn" onclick="autoCenterCharms()">توزيع متساوي</button>
+              </div>
+              <div class="placed-charms-list" id="placedCharmsList">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="acc-inner-label" style="margin-top:14px; margin-bottom:6px;">أضيفي دلاية جديدة:</div>
+            <div class="charm-type-tabs">
+              <button type="button" class="type-pill active" data-type="symbols">أيقونات ورموز</button>
+              <button type="button" class="type-pill" data-type="solid-letters">حروف ذهب</button>
+              <button type="button" class="type-pill" data-type="pave-letters">حروف بافيه</button>
+              <button type="button" class="type-pill" data-type="numbers">أرقام</button>
+              <button type="button" class="type-pill" data-type="custom">✦ دلاية مخصصة</button>
+            </div>
+
+            <!-- Dynamic Charm Grid -->
+            <div class="charm-grid" id="charmGrid">
+              <!-- Populated via JS -->
+            </div>
+
+            <!-- Bespoke Charm Uploader Container -->
+            <div id="customCharmUploader" class="custom-charm-uploader" style="display:none;">
+              <div class="custom-uploader-dropzone" id="customCharmDropzone">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c59b3f" stroke-width="1.8" style="margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <div style="font-weight:600; font-size:12.5px; margin-bottom:4px;">رفع تصميم خاص (Silhouette)</div>
+                <p style="font-size:11px; color:#787268; line-height:1.5; margin-bottom:12px;">ارفعي صورة مفرغة بصيغة PNG لتوليد دلاية ثلاثية الأبعاد ببريق معدني فوري على المسار.</p>
+                <label class="btn-secondary" style="cursor:pointer; display:inline-flex;">
+                  <span>اختيار ملف PNG</span>
+                  <input type="file" id="customCharmFileInput" accept="image/png,image/svg+xml,image/webp" style="display:none;">
+                </label>
+              </div>
+              <div id="customCharmPreviewCard" class="custom-charm-preview-card" style="display:none;">
+                <div class="custom-preview-circle">
+                  <img id="customCharmPreviewImg" src="" alt="Custom Charm Preview">
+                </div>
+                <div style="flex:1;">
+                  <input type="text" id="customCharmTitleInput" class="custom-title-input" placeholder="اسم الدلاية (مثال: شعاري الخاص)">
+                  <div style="font-size:11px; color:#8b661d; font-weight:600; margin-top:4px;">تصميم يدوي خاص &bull; $65.00</div>
+                </div>
+                <button type="button" class="btn-primary btn-sm" id="addCustomCharmBtn">إضافة للمسار (+$65)</button>
+              </div>
+            </div>
+
+            <div class="acc-footer-action">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(3)">
+                <span>النقش الداخلي بالليزر</span> &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Step 3: Complimentary Laser Engraving -->
+        <div class="accordion-step" id="accStep3">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(3)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">3</span>
+              <div>
+                <div class="acc-title">النقش الداخلي بالليزر</div>
+                <div class="acc-subtitle" id="accSummaryEngraving">مجاناً &bull; اختياري</div>
+              </div>
+            </div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody3" style="display:none;">
+            <p style="font-size:11.5px; color:#666; margin-bottom:10px; line-height:1.5;">
+              انقشي اسماً، تاريخاً، أو عبارة خاصة محفورة بالليزر بجوار ختم العيار الرسمي للأتيلييه.
+            </p>
+            <input type="text" id="engravingInput" class="engraving-text-box" maxlength="25" placeholder="مثال: FOREVER • 2026">
+            <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:10px; color:#888;">
+              <span id="engravingCharCount">0 / 25 حرف</span>
+              <span style="color:#c59b3f; font-weight:700;">خدمة إهداء مجانية ✦</span>
+            </div>
+
+            <div style="margin:12px 0;">
+              <div style="font-size:10px; font-weight:700; text-transform:uppercase; margin-bottom:6px; color:#555;">نوع الخط:</div>
               <div class="engraving-font-pills">
-                <button type="button" class="engraving-font-btn active" data-font="roman">
-                  <span style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:14px;" data-i18n="customizer.engraving_font_roman">Atelier Roman</span>
-                </button>
-                <button type="button" class="engraving-font-btn" data-font="script">
-                  <span style="font-family:'Cormorant Garamond', cursive; font-style:italic; font-weight:600; font-size:14px;" data-i18n="customizer.engraving_font_script">Script Elegance</span>
-                </button>
-                <button type="button" class="engraving-font-btn" data-font="modern">
-                  <span style="font-family:'Montserrat', sans-serif; font-size:11px; font-weight:600;" data-i18n="customizer.engraving_font_modern">Modern Sans</span>
-                </button>
+                <button type="button" class="engraving-font-btn active" data-font="roman">Atelier Roman</button>
+                <button type="button" class="engraving-font-btn" data-font="script">Script Elegance</button>
+                <button type="button" class="engraving-font-btn" data-font="modern">Modern Sans</button>
               </div>
             </div>
+
             <div style="display:flex; gap:8px;">
               <button type="button" class="btn-secondary" style="flex:1; justify-content:center; font-size:11px;" id="inspectEngravingBtn">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                <span>Inspect in 3D ✦</span>
+                <span>معاينة في الـ 3D ✦</span>
               </button>
-              <button type="button" class="tray-mini-btn" style="padding:6px 12px;" id="clearEngravingBtn" data-i18n="customizer.engraving_clear">Clear</button>
+              <button type="button" class="tray-mini-btn" style="padding:6px 12px;" id="clearEngravingBtn">مسح</button>
+            </div>
+
+            <div class="acc-footer-action">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(4)">
+                <span>مراجعة التصميم</span> &rarr;
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Placed Charms Section -->
-        <div class="section-title">
-          <span id="activeTrayTitle">Front Track Charms</span>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <button class="tray-mini-btn" onclick="autoCenterCharms()" data-i18n="customizer.center_evenly">Distribute Evenly</button>
-            <span style="font-size: 10px; color: #c59b3f;" id="trackStatus">2 / 8 Charms</span>
-          </div>
-        </div>
-        <div class="drag-instruction-banner">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg>
-          <div data-i18n="customizer.free_glide_tip">Free Glide Motion: Click or drag any charm along the track to position it anywhere.</div>
-        </div>
-        <div class="placed-charms-tray">
-          <div class="placed-charms-list" id="placedCharmsList">
-            <!-- Populated via JS -->
-          </div>
-        </div>
-
-        <!-- Charm Type Selector -->
-        <div class="section-title">Add a Charm</div>
-        <div class="charm-type-tabs">
-          <button class="type-pill active" data-type="symbols" data-i18n="customizer.cat_symbols">Icons & Symbols</button>
-          <button class="type-pill" data-type="solid-letters" data-i18n="customizer.cat_letters">Pavé Diamond Letters</button>
-          <button class="type-pill" data-type="pave-letters" data-i18n="customizer.cat_letters">Pavé Diamonds</button>
-          <button class="type-pill" data-type="numbers" data-i18n="customizer.cat_numbers">Numbers</button>
-          <button class="type-pill" data-type="custom" data-i18n="customizer.cat_custom">✦ Custom Charm</button>
-        </div>
-
-        <!-- Dynamic Charm Grid -->
-        <div class="charm-grid" id="charmGrid">
-          <!-- Populated via JS -->
-        </div>
-
-        <!-- Bespoke Charm Uploader Container -->
-        <div id="customCharmUploader" class="custom-charm-uploader" style="display:none;">
-          <div class="custom-uploader-dropzone" id="customCharmDropzone">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c59b3f" stroke-width="1.8" style="margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <div style="font-weight:600; font-size:12.5px; margin-bottom:4px;" data-i18n="customizer.upload_custom_title">Upload Bespoke Silhouette</div>
-            <p style="font-size:11px; color:#787268; line-height:1.5; margin-bottom:12px;" data-i18n="customizer.upload_custom_desc">Upload a transparent PNG to generate an instant 3D cutout charm with physical depth and metallic beveling.</p>
-            <label class="btn-secondary" style="cursor:pointer; display:inline-flex;">
-              <span data-i18n="customizer.upload_custom_btn">Choose PNG File</span>
-              <input type="file" id="customCharmFileInput" accept="image/png,image/svg+xml,image/webp" style="display:none;">
-            </label>
-          </div>
-          <div id="customCharmPreviewCard" class="custom-charm-preview-card" style="display:none;">
-            <div class="custom-preview-circle">
-              <img id="customCharmPreviewImg" src="" alt="Custom Charm Preview">
+        <!-- Accordion Step 4: Review & Bag -->
+        <div class="accordion-step" id="accStep4">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(4)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">4</span>
+              <div>
+                <div class="acc-title">ملخص القطعة وإتمام الطلب</div>
+                <div class="acc-subtitle" id="accSummaryTotal">$500.00 &bull; 154.000 د.ك</div>
+              </div>
             </div>
-            <div style="flex:1;">
-              <input type="text" id="customCharmTitleInput" class="custom-title-input" placeholder="Name your charm (e.g. My Crest)">
-              <div style="font-size:11px; color:#8b661d; font-weight:600; margin-top:4px;">Bespoke Cutout &bull; $65.00</div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
             </div>
-            <button type="button" class="btn-primary btn-sm" id="addCustomCharmBtn" data-i18n="customizer.add_custom_to_track">Add to Track (+$65)</button>
+          </div>
+          <div class="accordion-step-body" id="accBody4" style="display:none;">
+            <div class="review-box-luxury">
+              <div class="rev-row"><span>المعدن والمقاس:</span><strong id="revMetalAndSize">ذهب أصفر 14K (XS)</strong></div>
+              <div class="rev-row"><span>دلايات المسار الأمامي:</span><span id="revFrontList">نحلة، مارتيني</span></div>
+              <div class="rev-row"><span>دلايات المسار الخلفي:</span><span id="revBackList">لا توجد</span></div>
+              <div class="rev-row"><span>النقش الداخلي:</span><span id="revEngraving">بدون نقش</span></div>
+              <div class="rev-total-row">
+                <span>السعر الإجمالي:</span>
+                <div>
+                  <div class="rev-total-usd" id="revFinalTotalUSD">$500.00</div>
+                  <div class="rev-total-kwd" id="revFinalTotalKWD">154.000 د.ك KWD</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+              <button type="button" class="btn btn-primary" style="width:100%; justify-content:center; padding:13px;" onclick="addCustomBangleToStoreBag(true)">
+                <span>إتمام الطلب والدفع</span> &rarr;
+              </button>
+              <button type="button" class="btn btn-outline" style="width:100%; justify-content:center; padding:10px;" onclick="addCustomBangleToStoreBag(false)">
+                <span>إضافة لحقيبة المقتنيات</span>
+              </button>
+              <button type="button" class="btn btn-ghost btn-sm" style="width:100%; justify-content:center;" onclick="saveCustomBangleToWishlist()">
+                <span>♡ حفظ التصميم بقائمة الأمنيات</span>
+              </button>
+              <button type="button" class="btn-secondary" style="width:100%; justify-content:center; padding:9px; font-size:11px;" id="downloadCadModel">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>تصدير مجسم 3D (.GLB)</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Step 3: Review View -->
-      <div class="sidebar-content" id="stepContentReview" style="display: none;">
-        <div class="section-title" data-i18n="customizer.step_review_title">Design Summary & Review</div>
-        <div style="background: #faf8f5; border: 1px solid var(--border-light); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
-          <p style="font-size: 13px; margin-bottom: 10px;"><strong>Metal:</strong> <span id="revMetal">14K Yellow Gold</span></p>
-          <p style="font-size: 13px; margin-bottom: 10px;"><strong>Size:</strong> <span id="revSize">XS (5.5 inches)</span></p>
-          <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
-            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;" data-i18n="customizer.engraving_title">Inner Atelier Engraving:</p>
-            <p style="font-size: 12px;" id="revEngraving">None (Hallmark Only)</p>
-          </div>
-          <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
-            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;"><span data-i18n="customizer.review_front_charms">Front Track Charms</span>:</p>
-            <p style="font-size: 12px; margin-bottom: 8px;" id="revFrontList">Mother of Pearl Bee &bull; Martini with Olive</p>
-          </div>
-          <div style="border-top: 1px dashed #ddd; margin: 10px 0; padding-top: 10px;">
-            <p style="font-size: 12px; font-weight: 700; color: #8b661d; margin-bottom: 6px;"><span data-i18n="customizer.review_back_charms">Back Track Charms</span>:</p>
-            <p style="font-size: 12px;" id="revBackList">None</p>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="setView('front')" data-i18n="customizer.view_front_btn">View Front</button>
-          <button class="btn-secondary" style="flex: 1; justify-content: center;" onclick="setView('back')" data-i18n="customizer.view_back_btn">View Back</button>
-        </div>
-
-        <button class="btn-secondary" style="width: 100%; justify-content: center; padding: 12px;" id="downloadCadModel">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export 3D Model (.GLB)
-        </button>
-      </div>
-
-      <!-- Step Navigation Footer -->
-      <div class="sidebar-footer">
-        <button class="btn-step-prev" id="btnPrevStep" style="display: none;" onclick="prevStep()">
-          &larr; السابق
-        </button>
-        <button class="btn-step-next" id="btnNextStep" onclick="nextStep()">
-          التالي: تخصيص الجهة الخلفية &rarr;
-        </button>
       </div>
     </div>
 
@@ -3027,34 +3262,44 @@
       }
     }
 
-    // 🔄 Rotate Charm in 90-degree steps (0° -> 90° -> 180° -> 270° -> 0°)
-    window.rotateCharm90 = function(side, index, e) {
+    // 🔄 Set Charm Orientation: Upright (0°) vs Horizontal Right (90°) vs Horizontal Left (270°)
+    window.setCharmOrientation = function(side, index, targetDeg, e) {
       if (e) e.stopPropagation();
       const list = side === 'front' ? state.frontCharms : state.backCharms;
       if (index >= 0 && index < list.length) {
         const charm = list[index];
         const prevDeg = charm.rotationDeg || 0;
-        charm.rotationDeg = (prevDeg + 90) % 360;
+        charm.rotationDeg = (prevDeg === targetDeg && targetDeg !== 0) ? 0 : targetDeg;
 
-        // Smooth 90 degree step animation
+        // Smooth rotation on 3D facePivot
         const startRot = charm.facePivot.rotation.z;
-        const targetRot = startRot + Math.PI / 2;
-        const duration = 240;
+        const targetRad = charm.rotationDeg * (Math.PI / 180);
+        const duration = 220;
         const startTime = performance.now();
 
         function animateRotate(now) {
           const progress = Math.min((now - startTime) / duration, 1.0);
           const ease = progress * progress * (3 - 2 * progress);
-          charm.facePivot.rotation.z = startRot + (targetRot - startRot) * ease;
+          charm.facePivot.rotation.z = startRot + (targetRad - startRot) * ease;
           if (progress < 1.0) {
             requestAnimationFrame(animateRotate);
           } else {
-            charm.facePivot.rotation.z = charm.rotationDeg * (Math.PI / 180);
+            charm.facePivot.rotation.z = targetRad;
           }
         }
         requestAnimationFrame(animateRotate);
 
         updateUI();
+      }
+    };
+
+    // Legacy alias
+    window.rotateCharm90 = function(side, index, e) {
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      if (index >= 0 && index < list.length) {
+        const currentDeg = list[index].rotationDeg || 0;
+        const nextDeg = currentDeg === 0 ? 90 : (currentDeg === 90 ? 270 : 0);
+        window.setCharmOrientation(side, index, nextDeg, e);
       }
     };
 
@@ -3120,6 +3365,7 @@
     // Update Metal Finish
     function setMetal(metalKey) {
       state.metal = metalKey;
+      state.basePrice = metalKey === 'white' ? 225.00 : (metalKey === 'rose' ? 425.00 : 410.00);
       const conf = metalColors[metalKey];
       bandMaterial.color.set(conf.main);
       bandMaterial.roughness = conf.roughness;
@@ -3206,66 +3452,81 @@
       });
     }
 
-    // Step-by-Step Guided Navigation
-    window.goToStep = function(step) {
-      state.currentStep = step;
-      state.selectedCharmIndex = -1;
-
-      // Update stepper tabs
-      document.querySelectorAll('.step-tab').forEach((tab, idx) => {
-        tab.classList.toggle('active', idx + 1 === step);
-      });
-
-      if (step === 1) {
-        state.activeSide = 'front';
-        document.getElementById('stepContentCustomizer').style.display = 'block';
-        document.getElementById('stepContentReview').style.display = 'none';
-
-        stepBannerTextEl.innerHTML = `<strong>${window.nicheI18n ? window.nicheI18n.t("customizer.step_front_title") : "الخطوة 1: تخصيص الواجهة الأمامية"}</strong><br>${window.nicheI18n ? window.nicheI18n.t("customizer.step_front_desc") : "أضيفي الأشكال والحروف للوجه الأمامي من الإسورة."}`;
-        stepBannerTagEl.textContent = (window.nicheI18n ? window.nicheI18n.t('customizer.step_badge_front') : 'Front').toUpperCase();
-        activeTrayTitleEl.textContent = window.nicheI18n ? window.nicheI18n.t('customizer.front_side') : 'الواجهة الأمامية';
-
-        btnPrevStepEl.style.display = 'none';
-        btnNextStepEl.innerHTML = window.nicheI18n ? window.nicheI18n.t("customizer.next_to_back") : "التالي: تخصيص الواجهة الخلفية &larr;";
-
-        document.getElementById('btnSideFront').classList.add('active');
-        document.getElementById('btnSideBack').classList.remove('active');
-
-        setView('front');
-      } else if (step === 2) {
-        state.activeSide = 'back';
-        document.getElementById('stepContentCustomizer').style.display = 'block';
-        document.getElementById('stepContentReview').style.display = 'none';
-
-        stepBannerTextEl.innerHTML = `<strong>${window.nicheI18n ? window.nicheI18n.t("customizer.step_back_title") : "الخطوة 2: تخصيص الواجهة الخلفية"}</strong><br>${window.nicheI18n ? window.nicheI18n.t("customizer.step_back_desc") : "نسّقي دلايات الوجه الخلفي لتكتمل إطلالة الإسورة المزدوجة."}`;
-        stepBannerTagEl.textContent = (window.nicheI18n ? window.nicheI18n.t('customizer.step_badge_back') : 'Back').toUpperCase();
-        activeTrayTitleEl.textContent = window.nicheI18n ? window.nicheI18n.t('customizer.back_side') : 'الواجهة الخلفية';
-
-        btnPrevStepEl.style.display = 'flex';
-        btnNextStepEl.innerHTML = window.nicheI18n ? window.nicheI18n.t("customizer.next_to_review") : "التالي: مراجعة الطلب &larr;";
-
-        document.getElementById('btnSideFront').classList.remove('active');
-        document.getElementById('btnSideBack').classList.add('active');
-
-        setView('back'); // Smoothly rotate camera 180° to back!
-      } else if (step === 3) {
-        document.getElementById('stepContentCustomizer').style.display = 'none';
-        document.getElementById('stepContentReview').style.display = 'block';
-
-        btnPrevStepEl.style.display = 'flex';
-        btnNextStepEl.innerHTML = `${window.nicheI18n ? window.nicheI18n.t("customizer.finish_and_buy") : "أضيفي الإسورة المخصصة للحقيبة ✦"} &bull; <span id="footerTotal">${totalPriceEl.textContent}</span>`;
+    // Accordion Progressive Disclosure Navigation
+    window.openAccordionStep = function(stepNum) {
+      for (let i = 1; i <= 4; i++) {
+        const stepEl = document.getElementById(`accStep${i}`);
+        const bodyEl = document.getElementById(`accBody${i}`);
+        if (stepEl && bodyEl) {
+          if (i === stepNum) {
+            stepEl.classList.add('active');
+            bodyEl.style.display = 'block';
+          } else {
+            stepEl.classList.remove('active');
+            bodyEl.style.display = 'none';
+          }
+        }
       }
 
+      state.currentStep = stepNum;
+      if (stepNum === 1) {
+        setView('front');
+      } else if (stepNum === 2) {
+        if (state.activeSide === 'back') setView('back');
+        else setView('front');
+      } else if (stepNum === 3) {
+        const btn = document.getElementById('inspectEngravingBtn');
+        if (btn) btn.click();
+      } else if (stepNum === 4) {
+        setView('front');
+      }
       updateUI();
     };
 
-    window.nextStep = function() {
-      if (state.currentStep < 3) goToStep(state.currentStep + 1);
-      else addCustomBangleToStoreBag(true);
+    window.toggleAccordionStep = function(stepNum) {
+      const stepEl = document.getElementById(`accStep${stepNum}`);
+      const bodyEl = document.getElementById(`accBody${stepNum}`);
+      if (!stepEl || !bodyEl) return;
+      const isCurrentlyOpen = stepEl.classList.contains('active');
+      if (isCurrentlyOpen) {
+        stepEl.classList.remove('active');
+        bodyEl.style.display = 'none';
+      } else {
+        openAccordionStep(stepNum);
+      }
     };
 
-    window.prevStep = function() {
-      if (state.currentStep > 1) goToStep(state.currentStep - 1);
+    window.selectMetal = function(metalKey) {
+      setMetal(metalKey);
+      document.querySelectorAll('.metal-card-opt').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.metal === metalKey);
+      });
+      updateUI();
+    };
+
+    window.selectSize = function(sizeKey) {
+      state.size = sizeKey;
+      document.querySelectorAll('.size-opt-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === sizeKey);
+      });
+      updateUI();
+    };
+
+    window.switchActiveTrack = function(side) {
+      state.activeSide = side;
+      document.getElementById('btnTrackFront')?.classList.toggle('active', side === 'front');
+      document.getElementById('btnTrackBack')?.classList.toggle('active', side === 'back');
+
+      const placedTrayTitle = document.getElementById('placedTrayTrackTitle');
+      if (placedTrayTitle) {
+        const isAr = window.nicheI18n?.getLanguage() === 'ar';
+        placedTrayTitle.textContent = side === 'front'
+          ? (isAr ? 'الدلايات المركبة (المسار الأمامي)' : 'Placed Charms (Front Track)')
+          : (isAr ? 'الدلايات المركبة (المسار الخلفي)' : 'Placed Charms (Back Track)');
+      }
+
+      setView(side);
+      updateUI();
     };
 
     // UI Updates
@@ -3277,17 +3538,45 @@
       const frontTotal = state.frontCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
       const backTotal = state.backCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
       const grandTotal = state.basePrice + frontTotal + backTotal;
+      const kwdGrandTotal = (grandTotal * 0.308).toFixed(3);
 
-      const baseLabel = state.metal === 'white' ? '925 Sterling Silver Bangle:' : (state.metal === 'rose' ? '14K Rose Gold Bangle:' : '14K Yellow Gold Bangle:');
-      const bLblEl = document.getElementById('baseBangleLabel');
-      const bPrEl = document.getElementById('baseBanglePrice');
-      if (bLblEl) bLblEl.textContent = baseLabel;
-      if (bPrEl) bPrEl.textContent = `$${state.basePrice.toFixed(2)}`;
+      const metalNames = {
+        yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 14K' : '14K Yellow Gold',
+        white: window.nicheI18n?.getLanguage() === 'ar' ? 'فضة إسترليني 925' : '925 Sterling Silver',
+        rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 14K' : '14K Rose Gold'
+      };
+      const activeMetalName = metalNames[state.metal] || state.metal;
+
+      // Update Accordion Summary Subtitles
+      const accSummaryMetal = document.getElementById('accSummaryMetal');
+      if (accSummaryMetal) accSummaryMetal.textContent = `${activeMetalName} • ${window.nicheI18n?.getLanguage() === 'ar' ? 'مقاس' : 'Size'} ${state.size}`;
+
+      const accSummaryCharms = document.getElementById('accSummaryCharms');
+      if (accSummaryCharms) {
+        const isAr = window.nicheI18n?.getLanguage() === 'ar';
+        accSummaryCharms.textContent = isAr 
+          ? `الأمام (${frontCount}) • الخلف (${backCount})`
+          : `Front (${frontCount}) • Back (${backCount})`;
+      }
+
+      const accSummaryEngraving = document.getElementById('accSummaryEngraving');
+      if (accSummaryEngraving) {
+        accSummaryEngraving.textContent = state.engravingText ? `“${state.engravingText}”` : (window.nicheI18n?.getLanguage() === 'ar' ? 'مجاناً • اختياري' : 'Complimentary • Optional');
+      }
+
+      const accSummaryTotal = document.getElementById('accSummaryTotal');
+      if (accSummaryTotal) {
+        accSummaryTotal.textContent = `$${grandTotal.toFixed(2)} • ${kwdGrandTotal} د.ك`;
+      }
+
+      // Track switcher counter tags
+      const tagFront = document.getElementById('trackTagFront');
+      if (tagFront) tagFront.textContent = frontCount;
+      const tagBack = document.getElementById('trackTagBack');
+      if (tagBack) tagBack.textContent = backCount;
 
       const formattedTotal = `$${grandTotal.toFixed(2)}`;
       totalPriceEl.textContent = formattedTotal;
-      const footerTot = document.getElementById('footerTotal');
-      if (footerTot) footerTot.textContent = formattedTotal;
       headerTotalEl.textContent = formattedTotal;
       finalTotalBreakdownEl.textContent = formattedTotal;
 
@@ -3306,7 +3595,7 @@
       const activeList = state.activeSide === 'front' ? state.frontCharms : state.backCharms;
       trackStatusEl.textContent = `${activeList.length} / 8 Charms`;
 
-      // Render Active Tray
+      // Render Active Tray with Left/Right Horizontal Orientation Controls
       if (activeList.length === 0) {
         const T = (k, p) => window.nicheI18n ? window.nicheI18n.t(k, p) : k;
         placedCharmsListEl.innerHTML = `<div class="empty-tray-tip">${T('customizer.tray_empty_tip')}</div>`;
@@ -3316,21 +3605,26 @@
           const isFirst = idx === 0;
           const isLast = idx === activeList.length - 1;
           const rot = c.rotationDeg || 0;
+          const isLeft = (rot === 270 || rot === -90);
+          const isRight = (rot === 90);
+          const isUpright = (rot === 0);
 
           return `
             <div class="tray-item ${isSelected ? 'selected' : ''}" onclick="toggleSelectCharm('${state.activeSide}', ${idx})">
               <img src="${c.imgUrl}" alt="${c.title}" style="transform: rotate(${rot}deg); transition: transform 0.25s ease;">
               <div class="tray-item-title">
                 ${c.title}
-                ${rot > 0 ? `<span class="flipped-badge">${rot}°</span>` : ''}
+                ${isRight ? `<span class="flipped-badge">أفقي ↷</span>` : isLeft ? `<span class="flipped-badge">أفقي ↶</span>` : ''}
               </div>
               <div class="tray-actions">
-                <button class="tray-nav-btn flip-btn" title="${window.nicheI18n ? window.nicheI18n.t('customizer.rotate_90') : 'Rotate 90°'}" onclick="rotateCharm90('${state.activeSide}', ${idx}, event)">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                </button>
-                <button class="tray-nav-btn" title="Move Left / Swap" ${isFirst ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx - 1}, event)">&lsaquo;</button>
-                <button class="tray-nav-btn" title="Move Right / Swap" ${isLast ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx + 1}, event)">&rsaquo;</button>
-                <span class="tray-item-remove" title="Remove Charm" onclick="removeCharmByIndex('${state.activeSide}', ${idx}, event)">&times;</span>
+                <div class="tray-orientation-group" title="اتجاه الدلاية">
+                  <button type="button" class="tray-rot-btn ${isLeft ? 'active' : ''}" title="أفقي متجهة لليسار" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 270, event)">↶ يسار</button>
+                  <button type="button" class="tray-rot-btn ${isUpright ? 'active' : ''}" title="رأسي معتدل" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 0, event)">⇡ معتدل</button>
+                  <button type="button" class="tray-rot-btn ${isRight ? 'active' : ''}" title="أفقي متجهة لليمين" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 90, event)">↷ يمين</button>
+                </div>
+                <button type="button" class="tray-nav-btn" title="تبديل لليسار" ${isFirst ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx - 1}, event)">&lsaquo;</button>
+                <button type="button" class="tray-nav-btn" title="تبديل لليمين" ${isLast ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx + 1}, event)">&rsaquo;</button>
+                <span class="tray-item-remove" title="حذف الدلاية" onclick="removeCharmByIndex('${state.activeSide}', ${idx}, event)">&times;</span>
               </div>
             </div>
           `;
@@ -3349,15 +3643,33 @@
         placedCharmsListEl.innerHTML = html;
       }
 
-      // Review Strings
-      document.getElementById('revFrontList').textContent = 
-        state.frontCharms.length > 0 ? state.frontCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
-      document.getElementById('revBackList').textContent = 
-        state.backCharms.length > 0 ? state.backCharms.map(c => `${c.title}${c.rotationDeg ? ` (${c.rotationDeg}°)` : ''}`).join(' &bull; ') : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
+      // Review Step Strings
+      const revMetalAndSize = document.getElementById('revMetalAndSize');
+      if (revMetalAndSize) revMetalAndSize.textContent = `${activeMetalName} (${state.size})`;
+
+      const revFrontList = document.getElementById('revFrontList');
+      if (revFrontList) {
+        revFrontList.textContent = state.frontCharms.length > 0 
+          ? state.frontCharms.map(c => `${c.title}${c.rotationDeg ? (c.rotationDeg === 90 ? ' (أفقي يمين)' : ' (أفقي يسار)') : ''}`).join(' &bull; ')
+          : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
+      }
+
+      const revBackList = document.getElementById('revBackList');
+      if (revBackList) {
+        revBackList.textContent = state.backCharms.length > 0
+          ? state.backCharms.map(c => `${c.title}${c.rotationDeg ? (c.rotationDeg === 90 ? ' (أفقي يمين)' : ' (أفقي يسار)') : ''}`).join(' &bull; ')
+          : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
+      }
+
       const revEng = document.getElementById('revEngraving');
       if (revEng) {
         revEng.textContent = state.engravingText ? `“${state.engravingText}” (${state.engravingFont.toUpperCase()})` : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'بدون نقش (ختم العيار فقط)' : 'None (Hallmark Only)');
       }
+
+      const revUSD = document.getElementById('revFinalTotalUSD');
+      if (revUSD) revUSD.textContent = `$${grandTotal.toFixed(2)}`;
+      const revKWD = document.getElementById('revFinalTotalKWD');
+      if (revKWD) revKWD.textContent = `${kwdGrandTotal} د.ك KWD`;
     }
 
     // Charm Catalog Definitions
@@ -3750,7 +4062,8 @@
       window.EP_STORE.addToCart(item);
 
       if (goCheckout) {
-        window.location.href = 'checkout.html';
+        const locale = window.nicheI18n?.getLanguage() === 'en' ? 'en' : 'ar';
+        window.location.href = `/${locale}/checkout`;
       } else if (window.EP_UI) {
         window.EP_UI.toast('Custom 3D Bangle added to your bag!');
         window.EP_UI.openCart();
