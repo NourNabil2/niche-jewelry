@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections &bull; NICH JEWELRY Fine Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/db.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/layout.js"></script>
+  <style>
+    .collection-hero {
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border-light);
+      padding: 54px 0 44px;
+      text-align: center;
+    }
+
+    .filter-toolbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-light);
+      padding: 18px 0;
+      position: sticky;
+      top: 70px;
+      z-index: 40;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-pill {
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--text-dark);
+    }
+
+    .filter-pill.active {
+      background: var(--text-dark);
+      color: #ffffff;
+      border-color: var(--text-dark);
+    }
+
+    .filter-controls-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .control-select, .control-input {
+      border: 1px solid var(--border-light);
+      background: var(--bg-cream);
+      border-radius: var(--radius-xs);
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-dark);
+      outline: none;
+    }
+
+    .control-select:focus, .control-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .catalog-results-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 28px 0 22px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .reset-filters-link {
+      color: var(--gold-deep);
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 11px;
+    }
+
+    @media (max-width: 768px) {
+      .collection-hero {
+        padding: 32px 0 24px;
+      }
+      .filter-toolbar {
+        top: 54px;
+        padding: 10px 0;
+      }
+      .filter-row {
+        gap: 10px;
+      }
+      .filter-pills {
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+      }
+      .filter-pill {
+        flex-shrink: 0;
+        padding: 6px 12px;
+        font-size: 10px;
+      }
+      .filter-controls-right {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .filter-controls-right .control-input {
+        grid-column: 1 / -1;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+      .filter-controls-right .control-select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 8px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ep-header-mount"></div>
+
+  <!-- Collection Banner -->
+  <section class="collection-hero">
+    <div class="container">
+      <span class="eyebrow" id="collectionEyebrow" data-i18n="catalog.eyebrow">Fine Jewelry Collection</span>
+      <h1 class="section-heading mt-1" id="collectionTitle" data-i18n="catalog.title">Shop All Fine Jewelry</h1>
+      <p style="font-size:13.5px; color:#666; max-width:580px; margin:10px auto 0;" id="collectionSubtitle" data-i18n="catalog.sub">
+        Crafted in solid 14K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky Filter Bar -->
+  <div class="filter-toolbar">
+    <div class="container filter-row">
+      <div class="filter-pills" id="categoryFilterPills">
+        <button class="filter-pill active" data-cat="all" data-i18n="catalog.filter_all">All Pieces</button>
+        <button class="filter-pill" data-cat="bangles" data-i18n="catalog.filter_bangles">Glider Bangles</button>
+        <button class="filter-pill" data-cat="charms" data-i18n="catalog.filter_charms">Charms</button>
+        <button class="filter-pill" data-cat="necklaces" data-i18n="catalog.filter_necklaces">Necklaces</button>
+        <button class="filter-pill" data-cat="earrings" data-i18n="catalog.filter_earrings">Earrings</button>
+        <button class="filter-pill" data-cat="rings" data-i18n="catalog.filter_rings">Rings</button>
+      </div>
+
+      <div class="filter-controls-right">
+        <input type="text" id="filterSearchInput" class="control-input" placeholder="Filter pieces..." data-i18n-placeholder="catalog.search_placeholder">
+        <select id="filterMetalSelect" class="control-select">
+          <option value="all" data-i18n="catalog.all_metals">All Metals</option>
+          <option value="yellow" data-i18n="common.yellow_gold">14K Yellow Gold</option>
+          <option value="white" data-i18n="common.sterling_silver">925 Sterling Silver</option>
+          <option value="rose" data-i18n="common.rose_gold">14K Rose Gold</option>
+        </select>
+        <select id="filterSortSelect" class="control-select">
+          <option value="featured" data-i18n="catalog.sort_featured">Sort: Featured</option>
+          <option value="price-asc" data-i18n="catalog.sort_low_high">Price: Low to High</option>
+          <option value="price-desc" data-i18n="catalog.sort_high_low">Price: High to Low</option>
+          <option value="rating" data-i18n="catalog.sort_rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Grid Container -->
+  <main class="container" style="padding-bottom:40px;">
+    <div class="catalog-results-meta">
+      <span id="resultsCountText">Showing 0 pieces</span>
+      <button class="reset-filters-link" id="resetFiltersBtn" style="display:none;">Clear Active Filters</button>
+    </div>
+
+    <div class="product-grid" id="collectionsGrid"></div>
+  </main>
+
+  <div id="ep-footer-mount"></div>
+
+  <script>
+    const categoryMeta = {
+      ar: {
+        all:       { title: 'كافة قطع دار نيش للمجوهرات', desc: 'مصنوعة يدوياً من الذهب الخالص عيار 14K المعاد تدويره والفضة الإسترليني 925. اختاري أي إسورة جلايدر لبدء تخصيصها في استوديو الـ 3D التفاعلي.' },
+        bangles:   { title: 'أساور جلايدر™ بوجهين', desc: 'أساور مفصلية من الذهب الخالص والفضة بمسارين أمامي وخلفي مخصصين لانزلاق الدلايات بحرية.' },
+        charms:    { title: 'دلايات جلايدر المفرغة', desc: 'دلايات من الذهب عيار 14K، عرق اللؤلؤ الطبيعي، وحروف الماس بافيه مصممة لتنزلق بنعومة.' },
+        necklaces: { title: 'السلاسل والقلائد', desc: 'سلاسل برّاقة يومية وقلائد عرق اللؤلؤ التذكارية لتنسيق طبقات متناغمة.' },
+        earrings:  { title: 'أقراط بافيه الدائرية', desc: 'أقراط هوجي مرصعة بأحجار الماس الدقيقة صُممت للأناقة اليومية الدائمة.' },
+        rings:     { title: 'خواتم الدار المتراصة', desc: 'خواتم سوليتير وباندات ماسية راقية صُممت لتتكامل وتتراص في إطلالة واحدة.' }
+      },
+      en: {
+        all:       { title: 'Shop All Fine Jewelry', desc: 'Crafted in solid 14K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.' },
+        bangles:   { title: 'Dual-Sided Glider Bangles', desc: 'Hinged solid gold and silver bracelets with recessed front and back channels designed for interchangeable charms.' },
+        charms:    { title: 'Cutout Glider Charms', desc: 'Solid 14K gold medallions, Mother of Pearl icons, and natural pavé diamond letters engineered to slide freely.' },
+        necklaces: { title: 'Medallion Necklaces', desc: 'Luminous everyday chains and Mother of Pearl keepsake pendants layered effortlessly.' },
+        earrings:  { title: 'Diamond Pavé Huggies', desc: 'Sculptural sleepers and micro-pavé diamond hoops made for continuous wear.' },
+        rings:     { title: 'Stacking Rings', desc: 'Bezel solitaires and delicate eternity bands built for harmonious mixing and matching.' }
+      }
+    };
+
+    const filterState = {
+      cat: 'all',
+      metal: 'all',
+      sort: 'featured',
+      q: ''
+    };
+
+    function applyFiltersAndRender() {
+      const products = window.EP_STORE.getProducts();
+      let list = products.filter(p => {
+        if (filterState.cat !== 'all' && p.categorySlug !== filterState.cat) return false;
+        if (filterState.metal !== 'all' && !(p.availableMetals || []).includes(filterState.metal)) return false;
+        if (filterState.q) {
+          const hay = (p.title + ' ' + p.category + ' ' + p.description).toLowerCase();
+          if (!hay.includes(filterState.q.toLowerCase())) return false;
+        }
+        return true;
+      });
+
+      if (filterState.sort === 'price-asc') {
+        list.sort((a, b) => a.price - b.price);
+      } else if (filterState.sort === 'price-desc') {
+        list.sort((a, b) => b.price - a.price);
+      } else if (filterState.sort === 'rating') {
+        list.sort((a, b) => b.rating - a.rating);
+      }
+
+      // Header text
+      const lang = (window.nicheI18n && window.nicheI18n.getLanguage()) || 'ar';
+      const meta = (categoryMeta[lang] && categoryMeta[lang][filterState.cat]) || (categoryMeta[lang] && categoryMeta[lang].all) || categoryMeta.en.all;
+      document.getElementById('collectionTitle').textContent = meta.title;
+      document.getElementById('collectionSubtitle').textContent = meta.desc;
+
+      // Active pills UI
+      document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.classList.toggle('active', pill.dataset.cat === filterState.cat);
+      });
+
+      const countText = document.getElementById('resultsCountText');
+      countText.textContent = lang === 'ar'
+        ? `عرض ${list.length} قطعة من المجوهرات الراقية`
+        : `Showing ${list.length} fine jewelry piece${list.length === 1 ? '' : 's'}`;
+
+      const hasActive = filterState.cat !== 'all' || filterState.metal !== 'all' || filterState.q !== '';
+      document.getElementById('resetFiltersBtn').style.display = hasActive ? 'inline-block' : 'none';
+
+      const grid = document.getElementById('collectionsGrid');
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column:1 / -1; text-align:center; padding:64px 20px; background:#fff; border:1px solid #e6e3dc; border-radius:8px;">
+            <div class="serif" style="font-size:28px; margin-bottom:8px;">No Pieces Match Your Filters</div>
+            <p style="font-size:13px; color:#737373; margin-bottom:20px;">Try clearing filters or launching our 3D Customizer Studio to build your own bangle.</p>
+            <button class="btn btn-primary btn-sm" onclick="resetAllFilters()"><span data-i18n="catalog.filter_all">Reset Filters</span></button>
+          </div>
+        `;
+      } else {
+        grid.innerHTML = list.map(p => window.EP_UI.renderProductCard(p)).join('');
+      }
+    }
+
+    window.resetAllFilters = function() {
+      filterState.cat = 'all';
+      filterState.metal = 'all';
+      filterState.sort = 'featured';
+      filterState.q = '';
+      document.getElementById('filterSearchInput').value = '';
+      document.getElementById('filterMetalSelect').value = 'all';
+      document.getElementById('filterSortSelect').value = 'featured';
+      applyFiltersAndRender();
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('cat') && categoryMeta[params.get('cat')]) {
+        filterState.cat = params.get('cat');
+      }
+      if (params.get('metal')) {
+        filterState.metal = params.get('metal');
+        document.getElementById('filterMetalSelect').value = filterState.metal;
+      }
+      if (params.get('q')) {
+        filterState.q = params.get('q');
+        document.getElementById('filterSearchInput').value = filterState.q;
+      }
+
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterState.cat = btn.dataset.cat;
+          applyFiltersAndRender();
+        });
+      });
+
+      document.getElementById('filterMetalSelect').addEventListener('change', (e) => {
+        filterState.metal = e.target.value;
+        applyFiltersAndRender();
+      });
+
+      document.getElementById('filterSortSelect').addEventListener('change', (e) => {
+        filterState.sort = e.target.value;
+        applyFiltersAndRender();
+      });
+
+      document.getElementById('filterSearchInput').addEventListener('input', (e) => {
+        filterState.q = e.target.value;
+        applyFiltersAndRender();
+      });
+
+      document.getElementById('resetFiltersBtn').addEventListener('click', resetAllFilters);
+
+      applyFiltersAndRender();
+      window.EP_STORE.subscribe(applyFiltersAndRender);
+    });
+  </script>
+</body>
+</html>

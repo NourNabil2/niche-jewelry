@@ -1,0 +1,4592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Glider Charm Bangle™ | 3D Atelier &bull; NICH JEWELRY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/db.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/layout.js"></script>
+  <style>
+    :root {
+      --bg-cream: #faf9f6;
+      --card-bg: #ffffff;
+      --text-dark: #1b1b1b;
+      --text-muted: #737373;
+      --border-light: #e6e6e6;
+      --gold-primary: #c59b3f;
+      --gold-gradient: linear-gradient(135deg, #e4cca0 0%, #c59b3f 50%, #9e7526 100%);
+      --silver-gradient: linear-gradient(135deg, #f0f0f0 0%, #dcdcdc 50%, #b8b8b8 100%);
+      --rose-gradient: linear-gradient(135deg, #ffd3c4 0%, #e89f88 50%, #b86751 100%);
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.04);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      overflow-x: clip;
+      max-width: 100vw;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      overflow-x: clip;
+      max-width: 100vw;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Studio Subbar Navigation */
+    .studio-subbar {
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+      background: rgba(250, 249, 246, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 20;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .studio-subbar .subbar-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #1b1b1b;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 4px;
+    }
+
+    .btn-secondary:hover {
+      background: #1b1b1b;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: #1b1b1b;
+      color: #ffffff;
+      border: 1px solid #1b1b1b;
+      padding: 9px 22px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 4px;
+    }
+
+    .btn-primary:hover {
+      background: #333;
+      border-color: #333;
+    }
+
+    /* Main Layout */
+    @media (min-width: 993px) {
+      body {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+      }
+    }
+
+    .studio-container {
+      display: flex;
+      flex: 1 1 0%;
+      min-height: 440px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 3D Viewport Panel */
+    .viewport-panel {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      position: relative;
+      background: radial-gradient(circle at 50% 45%, #ffffff 0%, #f9f7f3 60%, #eeebe1 100%);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .product-meta {
+      position: absolute;
+      top: 22px;
+      left: 32px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .tag-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-dark);
+    }
+
+    .viewport-canvas-container {
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      min-height: 0;
+      outline: none;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .viewport-canvas-container canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      touch-action: none;
+    }
+
+    .viewport-canvas-container:active {
+      cursor: grabbing;
+    }
+
+    /* Floating Viewport Flip Pill */
+    .viewport-side-toggle {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      display: flex;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 4px;
+      border-radius: 30px;
+      border: 1px solid var(--border-light);
+      /* clean flat */
+      z-index: 10;
+    }
+
+    .side-pill-btn {
+      background: transparent;
+      border: none;
+      padding: 7px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #555;
+    }
+
+    .side-pill-btn.active {
+      background: #1b1b1b;
+      color: #fff;
+    }
+
+    /* Floating Viewport Controls */
+    .viewport-toolbar {
+      position: absolute;
+      bottom: 22px;
+      left: 32px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .tool-btn {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 7px 15px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      /* clean flat */
+      transition: all 0.2s;
+    }
+
+    .tool-btn:hover {
+      background: #ffffff;
+      border-color: #bbb;
+    }
+
+    .camera-views {
+      position: absolute;
+      bottom: 22px;
+      right: 24px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px;
+      border-radius: 24px;
+      border: 1px solid var(--border-light);
+      /* clean flat */
+    }
+
+    .view-chip {
+      background: transparent;
+      border: none;
+      padding: 6px 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-chip.active, .view-chip:hover {
+      background: #1b1b1b;
+      color: #fff;
+    }
+
+    /* Floating Drag Indicator in 3D Viewport */
+    .floating-drag-indicator {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      /* clean flat */
+      font-size: 11px;
+      font-weight: 600;
+      color: #2b2b2b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .floating-drag-indicator svg {
+      color: #c59b3f;
+      animation: pulseHand 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseHand {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2) translateY(-1px); }
+    }
+
+    .tray-mini-btn {
+      background: #fdf8eb;
+      border: 1px solid #e4c77c;
+      color: #8b661d;
+      font-size: 9px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tray-mini-btn:hover {
+      background: #c59b3f;
+      color: #fff;
+      border-color: #c59b3f;
+    }
+
+    .drag-instruction-banner {
+      background: #fcfbf7;
+      border: 1px dashed #e8d7a7;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      font-size: 10.5px;
+      color: #8b661d;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .drag-instruction-banner svg {
+      flex-shrink: 0;
+      color: #c59b3f;
+    }
+
+    /* Right Customization Sidebar */
+    .customizer-sidebar {
+      width: 450px;
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--card-bg);
+      border-left: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      z-index: 15;
+      border-left: 1px solid var(--border-light);
+    }
+
+    .sidebar-header {
+      padding: 20px 24px 14px 24px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .bangle-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .bangle-price {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .price-breakdown-toggle {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      user-select: none;
+    }
+
+    .price-breakdown-panel {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: #fcfbf9;
+      border: 1px dashed var(--border-light);
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .breakdown-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    .breakdown-line.total {
+      font-weight: 600;
+      color: #1b1b1b;
+      border-top: 1px solid #ddd;
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+
+    /* Atelier Progressive Disclosure Accordion */
+    .atelier-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .accordion-step {
+      background: #ffffff;
+      border: 1px solid #e8e3d8;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .accordion-step.active {
+      border-color: #c59b3f;
+      box-shadow: 0 3px 12px rgba(197, 155, 63, 0.12);
+    }
+
+    .accordion-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 16px;
+      cursor: pointer;
+      user-select: none;
+      background: #faf8f5;
+      transition: background 0.2s ease;
+    }
+
+    .accordion-step.active .accordion-step-header {
+      background: #fbf9f4;
+      border-bottom: 1px solid #f0ede6;
+    }
+
+    .accordion-step-header:hover {
+      background: #f5f1e8;
+    }
+
+    .acc-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .acc-step-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e8e3d8;
+      color: #666;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .accordion-step.active .acc-step-badge {
+      background: #181715;
+      color: #c59b3f;
+    }
+
+    .acc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #181715;
+      line-height: 1.2;
+    }
+
+    .acc-subtitle {
+      font-size: 10.5px;
+      color: #8b661d;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .acc-arrow {
+      font-size: 11px;
+      color: #999;
+      transition: transform 0.25s ease;
+    }
+
+    .accordion-step.active .acc-arrow {
+      transform: rotate(180deg);
+      color: #c59b3f;
+    }
+
+    .accordion-step-body {
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .acc-inner-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    /* Minimalist Metal Selector */
+    /* Ultra-Luxury Metal Cards (Cartier / Van Cleef Quiet Luxury Aesthetic) */
+    .metal-selector-minimal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .metal-card-opt {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      padding: 13px 8px 11px;
+      border: 1.5px solid #eae5dc;
+      border-radius: 12px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      user-select: none;
+    }
+
+    .metal-card-opt:hover {
+      border-color: #c59b3f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(197, 155, 63, 0.12);
+    }
+
+    .metal-card-opt.active {
+      border-color: #c59b3f !important;
+      background: #fffdf9 !important;
+      box-shadow: 0 0 0 1.5px #c59b3f, 0 6px 20px rgba(197, 155, 63, 0.18) !important;
+      transform: translateY(-1px);
+    }
+
+    .metal-swatch-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .luxury-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      transition: transform 0.2s ease;
+    }
+
+    .metal-card-opt:hover .luxury-swatch {
+      transform: scale(1.08);
+    }
+
+    .swatch-gold {
+      background: radial-gradient(circle at 35% 32%, #fff9e6 0%, #f6d376 25%, #c59b3f 60%, #876214 100%);
+      box-shadow: 0 3px 8px rgba(197, 155, 63, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .swatch-silver {
+      background: radial-gradient(circle at 35% 32%, #ffffff 0%, #ebebeb 30%, #b8b8b8 65%, #787878 100%);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+    }
+
+    .swatch-rose {
+      background: radial-gradient(circle at 35% 32%, #fff2ee 0%, #f7b7a6 25%, #d67a65 62%, #853e2e 100%);
+      box-shadow: 0 3px 8px rgba(214, 122, 101, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .metal-active-check {
+      position: absolute;
+      top: -3px;
+      right: -6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #c59b3f;
+      color: #ffffff;
+      font-size: 8.5px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+
+    .metal-card-opt.active .metal-active-check {
+      display: flex;
+    }
+
+    .metal-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .metal-opt-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #181715;
+      line-height: 1.2;
+    }
+
+    .metal-opt-purity {
+      font-size: 9.5px;
+      color: #8c857b;
+      line-height: 1.2;
+    }
+
+    .metal-opt-price {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #c59b3f;
+      margin-top: 2px;
+    }
+
+    /* Minimalist Size Selector */
+    .size-selector-minimal {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .size-opt-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 10px 4px;
+      border: 1.5px solid #eae5dc;
+      border-radius: 10px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .size-opt-btn:hover {
+      border-color: #c59b3f;
+      background: #fffdf9;
+    }
+
+    .size-opt-btn.active {
+      border-color: #181715 !important;
+      background: #181715 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(24, 23, 21, 0.25);
+    }
+
+    .size-opt-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .size-opt-sub {
+      font-size: 9px;
+      color: #8c857b;
+    }
+
+    .size-opt-btn.active .size-opt-sub {
+      color: #c59b3f;
+    }
+
+    /* Track Switcher Segmented Pill */
+    .track-tab-switcher {
+      display: flex;
+      background: #f0ede6;
+      border-radius: 6px;
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .track-tab-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .track-tab-btn.active {
+      background: #ffffff;
+      color: #181715;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .track-count-tag {
+      font-size: 9.5px;
+      background: #f4ecdc;
+      color: #8b661d;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    /* Placed Tray Items with Horizontal Rotation */
+    .tray-orientation-group {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      margin-inline-end: 4px;
+    }
+
+    .tray-rot-btn {
+      border: 1px solid #e8e3d8;
+      background: #faf9f7;
+      border-radius: 3px;
+      padding: 3px 6px;
+      font-size: 9.5px;
+      cursor: pointer;
+      color: #555;
+      transition: all 0.15s;
+    }
+
+    .tray-rot-btn:hover {
+      border-color: #c59b3f;
+      color: #181715;
+    }
+
+    .tray-rot-btn.active {
+      background: #181715;
+      color: #c59b3f;
+      border-color: #181715;
+      font-weight: 700;
+    }
+
+    .acc-footer-action {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #f0ede6;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .size-guide-link {
+      font-size: 10px;
+      color: #8b661d;
+      text-decoration: underline;
+    }
+
+    /* Review Box Luxury */
+    .review-box-luxury {
+      background: #faf8f5;
+      border: 1px solid #e8e3d8;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .rev-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding: 7px 0;
+      border-bottom: 1px dashed #e8e3d8;
+      color: #555;
+    }
+
+    .rev-row strong, .rev-row span:last-child {
+      color: #181715;
+      font-weight: 600;
+      text-align: end;
+      max-width: 60%;
+    }
+
+    .rev-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #181715;
+    }
+
+    .rev-total-usd {
+      font-size: 22px;
+      font-family: var(--font-serif);
+      color: #181715;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .rev-total-kwd {
+      font-size: 12px;
+      color: #c59b3f;
+      font-weight: 600;
+      direction: ltr;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .size-selector {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .size-option {
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 7px 4px;
+      text-align: center;
+      cursor: pointer;
+      background: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .size-option.active {
+      background: #1b1b1b;
+      color: #fff;
+      border-color: #1b1b1b;
+    }
+
+    .studio-subbar {
+      padding: 8px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+      background: #ffffff;
+      z-index: 18;
+    }
+
+    /* Metal Color Selector */
+    .metal-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .metal-option {
+      flex: 1;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 8px 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .metal-option.active {
+      border-color: #1b1b1b;
+      box-shadow: 0 0 0 1px #1b1b1b;
+    }
+
+    .metal-swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin: 0 auto 5px auto;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .swatch-gold { background: var(--gold-gradient); }
+    .swatch-silver { background: var(--silver-gradient); }
+    .swatch-rose { background: var(--rose-gradient); }
+
+    .metal-name {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Placed Charms Tray */
+    .placed-charms-tray {
+      background: #faf8f5;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+
+    .placed-charms-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-height: 40px;
+    }
+
+    .tray-item {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .tray-item:hover {
+      border-color: var(--gold-primary);
+    }
+
+    .tray-item.selected {
+      border: 1.5px solid var(--gold-primary);
+      background: var(--gold-soft);
+      box-shadow: 0 0 0 2px rgba(197, 155, 63, 0.2);
+    }
+
+    .tray-item img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tray-item-title {
+      flex: 1;
+      font-size: 11px;
+      font-weight: 600;
+      color: #2b2b2b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .flipped-badge {
+      background: #fdf2d0;
+      color: #8c6314;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .tray-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tray-nav-btn {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      cursor: pointer;
+      color: #444;
+      transition: all 0.15s;
+    }
+
+    .tray-nav-btn:hover:not(:disabled) {
+      background: #1b1b1b;
+      color: #fff;
+      border-color: #1b1b1b;
+    }
+
+    .tray-nav-btn.flip-btn:hover {
+      background: #c59b3f;
+      color: #fff;
+      border-color: #c59b3f;
+    }
+
+    .tray-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .tray-item-remove {
+      cursor: pointer;
+      color: #999;
+      font-size: 18px;
+      line-height: 1;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+
+    .tray-item-remove:hover {
+      color: #e53e3e;
+      background: #fee2e2;
+    }
+
+    .tray-replacement-hint {
+      font-size: 10px;
+      color: #b48316;
+      background: #fdf8eb;
+      border: 1px dashed #e4c77c;
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .empty-tray-tip {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    /* Charm Categories & Grid */
+    .charm-type-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .type-pill {
+      border: 1px solid var(--border-light);
+      background: #fff;
+      padding: 5px 10px;
+      border-radius: 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .type-pill.active {
+      background: #1b1b1b;
+      color: #fff;
+      border-color: #1b1b1b;
+    }
+
+    .charm-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .charm-card {
+      aspect-ratio: 1;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 4px;
+      position: relative;
+      user-select: none;
+    }
+
+    .charm-card:hover {
+      border-color: #1b1b1b;
+      transform: translateY(-2px);
+      /* clean flat */
+    }
+
+    .charm-card img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+
+    .charm-card-text {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: #2b2b2b;
+    }
+
+    .charm-price-sub {
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Wizard Step Navigation Footer */
+    .sidebar-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-light);
+      background: #ffffff;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-step-prev {
+      background: #faf8f5;
+      border: 1px solid var(--border-light);
+      color: #333;
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-step-prev:hover {
+      background: #f0ede6;
+    }
+
+    .btn-step-next {
+      flex: 1;
+      background: #1b1b1b;
+      color: #ffffff;
+      border: 1px solid #1b1b1b;
+      padding: 11px 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-step-next:hover {
+      background: #333;
+      border-color: #333;
+    }
+
+    /* Atelier Floating Remote Action Dock */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: max(14px, env(safe-area-inset-bottom, 14px));
+      left: 12px;
+      right: 12px;
+      max-width: 440px;
+      margin: 0 auto;
+      height: 64px;
+      background: rgba(24, 23, 21, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(197, 155, 63, 0.4);
+      border-radius: 22px;
+      padding: 8px 12px 8px 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      z-index: 120;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .sticky-price-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .sticky-eyebrow {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #dfc88e;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+
+    .sticky-eyebrow-dot {
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: #c59b3f;
+      flex-shrink: 0;
+      box-shadow: 0 0 6px rgba(197, 155, 63, 0.6);
+    }
+
+    .sticky-price {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .sticky-action-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .sticky-flip-btn {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(228, 204, 160, 0.32);
+      color: #f4f0e8;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: all 0.2s var(--ease);
+    }
+
+    .sticky-flip-btn .flip-icon {
+      color: #c59b3f;
+      transition: transform 0.3s ease;
+    }
+
+    .sticky-flip-btn:hover,
+    .sticky-flip-btn:active {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #c59b3f;
+      transform: scale(0.97);
+    }
+
+    .sticky-flip-btn:active .flip-icon {
+      transform: rotate(180deg);
+    }
+
+    .sticky-cta-btn {
+      background: linear-gradient(135deg, #e4cca0 0%, #c59b3f 50%, #9e7526 100%);
+      color: #181715;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(197, 155, 63, 0.3);
+      transition: all 0.2s var(--ease);
+    }
+
+    .sticky-cta-btn:hover,
+    .sticky-cta-btn:active {
+      filter: brightness(1.08);
+      transform: scale(0.97);
+    }
+
+    @media (max-width: 992px) {
+      html {
+        overflow-x: clip;
+        overflow-y: visible !important;
+        height: auto !important;
+      }
+
+      body {
+        overflow-y: visible !important;
+        overflow-x: clip !important;
+        height: auto !important;
+        max-height: none !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+
+      .site-header {
+        position: relative !important;
+        top: auto !important;
+      }
+
+      .announcement-bar {
+        position: relative !important;
+      }
+
+      .mobile-sticky-bar {
+        display: flex;
+      }
+
+      .studio-container {
+        flex-direction: column;
+        flex: none;
+        height: auto;
+        overflow: visible;
+        padding-bottom: 115px; /* ample space so content never hides behind floating dock */
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+      }
+
+      .studio-subbar {
+        padding: 8px 12px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        position: relative !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+
+      .studio-subbar .subbar-title,
+      .studio-subbar .subbar-sep {
+        display: none !important;
+      }
+
+      .studio-subbar #orderBtn {
+        display: none !important;
+      }
+
+      .studio-subbar .subbar-left {
+        flex: 1 1 auto;
+        min-width: 0;
+        margin: 0 !important;
+      }
+
+      .studio-subbar .subbar-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #555;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .studio-subbar .subbar-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+      }
+
+      .studio-subbar .btn-secondary {
+        padding: 5px 8px;
+        font-size: 10px;
+        gap: 4px;
+        white-space: nowrap;
+        background: #ffffff;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-xs, 4px);
+        margin: 0 !important;
+      }
+
+      html[dir="rtl"] .studio-subbar .subbar-actions {
+        margin: 0 !important;
+      }
+      html[dir="rtl"] .studio-subbar .subbar-left {
+        margin: 0 !important;
+      }
+      html[dir="rtl"] .subbar-back-arrow {
+        transform: scaleX(-1);
+        display: inline-block;
+      }
+
+      .viewport-panel {
+        height: 42vh;
+        min-height: 290px;
+        max-height: 380px;
+        width: 100%;
+        max-width: 100vw;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 50 !important;
+        background: radial-gradient(circle at 50% 45%, #ffffff 0%, #f9f7f3 60%, #eeebe1 100%);
+        border-bottom: 1px solid var(--border-light);
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      .product-meta {
+        top: 8px;
+        left: 10px;
+        max-width: calc(100% - 150px);
+        pointer-events: none;
+      }
+
+      .tag-eyebrow {
+        font-size: 8px;
+        letter-spacing: 0.1em;
+        margin-bottom: 2px;
+      }
+
+      .product-title {
+        font-size: 14.5px;
+        line-height: 1.15;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .viewport-side-toggle {
+        top: 8px;
+        right: 8px;
+        padding: 2px;
+        border-radius: 20px;
+      }
+
+      .side-pill-btn {
+        padding: 4px 8px;
+        font-size: 9px;
+        border-radius: 14px;
+        gap: 3px;
+      }
+
+      /* Stack viewport toolbar vertically on top-right to prevent horizontal collision */
+      .viewport-toolbar {
+        top: 52px;
+        right: 12px;
+        bottom: auto;
+        left: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 15;
+      }
+
+      .tool-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.92);
+        /* clean flat */
+      }
+
+      .tool-btn-text {
+        display: none;
+      }
+
+      /* Center camera view chips at bottom */
+      .camera-views {
+        bottom: 10px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        padding: 3px 6px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        /* clean flat */
+        gap: 3px;
+        z-index: 15;
+      }
+
+      .view-chip {
+        padding: 4px 9px;
+        font-size: 9px;
+        border-radius: 12px;
+      }
+
+      /* Non-intrusive floating drag indicator */
+      .floating-drag-indicator {
+        bottom: 48px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 4px 12px;
+        font-size: 10px;
+        max-width: 90%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .customizer-sidebar {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        border-left: none;
+        border-top: 1px solid var(--border-light);
+        background: #ffffff;
+      }
+
+      .sidebar-header {
+        padding: 14px 16px 10px;
+      }
+
+      .wizard-stepper {
+        padding: 8px 10px;
+        gap: 2px;
+        overflow-x: auto;
+      }
+
+      .step-tab {
+        padding: 4px 6px;
+        gap: 4px;
+      }
+
+      .step-sub {
+        display: none;
+      }
+
+      .step-name {
+        font-size: 10px;
+      }
+
+      .metal-selector {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .metal-option {
+        padding: 6px 4px;
+        font-size: 10px;
+      }
+
+      .charm-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+      }
+
+      .charm-type-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+      .charm-type-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .type-pill {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .placed-charms-tray {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .charm-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      .camera-views .view-chip:nth-child(4) {
+        display: none; /* Hide 'Top' view chip on ultra-small screens */
+      }
+    }
+
+    /* Engraving Card */
+    .engraving-section-card {
+      background: #faf8f5;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .engraving-section-card:hover {
+      border-color: var(--gold-border);
+    }
+    .engraving-card-header {
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: #fdfcf9;
+    }
+    .engraving-icon {
+      color: var(--gold-primary);
+      font-size: 13px;
+    }
+    .engraving-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+    .engraving-toggle-arrow {
+      font-size: 11px;
+      color: var(--gold-deep);
+      transition: transform 0.2s ease;
+    }
+    .engraving-card-body {
+      padding: 14px;
+      border-top: 1px solid var(--border-light);
+      background: #faf8f5;
+    }
+    .engraving-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .engraving-text-box {
+      width: 100%;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      padding: 9px 12px;
+      font-size: 12px;
+      background: #ffffff;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .engraving-text-box:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 2px rgba(197, 155, 63, 0.15);
+    }
+    .engraving-font-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .engraving-font-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .engraving-font-btn {
+      padding: 8px 4px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .engraving-font-btn:hover {
+      border-color: var(--gold-primary);
+    }
+    .engraving-font-btn.active {
+      border-color: var(--text-dark);
+      background: var(--text-dark);
+      color: #ffffff;
+    }
+    .engraving-font-btn.active span {
+      color: #ffffff !important;
+    }
+
+    /* Custom Charm Uploader */
+    .custom-charm-uploader {
+      margin-top: 12px;
+    }
+    .custom-uploader-dropzone {
+      border: 1.5px dashed var(--gold-border);
+      background: #faf8f5;
+      border-radius: var(--radius-sm);
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .custom-uploader-dropzone:hover,
+    .custom-uploader-dropzone.dragover {
+      background: #fdfcf9;
+      border-color: var(--gold-primary);
+    }
+    .custom-charm-preview-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      padding: 12px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+    }
+    .custom-preview-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-warm);
+      border: 1.5px solid var(--gold-primary);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .custom-preview-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .custom-title-input {
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 11.5px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xs);
+      outline: none;
+    }
+    .custom-title-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    /* AR Modal & Wrist Simulator */
+    .ep-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 17, 15, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .ar-modal-dialog {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      max-width: 540px;
+      width: 100%;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.24);
+      overflow: hidden;
+      animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .ar-modal-header {
+      padding: 20px 24px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .ar-modal-close {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      color: #888;
+      transition: color 0.2s;
+    }
+    .ar-modal-close:hover {
+      color: var(--text-dark);
+    }
+    .ar-modal-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-light);
+      background: #faf8f5;
+    }
+    .ar-tab-btn {
+      flex: 1;
+      padding: 12px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .ar-tab-btn.active {
+      color: var(--text-dark);
+      border-bottom-color: var(--gold-primary);
+      background: #ffffff;
+    }
+    .ar-tab-pane {
+      padding: 20px 24px;
+    }
+    .wrist-visualizer-container {
+      background: #faf8f5;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .wrist-silhouette-stage {
+      height: 240px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #ffffff 0%, #f4f0e8 100%);
+      overflow: hidden;
+    }
+    .wrist-arm {
+      width: 130px;
+      height: 320px;
+      border-radius: 65px;
+      position: relative;
+      transform: rotate(38deg);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+      transition: background 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrist-arm.skin-tone-fair {
+      background: linear-gradient(135deg, #fcece3 0%, #ebd3c8 50%, #d8baa9 100%);
+    }
+    .wrist-arm.skin-tone-olive {
+      background: linear-gradient(135deg, #e3ba94 0%, #c49669 50%, #a47648 100%);
+    }
+    .wrist-arm.skin-tone-deep {
+      background: linear-gradient(135deg, #855335 0%, #683d23 50%, #4a2815 100%);
+    }
+    .wrist-bangle-overlay {
+      position: absolute;
+      width: 170px;
+      height: 90px;
+      border-radius: 50%;
+      border: 6px solid #e3b552;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22), inset 0 2px 4px rgba(255,255,255,0.6);
+      transform: rotate(-38deg);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrist-bangle-overlay.alloy-silver {
+      border-color: #dcdcdc;
+    }
+    .wrist-bangle-overlay.alloy-rose {
+      border-color: #e09f87;
+    }
+    .wrist-controls {
+      padding: 16px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+    }
+    .skin-tone-picker {
+      display: flex;
+      gap: 8px;
+    }
+    .skin-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .skin-btn:hover {
+      transform: scale(1.15);
+    }
+    .skin-btn.active {
+      border-color: var(--text-dark);
+      transform: scale(1.15);
+    }
+    .skin-btn.tone-fair { background: #ebd3c8; }
+    .skin-btn.tone-olive { background: #c49669; }
+    .skin-btn.tone-deep { background: #683d23; }
+    .ar-modal-footer {
+      padding: 14px 24px;
+      background: #faf8f5;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+
+  <!-- Three.js ES Modules -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Global Storefront Header & Cart Drawer -->
+  <div id="ep-header-mount"></div>
+
+  <!-- Studio Sub-Toolbar -->
+  <div class="studio-subbar">
+    <div class="subbar-left">
+      <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="subbar-back-link">
+        <span class="subbar-back-arrow">&larr;</span> <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">Collections</span>
+      </a>
+      <span class="subbar-sep">|</span>
+      <span class="subbar-title"><span data-i18n="customizer.studio_title">3D Dual-Track Glider Atelier</span></span>
+    </div>
+    <div class="subbar-actions">
+      <button class="btn-secondary" id="arTryOnBtn" title="Launch Virtual AR Try-On">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <span class="subbar-btn-text" data-i18n="customizer.ar_tryon_btn">AR Try-On</span>
+      </button>
+      <button class="btn-secondary" id="saveWishlistBtn" title="Save Custom 3D Design to Wishlist">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="subbar-btn-text" data-i18n="common.save">Save Design</span>
+      </button>
+      <button class="btn-secondary" id="exportGlbBtn" title="Export 3D Model">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="subbar-btn-text" data-i18n="common.export_glb">Export 3D</span>
+      </button>
+      <button class="btn-primary" id="orderBtn">
+        <span data-i18n="common.add_to_bag">Add To Bag</span> &bull; <span id="headerTotal">$500.00</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Studio Container -->
+  <div class="studio-container">
+    
+    <!-- 3D WebGL Viewport -->
+    <div class="viewport-panel">
+      <div class="product-meta">
+        <div class="tag-eyebrow">Design Yours &bull; 14K Gold</div>
+        <h1 class="product-title">Dual-Sided Glider Charm Bangle™</h1>
+      </div>
+
+      <!-- Quick 180 Flip Pill (Front / Back) -->
+      <div class="viewport-side-toggle">
+        <button class="side-pill-btn active" id="btnSideFront" onclick="goToStep(1)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/></svg>
+          <span data-i18n="customizer.front_side">Front Side</span>
+        </button>
+        <button class="side-pill-btn" id="btnSideBack" onclick="goToStep(2)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16V8"/></svg>
+          <span data-i18n="customizer.back_side">Back Side</span>
+        </button>
+      </div>
+
+      <!-- Floating Drag Help Pill -->
+      <div class="floating-drag-indicator" id="floatingDragIndicator">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+        <span data-i18n="customizer.drag_tip_bar">Drag charms with mouse or touch to glide along channels</span>
+      </div>
+
+      <!-- Canvas Mount -->
+      <div id="canvasMount" class="viewport-canvas-container"></div>
+
+      <!-- Viewport Toolbars -->
+      <div class="viewport-toolbar">
+        <button class="tool-btn" id="toggleRotateBtn" title="Pause / Resume Rotation">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          <span class="tool-btn-text" id="rotateLabel">Pause</span>
+        </button>
+        <button class="tool-btn" id="resetCamBtn" title="Reset View">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <span class="tool-btn-text">Reset</span>
+        </button>
+        <button class="tool-btn" id="clearAllBtn" title="Clear All Placed Charms">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span class="tool-btn-text">Clear</span>
+        </button>
+      </div>
+
+      <!-- Camera View Angles -->
+      <div class="camera-views">
+        <button class="view-chip active" data-view="front" data-i18n="customizer.view_front_btn">Front</button>
+        <button class="view-chip" data-view="back" data-i18n="customizer.view_back_btn">Back</button>
+        <button class="view-chip" data-view="clasp" data-i18n="customizer.view_clasp_btn">Clasp</button>
+        <button class="view-chip" data-view="top" data-i18n="customizer.view_top_btn">Top</button>
+        <button class="view-chip" data-view="inside" data-i18n="customizer.view_inside_btn">Inside</button>
+      </div>
+    </div>
+
+    <!-- Right Customization Sidebar -->
+    <div class="customizer-sidebar">
+      <div class="sidebar-header">
+        <div class="price-row">
+          <span class="bangle-label">Your bangle</span>
+          <span class="bangle-price" id="totalPrice">$500.00</span>
+        </div>
+        <div class="price-breakdown-toggle" id="toggleBreakdown">
+          Price Breakdown <span id="breakdownArrow">&dtrif;</span>
+        </div>
+        <div class="price-breakdown-panel" id="breakdownPanel">
+          <div class="breakdown-line">
+            <span id="baseBangleLabel">14K Skinny Charm Bangle:</span>
+            <span id="baseBanglePrice">$410.00</span>
+          </div>
+          <div class="breakdown-line">
+            <span>Front Charms (<span id="frontCountBreakdown">2</span>):</span>
+            <span id="frontPriceBreakdown">$90.00</span>
+          </div>
+          <div class="breakdown-line">
+            <span>Back Charms (<span id="backCountBreakdown">0</span>):</span>
+            <span id="backPriceBreakdown">$0.00</span>
+          </div>
+          <div class="breakdown-line total">
+            <span>Estimated Total:</span>
+            <span id="finalTotalBreakdown">$500.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Atelier Progressive Disclosure Stepper Accordion -->
+      <div class="atelier-accordion" id="atelierAccordion">
+        
+        <!-- Accordion Step 1: Metal & Size -->
+        <div class="accordion-step active" id="accStep1">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(1)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">1</span>
+              <div>
+                <div class="acc-title">اختيار المعدن والمقاس</div>
+                <div class="acc-subtitle" id="accSummaryMetal">ذهب أصفر 14K &bull; مقاس XS</div>
+              </div>
+            </div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody1">
+            <div class="acc-inner-label">نوع وتشطيب المعدن:</div>
+            <div class="metal-selector-minimal">
+              <div class="metal-card-opt active" data-metal="yellow" onclick="selectMetal('yellow')">
+                <div class="metal-swatch-wrapper">
+                  <span class="luxury-swatch swatch-gold"></span>
+                  <span class="metal-active-check">✓</span>
+                </div>
+                <div class="metal-card-info">
+                  <span class="metal-opt-name">ذهب أصفر 14K</span>
+                  <span class="metal-opt-purity">ذهب نقي عيار 14</span>
+                  <span class="metal-opt-price">$410</span>
+                </div>
+              </div>
+              <div class="metal-card-opt" data-metal="white" onclick="selectMetal('white')">
+                <div class="metal-swatch-wrapper">
+                  <span class="luxury-swatch swatch-silver"></span>
+                  <span class="metal-active-check">✓</span>
+                </div>
+                <div class="metal-card-info">
+                  <span class="metal-opt-name">فضة إسترليني 925</span>
+                  <span class="metal-opt-purity">فضة بريطانية نقية</span>
+                  <span class="metal-opt-price">$225</span>
+                </div>
+              </div>
+              <div class="metal-card-opt" data-metal="rose" onclick="selectMetal('rose')">
+                <div class="metal-swatch-wrapper">
+                  <span class="luxury-swatch swatch-rose"></span>
+                  <span class="metal-active-check">✓</span>
+                </div>
+                <div class="metal-card-info">
+                  <span class="metal-opt-name">ذهب وردي 14K</span>
+                  <span class="metal-opt-purity">ذهب وردي عيار 14</span>
+                  <span class="metal-opt-price">$425</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; margin-bottom:8px;">
+              <span class="acc-inner-label" style="font-weight:600; color:#222;">مقاس معصم الإسورة:</span>
+              <a href="/{{ app()->getLocale() ?: 'ar' }}/about#sizing" target="_blank" class="size-guide-link">دليل القياس ↗</a>
+            </div>
+            <div class="size-selector-minimal">
+              <button type="button" class="size-opt-btn active" data-size="XS" onclick="selectSize('XS')">
+                <span class="size-opt-label">XS</span>
+                <span class="size-opt-sub">5.5" (14 cm)</span>
+              </button>
+              <button type="button" class="size-opt-btn" data-size="S" onclick="selectSize('S')">
+                <span class="size-opt-label">S</span>
+                <span class="size-opt-sub">6.0" (15 cm)</span>
+              </button>
+              <button type="button" class="size-opt-btn" data-size="M" onclick="selectSize('M')">
+                <span class="size-opt-label">M</span>
+                <span class="size-opt-sub">6.5" (16.5 cm)</span>
+              </button>
+              <button type="button" class="size-opt-btn" data-size="L" onclick="selectSize('L')">
+                <span class="size-opt-label">L</span>
+                <span class="size-opt-sub">7.0" (18 cm)</span>
+              </button>
+            </div>
+
+            <div class="acc-footer-action">
+              <button type="button" class="btn btn-primary btn-sm" onclick="openAccordionStep(2)">
+                <span>متابعة لتخصيص الدلايات</span> &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Step 2: Charms Studio (Front & Back) -->
+        <div class="accordion-step" id="accStep2">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(2)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">2</span>
+              <div>
+                <div class="acc-title">تخصيص وترتيب الدلايات</div>
+                <div class="acc-subtitle" id="accSummaryCharms">الأمامية (2) &bull; الخلفية (0)</div>
+              </div>
+            </div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody2" style="display:none;">
+            <!-- Track Switcher (Front vs Back) -->
+            <div class="track-tab-switcher">
+              <button type="button" class="track-tab-btn active" id="btnTrackFront" onclick="switchActiveTrack('front')">
+                <span>الواجهة الأمامية</span>
+                <span class="track-count-tag" id="trackTagFront">2</span>
+              </button>
+              <button type="button" class="track-tab-btn" id="btnTrackBack" onclick="switchActiveTrack('back')">
+                <span>الواجهة الخلفية</span>
+                <span class="track-count-tag" id="trackTagBack">0</span>
+              </button>
+            </div>
+
+            <!-- Placed Charms on Active Track -->
+            <div class="placed-charms-tray">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-size:11px; font-weight:700; color:#555;" id="placedTrayTrackTitle">الدلايات المركبة (المسار الأمامي)</span>
+                <button type="button" class="tray-mini-btn" onclick="autoCenterCharms()">توزيع متساوي</button>
+              </div>
+              <div class="placed-charms-list" id="placedCharmsList">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Instant Name to Charms (صياغة الاسم بالحروف الفورية) -->
+            <div class="name-to-charms-box" style="background:#fbf9f5; border:1px solid #e5dcce; border-radius:6px; padding:12px 14px; margin-top:14px; margin-bottom:14px; box-shadow:0 1px 4px rgba(0,0,0,0.02);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-size:12px; font-weight:700; color:#181715; display:flex; align-items:center; gap:5px;">
+                  <span style="color:#c59b3f; font-size:13px;">✦</span> صياغة الاسم بالحروف الفورية (Instant Name)
+                </span>
+                <span style="font-size:10.5px; color:#888;">حتى 8 أحرف</span>
+              </div>
+              
+              <div style="display:flex; gap:8px; margin-bottom:8px;">
+                <input type="text" id="nameToCharmsInput" placeholder="اكتبي اسمكِ هنا (مثال: NOUR)..." maxlength="8" style="flex:1; padding:8px 12px; border:1px solid #d4cdbf; border-radius:4px; font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; outline:none; background:#ffffff; color:#181715;" dir="ltr">
+                <button type="button" id="applyNameToCharmsBtn" class="btn btn-primary" style="padding:8px 14px; font-size:12px; white-space:nowrap; font-weight:700; cursor:pointer;">
+                  تركيب ✦
+                </button>
+              </div>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; font-size:11px; color:#555;">
+                <div style="display:flex; gap:12px; align-items:center;">
+                  <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
+                    <input type="radio" name="nameCharmsStyle" value="gold" checked style="accent-color:#c59b3f;">
+                    <span style="font-weight:600;">ذهب 14K</span>
+                  </label>
+                  <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
+                    <input type="radio" name="nameCharmsStyle" value="pave" style="accent-color:#c59b3f;">
+                    <span style="font-weight:600;">بافيه ألماسي</span>
+                  </label>
+                </div>
+                <button type="button" id="clearTrackCharmsBtn" style="background:none; border:none; color:#c62828; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;">
+                  مسح دلايات المسار ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="acc-inner-label" style="margin-top:14px; margin-bottom:6px;">أضيفي دلاية جديدة:</div>
+            <div class="charm-type-tabs">
+              <button type="button" class="type-pill active" data-type="symbols">أيقونات ورموز</button>
+              <button type="button" class="type-pill" data-type="solid-letters">حروف ذهب</button>
+              <button type="button" class="type-pill" data-type="pave-letters">حروف بافيه</button>
+              <button type="button" class="type-pill" data-type="numbers">أرقام</button>
+              <button type="button" class="type-pill" data-type="custom">✦ دلاية مخصصة</button>
+            </div>
+
+            <!-- Dynamic Charm Grid -->
+            <div class="charm-grid" id="charmGrid">
+              <!-- Populated via JS -->
+            </div>
+
+            <!-- Bespoke Charm Uploader Container -->
+            <div id="customCharmUploader" class="custom-charm-uploader" style="display:none;">
+              <div class="custom-uploader-dropzone" id="customCharmDropzone">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c59b3f" stroke-width="1.8" style="margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <div style="font-weight:600; font-size:12.5px; margin-bottom:4px;">رفع تصميم خاص (Silhouette)</div>
+                <p style="font-size:11px; color:#787268; line-height:1.5; margin-bottom:12px;">ارفعي صورة مفرغة بصيغة PNG لتوليد دلاية ثلاثية الأبعاد ببريق معدني فوري على المسار.</p>
+                <label class="btn-secondary" style="cursor:pointer; display:inline-flex;">
+                  <span>اختيار ملف PNG</span>
+                  <input type="file" id="customCharmFileInput" accept="image/png,image/svg+xml,image/webp" style="display:none;">
+                </label>
+              </div>
+              <div id="customCharmPreviewCard" class="custom-charm-preview-card" style="display:none;">
+                <div class="custom-preview-circle">
+                  <img id="customCharmPreviewImg" src="" alt="Custom Charm Preview">
+                </div>
+                <div style="flex:1;">
+                  <input type="text" id="customCharmTitleInput" class="custom-title-input" placeholder="اسم الدلاية (مثال: شعاري الخاص)">
+                  <div style="font-size:11px; color:#8b661d; font-weight:600; margin-top:4px;">تصميم يدوي خاص &bull; $65.00</div>
+                </div>
+                <button type="button" class="btn-primary btn-sm" id="addCustomCharmBtn">إضافة للمسار (+$65)</button>
+              </div>
+            </div>
+
+            <div class="acc-footer-action">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(3)">
+                <span>النقش الداخلي بالليزر</span> &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Step 3: Complimentary Laser Engraving -->
+        <div class="accordion-step" id="accStep3">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(3)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">3</span>
+              <div>
+                <div class="acc-title">النقش الداخلي بالليزر</div>
+                <div class="acc-subtitle" id="accSummaryEngraving">مجاناً &bull; اختياري</div>
+              </div>
+            </div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody3" style="display:none;">
+            <p style="font-size:11.5px; color:#666; margin-bottom:10px; line-height:1.5;">
+              انقشي اسماً، تاريخاً، أو عبارة خاصة محفورة بالليزر بجوار ختم العيار الرسمي للأتيلييه.
+            </p>
+            <input type="text" id="engravingInput" class="engraving-text-box" maxlength="25" placeholder="مثال: FOREVER • 2026">
+            <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:10px; color:#888;">
+              <span id="engravingCharCount">0 / 25 حرف</span>
+              <span style="color:#c59b3f; font-weight:700;">خدمة إهداء مجانية ✦</span>
+            </div>
+
+            <div style="margin:12px 0;">
+              <div style="font-size:10px; font-weight:700; text-transform:uppercase; margin-bottom:6px; color:#555;">نوع الخط:</div>
+              <div class="engraving-font-pills">
+                <button type="button" class="engraving-font-btn active" data-font="roman">Atelier Roman</button>
+                <button type="button" class="engraving-font-btn" data-font="script">Script Elegance</button>
+                <button type="button" class="engraving-font-btn" data-font="modern">Modern Sans</button>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:8px;">
+              <button type="button" class="btn-secondary" style="flex:1; justify-content:center; font-size:11px;" id="inspectEngravingBtn">
+                <span>معاينة في الـ 3D ✦</span>
+              </button>
+              <button type="button" class="tray-mini-btn" style="padding:6px 12px;" id="clearEngravingBtn">مسح</button>
+            </div>
+
+            <div class="acc-footer-action">
+              <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(4)">
+                <span>مراجعة التصميم</span> &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Step 4: Review & Bag -->
+        <div class="accordion-step" id="accStep4">
+          <div class="accordion-step-header" onclick="toggleAccordionStep(4)">
+            <div class="acc-header-left">
+              <span class="acc-step-badge">4</span>
+              <div>
+                <div class="acc-title">ملخص القطعة وإتمام الطلب</div>
+                <div class="acc-subtitle" id="accSummaryTotal">$500.00 &bull; 154.000 د.ك</div>
+              </div>
+            </div>
+            <div class="acc-header-right">
+              <span class="acc-arrow">&dtrif;</span>
+            </div>
+          </div>
+          <div class="accordion-step-body" id="accBody4" style="display:none;">
+            <div class="review-box-luxury">
+              <div class="rev-row"><span>المعدن والمقاس:</span><strong id="revMetalAndSize">ذهب أصفر 14K (XS)</strong></div>
+              <div class="rev-row"><span>دلايات المسار الأمامي:</span><span id="revFrontList">نحلة، مارتيني</span></div>
+              <div class="rev-row"><span>دلايات المسار الخلفي:</span><span id="revBackList">لا توجد</span></div>
+              <div class="rev-row"><span>النقش الداخلي:</span><span id="revEngraving">بدون نقش</span></div>
+              <div class="rev-total-row">
+                <span>السعر الإجمالي:</span>
+                <div>
+                  <div class="rev-total-usd" id="revFinalTotalUSD">$500.00</div>
+                  <div class="rev-total-kwd" id="revFinalTotalKWD">154.000 د.ك KWD</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+              <button type="button" class="btn btn-primary" style="width:100%; justify-content:center; padding:13px;" onclick="addCustomBangleToStoreBag(true)">
+                <span>إتمام الطلب والدفع</span> &rarr;
+              </button>
+              <button type="button" class="btn btn-outline" style="width:100%; justify-content:center; padding:10px;" onclick="addCustomBangleToStoreBag(false)">
+                <span>إضافة لحقيبة المقتنيات</span>
+              </button>
+              <button type="button" class="btn btn-ghost btn-sm" style="width:100%; justify-content:center;" onclick="saveCustomBangleToWishlist()">
+                <span>♡ حفظ التصميم بقائمة الأمنيات</span>
+              </button>
+              <button type="button" class="btn-secondary" style="width:100%; justify-content:center; padding:9px; font-size:11px;" id="downloadCadModel">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>تصدير مجسم 3D (.GLB)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Atelier Floating Remote Action Dock -->
+  <aside class="mobile-sticky-bar" id="mobileStickyActionBar" aria-label="Studio Quick Actions">
+    <div class="sticky-price-block">
+      <div class="sticky-eyebrow">
+        <span class="sticky-eyebrow-dot"></span>
+        <span id="stickyTrackBadge">Front: 2 · Back: 0</span>
+      </div>
+      <span class="sticky-price" id="stickyTotal">$500.00</span>
+    </div>
+    <div class="sticky-action-group">
+      <button class="sticky-flip-btn" id="stickyFlipBtn" title="Flip Bangle Track (3D)">
+        <svg class="flip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/></svg>
+        <span id="stickyFlipLabel">Back</span>
+      </button>
+      <button class="sticky-cta-btn" id="stickyOrderBtn" title="Add Customized Bangle to Bag">
+        <span>Add to Bag</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Atelier Virtual AR Try-On Modal -->
+  <div class="ep-modal-backdrop" id="arModal" style="display:none;">
+    <div class="ar-modal-dialog">
+      <div class="ar-modal-header">
+        <div>
+          <div class="tag-eyebrow" style="color:#c59b3f; font-size:10px; font-weight:700; letter-spacing:0.12em;">ATELIER INNOVATION</div>
+          <h3 class="serif" style="font-size:24px; color:#1b1b1b; margin-top:2px;" data-i18n="customizer.ar_modal_title">Atelier Virtual AR & Wrist Simulation</h3>
+        </div>
+        <button class="ar-modal-close" id="arModalCloseBtn">&times;</button>
+      </div>
+
+      <div class="ar-modal-tabs">
+        <button class="ar-tab-btn active" id="arTabWristBtn" data-i18n="customizer.ar_tab_wrist">Interactive Wrist Studio</button>
+        <button class="ar-tab-btn" id="arTabMobileBtn" data-i18n="customizer.ar_tab_mobile">Mobile AR QuickLook</button>
+      </div>
+
+      <!-- Tab 1: Virtual Wrist Studio -->
+      <div class="ar-tab-pane" id="arPaneWrist">
+        <div class="wrist-visualizer-container">
+          <div class="wrist-silhouette-stage" id="wristStage">
+            <div class="wrist-arm skin-tone-fair" id="wristArm">
+              <div class="wrist-bangle-overlay alloy-gold" id="wristBangleOverlay"></div>
+            </div>
+          </div>
+          <div class="wrist-controls">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;" data-i18n="customizer.ar_wrist_tone">Wrist Skin Tone</span>
+              <div class="skin-tone-picker">
+                <button type="button" class="skin-btn tone-fair active" data-tone="fair" title="Fair Porcelain"></button>
+                <button type="button" class="skin-btn tone-olive" data-tone="olive" title="Warm Olive"></button>
+                <button type="button" class="skin-btn tone-deep" data-tone="deep" title="Deep Bronze"></button>
+              </div>
+            </div>
+            <div style="font-size:11px; color:#787268; line-height:1.5;">
+              Simulated proportional wrist drape based on active size: <strong id="arSizeLabel" style="color:#1b1b1b;">XS (5.5")</strong>. Rotate and inspect the fit with your selected metal and charms.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Mobile AR QuickLook -->
+      <div class="ar-tab-pane" id="arPaneMobile" style="display:none;">
+        <div style="text-align:center; padding:10px 6px;">
+          <div class="qr-box-container">
+            <svg id="arQrSvg" width="160" height="160" viewBox="0 0 160 160" style="margin:0 auto; display:block; background:#fff; padding:10px; border-radius:8px; border:1px solid #e8e3d8;"></svg>
+          </div>
+          <h4 class="serif" style="font-size:18px; margin:16px 0 6px;" data-i18n="customizer.ar_scan_qr">Scan with camera to launch instant AR</h4>
+          <p style="font-size:12px; color:#787268; max-width:400px; margin:0 auto 16px;" data-i18n="customizer.ar_mobile_hint">Powered by Apple QuickLook & WebXR. No app installation required.</p>
+          <button type="button" class="btn-primary btn-sm" id="exportArAssetBtn" style="display:inline-flex; align-items:center; gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download 3D Model (.GLB)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ar-modal-footer">
+        <button type="button" class="btn-secondary" id="arModalCloseBottomBtn" data-i18n="customizer.ar_close">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js App Logic -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    // State
+    const state = {
+      metal: 'yellow',
+      size: 'XS',
+      basePrice: 410,
+      charmPrice: 45,
+      currentStep: 1, // 1: Front, 2: Back, 3: Review
+      activeSide: 'front', // 'front' | 'back'
+      frontCharms: [], // Array of { uid, title, type, imgUrl, s, flipped, mesh, facePivot }
+      backCharms: [],  // Array of { uid, title, type, imgUrl, s, flipped, mesh, facePivot }
+      selectedCharmIndex: -1,
+      autoRotate: false,
+      currentCharmType: 'symbols',
+      engravingText: '',
+      engravingFont: 'roman'
+    };
+
+    // DOM Elements
+    const mount = document.getElementById('canvasMount');
+    const totalPriceEl = document.getElementById('totalPrice');
+    const headerTotalEl = document.getElementById('headerTotal');
+    const frontPriceBreakdownEl = document.getElementById('frontPriceBreakdown');
+    const backPriceBreakdownEl = document.getElementById('backPriceBreakdown');
+    const frontCountBreakdownEl = document.getElementById('frontCountBreakdown');
+    const backCountBreakdownEl = document.getElementById('backCountBreakdown');
+    const finalTotalBreakdownEl = document.getElementById('finalTotalBreakdown');
+    const placedCharmsListEl = document.getElementById('placedCharmsList');
+    const trackStatusEl = document.getElementById('trackStatus');
+    const activeTrayTitleEl = document.getElementById('activeTrayTitle');
+    const stepBannerTextEl = document.getElementById('stepBannerText');
+    const stepBannerTagEl = document.getElementById('stepBannerTag');
+    const btnNextStepEl = document.getElementById('btnNextStep');
+    const btnPrevStepEl = document.getElementById('btnPrevStep');
+
+    // 1. Scene, Camera, Renderer
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xfaf9f6);
+
+    // Bangle is horizontal in XY plane, Z is vertical UP!
+    const camera = new THREE.PerspectiveCamera(28, mount.clientWidth / mount.clientHeight, 0.005, 5);
+    camera.up.set(0, 0, 1);
+    camera.position.set(0, -0.15, 0.045); // Looking at front channel
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(mount.clientWidth || 800, mount.clientHeight || 600);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.domElement.style.display = 'block';
+    renderer.domElement.style.touchAction = 'none';
+    mount.appendChild(renderer.domElement);
+
+    function syncViewportSize() {
+      const width = mount.clientWidth;
+      const height = mount.clientHeight;
+      if (width > 0 && height > 0) {
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height, false);
+      }
+    }
+    syncViewportSize();
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(syncViewportSize).observe(mount);
+    }
+
+    // Studio Environment lighting
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    // Warm jewelry studio lighting
+    const keyLight = new THREE.DirectionalLight(0xfff4e0, 2.2);
+    keyLight.position.set(0.18, -0.22, 0.28);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0xffeed6, 1.3);
+    fillLight.position.set(-0.22, 0.18, 0.18);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffdf96, 2.0);
+    rimLight.position.set(0, 0.26, 0.22);
+    scene.add(rimLight);
+
+    const ambientLight = new THREE.AmbientLight(0xfff8ee, 0.75);
+    scene.add(ambientLight);
+
+    // Orbit Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = false;
+    controls.autoRotateSpeed = 0.35;
+    controls.minDistance = 0.06;
+    controls.maxDistance = 0.35;
+    controls.minPolarAngle = Math.PI * 0.16;
+    controls.maxPolarAngle = Math.PI * 0.84;
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    // Root Group
+    const rootGroup = new THREE.Group();
+    scene.add(rootGroup);
+
+    // 2. Procedural Dual-Track Bangle Geometry (Channel on both Front and Back!)
+    const Dd = 2.4, Od = 0.85, kd = 0.55, Ad = 0.3, jd = 0.3, Md = 0.005, Nd = 1.4, Pd = 5.2;
+
+    function getCrossSectionData(e) {
+      const t = e / 2.0;
+      const n = t - Od;
+      const channelShape = [
+        [0.0, -t + jd], [0.0, t - jd], [jd, t], [2.1, t],
+        [Dd, t - Ad], [Dd, n], [1.85, n], [1.85, -n],
+        [Dd, -n], [Dd, -t + Ad], [2.1, -t], [jd, -t]
+      ];
+      const fillShape = [[1.84, -n], [1.84, n], [Dd, n], [Dd, -n]];
+      const blockShape = [[2.39, -n], [2.39, n], [2.75, n], [2.75, -n]];
+      const s = n * 0.62;
+      const tabShape = [[2.74, -s], [2.74, s], [3.1, s], [3.1, -s]];
+      return { channel: channelShape, CHANNEL_FLOOR_EDGE: 6, fill: fillShape, block: blockShape, tab: tabShape, yr: n };
+    }
+
+    function createSweepBuilder(e, t) {
+      const positions = [];
+      const normals = [];
+      const bandIndices = [];
+      const channelIndices = [];
+
+      function frame(angle) {
+        const cosA = Math.cos(angle);
+        const sinA = Math.sin(angle);
+        const px = e * cosA;
+        const py = t * sinA;
+        let sx = t * cosA;
+        let sy = e * sinA;
+        const l1 = Math.hypot(sx, sy) || 1.0;
+        sx /= l1;
+        sy /= l1;
+        let tx = -e * sinA;
+        let ty = t * cosA;
+        const l2 = Math.hypot(tx, ty) || 1.0;
+        tx /= l2;
+        ty /= l2;
+        return { px, py, nx: sx, ny: sy, tx, ty };
+      }
+
+      function mm(angle, r) {
+        return r / (Math.hypot(e * Math.sin(angle), t * Math.cos(angle)) || 1.0);
+      }
+
+      function sweep(shape, startAngle, endAngle, channelEdge) {
+        const steps = Math.max(2, Math.ceil((endAngle - startAngle) * 140));
+        const numVerts = shape.length;
+        for (let u = 0; u < numVerts; u++) {
+          const d = shape[u];
+          const f = shape[(u + 1) % numVerts];
+          const p = f[0] - d[0];
+          const m = f[1] - d[1];
+          const baseIdx = positions.length / 3;
+          const target = (u === channelEdge) ? channelIndices : bandIndices;
+
+          for (let s = 0; s <= steps; s++) {
+            const ang = startAngle + (endAngle - startAngle) * (s / steps);
+            const frm = frame(ang);
+            let aX = frm.nx * (-m);
+            let cY = frm.ny * (-m);
+            let uZ = p;
+            const h = Math.hypot(aX, cY, uZ) || 1.0;
+            aX /= h; cY /= h; uZ /= h;
+
+            positions.push(frm.px + frm.nx * d[0], frm.py + frm.ny * d[0], d[1]);
+            normals.push(aX, cY, uZ);
+
+            positions.push(frm.px + frm.nx * f[0], frm.py + frm.ny * f[0], f[1]);
+            normals.push(aX, cY, uZ);
+          }
+
+          for (let s = 0; s < steps; s++) {
+            const tIdx = baseIdx + s * 2;
+            const nIdx = tIdx + 1;
+            const rIdx = tIdx + 2;
+            const iIdx = tIdx + 3;
+            target.push(tIdx, nIdx, rIdx, nIdx, iIdx, rIdx);
+          }
+        }
+      }
+
+      function cap(shape, angle, sign) {
+        const frm = frame(angle);
+        const pts2d = shape.map(pt => new THREE.Vector2(pt[0], pt[1]));
+        const triangles = THREE.ShapeUtils.triangulateShape(pts2d, []);
+        const baseIdx = positions.length / 3;
+        const ux = frm.tx * sign;
+        const uy = frm.ty * sign;
+
+        shape.forEach(pt => {
+          positions.push(frm.px + frm.nx * pt[0], frm.py + frm.ny * pt[0], pt[1]);
+          normals.push(ux, uy, 0.0);
+        });
+
+        triangles.forEach(tri => {
+          const p0 = new THREE.Vector3(positions[(baseIdx + tri[0]) * 3], positions[(baseIdx + tri[0]) * 3 + 1], positions[(baseIdx + tri[0]) * 3 + 2]);
+          const p1 = new THREE.Vector3(positions[(baseIdx + tri[1]) * 3], positions[(baseIdx + tri[1]) * 3 + 1], positions[(baseIdx + tri[1]) * 3 + 2]);
+          const p2 = new THREE.Vector3(positions[(baseIdx + tri[2]) * 3], positions[(baseIdx + tri[2]) * 3 + 1], positions[(baseIdx + tri[2]) * 3 + 2]);
+          const v0 = new THREE.Vector3().subVectors(p1, p0);
+          const v1 = new THREE.Vector3().subVectors(p2, p0);
+          const cross = new THREE.Vector3().crossVectors(v0, v1);
+          if (cross.x * ux + cross.y * uy >= 0) {
+            bandIndices.push(baseIdx + tri[0], baseIdx + tri[1], baseIdx + tri[2]);
+          } else {
+            bandIndices.push(baseIdx + tri[0], baseIdx + tri[2], baseIdx + tri[1]);
+          }
+        });
+      }
+
+      function solid(shape, startAngle, endAngle) {
+        sweep(shape, startAngle, endAngle, -1);
+        cap(shape, startAngle, -1);
+        cap(shape, endAngle, 1);
+      }
+
+      function build() {
+        const geom = new THREE.BufferGeometry();
+        geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        geom.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+        geom.setIndex(bandIndices.concat(channelIndices));
+        geom.addGroup(0, bandIndices.length, 0);
+        geom.addGroup(bandIndices.length, channelIndices.length, 1);
+        geom.computeBoundingBox();
+        return geom;
+      }
+
+      return { frame, mm, sweep, cap, solid, build };
+    }
+
+    function generateBangleGeometry(outerA = 28.5 + Dd, outerB = 24.0 + Dd, bandHeightMm = 5.0) {
+      const r = outerA - Dd;
+      const i = outerB - Dd;
+      const crossData = getCrossSectionData(bandHeightMm);
+      const builder = createSweepBuilder(r, i);
+      const c = Md;
+      const l = Math.PI - Md;
+
+      // Front Channel sweep & caps
+      builder.sweep(crossData.channel, c, l, crossData.CHANNEL_FLOOR_EDGE);
+      builder.cap(crossData.channel, c, -1);
+      builder.cap(crossData.channel, l, 1);
+      builder.solid(crossData.fill, c, c + builder.mm(c, Nd));
+
+      // Back Channel sweep & caps (Dual glider track for front and back!)
+      const u = Math.PI + Md;
+      const d = 2 * Math.PI - Md;
+      builder.sweep(crossData.channel, u, d, crossData.CHANNEL_FLOOR_EDGE);
+      builder.cap(crossData.channel, u, -1);
+      builder.cap(crossData.channel, d, 1);
+      builder.solid(crossData.fill, u, u + builder.mm(u, Nd));
+
+      const geom = builder.build();
+      geom.scale(0.001, 0.001, 0.001); // Scale mm to meters
+      return geom;
+    }
+
+    // 3. Luxurious PBR Metal Materials
+    const metalColors = {
+      yellow: {
+        main: '#c59b3f',
+        channel: '#d6a336',
+        emissive: '#704c0e',
+        emissiveIntensity: 0.14,
+        roughness: 0.13,
+        channelRoughness: 0.26,
+        metalness: 0.94,
+        envMapIntensity: 1.45,
+        stampColor: '#8a6519'
+      },
+      white: {
+        main: '#f2f2f2',
+        channel: '#dddddd',
+        emissive: '#333333',
+        emissiveIntensity: 0.05,
+        roughness: 0.11,
+        channelRoughness: 0.22,
+        metalness: 0.96,
+        envMapIntensity: 1.5,
+        stampColor: '#666666'
+      },
+      rose: {
+        main: '#e89782',
+        channel: '#d47f69',
+        emissive: '#592418',
+        emissiveIntensity: 0.12,
+        roughness: 0.14,
+        channelRoughness: 0.26,
+        metalness: 0.94,
+        envMapIntensity: 1.4,
+        stampColor: '#8c4e3c'
+      }
+    };
+
+    let bandMaterial = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(metalColors.yellow.main),
+      emissive: new THREE.Color(metalColors.yellow.emissive),
+      emissiveIntensity: metalColors.yellow.emissiveIntensity,
+      metalness: metalColors.yellow.metalness,
+      roughness: metalColors.yellow.roughness,
+      envMapIntensity: metalColors.yellow.envMapIntensity
+    });
+
+    let channelMaterial = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(metalColors.yellow.channel),
+      emissive: new THREE.Color(metalColors.yellow.emissive),
+      emissiveIntensity: metalColors.yellow.emissiveIntensity * 0.8,
+      metalness: metalColors.yellow.metalness,
+      roughness: metalColors.yellow.channelRoughness,
+      envMapIntensity: metalColors.yellow.envMapIntensity * 0.85
+    });
+
+
+
+    // Create Bangle Mesh
+    const bangleGeometry = generateBangleGeometry();
+    const bangleMesh = new THREE.Mesh(bangleGeometry, [bandMaterial, channelMaterial]);
+    bangleMesh.rotation.z = Math.PI; // Front channel faces -Y
+    bangleMesh.castShadow = true;
+    bangleMesh.receiveShadow = true;
+    rootGroup.add(bangleMesh);
+
+    // Hinge & Clasp Details
+    const knuckleGroup = new THREE.Group();
+    for (let k = -1; k <= 1; k++) {
+      const knuckleGeom = new THREE.CylinderGeometry(0.00095, 0.00095, 0.0014, 24);
+      const knuckle = new THREE.Mesh(knuckleGeom, bandMaterial);
+      knuckle.position.set(0.0285 + Dd*0.001, 0, k * 0.0016);
+      knuckleGroup.add(knuckle);
+    }
+    rootGroup.add(knuckleGroup);
+
+    // Inner 925 Hallmark & Custom Laser Engraving Ribbon
+    const stampCanvas = document.createElement('canvas');
+    stampCanvas.width = 2048;
+    stampCanvas.height = 128;
+    const sCtx = stampCanvas.getContext('2d');
+    const stampTexture = new THREE.CanvasTexture(stampCanvas);
+    stampTexture.colorSpace = THREE.SRGBColorSpace;
+    stampTexture.minFilter = THREE.LinearFilter;
+    stampTexture.magFilter = THREE.LinearFilter;
+
+    // Curved Ribbon hug-fitting the inner bangle wall with zero clipping and zero gaps
+    function createInnerEngravingRibbon(innerA, innerB, arcSpan, bandWidthZ, segments = 32) {
+      const geom = new THREE.BufferGeometry();
+      const positions = [];
+      const uvs = [];
+      const indices = [];
+
+      const halfW = bandWidthZ / 2;
+      const startAng = Math.PI * 0.5 + arcSpan * 0.5; // Start at left (x < 0)
+
+      for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        const ang = startAng - t * arcSpan; // Sweep from left to right (x > 0)
+
+        const cosA = Math.cos(ang);
+        const sinA = Math.sin(ang);
+        const x = innerA * cosA;
+        const y = innerB * sinA;
+
+        // Inward normal for ellipse (pointing toward center 0,0,0)
+        let nx = -innerB * cosA;
+        let ny = -innerA * sinA;
+        const len = Math.hypot(nx, ny) || 1.0;
+        nx /= len;
+        ny /= len;
+
+        // Micro-offset (0.12mm) inward from the inner metal wall to avoid z-fighting
+        const vx = x + nx * 0.00012;
+        const vy = y + ny * 0.00012;
+
+        positions.push(vx, vy, -halfW);
+        uvs.push(t, 0);
+
+        positions.push(vx, vy, halfW);
+        uvs.push(t, 1);
+      }
+
+      for (let i = 0; i < segments; i++) {
+        const a = i * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        indices.push(a, c, b, b, c, d);
+      }
+
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+      geom.setIndex(indices);
+      geom.computeVertexNormals();
+      return geom;
+    }
+
+    const stampRibbonGeom = createInnerEngravingRibbon(0.0285, 0.0240, 1.15, 0.0034, 32);
+    const stampPlaneMat = new THREE.MeshBasicMaterial({
+      map: stampTexture,
+      transparent: true,
+      alphaTest: 0.02,
+      depthWrite: false,
+      side: THREE.DoubleSide
+    });
+    const stampPlane = new THREE.Mesh(stampRibbonGeom, stampPlaneMat);
+    rootGroup.add(stampPlane);
+
+    function redrawInnerEngraving() {
+      // 100% Transparent background (NO dark rectangle / zero background box)
+      sCtx.clearRect(0, 0, 2048, 128);
+
+      const isWhite = state.metal === 'white';
+      const isRose = state.metal === 'rose';
+
+      // Authentic jewelry fiber-laser etching tones
+      const primaryFill = isWhite ? '#222222' : (isRose ? '#422018' : '#38280b');
+      const subtleGlow = isWhite ? 'rgba(255,255,255,0.45)' : (isRose ? 'rgba(255,215,205,0.45)' : 'rgba(255,235,170,0.45)');
+
+      const hallmark = isWhite ? 'NICHE · 925' : (isRose ? 'NICHE · 14K ROSE' : 'NICHE · 14K');
+      const text = (state.engravingText || '').trim();
+
+      sCtx.textBaseline = 'middle';
+
+      if (!text) {
+        // Hallmark only (centered with elegant atelier diamond motifs)
+        sCtx.textAlign = 'center';
+        sCtx.font = '600 38px "Montserrat", sans-serif';
+        sCtx.shadowColor = subtleGlow;
+        sCtx.shadowBlur = 2;
+        sCtx.shadowOffsetY = 1;
+        sCtx.fillStyle = primaryFill;
+        sCtx.fillText(`✦   ${hallmark}   ✦`, 1024, 64);
+      } else {
+        // Left: Official Hallmark Emblem
+        sCtx.textAlign = 'left';
+        sCtx.font = '600 30px "Montserrat", sans-serif';
+        sCtx.shadowColor = subtleGlow;
+        sCtx.shadowBlur = 2;
+        sCtx.shadowOffsetY = 1;
+        sCtx.fillStyle = primaryFill;
+        sCtx.fillText(`✦ ${hallmark}`, 80, 64);
+
+        // Delicate vertical divider diamond
+        sCtx.textAlign = 'center';
+        sCtx.font = '500 24px "Montserrat", sans-serif';
+        sCtx.fillText('◆', 460, 64);
+
+        // Engraved Personal Text with auto-scaling to prevent ANY text cut-off
+        const quoteText = `“ ${text} ”`;
+        let baseFontSize = 44;
+        let fontFamily = '"Cormorant Garamond", Georgia, serif';
+        let fontStyle = 'italic 500';
+
+        if (state.engravingFont === 'script') {
+          baseFontSize = 46;
+          fontFamily = '"Cormorant Garamond", cursive, serif';
+          fontStyle = 'italic 600';
+        } else if (state.engravingFont === 'modern') {
+          baseFontSize = 36;
+          fontFamily = '"Montserrat", sans-serif';
+          fontStyle = '600';
+        }
+
+        sCtx.font = `${fontStyle} ${baseFontSize}px ${fontFamily}`;
+        const measured = sCtx.measureText(quoteText).width;
+        const availableW = 1420; // Safe zone from x=520 to x=1940
+
+        let finalFontSize = baseFontSize;
+        if (measured > availableW) {
+          finalFontSize = Math.max(22, Math.floor(baseFontSize * (availableW / measured)));
+          sCtx.font = `${fontStyle} ${finalFontSize}px ${fontFamily}`;
+        }
+
+        sCtx.textAlign = 'center';
+        sCtx.fillStyle = primaryFill;
+        // Centered in inscription zone: (500 + 1980) / 2 = 1240
+        sCtx.fillText(quoteText, 1240, 64);
+      }
+
+      stampTexture.needsUpdate = true;
+    }
+
+    redrawInnerEngraving();
+
+    // 4. Glider Rail Math for BOTH Front & Back Channels
+    const majorA = (28.5 + Dd - 0.55) * 0.001;
+    const minorB = (24.0 + Dd - 0.55) * 0.001;
+
+    function getRailCurve(side, t) {
+      let angle;
+      if (side === 'front') {
+        // Front channel facing camera at -Y
+        angle = -Math.PI * 0.85 + t * (Math.PI * 0.70);
+      } else {
+        // Back channel facing camera at +Y
+        angle = Math.PI * 0.15 + t * (Math.PI * 0.70);
+      }
+
+      const cosA = Math.cos(angle);
+      const sinA = Math.sin(angle);
+      const px = majorA * cosA;
+      const py = minorB * sinA;
+      const pz = 0;
+
+      // Normal outward vector
+      const nx = minorB * cosA;
+      const ny = majorA * sinA;
+      const nLen = Math.hypot(nx, ny);
+      const outward = new THREE.Vector3(nx / nLen, ny / nLen, 0);
+
+      // True UP vector
+      const up = new THREE.Vector3(0, 0, 1);
+
+      // Right vector along rail
+      const right = new THREE.Vector3().crossVectors(up, outward).normalize();
+
+      return {
+        position: new THREE.Vector3(px, py, pz),
+        outward,
+        up,
+        right,
+        angle
+      };
+    }
+
+    // 5. Solid 3D Jewelry Slider Charm Construction & Collision Math
+    const texLoader = new THREE.TextureLoader();
+
+    // Standalone 3D Cutout Glider Charm (Pure silhouette without any frame/box, with 3D physical thickness)
+    function create3DGliderCharm(item) {
+      const charmGroup = new THREE.Group();
+      const facePivot = new THREE.Group(); // Pivot for 90-degree step rotation
+      charmGroup.add(facePivot);
+
+      const charmWidth = (item.widthMm || 4.4) * 0.001;
+      const charmHeight = (item.heightMm || 4.2) * 0.001;
+      const depthMm = 0.00065; // 0.65mm 3D physical thickness of the cutout
+
+      const charmTex = texLoader.load(item.imgUrl);
+      charmTex.colorSpace = THREE.SRGBColorSpace;
+      charmTex.minFilter = THREE.LinearFilter;
+      charmTex.magFilter = THREE.LinearFilter;
+
+      const planeGeom = new THREE.PlaneGeometry(charmWidth, charmHeight);
+
+      // Edge metallic tone matching active alloy
+      const isWhite = state.metal === 'white';
+      const isRose = state.metal === 'rose';
+      const edgeColor = isWhite 
+        ? new THREE.Color(0.85, 0.85, 0.85) 
+        : (isRose ? new THREE.Color(0.92, 0.62, 0.52) : new THREE.Color(0.90, 0.74, 0.35));
+
+      // 10 micro-depth layers to give the standalone charm physical 3D thickness (No frame!)
+      const numLayers = 10;
+      for (let l = numLayers; l >= 1; l--) {
+        const t = l / numLayers;
+        const shade = 0.60 + 0.40 * (1 - t);
+        const layerMat = new THREE.MeshBasicMaterial({
+          map: charmTex,
+          color: edgeColor.clone().multiplyScalar(shade),
+          transparent: true,
+          alphaTest: 0.08,
+          side: THREE.DoubleSide
+        });
+        const layerMesh = new THREE.Mesh(planeGeom, layerMat);
+        layerMesh.position.z = - (depthMm / numLayers) * l;
+        facePivot.add(layerMesh);
+      }
+
+      // Front Face Decal (100% crisp, unshaded, beautiful artwork)
+      const faceMat = new THREE.MeshBasicMaterial({
+        map: charmTex,
+        transparent: true,
+        alphaTest: 0.08,
+        side: THREE.DoubleSide
+      });
+      const faceMesh = new THREE.Mesh(planeGeom, faceMat);
+      faceMesh.position.z = 0.00003;
+      facePivot.add(faceMesh);
+
+      // Initialize 90-degree rotation
+      facePivot.rotation.z = (item.rotationDeg !== undefined ? item.rotationDeg : 90) * (Math.PI / 180);
+
+      return { group: charmGroup, facePivot, faceMesh };
+    }
+
+    // 6. Invisible Rail Guide Collision Ribbons for Smooth 3D Drag & Drop
+    function createRailGuideRibbon(side) {
+      const segments = 90;
+      const geom = new THREE.BufferGeometry();
+      const positions = [];
+      const indices = [];
+      const heightHalf = 0.06; // 120mm tall hit area for uninterrupted dragging
+
+      for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        const rail = getRailCurve(side, t);
+        positions.push(rail.position.x, rail.position.y, heightHalf);
+        positions.push(rail.position.x, rail.position.y, -heightHalf);
+      }
+
+      for (let i = 0; i < segments; i++) {
+        const a = i * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        indices.push(a, b, c);
+        indices.push(b, d, c);
+      }
+
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geom.setIndex(indices);
+      geom.computeVertexNormals();
+
+      const mat = new THREE.MeshBasicMaterial({
+        transparent: true,
+        opacity: 0,
+        depthWrite: false,
+        side: THREE.DoubleSide
+      });
+      const mesh = new THREE.Mesh(geom, mat);
+      mesh.name = `railGuide_${side}`;
+      return mesh;
+    }
+
+    const railGuideFront = createRailGuideRibbon('front');
+    rootGroup.add(railGuideFront);
+    const railGuideBack = createRailGuideRibbon('back');
+    rootGroup.add(railGuideBack);
+
+    // 7. Update Charm Positions on both Front and Back Tracks
+    function updateCharmPlacements(sideToUpdate = null, forceEvenSpacing = false) {
+      const sides = sideToUpdate ? [sideToUpdate] : ['front', 'back'];
+
+      sides.forEach(side => {
+        const list = side === 'front' ? state.frontCharms : state.backCharms;
+        const count = list.length;
+        if (count === 0) return;
+
+        if (forceEvenSpacing) {
+          const spacing = Math.min(0.12, 0.70 / Math.max(1, count));
+          const startT = 0.5 - ((count - 1) * spacing) / 2;
+          list.forEach((charm, index) => {
+            charm.s = Math.max(0.12, Math.min(0.88, startT + index * spacing));
+          });
+        } else {
+          // If any charm doesn't have an 's' assigned yet, assign it
+          const spacing = 0.10;
+          const startT = 0.5 - ((count - 1) * spacing) / 2;
+          list.forEach((charm, index) => {
+            if (charm.s === null || charm.s === undefined) {
+              charm.s = Math.max(0.12, Math.min(0.88, startT + index * spacing));
+            }
+          });
+        }
+
+        list.forEach(charm => {
+          const t = charm.s !== undefined ? charm.s : 0.5;
+          const rail = getRailCurve(side, t);
+          const lift = charm.liftCurrent || 0;
+
+          // Position charm with track offset + physical lift when dragged
+          charm.mesh.position.copy(rail.position).addScaledVector(rail.outward, 0.00035 + lift);
+
+          // Orient charm facing outward and upright along rail
+          const rotMat = new THREE.Matrix4().makeBasis(rail.right, rail.up, rail.outward);
+          charm.mesh.quaternion.setFromRotationMatrix(rotMat);
+        });
+      });
+    }
+
+    // Auto-center Charms evenly on track
+    window.autoCenterCharms = function(side) {
+      const targetSide = side || state.activeSide;
+      updateCharmPlacements(targetSide, true);
+      const list = targetSide === 'front' ? state.frontCharms : state.backCharms;
+      list.sort((a, b) => a.s - b.s);
+      updateUI();
+    };
+
+    // Collision & Sliding Physics along the Rail
+    const MIN_SPACING = 0.082;
+    const MIN_S = 0.10;
+    const MAX_S = 0.90;
+
+    function updateDragPositions(list, draggedIdx, targetS) {
+      let k = draggedIdx;
+      const rawS = Math.max(0.02, Math.min(0.98, targetS));
+
+      // Reorder cleanly even when neighbor is near track boundary (MIN_S / MAX_S)
+      while (k < list.length - 1 && rawS > list[k + 1].s + MIN_SPACING * 0.25) {
+        const tmp = list[k];
+        list[k] = list[k + 1];
+        list[k + 1] = tmp;
+        k++;
+      }
+
+      while (k > 0 && rawS < list[k - 1].s - MIN_SPACING * 0.25) {
+        const tmp = list[k];
+        list[k] = list[k - 1];
+        list[k - 1] = tmp;
+        k--;
+      }
+
+      list[k].s = Math.max(MIN_S, Math.min(MAX_S, rawS));
+
+      // Push forward to avoid overlap
+      for (let i = k + 1; i < list.length; i++) {
+        if (list[i].s < list[i - 1].s + MIN_SPACING) {
+          list[i].s = list[i - 1].s + MIN_SPACING;
+        }
+      }
+
+      // Right boundary clamp
+      if (list[list.length - 1].s > MAX_S) {
+        list[list.length - 1].s = MAX_S;
+        for (let i = list.length - 2; i >= 0; i--) {
+          if (list[i].s > list[i + 1].s - MIN_SPACING) {
+            list[i].s = list[i + 1].s - MIN_SPACING;
+          }
+        }
+      }
+
+      // Push backward to avoid overlap
+      for (let i = k - 1; i >= 0; i--) {
+        if (list[i].s > list[i + 1].s - MIN_SPACING) {
+          list[i].s = list[i + 1].s - MIN_SPACING;
+        }
+      }
+
+      // Left boundary clamp
+      if (list[0].s < MIN_S) {
+        list[0].s = MIN_S;
+        for (let i = 1; i < list.length; i++) {
+          if (list[i].s < list[i - 1].s + MIN_SPACING) {
+            list[i].s = list[i - 1].s + MIN_SPACING;
+          }
+        }
+      }
+
+      return k;
+    }
+
+    // 8. 3D Drag & Drop Pointer Events
+    const raycaster = new THREE.Raycaster();
+    const dragGroundPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+    const _planeHit = new THREE.Vector3();
+    const _charmWorldPos = new THREE.Vector3();
+    const _charmWorldQuat = new THREE.Quaternion();
+    const _charmOutward = new THREE.Vector3();
+    const _toCam = new THREE.Vector3();
+
+    const dragState = {
+      isDragging: false,
+      draggedCharm: null,
+      pointerId: null,
+      side: 'front',
+      startX: 0,
+      startY: 0,
+      hasMoved: false
+    };
+
+    function getPointerNDC(event) {
+      const rect = renderer.domElement.getBoundingClientRect();
+      return new THREE.Vector2(
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        -(((event.clientY - rect.top) / rect.height) * 2 - 1)
+      );
+    }
+
+    function isCharmFacingCamera(charm) {
+      charm.mesh.getWorldPosition(_charmWorldPos);
+      charm.mesh.getWorldQuaternion(_charmWorldQuat);
+      _charmOutward.set(0, 0, 1).applyQuaternion(_charmWorldQuat).normalize();
+      _toCam.subVectors(camera.position, _charmWorldPos).normalize();
+      return _toCam.dot(_charmOutward) > -0.25;
+    }
+
+    function getIntersectedCharm(event) {
+      const rect = renderer.domElement.getBoundingClientRect();
+      if (
+        event.clientX < rect.left || event.clientX > rect.right ||
+        event.clientY < rect.top || event.clientY > rect.bottom
+      ) {
+        return null;
+      }
+
+      const ndc = getPointerNDC(event);
+      raycaster.setFromCamera(ndc, camera);
+
+      const allCharms = [...state.frontCharms, ...state.backCharms];
+      const rootMeshes = allCharms.map(c => c.mesh);
+      const hits = raycaster.intersectObjects(rootMeshes, true);
+
+      for (const hit of hits) {
+        let obj = hit.object;
+        while (obj && !obj.userData?.charm) {
+          obj = obj.parent;
+        }
+        const charm = obj?.userData?.charm;
+        if (charm && isCharmFacingCamera(charm)) {
+          return { charm, hit };
+        }
+      }
+      return null;
+    }
+
+    function computeTargetTFromRay(side) {
+      const guideMesh = side === 'front' ? railGuideFront : railGuideBack;
+      const hits = raycaster.intersectObject(guideMesh);
+      let worldPt = null;
+      if (hits.length > 0) {
+        worldPt = hits[0].point.clone();
+      } else if (raycaster.ray.intersectPlane(dragGroundPlane, _planeHit)) {
+        worldPt = _planeHit.clone();
+      }
+      if (!worldPt) return null;
+
+      const localPt = rootGroup.worldToLocal(worldPt);
+      const theta = Math.atan2(localPt.y / minorB, localPt.x / majorA);
+      const centerAngle = side === 'front' ? -Math.PI / 2 : Math.PI / 2;
+      let dAngle = theta - centerAngle;
+      while (dAngle > Math.PI) dAngle -= 2 * Math.PI;
+      while (dAngle < -Math.PI) dAngle += 2 * Math.PI;
+      return 0.5 + dAngle / (Math.PI * 0.70);
+    }
+
+    // Start Drag / Select (Capture phase so it runs BEFORE OrbitControls captures the pointer!)
+    renderer.domElement.addEventListener('pointerdown', (e) => {
+      if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+
+      const hitData = getIntersectedCharm(e);
+      if (hitData) {
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        const targetSide = hitData.charm.side || (state.frontCharms.includes(hitData.charm) ? 'front' : 'back');
+        if (state.currentStep !== 3 && state.activeSide !== targetSide) {
+          goToStep(targetSide === 'front' ? 1 : 2);
+        }
+
+        dragState.isDragging = true;
+        dragState.draggedCharm = hitData.charm;
+        dragState.pointerId = e.pointerId;
+        dragState.side = targetSide;
+        dragState.startX = e.clientX;
+        dragState.startY = e.clientY;
+        dragState.hasMoved = false;
+
+        controls.enabled = false;
+        mount.style.cursor = 'grabbing';
+        renderer.domElement.style.cursor = 'grabbing';
+        hitData.charm.isLifted = true;
+
+        try {
+          renderer.domElement.setPointerCapture(e.pointerId);
+        } catch (_) {}
+
+        const list = targetSide === 'front' ? state.frontCharms : state.backCharms;
+        state.selectedCharmIndex = list.indexOf(hitData.charm);
+        updateCharmPlacements(targetSide);
+        updateUI();
+      }
+    }, { capture: true });
+
+    // Handle Drag Movement & Hover Cursor
+    window.addEventListener('pointermove', (e) => {
+      if (dragState.isDragging && dragState.draggedCharm) {
+        const dist = Math.hypot(e.clientX - dragState.startX, e.clientY - dragState.startY);
+        if (dist > 3) dragState.hasMoved = true;
+
+        const ndc = getPointerNDC(e);
+        raycaster.setFromCamera(ndc, camera);
+
+        const targetT = computeTargetTFromRay(dragState.side);
+        if (targetT !== null && Number.isFinite(targetT)) {
+          const list = dragState.side === 'front' ? state.frontCharms : state.backCharms;
+          const currentIdx = list.indexOf(dragState.draggedCharm);
+          if (currentIdx !== -1) {
+            const newIdx = updateDragPositions(list, currentIdx, targetT);
+            state.selectedCharmIndex = newIdx;
+            updateCharmPlacements(dragState.side);
+          }
+        }
+      } else if (!dragState.isDragging) {
+        // Hover cursor check
+        const hitData = getIntersectedCharm(e);
+        const cur = hitData ? 'grab' : '';
+        mount.style.cursor = hitData ? 'grab' : 'default';
+        renderer.domElement.style.cursor = cur;
+      }
+    });
+
+    function finishDrag() {
+      if (!dragState.isDragging) return;
+      if (dragState.pointerId !== null) {
+        try {
+          if (renderer.domElement.hasPointerCapture(dragState.pointerId)) {
+            renderer.domElement.releasePointerCapture(dragState.pointerId);
+          }
+        } catch (_) {}
+      }
+      if (dragState.draggedCharm) {
+        dragState.draggedCharm.isLifted = false;
+      }
+      const draggedSide = dragState.side;
+      dragState.isDragging = false;
+      dragState.draggedCharm = null;
+      dragState.pointerId = null;
+      controls.enabled = true;
+      mount.style.cursor = 'default';
+      renderer.domElement.style.cursor = '';
+
+      const list = draggedSide === 'front' ? state.frontCharms : state.backCharms;
+      list.sort((a, b) => a.s - b.s);
+      updateCharmPlacements(draggedSide);
+      updateUI();
+    }
+
+    window.addEventListener('pointerup', finishDrag);
+    window.addEventListener('pointercancel', finishDrag);
+
+    // Add Charm to active side
+    function addCharm(item, targetSide = null) {
+      const side = targetSide || state.activeSide;
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+
+      if (list.length >= 8) {
+        alert("The rail holds up to 8 charms.");
+        return;
+      }
+
+      const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+      const initRot = item.rotationDeg !== undefined ? item.rotationDeg : 90;
+      const charmObj = create3DGliderCharm({ ...item, rotationDeg: initRot });
+      rootGroup.add(charmObj.group);
+
+      const charmData = {
+        uid,
+        side,
+        ...item,
+        rotationDeg: initRot,
+        mesh: charmObj.group,
+        facePivot: charmObj.facePivot,
+        s: item.s !== undefined ? item.s : null,
+        isLifted: false,
+        liftCurrent: 0
+      };
+
+      // Tag charmData onto mesh hierarchy for raycasting
+      charmObj.group.userData.charm = charmData;
+      charmObj.group.traverse(ch => {
+        if (ch.isMesh) ch.userData.charm = charmData;
+      });
+
+      list.push(charmData);
+
+      state.selectedCharmIndex = -1;
+      updateCharmPlacements(side);
+      updateUI();
+    }
+
+    // Replace Charm
+    function replaceCharm(side, index, newItem) {
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      if (index < 0 || index >= list.length) return;
+
+      const oldCharm = list[index];
+      rootGroup.remove(oldCharm.mesh);
+
+      const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+      const curRot = oldCharm.rotationDeg !== undefined ? oldCharm.rotationDeg : 90;
+      const charmObj = create3DGliderCharm({ ...newItem, rotationDeg: curRot });
+      rootGroup.add(charmObj.group);
+
+      const charmData = {
+        uid,
+        side,
+        ...newItem,
+        rotationDeg: curRot,
+        mesh: charmObj.group,
+        facePivot: charmObj.facePivot,
+        s: oldCharm.s,
+        isLifted: false,
+        liftCurrent: 0
+      };
+
+      charmObj.group.userData.charm = charmData;
+      charmObj.group.traverse(ch => {
+        if (ch.isMesh) ch.userData.charm = charmData;
+      });
+
+      list[index] = charmData;
+
+      state.selectedCharmIndex = -1;
+      updateCharmPlacements(side);
+      updateUI();
+    }
+
+    // Handle catalog item click
+    function handleCharmCatalogClick(item) {
+      const list = state.activeSide === 'front' ? state.frontCharms : state.backCharms;
+      if (state.selectedCharmIndex >= 0 && state.selectedCharmIndex < list.length) {
+        replaceCharm(state.activeSide, state.selectedCharmIndex, item);
+      } else {
+        addCharm(item, state.activeSide);
+      }
+    }
+
+    // 🔄 Set Charm Orientation: Upright (0°) vs Horizontal Right (90°) vs Horizontal Left (270°)
+    window.setCharmOrientation = function(side, index, targetDeg, e) {
+      if (e) e.stopPropagation();
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      if (index >= 0 && index < list.length) {
+        const charm = list[index];
+        const prevDeg = charm.rotationDeg || 0;
+        charm.rotationDeg = (prevDeg === targetDeg && targetDeg !== 0) ? 0 : targetDeg;
+
+        // Smooth rotation on 3D facePivot
+        const startRot = charm.facePivot.rotation.z;
+        const targetRad = charm.rotationDeg * (Math.PI / 180);
+        const duration = 220;
+        const startTime = performance.now();
+
+        function animateRotate(now) {
+          const progress = Math.min((now - startTime) / duration, 1.0);
+          const ease = progress * progress * (3 - 2 * progress);
+          charm.facePivot.rotation.z = startRot + (targetRad - startRot) * ease;
+          if (progress < 1.0) {
+            requestAnimationFrame(animateRotate);
+          } else {
+            charm.facePivot.rotation.z = targetRad;
+          }
+        }
+        requestAnimationFrame(animateRotate);
+
+        updateUI();
+      }
+    };
+
+    // Legacy alias
+    window.rotateCharm90 = function(side, index, e) {
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      if (index >= 0 && index < list.length) {
+        const currentDeg = list[index].rotationDeg || 0;
+        const nextDeg = currentDeg === 0 ? 90 : (currentDeg === 90 ? 270 : 0);
+        window.setCharmOrientation(side, index, nextDeg, e);
+      }
+    };
+
+    // Remove Charm
+    window.removeCharmByIndex = function(side, index, e) {
+      if (e) e.stopPropagation();
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      if (index >= 0 && index < list.length) {
+        const charm = list[index];
+        rootGroup.remove(charm.mesh);
+
+        list.splice(index, 1);
+        if (state.selectedCharmIndex === index) state.selectedCharmIndex = -1;
+        else if (state.selectedCharmIndex > index) state.selectedCharmIndex--;
+
+        updateCharmPlacements(side);
+        updateUI();
+      }
+    };
+
+    // Swap Charms
+    window.swapCharms = function(side, index1, index2, e) {
+      if (e) e.stopPropagation();
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      if (index1 < 0 || index1 >= list.length || index2 < 0 || index2 >= list.length) return;
+
+      const temp = list[index1];
+      list[index1] = list[index2];
+      list[index2] = temp;
+
+      // Swap their s positions
+      const tempS = list[index1].s;
+      list[index1].s = list[index2].s;
+      list[index2].s = tempS;
+
+      if (state.selectedCharmIndex === index1) state.selectedCharmIndex = index2;
+      else if (state.selectedCharmIndex === index2) state.selectedCharmIndex = index1;
+
+      updateCharmPlacements(side);
+      updateUI();
+    };
+
+    // Toggle Select for replacement
+    window.toggleSelectCharm = function(side, index) {
+      if (state.activeSide !== side) return;
+      if (state.selectedCharmIndex === index) {
+        state.selectedCharmIndex = -1;
+      } else {
+        state.selectedCharmIndex = index;
+      }
+      updateUI();
+    };
+
+    // Clear All
+    function clearAllCharms() {
+      [...state.frontCharms, ...state.backCharms].forEach(c => rootGroup.remove(c.mesh));
+      state.frontCharms = [];
+      state.backCharms = [];
+      state.selectedCharmIndex = -1;
+      updateUI();
+    }
+
+    // Update Metal Finish
+    function setMetal(metalKey) {
+      state.metal = metalKey;
+      state.basePrice = metalKey === 'white' ? 225.00 : (metalKey === 'rose' ? 425.00 : 410.00);
+      const conf = metalColors[metalKey];
+      bandMaterial.color.set(conf.main);
+      bandMaterial.roughness = conf.roughness;
+      bandMaterial.metalness = conf.metalness;
+      bandMaterial.emissive.set(conf.emissive);
+      bandMaterial.emissiveIntensity = conf.emissiveIntensity;
+      bandMaterial.envMapIntensity = conf.envMapIntensity;
+
+      channelMaterial.color.set(conf.channel);
+      channelMaterial.roughness = conf.channelRoughness;
+      channelMaterial.metalness = conf.metalness;
+      channelMaterial.emissive.set(conf.emissive);
+      channelMaterial.emissiveIntensity = conf.emissiveIntensity * 0.8;
+      channelMaterial.envMapIntensity = conf.envMapIntensity * 0.85;
+
+      if (stampPlaneMat) stampPlaneMat.color.set(0xffffff);
+
+      // Update 3D edge tint on existing standalone charms
+      const isWhite = metalKey === 'white';
+      const isRose = metalKey === 'rose';
+      const edgeColor = isWhite 
+        ? new THREE.Color(0.85, 0.85, 0.85) 
+        : (isRose ? new THREE.Color(0.92, 0.62, 0.52) : new THREE.Color(0.90, 0.74, 0.35));
+
+      [...state.frontCharms, ...state.backCharms].forEach(charm => {
+        if (charm.facePivot) {
+          const children = charm.facePivot.children;
+          for (let i = 0; i < children.length - 1; i++) {
+            const child = children[i];
+            if (child.material) {
+              const t = (i + 1) / (children.length - 1);
+              const shade = 0.60 + 0.40 * (1 - t);
+              child.material.color.copy(edgeColor).multiplyScalar(shade);
+            }
+          }
+        }
+      });
+
+      document.querySelectorAll('.metal-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.metal === metalKey);
+      });
+
+      state.basePrice = metalKey === 'white' ? 225 : (metalKey === 'rose' ? 430 : 410);
+
+      const revMetal = document.getElementById('revMetal');
+      if (revMetal) {
+        revMetal.textContent = metalKey === 'yellow' ? '14K Yellow Gold' : (metalKey === 'white' ? '925 Sterling Silver' : '14K Rose Gold');
+      }
+      document.querySelectorAll('.metal-card-opt, .metal-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.metal === metalKey);
+      });
+      redrawInnerEngraving();
+      updateUI();
+    }
+
+    // Camera Views
+    const views = {
+      front: { pos: [0, -0.15, 0.045], target: [0, 0, 0] },
+      back: { pos: [0, 0.15, 0.045], target: [0, 0, 0] },
+      clasp: { pos: [0.16, 0, 0.03], target: [0, 0, 0] },
+      top: { pos: [0, -0.01, 0.18], target: [0, 0, 0] },
+      inside: { pos: [0, -0.042, 0.026], target: [0, 0.0238, 0] }
+    };
+
+    function setView(viewName) {
+      const v = views[viewName];
+      if (!v) return;
+      controls.autoRotate = false;
+      document.getElementById('rotateLabel').textContent = 'Play';
+
+      const startPos = camera.position.clone();
+      const endPos = new THREE.Vector3(...v.pos);
+      const duration = 600;
+      const startTime = performance.now();
+
+      function animateCam(now) {
+        const progress = Math.min((now - startTime) / duration, 1.0);
+        const ease = progress * progress * (3 - 2 * progress);
+        camera.position.lerpVectors(startPos, endPos, ease);
+        controls.target.set(...v.target);
+        controls.update();
+        if (progress < 1.0) requestAnimationFrame(animateCam);
+      }
+      requestAnimationFrame(animateCam);
+
+      document.querySelectorAll('.view-chip').forEach(c => {
+        c.classList.toggle('active', c.dataset.view === viewName);
+      });
+    }
+
+    // Accordion Progressive Disclosure Navigation
+    window.openAccordionStep = function(stepNum) {
+      for (let i = 1; i <= 4; i++) {
+        const stepEl = document.getElementById(`accStep${i}`);
+        const bodyEl = document.getElementById(`accBody${i}`);
+        if (stepEl && bodyEl) {
+          if (i === stepNum) {
+            stepEl.classList.add('active');
+            bodyEl.style.display = 'block';
+          } else {
+            stepEl.classList.remove('active');
+            bodyEl.style.display = 'none';
+          }
+        }
+      }
+
+      state.currentStep = stepNum;
+      if (stepNum === 1) {
+        setView('front');
+      } else if (stepNum === 2) {
+        if (state.activeSide === 'back') setView('back');
+        else setView('front');
+      } else if (stepNum === 3) {
+        setView('inside');
+      } else if (stepNum === 4) {
+        setView('front');
+      }
+      updateUI();
+    };
+
+    window.toggleAccordionStep = function(stepNum) {
+      const stepEl = document.getElementById(`accStep${stepNum}`);
+      const bodyEl = document.getElementById(`accBody${stepNum}`);
+      if (!stepEl || !bodyEl) return;
+      const isCurrentlyOpen = stepEl.classList.contains('active');
+      if (isCurrentlyOpen) {
+        stepEl.classList.remove('active');
+        bodyEl.style.display = 'none';
+      } else {
+        openAccordionStep(stepNum);
+      }
+    };
+
+    window.selectMetal = function(metalKey) {
+      setMetal(metalKey);
+      document.querySelectorAll('.metal-card-opt, .metal-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.metal === metalKey);
+      });
+      updateUI();
+    };
+
+    window.selectSize = function(sizeKey) {
+      setBangleSize(sizeKey);
+      document.querySelectorAll('.size-opt-btn, .size-option').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === sizeKey);
+      });
+      updateUI();
+    };
+
+    window.switchActiveTrack = function(side) {
+      state.activeSide = side;
+      document.getElementById('btnTrackFront')?.classList.toggle('active', side === 'front');
+      document.getElementById('btnTrackBack')?.classList.toggle('active', side === 'back');
+
+      const placedTrayTitle = document.getElementById('placedTrayTrackTitle');
+      if (placedTrayTitle) {
+        const isAr = window.nicheI18n?.getLanguage() === 'ar';
+        placedTrayTitle.textContent = side === 'front'
+          ? (isAr ? 'الدلايات المركبة (المسار الأمامي)' : 'Placed Charms (Front Track)')
+          : (isAr ? 'الدلايات المركبة (المسار الخلفي)' : 'Placed Charms (Back Track)');
+      }
+
+      setView(side);
+      updateUI();
+    };
+
+    // UI Updates
+    function updateUI() {
+      const frontCount = state.frontCharms.length;
+      const backCount = state.backCharms.length;
+      const totalCount = frontCount + backCount;
+
+      const frontTotal = state.frontCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      const backTotal = state.backCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      const grandTotal = state.basePrice + frontTotal + backTotal;
+      const kwdGrandTotal = (grandTotal * 0.308).toFixed(3);
+
+      const metalNames = {
+        yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 14K' : '14K Yellow Gold',
+        white: window.nicheI18n?.getLanguage() === 'ar' ? 'فضة إسترليني 925' : '925 Sterling Silver',
+        rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 14K' : '14K Rose Gold'
+      };
+      const activeMetalName = metalNames[state.metal] || state.metal;
+
+      // Update Accordion Summary Subtitles
+      const accSummaryMetal = document.getElementById('accSummaryMetal');
+      if (accSummaryMetal) accSummaryMetal.textContent = `${activeMetalName} • ${window.nicheI18n?.getLanguage() === 'ar' ? 'مقاس' : 'Size'} ${state.size}`;
+
+      const accSummaryCharms = document.getElementById('accSummaryCharms');
+      if (accSummaryCharms) {
+        const isAr = window.nicheI18n?.getLanguage() === 'ar';
+        accSummaryCharms.textContent = isAr 
+          ? `الأمام (${frontCount}) • الخلف (${backCount})`
+          : `Front (${frontCount}) • Back (${backCount})`;
+      }
+
+      const accSummaryEngraving = document.getElementById('accSummaryEngraving');
+      if (accSummaryEngraving) {
+        accSummaryEngraving.textContent = state.engravingText ? `“${state.engravingText}”` : (window.nicheI18n?.getLanguage() === 'ar' ? 'مجاناً • اختياري' : 'Complimentary • Optional');
+      }
+
+      const accSummaryTotal = document.getElementById('accSummaryTotal');
+      if (accSummaryTotal) {
+        accSummaryTotal.textContent = `$${grandTotal.toFixed(2)} • ${kwdGrandTotal} د.ك`;
+      }
+
+      // Track switcher counter tags
+      const tagFront = document.getElementById('trackTagFront');
+      if (tagFront) tagFront.textContent = frontCount;
+      const tagBack = document.getElementById('trackTagBack');
+      if (tagBack) tagBack.textContent = backCount;
+
+      const formattedTotal = `$${grandTotal.toFixed(2)}`;
+      if (totalPriceEl) totalPriceEl.textContent = formattedTotal;
+      if (headerTotalEl) headerTotalEl.textContent = formattedTotal;
+      if (finalTotalBreakdownEl) finalTotalBreakdownEl.textContent = formattedTotal;
+
+      const stickyTot = document.getElementById('stickyTotal');
+      if (stickyTot) stickyTot.textContent = formattedTotal;
+      const stickyBadge = document.getElementById('stickyTrackBadge');
+      if (stickyBadge) stickyBadge.textContent = `Front: ${frontCount} · Back: ${backCount}`;
+      const stickyFlipLbl = document.getElementById('stickyFlipLabel');
+      if (stickyFlipLbl) stickyFlipLbl.textContent = state.activeSide === 'front' ? 'Back' : 'Front';
+
+      if (frontCountBreakdownEl) frontCountBreakdownEl.textContent = frontCount;
+      if (frontPriceBreakdownEl) frontPriceBreakdownEl.textContent = `$${frontTotal.toFixed(2)}`;
+      if (backCountBreakdownEl) backCountBreakdownEl.textContent = backCount;
+      if (backPriceBreakdownEl) backPriceBreakdownEl.textContent = `$${backTotal.toFixed(2)}`;
+
+      const activeList = state.activeSide === 'front' ? state.frontCharms : state.backCharms;
+      if (trackStatusEl) trackStatusEl.textContent = `${activeList.length} / 8 Charms`;
+
+      // Render Active Tray with Left/Right Horizontal Orientation Controls
+      if (placedCharmsListEl) {
+        if (activeList.length === 0) {
+          const T = (k, p) => window.nicheI18n ? window.nicheI18n.t(k, p) : k;
+          placedCharmsListEl.innerHTML = `<div class="empty-tray-tip">${T('customizer.tray_empty_tip')}</div>`;
+        } else {
+        let html = activeList.map((c, idx) => {
+          const isSelected = state.selectedCharmIndex === idx;
+          const isFirst = idx === 0;
+          const isLast = idx === activeList.length - 1;
+          const rot = c.rotationDeg !== undefined ? c.rotationDeg : 90;
+          const isLeft = (rot === 270 || rot === -90);
+          const isRight = (rot === 90);
+          const isUpright = (rot === 0);
+
+          return `
+            <div class="tray-item ${isSelected ? 'selected' : ''}" onclick="toggleSelectCharm('${state.activeSide}', ${idx})">
+              <img src="${c.imgUrl}" alt="${c.title}" style="transform: rotate(${rot}deg); transition: transform 0.25s ease;">
+              <div class="tray-item-title">
+                ${c.title}
+                <span class="flipped-badge">${isRight ? 'أفقي ↷' : isLeft ? 'أفقي ↶' : 'معتدل ⇡'}</span>
+              </div>
+              <div class="tray-actions">
+                <div class="tray-orientation-group" title="اتجاه الدلاية الأفقي">
+                  <button type="button" class="tray-rot-btn ${isLeft ? 'active' : ''}" title="أفقي متجهة لليسار" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 270, event)">↶ يسار</button>
+                  ${c.allowUpright ? `<button type="button" class="tray-rot-btn ${isUpright ? 'active' : ''}" title="رأسي معتدل" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 0, event)">⇡ معتدل</button>` : ''}
+                  <button type="button" class="tray-rot-btn ${isRight ? 'active' : ''}" title="أفقي متجهة لليمين" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 90, event)">↷ يمين</button>
+                </div>
+                <button type="button" class="tray-nav-btn" title="تبديل لليسار" ${isFirst ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx - 1}, event)">&lsaquo;</button>
+                <button type="button" class="tray-nav-btn" title="تبديل لليمين" ${isLast ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx + 1}, event)">&rsaquo;</button>
+                <span class="tray-item-remove" title="حذف الدلاية" onclick="removeCharmByIndex('${state.activeSide}', ${idx}, event)">&times;</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        if (state.selectedCharmIndex >= 0 && state.selectedCharmIndex < activeList.length) {
+          const sel = activeList[state.selectedCharmIndex];
+          html += `
+            <div class="tray-replacement-hint">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              ${window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'محددة للاستبدال: اضغطي على أي دلاية بالأسفل لاستبدالها' : 'Selected for replacement: tap any charm below to substitute'}
+            </div>
+          `;
+        }
+
+        placedCharmsListEl.innerHTML = html;
+      }
+    }
+
+      // Review Step Strings
+      const revMetalAndSize = document.getElementById('revMetalAndSize');
+      if (revMetalAndSize) revMetalAndSize.textContent = `${activeMetalName} (${state.size})`;
+
+      const revFrontList = document.getElementById('revFrontList');
+      if (revFrontList) {
+        revFrontList.textContent = state.frontCharms.length > 0 
+          ? state.frontCharms.map(c => `${c.title}${c.rotationDeg ? (c.rotationDeg === 90 ? ' (أفقي يمين)' : ' (أفقي يسار)') : ''}`).join(' &bull; ')
+          : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
+      }
+
+      const revBackList = document.getElementById('revBackList');
+      if (revBackList) {
+        revBackList.textContent = state.backCharms.length > 0
+          ? state.backCharms.map(c => `${c.title}${c.rotationDeg ? (c.rotationDeg === 90 ? ' (أفقي يمين)' : ' (أفقي يسار)') : ''}`).join(' &bull; ')
+          : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'لا توجد دلايات بعد' : 'None');
+      }
+
+      const revEng = document.getElementById('revEngraving');
+      if (revEng) {
+        revEng.textContent = state.engravingText ? `“${state.engravingText}” (${state.engravingFont.toUpperCase()})` : (window.nicheI18n && window.nicheI18n.getLanguage() === 'ar' ? 'بدون نقش (ختم العيار فقط)' : 'None (Hallmark Only)');
+      }
+
+      const revUSD = document.getElementById('revFinalTotalUSD');
+      if (revUSD) revUSD.textContent = `$${grandTotal.toFixed(2)}`;
+      const revKWD = document.getElementById('revFinalTotalKWD');
+      if (revKWD) revKWD.textContent = `${kwdGrandTotal} د.ك KWD`;
+    }
+
+    // Charm Catalog Definitions
+    const symbolsCatalog = [
+      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4 },
+      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3 },
+      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4 },
+      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2 },
+      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8 },
+      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4 }
+    ];
+
+    const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    const numbers = '0123456789'.split('');
+
+    function renderCharmGrid(type) {
+      const grid = document.getElementById('charmGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      let items = [];
+      if (type === 'symbols') {
+        items = symbolsCatalog;
+      } else if (type === 'solid-letters') {
+        items = letters.map(l => ({
+          id: `letter_${l}_gold`,
+          title: l.toUpperCase(),
+          imgUrl: `/assets/charms/letter_${l}_gold.png`,
+          widthMm: 4.2,
+          heightMm: 4.2
+        }));
+      } else if (type === 'pave-letters') {
+        items = letters.map(l => ({
+          id: `letter_${l}_pave`,
+          title: l.toUpperCase(),
+          imgUrl: `/assets/charms/letter_${l}_pave.png`,
+          widthMm: 4.2,
+          heightMm: 4.2
+        }));
+      } else if (type === 'numbers') {
+        items = numbers.map(n => ({
+          id: `num_${n}_gold`,
+          title: n,
+          imgUrl: `/assets/charms/num_${n}_gold.png`,
+          widthMm: 4.2,
+          heightMm: 4.2
+        }));
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'charm-card';
+        card.innerHTML = `
+          <img src="${item.imgUrl}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="${item.title}">
+          <div class="charm-card-text" style="display:none; font-family:'Cormorant Garamond', serif; font-size:18px; font-weight:700; color:#c59b3f; height:36px; align-items:center; justify-content:center;">${item.title}</div>
+          <div class="charm-price-sub">$45</div>
+        `;
+        card.addEventListener('click', () => {
+          handleCharmCatalogClick(item);
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    // ✦ INSTANT NAME TO CHARMS (صياغة الاسم بالحروف الفورية)
+    window.applyNameToTrack = function(nameText, styleChoice = null) {
+      if (!nameText) return;
+      const clean = nameText.trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+      if (clean.length === 0) return;
+
+      const style = styleChoice || (document.querySelector('input[name="nameCharmsStyle"]:checked')?.value || 'gold');
+      const side = state.activeSide || 'front';
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+
+      // Remove existing charms on this track from 3D scene & state
+      while (list.length > 0) {
+        const c = list.pop();
+        if (c.mesh) rootGroup.remove(c.mesh);
+      }
+
+      // Add each letter/number charm in sequence
+      for (let i = 0; i < clean.length; i++) {
+        const ch = clean[i];
+        let charmId = '';
+        let imgUrl = '';
+        if (ch >= 'A' && ch <= 'Z') {
+          const l = ch.toLowerCase();
+          charmId = `letter_${l}_${style}`;
+          imgUrl = `/assets/charms/letter_${l}_${style}.png`;
+        } else if (ch >= '0' && ch <= '9') {
+          charmId = `num_${ch}_${style}`;
+          imgUrl = `/assets/charms/num_${ch}_${style}.png`;
+        } else {
+          continue;
+        }
+
+        const item = {
+          id: charmId,
+          title: ch,
+          imgUrl: imgUrl,
+          widthMm: 4.2,
+          heightMm: 4.2,
+          rotationDeg: 90
+        };
+
+        const uid = 'charm_' + Date.now() + '_' + i + '_' + Math.floor(Math.random() * 10000);
+        const charmObj = create3DGliderCharm(item);
+        rootGroup.add(charmObj.group);
+
+        list.push({
+          uid,
+          side,
+          ...item,
+          mesh: charmObj.group,
+          facePivot: charmObj.facePivot,
+          s: null
+        });
+      }
+
+      // Evenly distribute the name charms along the rail
+      updateCharmPlacements(side, true);
+      updateUI();
+
+      if (window.nicheI18n) {
+        const isAr = window.nicheI18n.getLanguage() === 'ar';
+        const msg = isAr ? `تم تركيب حروف "${clean}" على الإسورة بنجاح!` : `Name "${clean}" applied to bangle!`;
+        window.EP_UI?.toast ? window.EP_UI.toast(msg, '✦') : console.log(msg);
+      }
+    };
+
+    window.clearActiveTrackCharms = function() {
+      const side = state.activeSide || 'front';
+      const list = side === 'front' ? state.frontCharms : state.backCharms;
+      while (list.length > 0) {
+        const c = list.pop();
+        if (c.mesh) rootGroup.remove(c.mesh);
+      }
+      updateCharmPlacements(side, true);
+      updateUI();
+      const input = document.getElementById('nameToCharmsInput');
+      if (input) input.value = '';
+    };
+
+    // Name-to-charms event listeners
+    document.getElementById('applyNameToCharmsBtn')?.addEventListener('click', () => {
+      const input = document.getElementById('nameToCharmsInput');
+      if (input) window.applyNameToTrack(input.value);
+    });
+
+    document.getElementById('nameToCharmsInput')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        window.applyNameToTrack(e.target.value);
+      }
+    });
+
+    document.querySelectorAll('input[name="nameCharmsStyle"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const input = document.getElementById('nameToCharmsInput');
+        if (input && input.value.trim().length > 0) {
+          window.applyNameToTrack(input.value, radio.value);
+        }
+      });
+    });
+
+    document.getElementById('clearTrackCharmsBtn')?.addEventListener('click', () => {
+      window.clearActiveTrackCharms();
+    });
+
+    // 6. Export to GLTF / GLB (Exports BOTH Front and Back Charms!)
+    function exportToGLB() {
+      const exporter = new GLTFExporter();
+      const exportScene = new THREE.Scene();
+      
+      exportScene.add(bangleMesh.clone());
+      exportScene.add(knuckleGroup.clone());
+
+      [...state.frontCharms, ...state.backCharms].forEach(c => {
+        exportScene.add(c.mesh.clone());
+      });
+
+      exporter.parse(
+        exportScene,
+        function (result) {
+          const blob = new Blob([result], { type: 'model/gltf-binary' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `nich-jewelry-glider-bangle-${state.metal}.glb`;
+          link.click();
+          URL.revokeObjectURL(url);
+        },
+        function (error) {
+          console.error('Export error:', error);
+          alert('Export failed.');
+        },
+        { binary: true }
+      );
+    }
+
+    // Event Listeners
+    document.getElementById('exportGlbBtn').addEventListener('click', exportToGLB);
+    document.getElementById('downloadCadModel').addEventListener('click', exportToGLB);
+
+    document.getElementById('toggleRotateBtn').addEventListener('click', () => {
+      state.autoRotate = !state.autoRotate;
+      controls.autoRotate = state.autoRotate;
+      document.getElementById('rotateLabel').textContent = state.autoRotate ? 'Pause' : 'Play';
+    });
+
+    document.getElementById('clearAllBtn').addEventListener('click', clearAllCharms);
+    document.getElementById('resetCamBtn').addEventListener('click', () => setView(state.activeSide));
+
+    document.querySelectorAll('.view-chip').forEach(btn => {
+      btn.addEventListener('click', () => setView(btn.dataset.view));
+    });
+
+    document.querySelectorAll('.metal-option').forEach(btn => {
+      btn.addEventListener('click', () => setMetal(btn.dataset.metal));
+    });
+
+    document.querySelectorAll('.type-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.type-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.currentCharmType = btn.dataset.type;
+        const grid = document.getElementById('charmGrid');
+        const uploader = document.getElementById('customCharmUploader');
+        if (state.currentCharmType === 'custom') {
+          if (grid) grid.style.display = 'none';
+          if (uploader) uploader.style.display = 'block';
+        } else {
+          if (grid) grid.style.display = 'grid';
+          if (uploader) uploader.style.display = 'none';
+          renderCharmGrid(state.currentCharmType);
+        }
+      });
+    });
+
+    // Custom Bespoke Charm Upload Handlers
+    let pendingCustomCharm = null;
+    function handleCustomCharmFile(file) {
+      if (!file || !file.type.startsWith('image/')) {
+        alert('Please choose a valid image file (PNG recommended).');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        pendingCustomCharm = {
+          imgUrl: dataUrl,
+          fileName: file.name.replace(/\.[^/.]+$/, "")
+        };
+        const previewCard = document.getElementById('customCharmPreviewCard');
+        const previewImg = document.getElementById('customCharmPreviewImg');
+        const titleInput = document.getElementById('customCharmTitleInput');
+        if (previewImg) previewImg.src = dataUrl;
+        if (titleInput) titleInput.value = pendingCustomCharm.fileName || 'Bespoke Charm';
+        if (previewCard) previewCard.style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    const dropzone = document.getElementById('customCharmDropzone');
+    const fileInput = document.getElementById('customCharmFileInput');
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) handleCustomCharmFile(e.target.files[0]);
+      });
+    }
+    if (dropzone) {
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleCustomCharmFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    document.getElementById('addCustomCharmBtn')?.addEventListener('click', () => {
+      if (!pendingCustomCharm) return;
+      const titleInput = document.getElementById('customCharmTitleInput');
+      const title = (titleInput?.value || '').trim() || 'Bespoke Cutout Charm';
+      const customItem = {
+        id: 'bespoke_' + Date.now(),
+        title: title,
+        imgUrl: pendingCustomCharm.imgUrl,
+        price: 65,
+        widthMm: 4.8,
+        heightMm: 4.8,
+        isCustom: true
+      };
+      addCharm(customItem);
+      if (window.EP_UI) {
+        window.EP_UI.toast(`Added custom "${title}" to ${state.activeSide} rail!`);
+      }
+    });
+
+    // Atelier Inner Engraving Handlers
+    function toggleEngravingCard() {
+      const body = document.getElementById('engravingBody');
+      const arrow = document.getElementById('engravingArrow');
+      if (!body) return;
+      const isOpen = body.style.display !== 'none';
+      body.style.display = isOpen ? 'none' : 'block';
+      if (arrow) arrow.innerHTML = isOpen ? '&dtrif;' : '&utrif;';
+    }
+    document.getElementById('toggleEngravingBtn')?.addEventListener('click', toggleEngravingCard);
+
+    const engravingInput = document.getElementById('engravingInput');
+    const engravingCharCount = document.getElementById('engravingCharCount');
+    if (engravingInput) {
+      engravingInput.addEventListener('input', (e) => {
+        state.engravingText = e.target.value.slice(0, 25);
+        if (engravingCharCount) engravingCharCount.textContent = `${state.engravingText.length} / 25 chars`;
+        redrawInnerEngraving();
+        updateUI();
+      });
+    }
+
+    document.querySelectorAll('.engraving-font-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.engraving-font-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.engravingFont = btn.dataset.font || 'roman';
+        redrawInnerEngraving();
+        updateUI();
+      });
+    });
+
+    document.getElementById('inspectEngravingBtn')?.addEventListener('click', () => {
+      setView('inside');
+    });
+
+    document.getElementById('clearEngravingBtn')?.addEventListener('click', () => {
+      state.engravingText = '';
+      if (engravingInput) engravingInput.value = '';
+      if (engravingCharCount) engravingCharCount.textContent = '0 / 25 chars';
+      redrawInnerEngraving();
+      updateUI();
+    });
+
+    // AR Try-On & Virtual Wrist Visualizer Handlers
+    function openARModal() {
+      const modal = document.getElementById('arModal');
+      if (modal) modal.style.display = 'flex';
+      renderARWristPreview();
+      generateARQRCode();
+    }
+
+    function closeARModal() {
+      const modal = document.getElementById('arModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    document.getElementById('arTryOnBtn')?.addEventListener('click', openARModal);
+    document.getElementById('arModalCloseBtn')?.addEventListener('click', closeARModal);
+    document.getElementById('arModalCloseBottomBtn')?.addEventListener('click', closeARModal);
+
+    document.getElementById('arTabWristBtn')?.addEventListener('click', () => {
+      document.getElementById('arTabWristBtn').classList.add('active');
+      document.getElementById('arTabMobileBtn').classList.remove('active');
+      document.getElementById('arPaneWrist').style.display = 'block';
+      document.getElementById('arPaneMobile').style.display = 'none';
+      renderARWristPreview();
+    });
+    document.getElementById('arTabMobileBtn')?.addEventListener('click', () => {
+      document.getElementById('arTabMobileBtn').classList.add('active');
+      document.getElementById('arTabWristBtn').classList.remove('active');
+      document.getElementById('arPaneMobile').style.display = 'block';
+      document.getElementById('arPaneWrist').style.display = 'none';
+    });
+
+    document.querySelectorAll('.skin-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tone = btn.dataset.tone;
+        const arm = document.getElementById('wristArm');
+        if (arm) arm.className = `wrist-arm skin-tone-${tone}`;
+      });
+    });
+
+    function renderARWristPreview() {
+      const bangleOverlay = document.getElementById('wristBangleOverlay');
+      if (bangleOverlay) {
+        bangleOverlay.className = `wrist-bangle-overlay alloy-${state.metal === 'white' ? 'silver' : (state.metal === 'rose' ? 'rose' : 'gold')}`;
+      }
+      const sizeLabel = document.getElementById('arSizeLabel');
+      if (sizeLabel) {
+        const sizeMap = { XS: 'XS (5.5")', S: 'S (6.0")', M: 'M (6.5")', L: 'L (7.0")' };
+        sizeLabel.textContent = sizeMap[state.size] || state.size;
+      }
+    }
+
+    function generateARQRCode() {
+      const svg = document.getElementById('arQrSvg');
+      if (!svg) return;
+      const qrCells = [
+        [1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1],
+        [1,0,1,1,1,0,1,0,1,0,1,0,1,1,1,0,1],
+        [1,0,1,1,1,0,1,0,0,1,1,0,1,1,1,0,1],
+        [1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,0,1],
+        [1,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
+        [0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
+        [1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1],
+        [0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,1,0],
+        [1,1,1,1,1,1,1,0,0,1,1,0,1,1,0,0,1],
+        [1,0,0,0,0,0,1,0,1,0,1,1,0,1,1,0,1],
+        [1,0,1,1,1,0,1,0,0,1,1,0,1,0,1,1,0],
+        [1,0,1,1,1,0,1,0,1,1,0,1,0,1,0,0,1],
+        [1,0,1,1,1,0,1,0,1,0,1,0,1,1,0,1,1],
+        [1,0,0,0,0,0,1,0,0,1,1,1,0,0,1,0,1],
+        [1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1]
+      ];
+      const cellSize = 140 / qrCells.length;
+      let rects = '';
+      for (let r = 0; r < qrCells.length; r++) {
+        for (let c = 0; c < qrCells[r].length; c++) {
+          if (qrCells[r][c] === 1) {
+            rects += `<rect x="${10 + c * cellSize}" y="${10 + r * cellSize}" width="${cellSize - 0.4}" height="${cellSize - 0.4}" fill="#1b1b1b" rx="0.5"/>`;
+          }
+        }
+      }
+      svg.innerHTML = rects;
+    }
+
+    document.getElementById('exportArAssetBtn')?.addEventListener('click', exportToGLB);
+
+    document.getElementById('toggleBreakdown').addEventListener('click', () => {
+      const panel = document.getElementById('breakdownPanel');
+      const arrow = document.getElementById('breakdownArrow');
+      const isVisible = panel.style.display === 'block';
+      panel.style.display = isVisible ? 'none' : 'block';
+      arrow.innerHTML = isVisible ? '&dtrif;' : '&utrif;';
+    });
+
+    window.addEventListener('resize', syncViewportSize);
+
+    // Store Integration Helpers
+    function serializeCharmList(list) {
+      return list.map(c => ({
+        id: c.id,
+        title: c.title,
+        imgUrl: c.imgUrl,
+        price: c.price || state.charmPrice,
+        widthMm: c.widthMm,
+        heightMm: c.heightMm,
+        rotationDeg: c.rotationDeg || 0,
+        s: c.s,
+        isCustom: !!c.isCustom
+      }));
+    }
+
+    function computeCurrentTotal() {
+      const frontTotal = state.frontCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      const backTotal = state.backCharms.reduce((sum, c) => sum + (c.price || state.charmPrice), 0);
+      return state.basePrice + frontTotal + backTotal;
+    }
+
+    function addCustomBangleToStoreBag(goCheckout = false) {
+      if (!window.EP_STORE) return;
+      const metalThumbs = {
+        yellow: 'assets/images/bangle_gold_studio.jpg',
+        white:  'assets/images/bangle_silver_studio.jpg',
+        rose:   'assets/images/bangle_rose_studio.jpg'
+      };
+      const total = computeCurrentTotal();
+      const item = {
+        type: 'custom-bangle',
+        productId: state.metal === 'white' ? 'glider-925-silver' : (state.metal === 'rose' ? 'glider-rose-gold' : 'glider-14k-gold'),
+        title: 'Personalized Glider Charm Bangle™ (Custom 3D)',
+        metal: state.metal,
+        size: state.size,
+        unitPrice: total,
+        qty: 1,
+        image: metalThumbs[state.metal],
+        frontCharms: serializeCharmList(state.frontCharms),
+        backCharms: serializeCharmList(state.backCharms),
+        engraving: state.engravingText || null,
+        engravingFont: state.engravingFont || 'roman'
+      };
+
+      if (state.editingCartUid) {
+        window.EP_STORE.removeFromCart(state.editingCartUid);
+        state.editingCartUid = null;
+      }
+      window.EP_STORE.addToCart(item);
+
+      if (goCheckout) {
+        const locale = window.nicheI18n?.getLanguage() === 'en' ? 'en' : 'ar';
+        window.location.href = `/${locale}/checkout`;
+      } else if (window.EP_UI) {
+        window.EP_UI.toast('Custom 3D Bangle added to your bag!');
+        window.EP_UI.openCart();
+      }
+    }
+
+    function saveCustomBangleToWishlist() {
+      if (!window.EP_STORE) return;
+      const saved = window.EP_STORE.saveCustomDesignToWishlist({
+        id: state.editingDesignId || undefined,
+        title: `Custom ${state.metal === 'white' ? '925 Silver' : (state.metal === 'rose' ? '14K Rose' : '14K Gold')} Glider Bangle`,
+        metal: state.metal,
+        size: state.size,
+        price: computeCurrentTotal(),
+        frontCharms: serializeCharmList(state.frontCharms),
+        backCharms: serializeCharmList(state.backCharms),
+        engraving: state.engravingText || null,
+        engravingFont: state.engravingFont || 'roman'
+      });
+      state.editingDesignId = saved.id;
+      if (window.EP_UI) {
+        window.EP_UI.toast('Saved 3D configuration to Wishlist ♥', '♥');
+      }
+    }
+
+    document.getElementById('orderBtn').addEventListener('click', () => addCustomBangleToStoreBag(false));
+    document.getElementById('stickyOrderBtn')?.addEventListener('click', () => addCustomBangleToStoreBag(false));
+    document.getElementById('saveWishlistBtn').addEventListener('click', saveCustomBangleToWishlist);
+
+    window.toggleFrontBackSide = function() {
+      if (state.currentStep === 1) goToStep(2);
+      else goToStep(1);
+    };
+    document.getElementById('stickyFlipBtn')?.addEventListener('click', () => window.toggleFrontBackSide());
+
+    // Auto-fade drag indicator after 4.5s or on first interaction
+    const dragHint = document.getElementById('floatingDragIndicator');
+    function dismissDragHint() {
+      if (dragHint && !dragHint.classList.contains('dismissed')) {
+        dragHint.classList.add('dismissed');
+        dragHint.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        dragHint.style.opacity = '0';
+        dragHint.style.transform = 'translate(-50%, 8px)';
+        setTimeout(() => { if (dragHint) dragHint.style.display = 'none'; }, 420);
+      }
+    }
+    setTimeout(dismissDragHint, 4500);
+    window.addEventListener('pointerdown', dismissDragHint, { once: true, passive: true });
+
+    function setBangleSize(sizeKey) {
+      state.size = sizeKey;
+      document.querySelectorAll('.size-opt-btn, .size-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.size === sizeKey);
+      });
+      const sizeObj = window.EP_DB && window.EP_DB.sizes && window.EP_DB.sizes.find(s => s.key === sizeKey);
+      const revSize = document.getElementById('revSize');
+      if (revSize) revSize.textContent = sizeObj ? `${sizeObj.label} (${sizeObj.wristMm})` : sizeKey;
+      const revMetalAndSize = document.getElementById('revMetalAndSize');
+      if (revMetalAndSize) {
+        const metalNames = {
+          yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 14K' : '14K Yellow Gold',
+          white: window.nicheI18n?.getLanguage() === 'ar' ? 'فضة إسترليني 925' : '925 Sterling Silver',
+          rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 14K' : '14K Rose Gold'
+        };
+        const activeMetalName = metalNames[state.metal] || state.metal;
+        revMetalAndSize.textContent = `${activeMetalName} (${sizeKey})`;
+      }
+      updateUI();
+    }
+
+    document.querySelectorAll('.size-option').forEach(btn => {
+      btn.addEventListener('click', () => setBangleSize(btn.dataset.size));
+    });
+
+    // Initialize Catalog & Check URL Parameters (from Wishlist / Cart / Shop)
+    renderCharmGrid('symbols');
+
+    (function hydrateFromURL() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const designId = params.get('designId');
+        const cartUid = params.get('cartUid');
+        const metalParam = params.get('metal');
+        const sizeParam = params.get('size');
+        const charmParam = params.get('charm');
+
+        let loadedCustom = null;
+        if (designId && window.EP_STORE) {
+          loadedCustom = window.EP_STORE.getWishlistItemById(designId);
+          if (loadedCustom) state.editingDesignId = loadedCustom.id;
+        } else if (cartUid && window.EP_STORE) {
+          loadedCustom = window.EP_STORE.getCart().find(i => i.uid === cartUid);
+          if (loadedCustom) state.editingCartUid = loadedCustom.uid;
+        }
+
+        if (loadedCustom) {
+          if (loadedCustom.metal) setMetal(loadedCustom.metal);
+          if (loadedCustom.size) setBangleSize(loadedCustom.size);
+          if (loadedCustom.engraving) {
+            state.engravingText = loadedCustom.engraving;
+            state.engravingFont = loadedCustom.engravingFont || 'roman';
+            const engInput = document.getElementById('engravingInput');
+            if (engInput) engInput.value = state.engravingText;
+            const charCnt = document.getElementById('engravingCharCount');
+            if (charCnt) charCnt.textContent = `${state.engravingText.length} / 25 chars`;
+            document.querySelectorAll('.engraving-font-btn').forEach(b => {
+              b.classList.toggle('active', b.dataset.font === state.engravingFont);
+            });
+            redrawInnerEngraving();
+          }
+          (loadedCustom.frontCharms || []).forEach(c => addCharm(c, 'front'));
+          (loadedCustom.backCharms || []).forEach(c => addCharm(c, 'back'));
+        } else {
+          if (metalParam && ['yellow', 'white', 'rose'].includes(metalParam)) {
+            setMetal(metalParam);
+          }
+          if (sizeParam && ['XS', 'S', 'M', 'L'].includes(sizeParam)) {
+            setBangleSize(sizeParam);
+          }
+          if (charmParam) {
+            const found = symbolsCatalog.find(s => s.id === charmParam);
+            if (found) addCharm(found, 'front');
+            else {
+              addCharm(symbolsCatalog[0], 'front');
+              addCharm(symbolsCatalog[1], 'front');
+            }
+          } else {
+            // Default starter design: Bee & Martini
+            addCharm({ ...symbolsCatalog[0], rotationDeg: 90 }, 'front');
+            addCharm({ ...symbolsCatalog[1], rotationDeg: 90 }, 'front');
+          }
+        }
+        updateUI();
+      } catch (e) {
+        console.warn('Hydration notice:', e);
+      }
+    })();
+
+    // Animation Loop with Smooth Lift and Glide Physics
+    window.goToStep = function(step) {
+      if (step === 1) {
+        if (window.switchActiveTrack) window.switchActiveTrack('front');
+        if (window.openAccordionStep) window.openAccordionStep(2);
+      } else if (step === 2) {
+        if (window.switchActiveTrack) window.switchActiveTrack('back');
+        if (window.openAccordionStep) window.openAccordionStep(2);
+      } else if (step === 3) {
+        if (window.openAccordionStep) window.openAccordionStep(4);
+      }
+    };
+    window.addCustomBangleToStoreBag = addCustomBangleToStoreBag;
+    window.saveCustomBangleToWishlist = saveCustomBangleToWishlist;
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Smooth physical lift animation for dragged charms
+      let anyLiftActive = false;
+      [...state.frontCharms, ...state.backCharms].forEach(charm => {
+        const targetLift = charm.isLifted ? 0.0010 : 0; // 1mm lift when grabbed
+        const prevLift = charm.liftCurrent || 0;
+        charm.liftCurrent = THREE.MathUtils.lerp(prevLift, targetLift, 0.22);
+        if (Math.abs(charm.liftCurrent - prevLift) > 0.00001) {
+          anyLiftActive = true;
+        }
+      });
+
+      if (anyLiftActive) {
+        updateCharmPlacements(dragState.isDragging ? dragState.side : null);
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
+

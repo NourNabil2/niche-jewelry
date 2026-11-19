@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niche Jewelry — Project Quotation & Technical Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold-primary: #c59b3f;
+      --gold-deep: #9e7526;
+      --gold-soft: #fcf9f2;
+      --gold-border: #e8d8b5;
+      --text-dark: #1b1b1b;
+      --text-muted: #666666;
+      --border-light: #e5e5e5;
+      --bg-warm: #faf9f6;
+      --bg-white: #ffffff;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-dark);
+      background: var(--bg-warm);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .doc-container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      padding: 60px 50px;
+    }
+
+    /* Header & Branding */
+    .doc-header {
+      border-bottom: 2px solid var(--gold-border);
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .meta-box {
+      text-align: right;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .meta-box strong { color: var(--text-dark); }
+
+    /* Notice Banner */
+    .notice-banner {
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 36px;
+      font-size: 13px;
+      color: #634a17;
+      line-height: 1.5;
+    }
+    .notice-banner strong { color: var(--gold-deep); font-weight: 600; }
+
+    /* Sections */
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 8px;
+      margin: 40px 0 16px 0;
+      letter-spacing: 0.04em;
+    }
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin: 24px 0 10px 0;
+    }
+    p, li {
+      font-size: 13.5px;
+      color: #333333;
+      line-height: 1.7;
+    }
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    li { margin-bottom: 6px; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 12.5px;
+    }
+    th, td {
+      padding: 11px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+    th {
+      background: #f8f8f8;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    tr:hover td { background: #fafafa; }
+    .price-col { text-align: right; font-weight: 600; }
+    th.price-col { text-align: right; }
+
+    /* Highlight Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .feature-card {
+      background: #fafafa;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .feature-card h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-deep);
+      margin-bottom: 6px;
+    }
+    .feature-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Floating Print Button */
+    .print-btn-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+    }
+    .btn-print {
+      background: var(--text-dark);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 24px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-print:hover {
+      background: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .doc-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-btn-bar { display: none !important; }
+      h2 { page-break-after: avoid; }
+      table { page-break-inside: avoid; }
+      .feature-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-btn-bar">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Save as PDF
+    </button>
+  </div>
+
+  <div class="doc-container">
+    
+    <!-- Header -->
+    <header class="doc-header">
+      <div>
+        <h1 class="brand-title">Niche Jewelry</h1>
+        <div class="brand-subtitle">Project Quotation & Technical Proposal</div>
+      </div>
+      <div class="meta-box">
+        <div><strong>Date:</strong> November 17, 2026</div>
+        <div><strong>Target Market:</strong> Global (Universal Card Acceptance)</div>
+        <div><strong>Currency:</strong> USD ($)</div>
+        <div><strong>Target Delivery:</strong> 12–16 Weeks</div>
+      </div>
+    </header>
+
+    <!-- Notice -->
+    <div class="notice-banner">
+      <strong>✦ Important Pricing Note:</strong> All pricing estimates presented in this proposal are <strong>market benchmark reference rates</strong> for transparency and scope estimation. <strong>Final engagement pricing is customized and subject to adjustment by project management</strong> based on chosen tiers, deliverables, and commercial arrangements.
+    </div>
+
+    <!-- Executive Summary -->
+    <h2>1. Executive Summary</h2>
+    <p>Niche Jewelry is a luxury atelier e-commerce platform built to offer personalized, interactive 3D fine jewelry customization. This document outlines the technical scope, timeline, and market benchmarks across four core functional tracks:</p>
+
+    <div class="card-grid">
+      <div class="feature-card">
+        <h4>1. 3D Engine</h4>
+        <p>In-house 3D modeling, WebGL rendering, real-time metal reflection, 360° orbit, and interactive drag-and-drop customization.</p>
+      </div>
+      <div class="feature-card">
+        <h4>2. Web & Backend</h4>
+        <p>Full-stack Next.js web application, PostgreSQL schema, 40+ REST API endpoints, and a comprehensive merchant administration panel.</p>
+      </div>
+      <div class="feature-card">
+        <h4>3. Universal Payments</h4>
+        <p>Worldwide Visa and Mastercard checkout with 3D Secure 2.0, Apple Pay, Google Pay, and automated invoicing.</p>
+      </div>
+      <div class="feature-card">
+        <h4>4. KYC & Compliance</h4>
+        <p>Tiered customer verification (SMS OTP, ID check) and full jewelry merchant compliance (conflict-free certification, hallmarking).</p>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <h2>2. Section 1: 3D Customizer Engine</h2>
+    <p><em>Note: 3D modeling and engine development are executed <strong>in-house</strong> (leveraging AI-assisted workflows and existing 3D frameworks). Market benchmarks below represent typical outsourced costs for reference:</em></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Deliverable</th>
+          <th>Technical Details</th>
+          <th>Estimated Effort</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Bangle & Charm 3D Models</strong></td>
+          <td>High-fidelity GLB/glTF 2.0 models for signature glider bangle and 25+ initial charms (Bee, Heart, Martini, A-Z initials).</td>
+          <td>8–13 Days</td>
+        </tr>
+        <tr>
+          <td><strong>New Jewelry Product Lines</strong></td>
+          <td>3D models for Medallion Necklaces, Solitaire/Stacking Rings, and Sculpted Huggie Earrings.</td>
+          <td>4–6 Days</td>
+        </tr>
+        <tr>
+          <td><strong>PBR Shaders & Materials</strong></td>
+          <td>Physically Based Rendering (PBR) for 14K Yellow Gold, Rose Gold, and 925 Sterling Silver with studio reflections.</td>
+          <td>2–3 Days</td>
+        </tr>
+        <tr>
+          <td><strong>Customizer Interactions</strong></td>
+          <td>360° orbit camera, 3D Raycasting drag-and-drop with snap-to-track physics, zoom, and live inner-band engraving.</td>
+          <td>11–16 Days</td>
+        </tr>
+        <tr>
+          <td><strong>Export & Optimization</strong></td>
+          <td>Model compression (Draco/KTX2), high-res PNG snapshot generator, and GLB export.</td>
+          <td>4–6 Days</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Market Benchmark Range:</strong> $4,000 – $9,000 <em>(Customized in-house pricing set by management)</em></p>
+
+    <!-- Section 2 -->
+    <h2>3. Section 2: Website & Backend Infrastructure</h2>
+    <p>Upgrades the existing front-end prototype into an enterprise e-commerce platform with persistent database storage, customer accounts, and back-office order management:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Scope & Capabilities</th>
+          <th>Estimated Effort</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Next.js Application</strong></td>
+          <td>App Router, Server Components, SEO optimization, and bilingual English/Arabic layout with fluid mobile responsiveness.</td>
+          <td>10–15 Days</td>
+        </tr>
+        <tr>
+          <td><strong>Database & Data Layer</strong></td>
+          <td>PostgreSQL relational schema (15 tables: users, products, variants, orders, custom designs, reviews) with Prisma ORM.</td>
+          <td>7–9 Days</td>
+        </tr>
+        <tr>
+          <td><strong>API Architecture</strong></td>
+          <td>40+ REST endpoints covering authentication, catalog, customizer state, cart calculations, orders, and addresses.</td>
+          <td>15–20 Days</td>
+        </tr>
+        <tr>
+          <td><strong>Admin Control Center</strong></td>
+          <td>Merchant dashboard for product catalog management, order fulfillment, refund handling, discount codes, and sales reports.</td>
+          <td>10–14 Days</td>
+        </tr>
+        <tr>
+          <td><strong>Transactional Notifications</strong></td>
+          <td>Automated email templates (order confirmations, dispatch updates) via Resend/SendGrid.</td>
+          <td>3–4 Days</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Market Benchmark Range:</strong> $6,000 – $14,000 <em>(Customized in-house pricing set by management)</em></p>
+
+    <!-- Section 3 -->
+    <h2>4. Section 3: Universal Payment Integration (Visa / Mastercard)</h2>
+    <p>The checkout architecture is engineered for <strong>universal global card acceptance</strong>. Customers worldwide can pay seamlessly using their everyday debit or credit cards without requiring third-party wallet accounts or facing regional payment barriers:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Payment Method</th>
+          <th>Supported Cards & Wallets</th>
+          <th>Transaction Processing</th>
+          <th>Key Advantages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🥇 Visa & Mastercard</strong></td>
+          <td>Debit, Credit, Prepaid (200+ Countries & Territories)</td>
+          <td>Standard Interchange (e.g. 2.9% + 30¢)</td>
+          <td><strong>Universal global acceptance</strong> — embedded luxury card form, zero customer account setup required.</td>
+        </tr>
+        <tr>
+          <td><strong>🥈 Apple Pay & Google Pay</strong></td>
+          <td>Biometric 1-touch checkout on iOS, Safari, Android & Chrome</td>
+          <td>Included in card processing</td>
+          <td><strong>Highest mobile conversion rate</strong> — reduces checkout friction to a single Face ID or fingerprint scan.</td>
+        </tr>
+        <tr>
+          <td><strong>🥉 American Express (Amex)</strong></td>
+          <td>Amex personal & corporate premium cards</td>
+          <td>Standard card rate</td>
+          <td>Captures high-net-worth international luxury jewelry shoppers.</td>
+        </tr>
+        <tr>
+          <td><strong>🛡️ 3D Secure 2.0</strong></td>
+          <td>Verified by Visa & Mastercard Identity Check</td>
+          <td>Automated & built-in</td>
+          <td>Zero chargeback liability shift to issuing banks on authenticated fraud disputes.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>Market Benchmark Range:</strong> $1,500 – $3,500 <em>(Customized in-house pricing set by management)</em></p>
+
+    <!-- Section 4 -->
+    <h2>5. Section 4: KYC & Regulatory Compliance</h2>
+    <p>Because jewelry is categorized as high-value goods, regulatory compliance and customer verification are critical to safeguard merchant accounts against fraud and chargebacks:</p>
+
+    <h3>A. Customer Verification Tiers (To Maximize Conversion)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Verification Tier</th>
+          <th>Order Threshold</th>
+          <th>Verification Requirement</th>
+          <th>Estimated Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tier 0 (Guest)</strong></td>
+          <td>Under $150</td>
+          <td>Email confirmation only (charms, accessories)</td>
+          <td>$0.00</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 1 (Registered)</strong></td>
+          <td>$150 – $1,000</td>
+          <td>Phone verification via SMS One-Time Password (OTP)</td>
+          <td>Free via Firebase (or $0.05/SMS)</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 2 (High Value)</strong></td>
+          <td>$1,000 – $5,000</td>
+          <td>Government ID upload & verification (Stripe Identity / Sumsub)</td>
+          <td>$1.35 – $1.50 per check</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 3 (VIP / Custom)</strong></td>
+          <td>Over $5,000</td>
+          <td>ID + proof of address + manual merchant confirmation</td>
+          <td>$1.50 + manual review</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>B. Merchant Documents Required for Activation</h3>
+    <ul>
+      <li><strong>Commercial Registration / Certificate of Incorporation:</strong> Official business registration certificate.</li>
+      <li><strong>Tax Identification Number (TIN / VAT):</strong> Official tax registration certificate.</li>
+      <li><strong>Authorized Manager ID:</strong> Government-issued passport or national identity card (both sides).</li>
+      <li><strong>Corporate Bank Account Statement:</strong> Official business bank account statement (IBAN / Wire details).</li>
+      <li><strong>Conflict-Free & Hallmarking Statement:</strong> Self-certified declaration published on the website confirming precious metal stampings (14K / 925).</li>
+    </ul>
+    <p><strong>Market Benchmark Range:</strong> $1,500 – $3,500 <em>(Customized in-house pricing set by management)</em></p>
+
+    <!-- Summary & Timeline -->
+    <h2>6. Master Pricing Benchmark & Project Phases</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Phase / Milestone</th>
+          <th>Core Deliverables</th>
+          <th>Timeline</th>
+          <th class="price-col">Market Reference</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Phase 1: Foundation</strong></td>
+          <td>Architecture setup, database, authentication, infrastructure</td>
+          <td>Weeks 1–2</td>
+          <td class="price-col">$2,000 – $3,500</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 2: App & Backend</strong></td>
+          <td>Next.js frontend, complete REST APIs, merchant admin dashboard</td>
+          <td>Weeks 3–6</td>
+          <td class="price-col">$5,000 – $10,500</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 3: 3D Atelier</strong></td>
+          <td>3D modeling, Three.js shaders, drag-and-drop customizer, exports</td>
+          <td>Weeks 7–10</td>
+          <td class="price-col">$4,000 – $9,000</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 4: Checkout & KYC</strong></td>
+          <td>Universal Visa/Mastercard checkout, 3D Secure, SMS OTP, legal policies</td>
+          <td>Weeks 11–12</td>
+          <td class="price-col">$2,000 – $4,000</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 5: Launch & QA</strong></td>
+          <td>End-to-end verification, performance tuning, staff training</td>
+          <td>Weeks 13–14</td>
+          <td class="price-col">Included in package</td>
+        </tr>
+        <tr style="background:#f4efe6; font-weight:700;">
+          <td colspan="3"><strong>Total Market Benchmark (Reference Range)</strong></td>
+          <td class="price-col" style="color:var(--gold-deep); font-size:14px;"><strong>$13,000 – $27,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notice-banner" style="margin-top:24px;">
+      <strong>Note on Client Delivery:</strong> Project management will tailor the commercial agreement and payment structure (e.g., 30% upfront / 25% backend / 25% 3D / 20% launch) directly with the client.
+    </div>
+
+    <!-- Sign-off -->
+    <div style="margin-top:50px; padding-top:20px; border-top:1px solid var(--border-light); display:flex; justify-content:space-between; font-size:12px; color:var(--text-muted);">
+      <div>Niche Jewelry Atelier &bull; Confidential Proposal</div>
+      <div>Prepared by: Technical Engineering Team</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
