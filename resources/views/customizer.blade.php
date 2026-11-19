@@ -3070,7 +3070,7 @@
       facePivot.add(faceMesh);
 
       // Initialize 90-degree rotation
-      facePivot.rotation.z = (item.rotationDeg || 0) * (Math.PI / 180);
+      facePivot.rotation.z = (item.rotationDeg !== undefined ? item.rotationDeg : 90) * (Math.PI / 180);
 
       return { group: charmGroup, facePivot, faceMesh };
     }
@@ -3422,14 +3422,15 @@
       }
 
       const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const charmObj = create3DGliderCharm({ ...item, rotationDeg: item.rotationDeg || 0 });
+      const initRot = item.rotationDeg !== undefined ? item.rotationDeg : 90;
+      const charmObj = create3DGliderCharm({ ...item, rotationDeg: initRot });
       rootGroup.add(charmObj.group);
 
       const charmData = {
         uid,
         side,
         ...item,
-        rotationDeg: item.rotationDeg || 0,
+        rotationDeg: initRot,
         mesh: charmObj.group,
         facePivot: charmObj.facePivot,
         s: item.s !== undefined ? item.s : null,
@@ -3459,14 +3460,15 @@
       rootGroup.remove(oldCharm.mesh);
 
       const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const charmObj = create3DGliderCharm({ ...newItem, rotationDeg: oldCharm.rotationDeg || 0 });
+      const curRot = oldCharm.rotationDeg !== undefined ? oldCharm.rotationDeg : 90;
+      const charmObj = create3DGliderCharm({ ...newItem, rotationDeg: curRot });
       rootGroup.add(charmObj.group);
 
       const charmData = {
         uid,
         side,
         ...newItem,
-        rotationDeg: oldCharm.rotationDeg || 0,
+        rotationDeg: curRot,
         mesh: charmObj.group,
         facePivot: charmObj.facePivot,
         s: oldCharm.s,
@@ -3842,7 +3844,7 @@
           const isSelected = state.selectedCharmIndex === idx;
           const isFirst = idx === 0;
           const isLast = idx === activeList.length - 1;
-          const rot = c.rotationDeg || 0;
+          const rot = c.rotationDeg !== undefined ? c.rotationDeg : 90;
           const isLeft = (rot === 270 || rot === -90);
           const isRight = (rot === 90);
           const isUpright = (rot === 0);
@@ -3852,12 +3854,12 @@
               <img src="${c.imgUrl}" alt="${c.title}" style="transform: rotate(${rot}deg); transition: transform 0.25s ease;">
               <div class="tray-item-title">
                 ${c.title}
-                ${isRight ? `<span class="flipped-badge">أفقي ↷</span>` : isLeft ? `<span class="flipped-badge">أفقي ↶</span>` : ''}
+                <span class="flipped-badge">${isRight ? 'أفقي ↷' : isLeft ? 'أفقي ↶' : 'معتدل ⇡'}</span>
               </div>
               <div class="tray-actions">
-                <div class="tray-orientation-group" title="اتجاه الدلاية">
+                <div class="tray-orientation-group" title="اتجاه الدلاية الأفقي">
                   <button type="button" class="tray-rot-btn ${isLeft ? 'active' : ''}" title="أفقي متجهة لليسار" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 270, event)">↶ يسار</button>
-                  <button type="button" class="tray-rot-btn ${isUpright ? 'active' : ''}" title="رأسي معتدل" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 0, event)">⇡ معتدل</button>
+                  ${c.allowUpright ? `<button type="button" class="tray-rot-btn ${isUpright ? 'active' : ''}" title="رأسي معتدل" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 0, event)">⇡ معتدل</button>` : ''}
                   <button type="button" class="tray-rot-btn ${isRight ? 'active' : ''}" title="أفقي متجهة لليمين" onclick="setCharmOrientation('${state.activeSide}', ${idx}, 90, event)">↷ يمين</button>
                 </div>
                 <button type="button" class="tray-nav-btn" title="تبديل لليسار" ${isFirst ? 'disabled' : ''} onclick="swapCharms('${state.activeSide}', ${idx}, ${idx - 1}, event)">&lsaquo;</button>
@@ -4011,7 +4013,7 @@
           imgUrl: imgUrl,
           widthMm: 4.2,
           heightMm: 4.2,
-          rotationDeg: 0
+          rotationDeg: 90
         };
 
         const uid = 'charm_' + Date.now() + '_' + i + '_' + Math.floor(Math.random() * 10000);
@@ -4537,8 +4539,8 @@
             }
           } else {
             // Default starter design: Bee & Martini
-            addCharm(symbolsCatalog[0], 'front');
-            addCharm(symbolsCatalog[1], 'front');
+            addCharm({ ...symbolsCatalog[0], rotationDeg: 90 }, 'front');
+            addCharm({ ...symbolsCatalog[1], rotationDeg: 90 }, 'front');
           }
         }
         updateUI();

@@ -45,6 +45,7 @@ class CharmManagerController extends Controller
             'price' => $validated['price'],
             'price_kwd' => $priceKwd,
             'mesh_type' => $validated['mesh_type'],
+            'allow_upright' => $request->has('allow_upright'),
             'thumbnail_url' => $validated['thumbnail_url'] ?? 'assets/charms/bee_gold.png',
             'is_active' => $request->has('is_active'),
         ]);
@@ -85,6 +86,7 @@ class CharmManagerController extends Controller
             'price' => $validated['price'],
             'price_kwd' => $priceKwd,
             'mesh_type' => $validated['mesh_type'],
+            'allow_upright' => $request->has('allow_upright'),
             'thumbnail_url' => $validated['thumbnail_url'] ?? $charm->thumbnail_url,
             'is_active' => $request->has('is_active'),
         ]);

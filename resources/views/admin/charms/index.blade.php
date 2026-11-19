@@ -19,7 +19,7 @@
           <th>الفئة</th>
           <th>السعر بالدولار ($)</th>
           <th>السعر بالدينار (KWD)</th>
-          <th>نوع المجسم</th>
+          <th>الاتجاه المسموح</th>
           <th>الحالة بالاستوديو</th>
           <th>إجراءات</th>
         </tr>
@@ -47,7 +47,15 @@
               {{ number_format($c->price_kwd ?: \App\Services\CurrencyService::convertUsdToKwd($c->price), 3) }} د.ك
             </td>
             <td>
-              <span style="font-size:11px; color:#666;">{{ $c->mesh_type }}</span>
+              @if($c->allow_upright)
+                <span style="font-size:11px; color:#1b5e20; background:#e8f5e9; padding:2px 7px; border-radius:3px; font-weight:600;">
+                  أفقي + معتدل ⇡
+                </span>
+              @else
+                <span style="font-size:11px; color:#5d4037; background:#efebe9; padding:2px 7px; border-radius:3px; font-weight:600;">
+                  أفقي فقط ↔ (يسار / يمين)
+                </span>
+              @endif
             </td>
             <td>
               <span style="color: {{ $c->is_active ? '#2e7d32' : '#c62828' }}; font-weight:600; font-size:12px;">

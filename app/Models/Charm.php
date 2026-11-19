@@ -12,7 +12,9 @@ class Charm extends Model
         'name_en',
         'category',
         'price',
+        'price_kwd',
         'mesh_type',
+        'allow_upright',
         'icon_svg',
         'thumbnail_url',
         'is_active',
@@ -20,6 +22,8 @@ class Charm extends Model
 
     protected $casts = [
         'price' => 'decimal:2',
+        'price_kwd' => 'decimal:3',
+        'allow_upright' => 'boolean',
         'is_active' => 'boolean',
     ];
 

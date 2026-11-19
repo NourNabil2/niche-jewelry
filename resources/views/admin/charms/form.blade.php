@@ -66,6 +66,19 @@
         </div>
       </div>
 
+      <!-- Upright Orientation Lock (Direction Control) -->
+      <div style="background:#faf8f5; border:1px solid #e8e3d8; padding:16px 20px; border-radius:6px; margin-bottom:20px;">
+        <label style="display:flex; align-items:flex-start; gap:10px; font-size:13px; cursor:pointer;">
+          <input type="checkbox" name="allow_upright" value="1" {{ old('allow_upright', $charm->exists ? $charm->allow_upright : false) ? 'checked' : '' }} style="margin-top:3px; accent-color:#c59b3f;">
+          <div>
+            <strong style="color:#181715;">السماح بالوضع المعتدل / الرأسي (Allow Upright 0°)</strong>
+            <p style="margin:4px 0 0; font-size:11.5px; color:#787268; line-height:1.5;">
+              الوضع الافتراضي معطّل ومقفل: جميع الدلايات والحروف تظهر أفقياً فقط (يمين ↷ أو يسار ↶). فعّل هذا الخيار فقط إذا كنت تريد السماح للعميل بتوجيه هذه الدلاية عمودياً في الاستوديو.
+            </p>
+          </div>
+        </label>
+      </div>
+
       <div style="margin-bottom:24px;">
         <label style="display:block; font-size:12px; font-weight:700; margin-bottom:6px;">مسار أو رابط أيقونة الدلاية (PNG مفرغة)</label>
         <input type="text" name="thumbnail_url" value="{{ old('thumbnail_url', $charm->thumbnail_url) }}" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; font-family:inherit; direction:ltr;" placeholder="assets/charms/bee_gold.png">
