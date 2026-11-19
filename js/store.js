@@ -237,6 +237,11 @@
       return this.getTotalsBreakdown().discount;
     },
 
+    getGrandTotal() {
+      const t = this.getTotalsBreakdown();
+      return t.afterDiscount;
+    },
+
     getTotalsBreakdown() {
       const subtotal = this.getCartSubtotal();
       const promo = this.getPromo();

@@ -556,58 +556,143 @@
     }
 
     /* Minimalist Metal Selector */
+    /* Ultra-Luxury Metal Cards (Cartier / Van Cleef Quiet Luxury Aesthetic) */
     .metal-selector-minimal {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 10px;
     }
 
     .metal-card-opt {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      padding: 10px 6px;
-      border: 1px solid #e8e3d8;
-      border-radius: 6px;
-      background: #faf9f7;
+      gap: 7px;
+      padding: 13px 8px 11px;
+      border: 1.5px solid #eae5dc;
+      border-radius: 12px;
+      background: #ffffff;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      user-select: none;
     }
 
     .metal-card-opt:hover {
       border-color: #c59b3f;
-      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(197, 155, 63, 0.12);
     }
 
     .metal-card-opt.active {
-      border-color: #181715;
-      background: #fff;
-      box-shadow: 0 0 0 1.5px #181715;
+      border-color: #c59b3f !important;
+      background: #fffdf9 !important;
+      box-shadow: 0 0 0 1.5px #c59b3f, 0 6px 20px rgba(197, 155, 63, 0.18) !important;
+      transform: translateY(-1px);
+    }
+
+    .metal-swatch-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .luxury-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      transition: transform 0.2s ease;
+    }
+
+    .metal-card-opt:hover .luxury-swatch {
+      transform: scale(1.08);
+    }
+
+    .swatch-gold {
+      background: radial-gradient(circle at 35% 32%, #fff9e6 0%, #f6d376 25%, #c59b3f 60%, #876214 100%);
+      box-shadow: 0 3px 8px rgba(197, 155, 63, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .swatch-silver {
+      background: radial-gradient(circle at 35% 32%, #ffffff 0%, #ebebeb 30%, #b8b8b8 65%, #787878 100%);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+    }
+
+    .swatch-rose {
+      background: radial-gradient(circle at 35% 32%, #fff2ee 0%, #f7b7a6 25%, #d67a65 62%, #853e2e 100%);
+      box-shadow: 0 3px 8px rgba(214, 122, 101, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .metal-active-check {
+      position: absolute;
+      top: -3px;
+      right: -6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #c59b3f;
+      color: #ffffff;
+      font-size: 8.5px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+
+    .metal-card-opt.active .metal-active-check {
+      display: flex;
+    }
+
+    .metal-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .metal-opt-name {
-      font-size: 10.5px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       color: #181715;
+      line-height: 1.2;
+    }
+
+    .metal-opt-purity {
+      font-size: 9.5px;
+      color: #8c857b;
+      line-height: 1.2;
+    }
+
+    .metal-opt-price {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #c59b3f;
+      margin-top: 2px;
     }
 
     /* Minimalist Size Selector */
     .size-selector-minimal {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
+      gap: 8px;
     }
 
     .size-opt-btn {
-      padding: 8px 4px;
-      border: 1px solid #e8e3d8;
-      border-radius: 6px;
-      background: #faf9f7;
-      font-size: 11px;
-      font-weight: 700;
-      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 10px 4px;
+      border: 1.5px solid #eae5dc;
+      border-radius: 10px;
+      background: #ffffff;
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: center;
@@ -615,13 +700,29 @@
 
     .size-opt-btn:hover {
       border-color: #c59b3f;
-      background: #fff;
+      background: #fffdf9;
     }
 
     .size-opt-btn.active {
-      background: #181715;
-      color: #ffffff;
-      border-color: #181715;
+      border-color: #181715 !important;
+      background: #181715 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(24, 23, 21, 0.25);
+    }
+
+    .size-opt-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .size-opt-sub {
+      font-size: 9px;
+      color: #8c857b;
+    }
+
+    .size-opt-btn.active .size-opt-sub {
+      color: #c59b3f;
     }
 
     /* Track Switcher Segmented Pill */
@@ -2014,28 +2115,61 @@
             <div class="acc-inner-label">نوع وتشطيب المعدن:</div>
             <div class="metal-selector-minimal">
               <div class="metal-card-opt active" data-metal="yellow" onclick="selectMetal('yellow')">
-                <span class="mini-swatch swatch-gold" style="width:18px; height:18px; border-radius:50%; display:inline-block;"></span>
-                <span class="metal-opt-name">ذهب أصفر 14K</span>
+                <div class="metal-swatch-wrapper">
+                  <span class="luxury-swatch swatch-gold"></span>
+                  <span class="metal-active-check">✓</span>
+                </div>
+                <div class="metal-card-info">
+                  <span class="metal-opt-name">ذهب أصفر 14K</span>
+                  <span class="metal-opt-purity">ذهب نقي عيار 14</span>
+                  <span class="metal-opt-price">$410</span>
+                </div>
               </div>
               <div class="metal-card-opt" data-metal="white" onclick="selectMetal('white')">
-                <span class="mini-swatch swatch-silver" style="width:18px; height:18px; border-radius:50%; display:inline-block;"></span>
-                <span class="metal-opt-name">فضة إسترليني 925</span>
+                <div class="metal-swatch-wrapper">
+                  <span class="luxury-swatch swatch-silver"></span>
+                  <span class="metal-active-check">✓</span>
+                </div>
+                <div class="metal-card-info">
+                  <span class="metal-opt-name">فضة إسترليني 925</span>
+                  <span class="metal-opt-purity">فضة بريطانية نقية</span>
+                  <span class="metal-opt-price">$225</span>
+                </div>
               </div>
               <div class="metal-card-opt" data-metal="rose" onclick="selectMetal('rose')">
-                <span class="mini-swatch swatch-rose" style="width:18px; height:18px; border-radius:50%; display:inline-block;"></span>
-                <span class="metal-opt-name">ذهب وردي 14K</span>
+                <div class="metal-swatch-wrapper">
+                  <span class="luxury-swatch swatch-rose"></span>
+                  <span class="metal-active-check">✓</span>
+                </div>
+                <div class="metal-card-info">
+                  <span class="metal-opt-name">ذهب وردي 14K</span>
+                  <span class="metal-opt-purity">ذهب وردي عيار 14</span>
+                  <span class="metal-opt-price">$425</span>
+                </div>
               </div>
             </div>
 
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; margin-bottom:6px;">
-              <span class="acc-inner-label">مقاس معصم الإسورة:</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; margin-bottom:8px;">
+              <span class="acc-inner-label" style="font-weight:600; color:#222;">مقاس معصم الإسورة:</span>
               <a href="/{{ app()->getLocale() ?: 'ar' }}/about#sizing" target="_blank" class="size-guide-link">دليل القياس ↗</a>
             </div>
             <div class="size-selector-minimal">
-              <button type="button" class="size-opt-btn active" data-size="XS" onclick="selectSize('XS')">XS (5.5")</button>
-              <button type="button" class="size-opt-btn" data-size="S" onclick="selectSize('S')">S (6.0")</button>
-              <button type="button" class="size-opt-btn" data-size="M" onclick="selectSize('M')">M (6.5")</button>
-              <button type="button" class="size-opt-btn" data-size="L" onclick="selectSize('L')">L (7.0")</button>
+              <button type="button" class="size-opt-btn active" data-size="XS" onclick="selectSize('XS')">
+                <span class="size-opt-label">XS</span>
+                <span class="size-opt-sub">5.5" (14 cm)</span>
+              </button>
+              <button type="button" class="size-opt-btn" data-size="S" onclick="selectSize('S')">
+                <span class="size-opt-label">S</span>
+                <span class="size-opt-sub">6.0" (15 cm)</span>
+              </button>
+              <button type="button" class="size-opt-btn" data-size="M" onclick="selectSize('M')">
+                <span class="size-opt-label">M</span>
+                <span class="size-opt-sub">6.5" (16.5 cm)</span>
+              </button>
+              <button type="button" class="size-opt-btn" data-size="L" onclick="selectSize('L')">
+                <span class="size-opt-label">L</span>
+                <span class="size-opt-sub">7.0" (18 cm)</span>
+              </button>
             </div>
 
             <div class="acc-footer-action">
@@ -2689,82 +2823,149 @@
     }
     rootGroup.add(knuckleGroup);
 
-    // Inner 925 Hallmark & Custom Engraving Ribbon
+    // Inner 925 Hallmark & Custom Laser Engraving Ribbon
     const stampCanvas = document.createElement('canvas');
-    stampCanvas.width = 1024;
+    stampCanvas.width = 2048;
     stampCanvas.height = 128;
     const sCtx = stampCanvas.getContext('2d');
     const stampTexture = new THREE.CanvasTexture(stampCanvas);
     stampTexture.colorSpace = THREE.SRGBColorSpace;
-    const stampPlaneGeom = new THREE.PlaneGeometry(0.024, 0.0035);
+    stampTexture.minFilter = THREE.LinearFilter;
+    stampTexture.magFilter = THREE.LinearFilter;
+
+    // Curved Ribbon hug-fitting the inner bangle wall with zero clipping and zero gaps
+    function createInnerEngravingRibbon(innerA, innerB, arcSpan, bandWidthZ, segments = 32) {
+      const geom = new THREE.BufferGeometry();
+      const positions = [];
+      const uvs = [];
+      const indices = [];
+
+      const halfW = bandWidthZ / 2;
+      const startAng = Math.PI * 0.5 + arcSpan * 0.5; // Start at left (x < 0)
+
+      for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        const ang = startAng - t * arcSpan; // Sweep from left to right (x > 0)
+
+        const cosA = Math.cos(ang);
+        const sinA = Math.sin(ang);
+        const x = innerA * cosA;
+        const y = innerB * sinA;
+
+        // Inward normal for ellipse (pointing toward center 0,0,0)
+        let nx = -innerB * cosA;
+        let ny = -innerA * sinA;
+        const len = Math.hypot(nx, ny) || 1.0;
+        nx /= len;
+        ny /= len;
+
+        // Micro-offset (0.12mm) inward from the inner metal wall to avoid z-fighting
+        const vx = x + nx * 0.00012;
+        const vy = y + ny * 0.00012;
+
+        positions.push(vx, vy, -halfW);
+        uvs.push(t, 0);
+
+        positions.push(vx, vy, halfW);
+        uvs.push(t, 1);
+      }
+
+      for (let i = 0; i < segments; i++) {
+        const a = i * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        indices.push(a, c, b, b, c, d);
+      }
+
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geom.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+      geom.setIndex(indices);
+      geom.computeVertexNormals();
+      return geom;
+    }
+
+    const stampRibbonGeom = createInnerEngravingRibbon(0.0285, 0.0240, 1.15, 0.0034, 32);
     const stampPlaneMat = new THREE.MeshBasicMaterial({
       map: stampTexture,
       transparent: true,
-      opacity: 0.95,
+      alphaTest: 0.02,
+      depthWrite: false,
       side: THREE.DoubleSide
     });
-    const stampPlane = new THREE.Mesh(stampPlaneGeom, stampPlaneMat);
-    stampPlane.position.set(0, 0.0238, 0.0005);
-    stampPlane.rotation.x = Math.PI / 2;
+    const stampPlane = new THREE.Mesh(stampRibbonGeom, stampPlaneMat);
     rootGroup.add(stampPlane);
 
     function redrawInnerEngraving() {
-      sCtx.clearRect(0, 0, 1024, 128);
+      // 100% Transparent background (NO dark rectangle / zero background box)
+      sCtx.clearRect(0, 0, 2048, 128);
 
       const isWhite = state.metal === 'white';
       const isRose = state.metal === 'rose';
-      const primaryFill = isWhite ? '#444444' : (isRose ? '#8a4e3f' : '#8a6519');
-      const highlightFill = isWhite ? 'rgba(255,255,255,0.75)' : (isRose ? 'rgba(255,220,210,0.75)' : 'rgba(255,235,170,0.75)');
+
+      // Authentic jewelry fiber-laser etching tones
+      const primaryFill = isWhite ? '#222222' : (isRose ? '#422018' : '#38280b');
+      const subtleGlow = isWhite ? 'rgba(255,255,255,0.45)' : (isRose ? 'rgba(255,215,205,0.45)' : 'rgba(255,235,170,0.45)');
 
       const hallmark = isWhite ? 'NICHE · 925' : (isRose ? 'NICHE · 14K ROSE' : 'NICHE · 14K');
       const text = (state.engravingText || '').trim();
 
-      // Subtle metallic brushed background
-      const grad = sCtx.createLinearGradient(0, 0, 1024, 0);
-      grad.addColorStop(0, 'rgba(0,0,0,0)');
-      grad.addColorStop(0.12, 'rgba(0,0,0,0.05)');
-      grad.addColorStop(0.5, 'rgba(255,255,255,0.14)');
-      grad.addColorStop(0.88, 'rgba(0,0,0,0.05)');
-      grad.addColorStop(1, 'rgba(0,0,0,0)');
-      sCtx.fillStyle = grad;
-      sCtx.fillRect(0, 8, 1024, 112);
-
       sCtx.textBaseline = 'middle';
 
       if (!text) {
-        // Hallmark only (centered)
+        // Hallmark only (centered with elegant atelier diamond motifs)
         sCtx.textAlign = 'center';
-        sCtx.font = '600 36px "Montserrat", sans-serif';
-        sCtx.fillStyle = highlightFill;
-        sCtx.fillText(`✦   ${hallmark}   ✦`, 512, 66);
+        sCtx.font = '600 38px "Montserrat", sans-serif';
+        sCtx.shadowColor = subtleGlow;
+        sCtx.shadowBlur = 2;
+        sCtx.shadowOffsetY = 1;
         sCtx.fillStyle = primaryFill;
-        sCtx.fillText(`✦   ${hallmark}   ✦`, 512, 64);
+        sCtx.fillText(`✦   ${hallmark}   ✦`, 1024, 64);
       } else {
-        // Left: Hallmark, Center/Right: Personalized Inscription
+        // Left: Official Hallmark Emblem
         sCtx.textAlign = 'left';
-        sCtx.font = '600 24px "Montserrat", sans-serif';
-        sCtx.fillStyle = highlightFill;
-        sCtx.fillText(`✦ ${hallmark}`, 40, 66);
+        sCtx.font = '600 30px "Montserrat", sans-serif';
+        sCtx.shadowColor = subtleGlow;
+        sCtx.shadowBlur = 2;
+        sCtx.shadowOffsetY = 1;
         sCtx.fillStyle = primaryFill;
-        sCtx.fillText(`✦ ${hallmark}`, 40, 64);
+        sCtx.fillText(`✦ ${hallmark}`, 80, 64);
 
-        // Divider line
-        sCtx.fillStyle = primaryFill;
-        sCtx.fillRect(290, 36, 2, 56);
-
-        // Engraved Personal Text with realistic debossed depth
+        // Delicate vertical divider diamond
         sCtx.textAlign = 'center';
-        let fontStyle = 'italic 500 34px "Cormorant Garamond", Georgia, serif';
+        sCtx.font = '500 24px "Montserrat", sans-serif';
+        sCtx.fillText('◆', 460, 64);
+
+        // Engraved Personal Text with auto-scaling to prevent ANY text cut-off
+        const quoteText = `“ ${text} ”`;
+        let baseFontSize = 44;
+        let fontFamily = '"Cormorant Garamond", Georgia, serif';
+        let fontStyle = 'italic 500';
+
         if (state.engravingFont === 'script') {
-          fontStyle = 'italic 600 36px "Cormorant Garamond", cursive, serif';
+          baseFontSize = 46;
+          fontFamily = '"Cormorant Garamond", cursive, serif';
+          fontStyle = 'italic 600';
         } else if (state.engravingFont === 'modern') {
-          fontStyle = '600 26px "Montserrat", sans-serif';
+          baseFontSize = 36;
+          fontFamily = '"Montserrat", sans-serif';
+          fontStyle = '600';
         }
-        sCtx.font = fontStyle;
-        sCtx.fillStyle = highlightFill;
-        sCtx.fillText(`“ ${text} ”`, 650, 66);
+
+        sCtx.font = `${fontStyle} ${baseFontSize}px ${fontFamily}`;
+        const measured = sCtx.measureText(quoteText).width;
+        const availableW = 1420; // Safe zone from x=520 to x=1940
+
+        let finalFontSize = baseFontSize;
+        if (measured > availableW) {
+          finalFontSize = Math.max(22, Math.floor(baseFontSize * (availableW / measured)));
+          sCtx.font = `${fontStyle} ${finalFontSize}px ${fontFamily}`;
+        }
+
+        sCtx.textAlign = 'center';
         sCtx.fillStyle = primaryFill;
-        sCtx.fillText(`“ ${text} ”`, 650, 64);
+        // Centered in inscription zone: (500 + 1980) / 2 = 1240
+        sCtx.fillText(quoteText, 1240, 64);
       }
 
       stampTexture.needsUpdate = true;
@@ -3414,7 +3615,7 @@
       channelMaterial.emissiveIntensity = conf.emissiveIntensity * 0.8;
       channelMaterial.envMapIntensity = conf.envMapIntensity * 0.85;
 
-      stampPlaneMat.color = new THREE.Color(conf.stampColor);
+      if (stampPlaneMat) stampPlaneMat.color.set(0xffffff);
 
       // Update 3D edge tint on existing standalone charms
       const isWhite = metalKey === 'white';
@@ -3443,9 +3644,13 @@
 
       state.basePrice = metalKey === 'white' ? 225 : (metalKey === 'rose' ? 430 : 410);
 
-      document.getElementById('revMetal').textContent = 
-        metalKey === 'yellow' ? '14K Yellow Gold' : 
-        metalKey === 'white' ? '925 Sterling Silver' : '14K Rose Gold';
+      const revMetal = document.getElementById('revMetal');
+      if (revMetal) {
+        revMetal.textContent = metalKey === 'yellow' ? '14K Yellow Gold' : (metalKey === 'white' ? '925 Sterling Silver' : '14K Rose Gold');
+      }
+      document.querySelectorAll('.metal-card-opt, .metal-option').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.metal === metalKey);
+      });
       redrawInnerEngraving();
       updateUI();
     }
@@ -3456,7 +3661,7 @@
       back: { pos: [0, 0.15, 0.045], target: [0, 0, 0] },
       clasp: { pos: [0.16, 0, 0.03], target: [0, 0, 0] },
       top: { pos: [0, -0.01, 0.18], target: [0, 0, 0] },
-      inside: { pos: [0, -0.048, 0.038], target: [0, 0.024, 0] }
+      inside: { pos: [0, -0.042, 0.026], target: [0, 0.0238, 0] }
     };
 
     function setView(viewName) {
@@ -3508,8 +3713,7 @@
         if (state.activeSide === 'back') setView('back');
         else setView('front');
       } else if (stepNum === 3) {
-        const btn = document.getElementById('inspectEngravingBtn');
-        if (btn) btn.click();
+        setView('inside');
       } else if (stepNum === 4) {
         setView('front');
       }
@@ -3531,15 +3735,15 @@
 
     window.selectMetal = function(metalKey) {
       setMetal(metalKey);
-      document.querySelectorAll('.metal-card-opt').forEach(opt => {
+      document.querySelectorAll('.metal-card-opt, .metal-option').forEach(opt => {
         opt.classList.toggle('active', opt.dataset.metal === metalKey);
       });
       updateUI();
     };
 
     window.selectSize = function(sizeKey) {
-      state.size = sizeKey;
-      document.querySelectorAll('.size-opt-btn').forEach(btn => {
+      setBangleSize(sizeKey);
+      document.querySelectorAll('.size-opt-btn, .size-option').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.size === sizeKey);
       });
       updateUI();
@@ -4256,11 +4460,23 @@
 
     function setBangleSize(sizeKey) {
       state.size = sizeKey;
-      document.querySelectorAll('.size-option').forEach(opt => {
+      document.querySelectorAll('.size-opt-btn, .size-option').forEach(opt => {
         opt.classList.toggle('active', opt.dataset.size === sizeKey);
       });
-      const sizeObj = window.EP_DB && window.EP_DB.sizes.find(s => s.key === sizeKey);
-      document.getElementById('revSize').textContent = sizeObj ? `${sizeObj.label} (${sizeObj.wristMm})` : sizeKey;
+      const sizeObj = window.EP_DB && window.EP_DB.sizes && window.EP_DB.sizes.find(s => s.key === sizeKey);
+      const revSize = document.getElementById('revSize');
+      if (revSize) revSize.textContent = sizeObj ? `${sizeObj.label} (${sizeObj.wristMm})` : sizeKey;
+      const revMetalAndSize = document.getElementById('revMetalAndSize');
+      if (revMetalAndSize) {
+        const metalNames = {
+          yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 14K' : '14K Yellow Gold',
+          white: window.nicheI18n?.getLanguage() === 'ar' ? 'فضة إسترليني 925' : '925 Sterling Silver',
+          rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 14K' : '14K Rose Gold'
+        };
+        const activeMetalName = metalNames[state.metal] || state.metal;
+        revMetalAndSize.textContent = `${activeMetalName} (${sizeKey})`;
+      }
+      updateUI();
     }
 
     document.querySelectorAll('.size-option').forEach(btn => {

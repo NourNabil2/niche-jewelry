@@ -530,7 +530,7 @@
       }
     }
 
-    const grandTotal = window.EP_STORE.getGrandTotal();
+    const grandTotal = (window.EP_STORE.getGrandTotal ? (window.EP_STORE.getGrandTotal ? window.EP_STORE.getGrandTotal() : (window.EP_STORE.getTotalsBreakdown ? window.EP_STORE.getTotalsBreakdown().afterDiscount : 0)) : (window.EP_STORE.getTotalsBreakdown ? window.EP_STORE.getTotalsBreakdown().afterDiscount : 0));
     if (totalEl) totalEl.textContent = `$${grandTotal.toFixed(2)}`;
 
     const promo = window.EP_STORE.getActivePromo();
