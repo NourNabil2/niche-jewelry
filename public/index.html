@@ -321,60 +321,145 @@
       margin-bottom: 36px;
     }
 
-    /* Category Pills Grid */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
+    /* Category Pills Grid - L'azurde Luxury 2-Column Mobile Architecture */
+    .lazurde-category-section {
+      padding: 56px 0 64px;
+      background: #ffffff;
     }
 
-    @media (max-width: 960px) {
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .lazurde-cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 4px;
+    }
+
+    .lazurde-cat-main-title {
+      font-family: 'Amiri', 'Cairo', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #181715;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .lazurde-cat-all-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: #8b661d;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .lazurde-cat-all-link:hover {
+      color: #181715;
+      transform: translateX(-4px);
+    }
+
+    .category-grid,
+    .lazurde-category-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .category-grid,
+      .lazurde-category-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
       }
     }
 
-    .cat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+    @media (max-width: 768px) {
+      .lazurde-category-section {
+        padding: 36px 0 44px;
+      }
+      .lazurde-cat-main-title {
+        font-size: 20px;
+      }
+      .category-grid,
+      .lazurde-category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+      }
     }
 
-    .cat-card:hover {
-      transform: translateY(-4px);
-      border-color: #181715;
-      border-color: var(--gold-primary);
+    .cat-card,
+    .lazurde-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+      display: flex !important;
+      flex-direction: column !important;
+      text-decoration: none !important;
+      color: #181715 !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      padding: 0 !important;
     }
 
-    .cat-card-img {
-      aspect-ratio: 1;
-      background: var(--bg-warm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    .cat-card:hover,
+    .lazurde-card:hover {
+      transform: translateY(-3px) !important;
     }
 
-    .cat-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.45s var(--ease);
+    .cat-card-img,
+    .lazurde-img-wrap {
+      width: 100% !important;
+      aspect-ratio: 1 / 1 !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+      background: #f6f4ee !important;
+      position: relative !important;
+      display: block !important;
+      padding: 0 !important;
     }
 
-    .cat-card:hover .cat-card-img img {
-      transform: scale(1.06);
+    .cat-card-img img,
+    .lazurde-img-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
-    .cat-card-title {
-      padding: 14px 10px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .cat-card:hover .cat-card-img img,
+    .lazurde-card:hover .lazurde-img-wrap img {
+      transform: scale(1.05) !important;
+    }
+
+    .cat-card-title,
+    .lazurde-card-name {
+      padding: 10px 4px 0 !important;
+      font-family: 'Amiri', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      color: #181715 !important;
+      text-align: center !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      line-height: 1.35 !important;
+      transition: color 0.2s ease !important;
+    }
+
+    .cat-card:hover .cat-card-title,
+    .lazurde-card:hover .lazurde-card-name {
+      color: #8b661d !important;
+    }
+
+    @media (max-width: 480px) {
+      .cat-card-title,
+      .lazurde-card-name {
+        font-size: 13.5px !important;
+        padding-top: 8px !important;
+      }
     }
 
     /* Split 3D Studio Feature Banner */
@@ -684,47 +769,55 @@
     </div>
   </section>
 
-  <!-- 2. Shop by Category -->
-  <section class="page-section">
+  <!-- 2. Shop by Category (Lazurde-Inspired Quiet Luxury Grid Architecture) -->
+  <section class="page-section lazurde-category-section">
     <div class="container">
-      <div class="section-header-row">
-        <div>
-          <span class="eyebrow">مجموعات وتصاميم الدار</span>
-          <h2 class="section-heading mt-1">تشكيلات المجوهرات الراقية</h2>
-        </div>
-        <a href="collections.html" class="btn btn-outline btn-sm">استكشفي الكتالوج الكامل &larr;</a>
+      <div class="lazurde-cat-header">
+        <h2 class="lazurde-cat-main-title">تسوقوا حسب الفئة</h2>
+        <a href="collections.html" class="lazurde-cat-all-link">استكشفي كافة التشكيلات &larr;</a>
       </div>
 
-      <div class="category-grid">
-        <a href="collections.html?cat=bangles" class="cat-card">
-          <div class="cat-card-img">
-            <img src="assets/images/bangle_gold_studio.jpg" alt="أساور جلايدر الأيقونية">
+      <div class="category-grid lazurde-category-grid">
+        <a href="collections.html?cat=necklaces" class="cat-card lazurde-card">
+          <div class="cat-card-img lazurde-img-wrap">
+            <img src="assets/images/necklace_pendant_studio.jpg" alt="سلاسل، عقود وقلادات" loading="lazy">
           </div>
-          <div class="cat-card-title">أساور جلايدر™</div>
+          <div class="cat-card-title lazurde-card-name">سلاسل، عقود وقلادات</div>
         </a>
-        <a href="collections.html?cat=charms" class="cat-card">
-          <div class="cat-card-img" style="padding:26%;">
-            <img src="assets/charms/bee_gold.png" alt="دلايات وحليات مفرغة" style="object-fit:contain;">
+
+        <a href="collections.html?cat=rings" class="cat-card lazurde-card">
+          <div class="cat-card-img lazurde-img-wrap">
+            <img src="assets/images/ring_solitaire_studio.jpg" alt="خواتم متراصة" loading="lazy">
           </div>
-          <div class="cat-card-title">دلايات مفرغة</div>
+          <div class="cat-card-title lazurde-card-name">خواتم متراصة</div>
         </a>
-        <a href="collections.html?cat=necklaces" class="cat-card">
-          <div class="cat-card-img">
-            <img src="assets/images/necklace_pendant_studio.jpg" alt="سلاسل وقلائد ملكية">
+
+        <a href="collections.html?cat=bangles" class="cat-card lazurde-card">
+          <div class="cat-card-img lazurde-img-wrap">
+            <img src="assets/images/bangle_gold_studio.jpg" alt="أساور وخلاخيل جلايدر™" loading="lazy">
           </div>
-          <div class="cat-card-title">سلاسل الميدالية</div>
+          <div class="cat-card-title lazurde-card-name">أساور وخلاخيل جلايدر™</div>
         </a>
-        <a href="collections.html?cat=earrings" class="cat-card">
-          <div class="cat-card-img">
-            <img src="assets/images/earrings_huggie_studio.jpg" alt="أقراط بافيه دائرية">
+
+        <a href="collections.html?cat=earrings" class="cat-card lazurde-card">
+          <div class="cat-card-img lazurde-img-wrap">
+            <img src="assets/images/earrings_huggie_studio.jpg" alt="أقراط بافيه دائرية" loading="lazy">
           </div>
-          <div class="cat-card-title">أقراط بافيه دائرية</div>
+          <div class="cat-card-title lazurde-card-name">أقراط بافيه دائرية</div>
         </a>
-        <a href="collections.html?cat=rings" class="cat-card">
-          <div class="cat-card-img">
-            <img src="assets/images/ring_solitaire_studio.jpg" alt="خواتم متراصة فاخرة">
+
+        <a href="collections.html?cat=charms" class="cat-card lazurde-card">
+          <div class="cat-card-img lazurde-img-wrap">
+            <img src="assets/images/craftsmanship_editorial.jpg" alt="دلايات جلايدر المفرغة" loading="lazy">
           </div>
-          <div class="cat-card-title">خواتم متراصة</div>
+          <div class="cat-card-title lazurde-card-name">دلايات جلايدر المفرغة</div>
+        </a>
+
+        <a href="collections.html" class="cat-card lazurde-card">
+          <div class="cat-card-img lazurde-img-wrap">
+            <img src="assets/images/hero_editorial.jpg" alt="أطقم المقتنين الفاخرة" loading="lazy">
+          </div>
+          <div class="cat-card-title lazurde-card-name">أطقم المقتنين الفاخرة</div>
         </a>
       </div>
     </div>
