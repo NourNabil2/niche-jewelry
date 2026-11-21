@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personalized Glider Charm Bangle™ | 3D Atelier &bull; NICH JEWELRY</title>
+  <title>استوديو صياغة إسورة جلايدر™ ثلاثي الأبعاد • ذهب خالص عيار 18K | دار نيش للمجوهرات</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1149,7 +1149,31 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      max-height: 270px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 4px;
+      padding-left: 2px;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(197, 155, 63, 0.5) #faf8f5;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .charm-grid::-webkit-scrollbar {
+      width: 5px;
+    }
+    .charm-grid::-webkit-scrollbar-track {
+      background: #faf8f5;
+      border-radius: 4px;
+    }
+    .charm-grid::-webkit-scrollbar-thumb {
+      background: rgba(197, 155, 63, 0.45);
+      border-radius: 4px;
+    }
+    .charm-grid::-webkit-scrollbar-thumb:hover {
+      background: rgba(197, 155, 63, 0.8);
     }
 
     .charm-card {
@@ -2015,27 +2039,27 @@
   <!-- Studio Sub-Toolbar -->
   <div class="studio-subbar">
     <div class="subbar-left">
-      <a href="/{{ app()->getLocale() ?: 'ar' }}/collections" class="subbar-back-link">
-        <span class="subbar-back-arrow">&larr;</span> <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">Collections</span>
+      <a href="collections.html" class="subbar-back-link">
+        <span class="subbar-back-arrow">&rarr;</span> <span class="subbar-back-text" data-i18n="customizer.back_to_catalog">المجموعات</span>
       </a>
       <span class="subbar-sep">|</span>
-      <span class="subbar-title"><span data-i18n="customizer.studio_title">3D Dual-Track Glider Atelier</span></span>
+      <span class="subbar-title"><span data-i18n="customizer.studio_title">استوديو صياغة جلايدر™ ثلاثي الأبعاد • ذهب خالص 18K</span></span>
     </div>
     <div class="subbar-actions">
-      <button class="btn-secondary" id="arTryOnBtn" title="Launch Virtual AR Try-On">
+      <button class="btn-secondary" id="arTryOnBtn" title="تجربة الواقع المعزز AR">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        <span class="subbar-btn-text" data-i18n="customizer.ar_tryon_btn">AR Try-On</span>
+        <span class="subbar-btn-text" data-i18n="customizer.ar_tryon_btn">تجربة الـ AR</span>
       </button>
-      <button class="btn-secondary" id="saveWishlistBtn" title="Save Custom 3D Design to Wishlist">
+      <button class="btn-secondary" id="saveWishlistBtn" title="حفظ التصميم في المفضلة">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span class="subbar-btn-text" data-i18n="common.save">Save Design</span>
+        <span class="subbar-btn-text" data-i18n="common.save">حفظ التصميم</span>
       </button>
-      <button class="btn-secondary" id="exportGlbBtn" title="Export 3D Model">
+      <button class="btn-secondary" id="exportGlbBtn" title="تصدير مجسم 3D">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="subbar-btn-text" data-i18n="common.export_glb">Export 3D</span>
+        <span class="subbar-btn-text" data-i18n="common.export_glb">تصدير 3D</span>
       </button>
       <button class="btn-primary" id="orderBtn">
-        <span data-i18n="common.add_to_bag">Add To Bag</span> &bull; <span id="headerTotal">$500.00</span>
+        <span data-i18n="common.add_to_bag">أضيفي للحقيبة</span> &bull; <span id="headerTotal">$500.00</span>
       </button>
     </div>
   </div>
@@ -2046,26 +2070,26 @@
     <!-- 3D WebGL Viewport -->
     <div class="viewport-panel">
       <div class="product-meta">
-        <div class="tag-eyebrow">Design Yours &bull; 18K Gold</div>
-        <h1 class="product-title">Dual-Sided Glider Charm Bangle™</h1>
+        <div class="tag-eyebrow">صممي قطعتكِ &bull; ذهب خالص عيار 18K</div>
+        <h1 class="product-title">إسورة جلايدر™ الأيقونية بوجهين</h1>
       </div>
 
       <!-- Quick 180 Flip Pill (Front / Back) -->
       <div class="viewport-side-toggle">
         <button class="side-pill-btn active" id="btnSideFront" onclick="goToStep(1)">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/></svg>
-          <span data-i18n="customizer.front_side">Front Side</span>
+          <span data-i18n="customizer.front_side">الواجهة الأمامية</span>
         </button>
         <button class="side-pill-btn" id="btnSideBack" onclick="goToStep(2)">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16V8"/></svg>
-          <span data-i18n="customizer.back_side">Back Side</span>
+          <span data-i18n="customizer.back_side">الواجهة الخلفية</span>
         </button>
       </div>
 
       <!-- Floating Drag Help Pill -->
       <div class="floating-drag-indicator" id="floatingDragIndicator">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
-        <span data-i18n="customizer.drag_tip_bar">Drag charms with mouse or touch to glide along channels</span>
+        <span data-i18n="customizer.drag_tip_bar">اسحبي الدلايات باللمس أو الماوس للتزحلق بسلاسة على المسار</span>
       </div>
 
       <!-- Canvas Mount -->
@@ -2075,25 +2099,25 @@
       <div class="viewport-toolbar">
         <button class="tool-btn" id="toggleRotateBtn" title="Pause / Resume Rotation">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-          <span class="tool-btn-text" id="rotateLabel">Pause</span>
+          <span class="tool-btn-text" id="rotateLabel">إيقاف</span>
         </button>
         <button class="tool-btn" id="resetCamBtn" title="Reset View">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-          <span class="tool-btn-text">Reset</span>
+          <span class="tool-btn-text">إعادة ضبط</span>
         </button>
         <button class="tool-btn" id="clearAllBtn" title="Clear All Placed Charms">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          <span class="tool-btn-text">Clear</span>
+          <span class="tool-btn-text">مسح الكل</span>
         </button>
       </div>
 
       <!-- Camera View Angles -->
       <div class="camera-views">
-        <button class="view-chip active" data-view="front" data-i18n="customizer.view_front_btn">Front</button>
-        <button class="view-chip" data-view="back" data-i18n="customizer.view_back_btn">Back</button>
-        <button class="view-chip" data-view="clasp" data-i18n="customizer.view_clasp_btn">Clasp</button>
-        <button class="view-chip" data-view="top" data-i18n="customizer.view_top_btn">Top</button>
-        <button class="view-chip" data-view="inside" data-i18n="customizer.view_inside_btn">Inside</button>
+        <button class="view-chip active" data-view="front" data-i18n="customizer.view_front_btn">الأمام</button>
+        <button class="view-chip" data-view="back" data-i18n="customizer.view_back_btn">الخلف</button>
+        <button class="view-chip" data-view="clasp" data-i18n="customizer.view_clasp_btn">القفل</button>
+        <button class="view-chip" data-view="top" data-i18n="customizer.view_top_btn">أعلى</button>
+        <button class="view-chip" data-view="inside" data-i18n="customizer.view_inside_btn">الداخل</button>
       </div>
     </div>
 
@@ -2101,27 +2125,27 @@
     <div class="customizer-sidebar">
       <div class="sidebar-header">
         <div class="price-row">
-          <span class="bangle-label">Your bangle</span>
+          <span class="bangle-label">إسورتكِ المخصصة</span>
           <span class="bangle-price" id="totalPrice">$500.00</span>
         </div>
         <div class="price-breakdown-toggle" id="toggleBreakdown">
-          Price Breakdown <span id="breakdownArrow">&dtrif;</span>
+          تفاصيل السعر <span id="breakdownArrow">&dtrif;</span>
         </div>
         <div class="price-breakdown-panel" id="breakdownPanel">
           <div class="breakdown-line">
-            <span id="baseBangleLabel">18K Skinny Charm Bangle:</span>
+            <span id="baseBangleLabel">إسورة جلايدر™ ذهب خالص عيار 18K:</span>
             <span id="baseBanglePrice">$410.00</span>
           </div>
           <div class="breakdown-line">
-            <span>Front Charms (<span id="frontCountBreakdown">2</span>):</span>
+            <span>دلايات المسار الأمامي (<span id="frontCountBreakdown">2</span>):</span>
             <span id="frontPriceBreakdown">$90.00</span>
           </div>
           <div class="breakdown-line">
-            <span>Back Charms (<span id="backCountBreakdown">0</span>):</span>
+            <span>دلايات المسار الخلفي (<span id="backCountBreakdown">0</span>):</span>
             <span id="backPriceBreakdown">$0.00</span>
           </div>
           <div class="breakdown-line total">
-            <span>Estimated Total:</span>
+            <span>الإجمالي التقديري:</span>
             <span id="finalTotalBreakdown">$500.00</span>
           </div>
         </div>
@@ -2172,7 +2196,7 @@
 
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; margin-bottom:8px;">
               <span class="acc-inner-label" style="font-weight:600; color:#222;">مقاس معصم الإسورة:</span>
-              <a href="/{{ app()->getLocale() ?: 'ar' }}/about#sizing" target="_blank" class="size-guide-link">دليل القياس ↗</a>
+              <a href="about.html#sizing" target="_blank" class="size-guide-link">دليل القياس ↗</a>
             </div>
             <div class="size-selector-minimal">
               <button type="button" class="size-opt-btn active" data-size="XS" onclick="selectSize('XS')">
@@ -2423,17 +2447,17 @@
     <div class="sticky-price-block">
       <div class="sticky-eyebrow">
         <span class="sticky-eyebrow-dot"></span>
-        <span id="stickyTrackBadge">Front: 2 · Back: 0</span>
+        <span id="stickyTrackBadge">الأمام: 2 · الخلف: 0</span>
       </div>
       <span class="sticky-price" id="stickyTotal">$500.00</span>
     </div>
     <div class="sticky-action-group">
       <button class="sticky-flip-btn" id="stickyFlipBtn" title="Flip Bangle Track (3D)">
         <svg class="flip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/></svg>
-        <span id="stickyFlipLabel">Back</span>
+        <span id="stickyFlipLabel">الخلفية</span>
       </button>
-      <button class="sticky-cta-btn" id="stickyOrderBtn" title="Add Customized Bangle to Bag">
-        <span>Add to Bag</span>
+      <button class="sticky-cta-btn" id="stickyOrderBtn" title="أضيفي الإسورة المخصصة لحقيبة التسوق">
+        <span>أضيفي للحقيبة</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       </button>
     </div>
@@ -2445,14 +2469,14 @@
       <div class="ar-modal-header">
         <div>
           <div class="tag-eyebrow" style="color:#c59b3f; font-size:10px; font-weight:700; letter-spacing:0.12em;">ATELIER INNOVATION</div>
-          <h3 class="serif" style="font-size:24px; color:#1b1b1b; margin-top:2px;" data-i18n="customizer.ar_modal_title">Atelier Virtual AR & Wrist Simulation</h3>
+          <h3 class="serif" style="font-size:24px; color:#1b1b1b; margin-top:2px;" data-i18n="customizer.ar_modal_title">تجربة الواقع المعزز ومحاكاة المعصم</h3>
         </div>
         <button class="ar-modal-close" id="arModalCloseBtn">&times;</button>
       </div>
 
       <div class="ar-modal-tabs">
-        <button class="ar-tab-btn active" id="arTabWristBtn" data-i18n="customizer.ar_tab_wrist">Interactive Wrist Studio</button>
-        <button class="ar-tab-btn" id="arTabMobileBtn" data-i18n="customizer.ar_tab_mobile">Mobile AR QuickLook</button>
+        <button class="ar-tab-btn active" id="arTabWristBtn" data-i18n="customizer.ar_tab_wrist">محاكاة المعصم ثلاثية الأبعاد</button>
+        <button class="ar-tab-btn" id="arTabMobileBtn" data-i18n="customizer.ar_tab_mobile">الـ AR للهاتف المحمول</button>
       </div>
 
       <!-- Tab 1: Virtual Wrist Studio -->
@@ -2465,7 +2489,7 @@
           </div>
           <div class="wrist-controls">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-              <span style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;" data-i18n="customizer.ar_wrist_tone">Wrist Skin Tone</span>
+              <span style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;" data-i18n="customizer.ar_wrist_tone">درجة بشرة المعصم</span>
               <div class="skin-tone-picker">
                 <button type="button" class="skin-btn tone-fair active" data-tone="fair" title="Fair Porcelain"></button>
                 <button type="button" class="skin-btn tone-olive" data-tone="olive" title="Warm Olive"></button>
@@ -2479,23 +2503,23 @@
         </div>
       </div>
 
-      <!-- Tab 2: Mobile AR QuickLook -->
+      <!-- Tab 2: الـ AR للهاتف المحمول -->
       <div class="ar-tab-pane" id="arPaneMobile" style="display:none;">
         <div style="text-align:center; padding:10px 6px;">
           <div class="qr-box-container">
             <svg id="arQrSvg" width="160" height="160" viewBox="0 0 160 160" style="margin:0 auto; display:block; background:#fff; padding:10px; border-radius:8px; border:1px solid #e8e3d8;"></svg>
           </div>
-          <h4 class="serif" style="font-size:18px; margin:16px 0 6px;" data-i18n="customizer.ar_scan_qr">Scan with camera to launch instant AR</h4>
-          <p style="font-size:12px; color:#787268; max-width:400px; margin:0 auto 16px;" data-i18n="customizer.ar_mobile_hint">Powered by Apple QuickLook & WebXR. No app installation required.</p>
+          <h4 class="serif" style="font-size:18px; margin:16px 0 6px;" data-i18n="customizer.ar_scan_qr">امسحي الرمز بكاميرا الهاتف لفتح الواقع المعزز</h4>
+          <p style="font-size:12px; color:#787268; max-width:400px; margin:0 auto 16px;" data-i18n="customizer.ar_mobile_hint">يعمل بتقنية Apple QuickLook و WebXR مباشرة دون الحاجة لأي تطبيقات.</p>
           <button type="button" class="btn-primary btn-sm" id="exportArAssetBtn" style="display:inline-flex; align-items:center; gap:8px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span>Download 3D Model (.GLB)</span>
+            <span>تحميل مجسم 3D (.GLB)</span>
           </button>
         </div>
       </div>
 
       <div class="ar-modal-footer">
-        <button type="button" class="btn-secondary" id="arModalCloseBottomBtn" data-i18n="customizer.ar_close">Close Preview</button>
+        <button type="button" class="btn-secondary" id="arModalCloseBottomBtn" data-i18n="customizer.ar_close">إغلاق المعاينة</button>
       </div>
     </div>
   </div>
@@ -3958,12 +3982,12 @@
 
     // Charm Catalog Definitions
     const symbolsCatalog = [
-      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4, allowUpright: false },
-      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3, allowUpright: false },
-      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4, allowUpright: false },
-      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2, allowUpright: true },
-      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8, allowUpright: false },
-      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4, allowUpright: true }
+      { id: 'bee', title: 'نحلة عرق اللؤلؤ الذهبية', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4, allowUpright: false },
+      { id: 'martini', title: 'كأس المارتيني مع زيتونة', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3, allowUpright: false },
+      { id: 'cherries', title: 'كرز المينا الأحمر', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4, allowUpright: false },
+      { id: 'heart', title: 'قلب الذهب الخالص 18K', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2, allowUpright: true },
+      { id: 'eye', title: 'عين الحسد الزرقاء', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8, allowUpright: false },
+      { id: 'star', title: 'نجمة الذهب اللامعة', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4, allowUpright: true }
     ];
 
     const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -4634,6 +4658,18 @@
       controls.update();
       renderer.render(scene, camera);
     }
+    
+    // Forward mouse wheel from anywhere on sidebar to accordion
+    const sidebarEl = document.querySelector('.customizer-sidebar');
+    const accordionEl = document.getElementById('atelierAccordion');
+    if (sidebarEl && accordionEl) {
+      sidebarEl.addEventListener('wheel', (e) => {
+        if (!accordionEl.contains(e.target)) {
+          accordionEl.scrollTop += e.deltaY;
+        }
+      }, { passive: true });
+    }
+    
     animate();
   </script>
 </body>

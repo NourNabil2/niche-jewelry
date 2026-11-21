@@ -669,6 +669,9 @@
   }
 
   function renderProductCard(p) {
+    const lang = (window.nicheI18n && window.nicheI18n.getLanguage()) || 'ar';
+    const displayTitle = (lang === 'ar' && p.title_ar) ? p.title_ar : p.title;
+    const displayCategory = (lang === 'ar' && p.category_ar) ? p.category_ar : p.category;
     if (!window.EP_STORE) return '';
     const inWish = window.EP_STORE.isProductInWishlist ? window.EP_STORE.isProductInWishlist(p.id) : (window.EP_STORE.isWishlisted ? window.EP_STORE.isWishlisted(p.id) : false);
     const thumb = p.gallery[0] || '';
@@ -700,8 +703,8 @@
           </div>
         </div>
         <div class="product-card-body">
-          <div class="product-card-category">${p.category} &bull; ★ ${p.rating.toFixed(1)}</div>
-          <a href="${prodHref}" class="product-card-title">${p.title}</a>
+          <div class="product-card-category">${displayCategory} &bull; ★ ${p.rating.toFixed(1)}</div>
+          <a href="${prodHref}" class="product-card-title">${displayTitle}</a>
           <div class="product-card-footer">
             <div class="product-price">
               $${p.price.toFixed(2)}
