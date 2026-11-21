@@ -563,97 +563,79 @@
       gap: 10px;
     }
 
+    /* Minimalist High-Luxury Metal Selector */
+    .metal-selector-minimal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
     .metal-card-opt {
       position: relative;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 7px;
-      padding: 13px 8px 11px;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 8px;
+      min-height: 44px;
       border: 1.5px solid #eae5dc;
-      border-radius: 12px;
+      border-radius: 10px;
       background: #ffffff;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     }
 
     .metal-card-opt:hover {
       border-color: #c59b3f;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(197, 155, 63, 0.12);
-    }
-
-    .metal-card-opt.active {
-      border-color: #c59b3f !important;
-      background: #fffdf9 !important;
-      box-shadow: 0 0 0 1.5px #c59b3f, 0 6px 20px rgba(197, 155, 63, 0.18) !important;
+      background: #faf8f5;
       transform: translateY(-1px);
     }
 
-    .metal-swatch-wrapper {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .metal-card-opt.active {
+      border-color: #181715 !important;
+      background: #fffdfa !important;
+      box-shadow: 0 0 0 1px #181715, 0 4px 12px rgba(24, 23, 21, 0.08) !important;
     }
 
     .luxury-swatch {
-      width: 26px;
-      height: 26px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       transition: transform 0.2s ease;
     }
 
     .metal-card-opt:hover .luxury-swatch {
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
     .swatch-gold {
       background: radial-gradient(circle at 35% 32%, #fff9e6 0%, #f6d376 25%, #c59b3f 60%, #876214 100%);
-      box-shadow: 0 3px 8px rgba(197, 155, 63, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 6px rgba(197, 155, 63, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.8);
     }
 
     .swatch-silver {
       background: radial-gradient(circle at 35% 32%, #ffffff 0%, #ebebeb 30%, #b8b8b8 65%, #787878 100%);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.85);
     }
 
     .swatch-rose {
       background: radial-gradient(circle at 35% 32%, #fff2ee 0%, #f7b7a6 25%, #d67a65 62%, #853e2e 100%);
-      box-shadow: 0 3px 8px rgba(214, 122, 101, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-    }
-
-    .metal-active-check {
-      position: absolute;
-      top: -3px;
-      right: -6px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #c59b3f;
-      color: #ffffff;
-      font-size: 8.5px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-    }
-
-    .metal-card-opt.active .metal-active-check {
-      display: flex;
+      box-shadow: 0 2px 6px rgba(214, 122, 101, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.8);
     }
 
     .metal-card-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      align-items: flex-start;
+      gap: 1px;
+      text-align: start;
     }
 
     .metal-opt-name {
@@ -661,19 +643,39 @@
       font-weight: 700;
       color: #181715;
       line-height: 1.2;
-    }
-
-    .metal-opt-purity {
-      font-size: 9.5px;
-      color: #8c857b;
-      line-height: 1.2;
+      white-space: nowrap;
     }
 
     .metal-opt-price {
-      font-size: 10.5px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #8c857b;
+      line-height: 1.1;
+    }
+
+    .metal-card-opt.active .metal-opt-price {
+      color: #8b661d;
       font-weight: 700;
-      color: #c59b3f;
-      margin-top: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .metal-selector-minimal {
+        gap: 6px;
+      }
+      .metal-card-opt {
+        padding: 8px 4px;
+        gap: 6px;
+      }
+      .luxury-swatch {
+        width: 16px;
+        height: 16px;
+      }
+      .metal-opt-name {
+        font-size: 10px;
+      }
+      .metal-opt-price {
+        font-size: 9.5px;
+      }
     }
 
     /* Minimalist Size Selector */
@@ -2115,35 +2117,23 @@
             <div class="acc-inner-label">نوع وتشطيب المعدن:</div>
             <div class="metal-selector-minimal">
               <div class="metal-card-opt active" data-metal="yellow" onclick="selectMetal('yellow')">
-                <div class="metal-swatch-wrapper">
-                  <span class="luxury-swatch swatch-gold"></span>
-                  <span class="metal-active-check">✓</span>
-                </div>
+                <span class="luxury-swatch swatch-gold"></span>
                 <div class="metal-card-info">
                   <span class="metal-opt-name">ذهب أصفر 14K</span>
-                  <span class="metal-opt-purity">ذهب نقي عيار 14</span>
                   <span class="metal-opt-price">$410</span>
                 </div>
               </div>
               <div class="metal-card-opt" data-metal="white" onclick="selectMetal('white')">
-                <div class="metal-swatch-wrapper">
-                  <span class="luxury-swatch swatch-silver"></span>
-                  <span class="metal-active-check">✓</span>
-                </div>
+                <span class="luxury-swatch swatch-silver"></span>
                 <div class="metal-card-info">
-                  <span class="metal-opt-name">فضة إسترليني 925</span>
-                  <span class="metal-opt-purity">فضة بريطانية نقية</span>
+                  <span class="metal-opt-name">فضة 925</span>
                   <span class="metal-opt-price">$225</span>
                 </div>
               </div>
               <div class="metal-card-opt" data-metal="rose" onclick="selectMetal('rose')">
-                <div class="metal-swatch-wrapper">
-                  <span class="luxury-swatch swatch-rose"></span>
-                  <span class="metal-active-check">✓</span>
-                </div>
+                <span class="luxury-swatch swatch-rose"></span>
                 <div class="metal-card-info">
                   <span class="metal-opt-name">ذهب وردي 14K</span>
-                  <span class="metal-opt-purity">ذهب وردي عيار 14</span>
                   <span class="metal-opt-price">$425</span>
                 </div>
               </div>
