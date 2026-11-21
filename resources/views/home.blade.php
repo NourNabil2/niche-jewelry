@@ -14,141 +14,41 @@
     $heroCtaPrimary = \App\Models\Setting::get($isAr ? 'hero_cta_primary_ar' : 'hero_cta_primary_en', $isAr ? 'صممي في استوديو الـ 3D' : 'Design in 3D Studio');
     $heroCtaSecondary = \App\Models\Setting::get($isAr ? 'hero_cta_secondary_ar' : 'hero_cta_secondary_en', $isAr ? 'تصفحي المجموعات' : 'Explore Collections');
   @endphp
-  <!-- 1. Interactive Editorial Accordion Hero Banner (Authentic Luxury Jewelry Showcase) -->
-  <section class="hero-accordion-section" id="heroAccordion">
-    <div class="hero-accordion-container">
-      
-      <!-- Panel 1: The Glider™ Bangle Atelier (Active by default) -->
-      <div class="accordion-hero-panel active" id="panelGlider" onclick="activateHeroPanel(0)" onmouseenter="activateHeroPanel(0)">
-        <img src="{{ asset('assets/images/bangle_gold_studio.jpg') }}" alt="14K Solid Gold Glider Charm Bangle" class="panel-bg-img">
-        <div class="panel-scrim"></div>
-
-        <!-- Collapsed Spine (Visible when panel is inactive) -->
-        <div class="panel-collapsed-spine">
-          <span class="spine-tag">01 &bull; ATELIER</span>
-          <div class="spine-title">{{ app()->getLocale() == 'ar' ? 'إسورة جلايدر™' : 'Glider™ Bangle' }}</div>
-          <div class="spine-hint"><span>انقري للاستكشاف</span> &rarr;</div>
+  <!-- 1. Cartier Panthère Quiet Luxury Editorial Hero (Clean, Breathable & Iconic) -->
+  <section class="panthere-hero-section">
+    <img src="{{ asset('assets/images/hero_black_panther.jpg') }}" alt="Majestic Black Panther beside solid 14K gold bangle" class="panthere-hero-bg">
+    <div class="panthere-hero-scrim"></div>
+    <div class="panthere-bottom-blend"></div>
+    <div class="container">
+      <div class="panthere-hero-content">
+        <span class="panthere-eyebrow">
+          ✦ {{ app()->getLocale() == 'ar' ? 'ذهب خالص 14K • براءة اختراع جلايدر™' : 'Solid 14K Gold • Patented Glider™' }}
+        </span>
+        <h1 class="panthere-title">
+          {{ app()->getLocale() == 'ar' ? 'صُممت لتنزلق.' : 'Crafted to Glide.' }}
+        </h1>
+        <p class="panthere-sub">
+          {{ app()->getLocale() == 'ar' 
+            ? 'إسورة جلايدر™ بوجهين • دلايات الذهب وعرق اللؤلؤ الطبيعي ونقش تذكاري مجاني.' 
+            : 'The patented dual-track bangle. Custom slider charms and complimentary laser inscription.' }}
+        </p>
+        <div class="panthere-cta-row">
+          <a href="{{ route('studio') }}" class="panthere-btn-gold">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>{{ app()->getLocale() == 'ar' ? 'صممي في استوديو الـ 3D ✦' : 'Design in 3D Studio ✦' }}</span>
+          </a>
+          <a href="{{ route('collections') }}" class="panthere-btn-outline">
+            <span>{{ app()->getLocale() == 'ar' ? 'تصفحي المجموعات ←' : 'Explore Collections →' }}</span>
+          </a>
         </div>
 
-        <!-- Expanded Content -->
-        <div class="panel-expanded-content">
-          <div class="panel-badge">
-            <span>✦</span>
-            <span>{{ app()->getLocale() == 'ar' ? 'استوديو الصياغة ثلاثي الأبعاد • براءة اختراع جلايدر™' : '3D Atelier Studio • Patented Glider™' }}</span>
-          </div>
-          <h1 class="panel-title">
-            {{ app()->getLocale() == 'ar' ? 'صُممت لتنزلق بنعومة. صياغة تعبّر عنكِ.' : 'Crafted to glide softly. Jewelry that expresses you.' }}
-          </h1>
-          <p class="panel-sub">
-            {{ app()->getLocale() == 'ar' 
-              ? 'عيشي تجربة الصياغة الراقية عبر مساري إسورة جلايدر™ بوجهيها الأمامي والخلفي. نسقي دلايات عرق اللؤلؤ الطبيعي والذهب الخالص عيار 14K في بيئة ثلاثية الأبعاد تفاعلية.' 
-              : 'Experience fine jewelry personalization on the dual-track Glider™ bangle. Slide natural mother-of-pearl charms and solid 14K gold motifs in an instant 3D interactive studio.' }}
-          </p>
-          <div class="panel-cta-row">
-            <a href="{{ route('studio') }}" class="hero-btn-primary">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-              <span>{{ app()->getLocale() == 'ar' ? 'صممي في استوديو الـ 3D ✦' : 'Design in 3D Studio ✦' }}</span>
-            </a>
-            <a href="{{ route('collections') }}" class="hero-btn-secondary">
-              <span>{{ app()->getLocale() == 'ar' ? 'تصفحي المجموعات ←' : 'Explore Collections →' }}</span>
-            </a>
-          </div>
-
-          <!-- Floating Charms Teaser Pill -->
-          <div class="panel-charms-teaser">
-            <span style="font-size:11px; font-weight:600; color:#e4cca0;">{{ app()->getLocale() == 'ar' ? 'دلايات حصرية منزلقة:' : 'Exclusive Slider Charms:' }}</span>
-            <div style="display:flex; gap:8px; align-items:center;">
-              <img src="{{ asset('assets/charms/bee_gold.png') }}" alt="Bee Charm" title="Mother of Pearl Bee">
-              <img src="{{ asset('assets/charms/heart_gold.png') }}" alt="Heart Charm" title="Solid Gold Heart">
-              <img src="{{ asset('assets/charms/star_gold.png') }}" alt="Star Charm" title="Gold Star">
-              <img src="{{ asset('assets/charms/letter_n_gold.png') }}" alt="Letter N Charm" title="Diamond Initial N">
-            </div>
-          </div>
+        <!-- Minimal Atelier Hallmarks -->
+        <div class="panthere-hallmarks">
+          <span>✦ {{ app()->getLocale() == 'ar' ? 'عيار 14 قيراط' : 'Solid 14K' }}</span>
+          <span>✦ {{ app()->getLocale() == 'ar' ? 'نقش ليزر مجاني' : 'Bespoke Engraving' }}</span>
+          <span>✦ {{ app()->getLocale() == 'ar' ? 'شحن مؤمّن للخليج' : 'Insured GCC Courier' }}</span>
         </div>
       </div>
-
-      <!-- Panel 2: Master Artisan Bench Craftsmanship & Laser Engraving -->
-      <div class="accordion-hero-panel" id="panelCraft" onclick="activateHeroPanel(1)" onmouseenter="activateHeroPanel(1)">
-        <img src="{{ asset('assets/images/craftsmanship_editorial.jpg') }}" alt="Master bench craftsmanship in jewelry atelier" class="panel-bg-img">
-        <div class="panel-scrim"></div>
-
-        <!-- Collapsed Spine -->
-        <div class="panel-collapsed-spine">
-          <span class="spine-tag">02 &bull; CRAFT</span>
-          <div class="spine-title">{{ app()->getLocale() == 'ar' ? 'الصياغة الحرفية والنقش' : 'Artisan Bench Craft' }}</div>
-          <div class="spine-hint"><span>انقري للاستكشاف</span> &rarr;</div>
-        </div>
-
-        <!-- Expanded Content -->
-        <div class="panel-expanded-content">
-          <div class="panel-badge">
-            <span>✦</span>
-            <span>{{ app()->getLocale() == 'ar' ? 'صياغة يدوية ملكية • نقش ليزر داخلي مجاني' : 'Hand-Finished Benchwork • Laser Inscription' }}</span>
-          </div>
-          <h2 class="panel-title">
-            {{ app()->getLocale() == 'ar' ? 'حِرفية صياغة تتوارثها الأجيال.' : 'Craftsmanship passed through generations.' }}
-          </h2>
-          <p class="panel-sub">
-            {{ app()->getLocale() == 'ar' 
-              ? 'كل قطعة تصاغ يدوياً بحرفية دار عريقة من الذهب الخالص عيار 14 قيراط، مع نقش ليزر مجهري تذكاري على الجدار المقوس للإسورة تخليداً لأغلى اللحظات والتواريخ الخاصة.' 
-              : 'Every bangle is meticulously hand-finished from solid 14K gold by master bench jewelers, paired with complimentary microscopic laser engraving along the inner curved wall.' }}
-          </p>
-          <div class="panel-cta-row">
-            <a href="{{ route('about') }}" class="hero-btn-primary">
-              <span>{{ app()->getLocale() == 'ar' ? 'اكتشفي كواليس الأتيليه ←' : 'Discover Our Atelier →' }}</span>
-            </a>
-            <a href="{{ route('studio') }}" class="hero-btn-secondary">
-              <span>{{ app()->getLocale() == 'ar' ? 'ابدئي النقش المخصص ✦' : 'Start Bespoke Engraving ✦' }}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel 3: Monogram & Diamond Pavé Initials -->
-      <div class="accordion-hero-panel" id="panelMonogram" onclick="activateHeroPanel(2)" onmouseenter="activateHeroPanel(2)">
-        <img src="{{ asset('assets/images/ring_solitaire_studio.jpg') }}" alt="Fine jewelry diamond pavé letters and solitaire" class="panel-bg-img">
-        <div class="panel-scrim"></div>
-
-        <!-- Collapsed Spine -->
-        <div class="panel-collapsed-spine">
-          <span class="spine-tag">03 &bull; BESPOKE</span>
-          <div class="spine-title">{{ app()->getLocale() == 'ar' ? 'حروف الماس الشخصية' : 'Diamond Monogram' }}</div>
-          <div class="spine-hint"><span>انقري للاستكشاف</span> &rarr;</div>
-        </div>
-
-        <!-- Expanded Content -->
-        <div class="panel-expanded-content">
-          <div class="panel-badge">
-            <span>✦</span>
-            <span>{{ app()->getLocale() == 'ar' ? 'حروف بافيه مرصعة بالماس • مقتنياتكِ الخاصة' : 'Natural Diamonds • Instant Monogram' }}</span>
-          </div>
-          <h2 class="panel-title">
-            {{ app()->getLocale() == 'ar' ? 'احفري اسمكِ بحروف من ماس ونقاء.' : 'Spell your signature in pure diamonds.' }}
-          </h2>
-          <p class="panel-sub">
-            {{ app()->getLocale() == 'ar' 
-              ? 'اكتبي أي اسم في الأتيليه وسيقوم النظام بتنسيق حروف الذهب والألماس بافيه وتوسيطها تلقائياً على مسار الإسورة لتنزلق ببريق استثنائي.' 
-              : 'Type any name or meaningful initials in the atelier: our real-time 3D engine instantly spaces solid gold and pavé diamond charms along your glider rail.' }}
-          </p>
-          <div class="panel-cta-row">
-            <a href="{{ route('studio') }}" class="hero-btn-primary">
-              <span>{{ app()->getLocale() == 'ar' ? 'اكتبي اسمكِ في الـ 3D ✦' : 'Spell Your Name in 3D ✦' }}</span>
-            </a>
-            <a href="{{ route('collections', ['category' => 'charms']) }}" class="hero-btn-secondary">
-              <span>{{ app()->getLocale() == 'ar' ? 'كتالوج الدلايات والحروف ←' : 'Explore All Charms →' }}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Atelier Hallmarks Ribbon -->
-    <div class="hero-hallmarks-ribbon">
-      <span>✦ {{ app()->getLocale() == 'ar' ? 'ذهب نقي عيار 14 قيراط' : 'Solid 14K Recycled Gold' }}</span>
-      <span>✦ {{ app()->getLocale() == 'ar' ? 'براءة اختراع تقنية جلايدر™ بوجهين' : 'Patented Dual-Track Glide™' }}</span>
-      <span>✦ {{ app()->getLocale() == 'ar' ? 'نقش تذكاري داخلي مجاني بالليزر' : 'Complimentary Laser Inscription' }}</span>
-      <span>✦ {{ app()->getLocale() == 'ar' ? 'شحن مؤمّن مجاني لكافة دول الخليج' : 'Insured Courier Delivery Across GCC' }}</span>
     </div>
   </section>
 
