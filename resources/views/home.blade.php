@@ -122,25 +122,33 @@
   <section class="spotlight-split">
     <div class="container">
       <div class="split-grid">
-        <div class="studio-preview-card">
-          <div class="studio-preview-img-wrap">
-            <span class="product-badge is-3d">Live 3D Studio</span>
+        <div class="glider-interactive-card">
+          <div class="studio-preview-img-wrap" style="position:relative;">
+            <span class="product-badge is-3d">✦ {{ app()->getLocale() == 'ar' ? 'استوديو تفاعلي حي 3D' : 'Live 3D Studio' }}</span>
             <img src="{{ asset('assets/images/bangle_gold_studio.jpg') }}" id="spotlightMetalImg" alt="3D Glider Bangle Finish Preview">
+            
+            <!-- Floating Mini Charms Rail Teaser -->
+            <div style="position:absolute; bottom:12px; left:12px; right:12px; background:rgba(255,255,255,0.88); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-radius:30px; padding:6px 14px; display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(212,175,55,0.35); box-shadow:0 4px 12px rgba(0,0,0,0.06);">
+              <span style="font-size:11px; font-weight:600; color:#181715;">{{ app()->getLocale() == 'ar' ? 'دلايات جلايدر™ الانزلاقية:' : 'Glider™ Charms on Track:' }}</span>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <img src="{{ asset('assets/charms/bee_gold.png') }}" style="width:20px; height:20px; object-fit:contain;" alt="">
+                <img src="{{ asset('assets/charms/heart_gold.png') }}" style="width:18px; height:18px; object-fit:contain;" alt="">
+                <img src="{{ asset('assets/charms/star_gold.png') }}" style="width:18px; height:18px; object-fit:contain;" alt="">
+                <img src="{{ asset('assets/charms/letter_n_gold.png') }}" style="width:17px; height:17px; object-fit:contain;" alt="">
+              </div>
+            </div>
           </div>
           <div class="metal-preview-bar">
-            <div class="metal-pill-switch">
-              <button class="metal-pill active" onclick="switchSpotlightMetal('yellow', this)">
-                <span class="mini-swatch yellow"></span> 14K Gold
-              </button>
-              <button class="metal-pill" onclick="switchSpotlightMetal('white', this)">
-                <span class="mini-swatch white"></span> 925 Silver
-              </button>
-              <button class="metal-pill" onclick="switchSpotlightMetal('rose', this)">
-                <span class="mini-swatch rose"></span> 14K Rose
-              </button>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="font-size:11.5px; font-weight:700; color:#181715;">{{ app()->getLocale() == 'ar' ? 'عيار المعدن:' : 'Metal Alloy:' }}</span>
+              <div style="display:flex; gap:10px;">
+                <span class="swatch-sphere gold active" title="14K Yellow Gold" onclick="switchSpotlightMetal('yellow', this)"></span>
+                <span class="swatch-sphere white" title="925 Sterling Silver" onclick="switchSpotlightMetal('white', this)"></span>
+                <span class="swatch-sphere rose" title="14K Rose Gold" onclick="switchSpotlightMetal('rose', this)"></span>
+              </div>
             </div>
             <a href="{{ route('studio') }}?metal=yellow" id="spotlightOpenStudioBtn" class="btn btn-gold btn-sm">
-              {{ app()->getLocale() == 'ar' ? 'افتحي في الـ 3D ←' : 'Open in 3D →' }}
+              {{ app()->getLocale() == 'ar' ? 'افتحي في الـ 3D ✦' : 'Launch 3D Studio ✦' }}
             </a>
           </div>
         </div>
@@ -412,7 +420,7 @@
   };
 
   window.switchSpotlightMetal = function(metalKey, btnEl) {
-    document.querySelectorAll('.metal-pill').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.metal-pill, .swatch-sphere').forEach(b => b.classList.remove('active'));
     if (btnEl) btnEl.classList.add('active');
     const img = document.getElementById('spotlightMetalImg');
     const studioBtn = document.getElementById('spotlightOpenStudioBtn');

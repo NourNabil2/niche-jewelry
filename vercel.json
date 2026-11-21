@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/admin/(.*)", "destination": "/admin/index.html" },
+    { "source": "/ar/admin", "destination": "/admin/index.html" },
+    { "source": "/en/admin", "destination": "/admin/index.html" },
     { "source": "/ar/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/en/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/ar/css/(.*)", "destination": "/css/$1" },

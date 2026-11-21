@@ -53,7 +53,15 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-cream);
+  background-color: #faf8f5;
+  background-image: 
+    radial-gradient(ellipse at 15% 20%, rgba(255, 255, 255, 0.75) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 70%, rgba(245, 237, 222, 0.45) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400' viewBox='0 0 1400 1400'%3E%3Cdefs%3E%3ClinearGradient id='goldVein' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23d4af37' stop-opacity='0'/%3E%3Cstop offset='45%25' stop-color='%23c59b3f' stop-opacity='0.18'/%3E%3Cstop offset='50%25' stop-color='%23dfc88e' stop-opacity='0.25'/%3E%3Cstop offset='55%25' stop-color='%239e7526' stop-opacity='0.14'/%3E%3Cstop offset='100%25' stop-color='%23d4af37' stop-opacity='0'/%3E%3C/linearGradient%3E%3ClinearGradient id='slateVein' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23888078' stop-opacity='0'/%3E%3Cstop offset='48%25' stop-color='%23a89e92' stop-opacity='0.12'/%3E%3Cstop offset='52%25' stop-color='%236e655c' stop-opacity='0.16'/%3E%3Cstop offset='100%25' stop-color='%23888078' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cfilter id='blurVein'%3E%3CfeGaussianBlur stdDeviation='3.5'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='1400' height='1400' fill='%23faf8f5'/%3E%3C!-- Primary Italian Calacatta Veins --%3E%3Cpath d='M-100,220 Q280,160 520,420 T1100,620 T1500,1050' fill='none' stroke='url(%23goldVein)' stroke-width='16' filter='url(%23blurVein)'/%3E%3Cpath d='M-50,240 Q310,190 540,430 T1120,640 T1550,1070' fill='none' stroke='%23d4af37' stroke-width='2' stroke-opacity='0.25'/%3E%3Cpath d='M1500,-50 Q1050,300 750,580 T250,1100 T-100,1450' fill='none' stroke='url(%23slateVein)' stroke-width='20' filter='url(%23blurVein)'/%3E%3Cpath d='M1520,-30 Q1070,320 760,590 T270,1120 T-80,1470' fill='none' stroke='%237a7268' stroke-width='2.5' stroke-opacity='0.18'/%3E%3C!-- Secondary Calacatta Gold Filaments --%3E%3Cpath d='M520,420 Q620,300 840,260' fill='none' stroke='%23c59b3f' stroke-width='2' stroke-opacity='0.20' filter='url(%23blurVein)'/%3E%3Cpath d='M750,580 Q580,780 380,900' fill='none' stroke='%23a89e92' stroke-width='3' stroke-opacity='0.14' filter='url(%23blurVein)'/%3E%3Cpath d='M250,1100 Q480,1220 820,1340' fill='none' stroke='url(%23goldVein)' stroke-width='12' filter='url(%23blurVein)'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   color: var(--text-dark);
   line-height: 1.6;
   overflow-x: clip;
@@ -2037,3 +2045,72 @@ html[dir="rtl"] .hero-scrim {
   color: #ffffff;
   border-color: var(--text-dark);
 }
+
+/* ==========================================================================
+   QUIET LUXURY CALACATTA MARBLE & GLASSMORPHISM ENHANCEMENTS
+   ========================================================================== */
+
+.cat-card,
+.feature-step-box,
+.testimonial-card,
+.glider-token-card,
+.studio-preview-card,
+.review-box-luxury {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(228, 204, 160, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(24, 23, 21, 0.035) !important;
+}
+
+.vip-cta-banner {
+  background: linear-gradient(135deg, rgba(20, 18, 14, 0.95) 0%, rgba(35, 30, 24, 0.95) 100%) !important;
+  border: 1px solid rgba(197, 155, 63, 0.35) !important;
+}
+
+.spotlight-split {
+  background: rgba(246, 242, 234, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+.press-strip {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Floating 3D Glider Teaser Card */
+.glider-interactive-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(197, 155, 63, 0.4) !important;
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 40px rgba(24, 23, 21, 0.05);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.glider-interactive-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(197, 155, 63, 0.12);
+}
+
+.swatch-sphere {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 2px 5px rgba(0,0,0,0.15);
+}
+.swatch-sphere:hover, .swatch-sphere.active {
+  transform: scale(1.18);
+  border-color: var(--text-dark);
+}
+.swatch-sphere.gold { background: linear-gradient(135deg, #f3dfa2, #c59b3f 65%, #8b661d); }
+.swatch-sphere.white { background: linear-gradient(135deg, #ffffff, #dedede 65%, #a8a8a8); }
+.swatch-sphere.rose { background: linear-gradient(135deg, #f9dfd5, #e59d87 65%, #b46752); }
+

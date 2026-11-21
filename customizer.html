@@ -2486,6 +2486,8 @@
     import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
     import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
+    window.NICHE_LASER_ENGRAVING_ENABLED = (localStorage.getItem('niche_enable_laser_engraving') !== 'false');
+
     // State
     const state = {
       metal: 'yellow',
@@ -3422,7 +3424,11 @@
       }
 
       const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const initRot = item.rotationDeg !== undefined ? item.rotationDeg : 90;
+      const isLetter = (item.id && String(item.id).startsWith('letter_')) || (item.category === 'letters');
+      const allowUpright = isLetter ? false : Boolean(item.allowUpright !== undefined ? item.allowUpright : item.allow_upright);
+      let initRot = item.rotationDeg !== undefined ? item.rotationDeg : 90;
+      if (!allowUpright && initRot === 0) initRot = 90;
+
       const charmObj = create3DGliderCharm({ ...item, rotationDeg: initRot });
       rootGroup.add(charmObj.group);
 
@@ -3430,6 +3436,7 @@
         uid,
         side,
         ...item,
+        allowUpright,
         rotationDeg: initRot,
         mesh: charmObj.group,
         facePivot: charmObj.facePivot,
@@ -3460,7 +3467,11 @@
       rootGroup.remove(oldCharm.mesh);
 
       const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const curRot = oldCharm.rotationDeg !== undefined ? oldCharm.rotationDeg : 90;
+      const isLetter = (newItem.id && String(newItem.id).startsWith('letter_')) || (newItem.category === 'letters');
+      const allowUpright = isLetter ? false : Boolean(newItem.allowUpright !== undefined ? newItem.allowUpright : newItem.allow_upright);
+      let curRot = oldCharm.rotationDeg !== undefined ? oldCharm.rotationDeg : 90;
+      if (!allowUpright && curRot === 0) curRot = 90;
+
       const charmObj = create3DGliderCharm({ ...newItem, rotationDeg: curRot });
       rootGroup.add(charmObj.group);
 
@@ -3468,6 +3479,7 @@
         uid,
         side,
         ...newItem,
+        allowUpright,
         rotationDeg: curRot,
         mesh: charmObj.group,
         facePivot: charmObj.facePivot,
@@ -3504,8 +3516,12 @@
       const list = side === 'front' ? state.frontCharms : state.backCharms;
       if (index >= 0 && index < list.length) {
         const charm = list[index];
+        // Enforce strict horizontal orientation for letters and restricted charms
+        if (targetDeg === 0 && !charm.allowUpright) {
+          targetDeg = 90;
+        }
         const prevDeg = charm.rotationDeg || 0;
-        charm.rotationDeg = (prevDeg === targetDeg && targetDeg !== 0) ? 0 : targetDeg;
+        charm.rotationDeg = (prevDeg === targetDeg && targetDeg !== 0) ? (charm.allowUpright ? 0 : 90) : targetDeg;
 
         // Smooth rotation on 3D facePivot
         const startRot = charm.facePivot.rotation.z;
@@ -3915,12 +3931,12 @@
 
     // Charm Catalog Definitions
     const symbolsCatalog = [
-      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4 },
-      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3 },
-      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4 },
-      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2 },
-      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8 },
-      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4 }
+      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4, allowUpright: false },
+      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3, allowUpright: false },
+      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4, allowUpright: false },
+      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2, allowUpright: true },
+      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8, allowUpright: false },
+      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4, allowUpright: true }
     ];
 
     const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -3940,7 +3956,9 @@
           title: l.toUpperCase(),
           imgUrl: `/assets/charms/letter_${l}_gold.png`,
           widthMm: 4.2,
-          heightMm: 4.2
+          heightMm: 4.2,
+          category: 'letters',
+          allowUpright: false
         }));
       } else if (type === 'pave-letters') {
         items = letters.map(l => ({
@@ -3948,7 +3966,9 @@
           title: l.toUpperCase(),
           imgUrl: `/assets/charms/letter_${l}_pave.png`,
           widthMm: 4.2,
-          heightMm: 4.2
+          heightMm: 4.2,
+          category: 'letters',
+          allowUpright: false
         }));
       } else if (type === 'numbers') {
         items = numbers.map(n => ({
@@ -3956,7 +3976,9 @@
           title: n,
           imgUrl: `/assets/charms/num_${n}_gold.png`,
           widthMm: 4.2,
-          heightMm: 4.2
+          heightMm: 4.2,
+          category: 'numbers',
+          allowUpright: false
         }));
       }
 

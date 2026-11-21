@@ -41,6 +41,23 @@
         </div>
       </div>
 
+      <!-- Atelier & 3D Studio Features -->
+      <h3 style="font-family:var(--font-serif); font-size:20px; margin:32px 0 18px; border-bottom:1px solid #eee; padding-bottom:10px;">
+        ميزات استوديو الصياغة ثلاثي الأبعاد (Atelier Controls)
+      </h3>
+
+      <div style="background:#faf8f5; border:1px solid #e8e3d8; padding:20px; border-radius:6px; margin-bottom:28px;">
+        <label style="display:flex; align-items:flex-start; gap:12px; cursor:pointer;">
+          <input type="checkbox" name="enable_laser_engraving" value="1" {{ !empty($enableLaserEngraving) ? 'checked' : '' }} style="margin-top:4px; width:18px; height:18px; accent-color:#c59b3f;">
+          <div>
+            <strong style="font-size:14px; color:#181715;">تفعيل خدمة النقش الداخلي بالليزر (3D Laser Engraving)</strong>
+            <p style="margin:6px 0 0; font-size:12px; color:#666; line-height:1.6;">
+              عند تفعيل هذا الخيار، تظهر خطوة النقش التذكاري بالليزر في شاشات الاستوديو مع المعاينة ثلاثية الأبعاد المقوسة بدقة على الجدار الداخلي للإسورة. إذا تم إلغاء تفعيل هذا الخيار، سيتم إخفاء الخطوة وشريط المعاينة وحساب النقش تلقائياً من صفحة الأتيليه لجميع العملاء فوراً.
+            </p>
+          </div>
+        </label>
+      </div>
+
       <div>
         <button type="submit" class="btn btn-gold" style="padding:12px 32px; font-size:13px;">
           حفظ إعدادات المتجر

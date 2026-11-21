@@ -2290,13 +2290,20 @@
             </div>
 
             <div class="acc-footer-action">
-              <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(3)">
-                <span>النقش الداخلي بالليزر</span> &rarr;
-              </button>
+              @if(!empty($enableLaserEngraving))
+                <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(3)">
+                  <span>النقش الداخلي بالليزر</span> &rarr;
+                </button>
+              @else
+                <button type="button" class="btn btn-outline btn-sm" onclick="openAccordionStep(4)">
+                  <span>مراجعة التصميم</span> &rarr;
+                </button>
+              @endif
             </div>
           </div>
         </div>
 
+        @if(!empty($enableLaserEngraving))
         <!-- Accordion Step 3: Complimentary Laser Engraving -->
         <div class="accordion-step" id="accStep3">
           <div class="accordion-step-header" onclick="toggleAccordionStep(3)">
@@ -2344,6 +2351,7 @@
             </div>
           </div>
         </div>
+        @endif
 
         <!-- Accordion Step 4: Review & Bag -->
         <div class="accordion-step" id="accStep4">
@@ -2364,7 +2372,9 @@
               <div class="rev-row"><span>المعدن والمقاس:</span><strong id="revMetalAndSize">ذهب أصفر 14K (XS)</strong></div>
               <div class="rev-row"><span>دلايات المسار الأمامي:</span><span id="revFrontList">نحلة، مارتيني</span></div>
               <div class="rev-row"><span>دلايات المسار الخلفي:</span><span id="revBackList">لا توجد</span></div>
+              @if(!empty($enableLaserEngraving))
               <div class="rev-row"><span>النقش الداخلي:</span><span id="revEngraving">بدون نقش</span></div>
+              @endif
               <div class="rev-total-row">
                 <span>السعر الإجمالي:</span>
                 <div>
@@ -2485,6 +2495,8 @@
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
     import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    window.NICHE_LASER_ENGRAVING_ENABLED = @json(!empty($enableLaserEngraving));
 
     // State
     const state = {
@@ -3422,7 +3434,11 @@
       }
 
       const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const initRot = item.rotationDeg !== undefined ? item.rotationDeg : 90;
+      const isLetter = (item.id && String(item.id).startsWith('letter_')) || (item.category === 'letters');
+      const allowUpright = isLetter ? false : Boolean(item.allowUpright !== undefined ? item.allowUpright : item.allow_upright);
+      let initRot = item.rotationDeg !== undefined ? item.rotationDeg : 90;
+      if (!allowUpright && initRot === 0) initRot = 90;
+
       const charmObj = create3DGliderCharm({ ...item, rotationDeg: initRot });
       rootGroup.add(charmObj.group);
 
@@ -3430,6 +3446,7 @@
         uid,
         side,
         ...item,
+        allowUpright,
         rotationDeg: initRot,
         mesh: charmObj.group,
         facePivot: charmObj.facePivot,
@@ -3460,7 +3477,11 @@
       rootGroup.remove(oldCharm.mesh);
 
       const uid = 'charm_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
-      const curRot = oldCharm.rotationDeg !== undefined ? oldCharm.rotationDeg : 90;
+      const isLetter = (newItem.id && String(newItem.id).startsWith('letter_')) || (newItem.category === 'letters');
+      const allowUpright = isLetter ? false : Boolean(newItem.allowUpright !== undefined ? newItem.allowUpright : newItem.allow_upright);
+      let curRot = oldCharm.rotationDeg !== undefined ? oldCharm.rotationDeg : 90;
+      if (!allowUpright && curRot === 0) curRot = 90;
+
       const charmObj = create3DGliderCharm({ ...newItem, rotationDeg: curRot });
       rootGroup.add(charmObj.group);
 
@@ -3468,6 +3489,7 @@
         uid,
         side,
         ...newItem,
+        allowUpright,
         rotationDeg: curRot,
         mesh: charmObj.group,
         facePivot: charmObj.facePivot,
@@ -3504,8 +3526,12 @@
       const list = side === 'front' ? state.frontCharms : state.backCharms;
       if (index >= 0 && index < list.length) {
         const charm = list[index];
+        // Enforce strict horizontal orientation for letters and restricted charms
+        if (targetDeg === 0 && !charm.allowUpright) {
+          targetDeg = 90;
+        }
         const prevDeg = charm.rotationDeg || 0;
-        charm.rotationDeg = (prevDeg === targetDeg && targetDeg !== 0) ? 0 : targetDeg;
+        charm.rotationDeg = (prevDeg === targetDeg && targetDeg !== 0) ? (charm.allowUpright ? 0 : 90) : targetDeg;
 
         // Smooth rotation on 3D facePivot
         const startRot = charm.facePivot.rotation.z;
@@ -3694,6 +3720,9 @@
 
     // Accordion Progressive Disclosure Navigation
     window.openAccordionStep = function(stepNum) {
+      if (stepNum === 3 && window.NICHE_LASER_ENGRAVING_ENABLED === false) {
+        stepNum = 4;
+      }
       for (let i = 1; i <= 4; i++) {
         const stepEl = document.getElementById(`accStep${i}`);
         const bodyEl = document.getElementById(`accBody${i}`);
@@ -3914,14 +3943,32 @@
     }
 
     // Charm Catalog Definitions
-    const symbolsCatalog = [
-      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4 },
-      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3 },
-      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4 },
-      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2 },
-      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8 },
-      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4 }
+    const defaultSymbolsCatalog = [
+      { id: 'bee', title: 'Mother of Pearl Bee', imgUrl: '/assets/charms/bee_gold.png', widthMm: 4.6, heightMm: 4.4, allowUpright: false },
+      { id: 'martini', title: 'Martini with Olive', imgUrl: '/assets/charms/martini_gold.png', widthMm: 4.8, heightMm: 4.3, allowUpright: false },
+      { id: 'cherries', title: 'Red Enamel Cherries', imgUrl: '/assets/charms/cherries.png', widthMm: 4.4, heightMm: 4.4, allowUpright: false },
+      { id: 'heart', title: 'Solid Gold Heart', imgUrl: '/assets/charms/heart_gold.png', widthMm: 4.3, heightMm: 4.2, allowUpright: true },
+      { id: 'eye', title: 'Evil Eye Charm', imgUrl: '/assets/charms/eye_gold.png', widthMm: 4.8, heightMm: 3.8, allowUpright: false },
+      { id: 'star', title: 'Gold Star Charm', imgUrl: '/assets/charms/star_gold.png', widthMm: 4.4, heightMm: 4.4, allowUpright: true }
     ];
+
+    const dbCharms = @json($charms ?? []);
+    let symbolsCatalog = [...defaultSymbolsCatalog];
+    if (Array.isArray(dbCharms) && dbCharms.length > 0) {
+      const dbSymbols = dbCharms.filter(c => c.category === 'symbols');
+      if (dbSymbols.length > 0) {
+        symbolsCatalog = dbSymbols.map(c => ({
+          id: c.charm_code,
+          title: c.name_ar || c.name_en,
+          imgUrl: c.thumbnail_url ? (c.thumbnail_url.startsWith('/') ? c.thumbnail_url : '/' + c.thumbnail_url) : '/assets/charms/bee_gold.png',
+          widthMm: 4.6,
+          heightMm: 4.4,
+          category: 'symbols',
+          allowUpright: Boolean(c.allow_upright),
+          price: parseFloat(c.price) || 45.00
+        }));
+      }
+    }
 
     const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
     const numbers = '0123456789'.split('');
@@ -3940,7 +3987,9 @@
           title: l.toUpperCase(),
           imgUrl: `/assets/charms/letter_${l}_gold.png`,
           widthMm: 4.2,
-          heightMm: 4.2
+          heightMm: 4.2,
+          category: 'letters',
+          allowUpright: false
         }));
       } else if (type === 'pave-letters') {
         items = letters.map(l => ({
@@ -3948,7 +3997,9 @@
           title: l.toUpperCase(),
           imgUrl: `/assets/charms/letter_${l}_pave.png`,
           widthMm: 4.2,
-          heightMm: 4.2
+          heightMm: 4.2,
+          category: 'letters',
+          allowUpright: false
         }));
       } else if (type === 'numbers') {
         items = numbers.map(n => ({
@@ -3956,7 +4007,9 @@
           title: n,
           imgUrl: `/assets/charms/num_${n}_gold.png`,
           widthMm: 4.2,
-          heightMm: 4.2
+          heightMm: 4.2,
+          category: 'numbers',
+          allowUpright: false
         }));
       }
 

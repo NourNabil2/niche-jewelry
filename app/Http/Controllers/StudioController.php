@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Charm;
 use App\Models\CustomDesign;
+use App\Models\Setting;
 
 class StudioController extends Controller
 {
     public function index()
     {
         $charms = Charm::where('is_active', true)->get();
-        return view('customizer', compact('charms'));
+        $enableLaserEngraving = Setting::get('enable_laser_engraving', true);
+        return view('customizer', compact('charms', 'enableLaserEngraving'));
     }
 
     public function saveDesign(Request $request)
