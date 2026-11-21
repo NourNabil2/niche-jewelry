@@ -360,6 +360,9 @@
       <div class="nav-item" onclick="switchTab('roadmap')">
         <span>📑 تقرير الجاهزية 100% للإنتاج</span>
       </div>
+      <div class="nav-item" onclick="switchTab('boutiques')">
+        <span>🏛️ فروع وبوتيكات الدار (الكويت)</span>
+      </div>
     </aside>
 
     <!-- Main Content -->
@@ -726,6 +729,26 @@
         </div>
       </section>
 
+      <!-- 9. BOUTIQUES VIEW (Kuwait & GCC) -->
+      <section id="view-boutiques" class="view-panel">
+        <div class="page-title-row">
+          <div>
+            <h1 class="page-title">إدارة فروع وبوتيكات الدار (الكويت والخليج)</h1>
+            <p style="font-size:13px; color:#737373; margin-top:4px;">
+              التحكم في فروع ومتاجر NICH JEWELRY، وتفاصيل البوتيك الرئيسي في الكويت (الأفنيوز - برستيج)، وساعات العمل، وأرقام الكونسيرج وخرائط جوجل.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-gold" onclick="addNewBoutiquePrompt()">+ إضافة بوتيك / فرع جديد</button>
+            <button class="btn btn-outline" onclick="resetBoutiquesToDefault()">إعادة ضبط لفروع الكويت الأصلية</button>
+          </div>
+        </div>
+
+        <div id="boutiquesListContainer" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:22px; margin-top:20px;">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -832,10 +855,188 @@
       const targetView = document.getElementById('view-' + tabName);
       if (targetView) targetView.classList.add('active');
 
-      const tabs = ['dashboard', 'laser', 'charms', 'products', 'orders', 'settings', 'pixels', 'roadmap'];
+      const tabs = ['dashboard', 'laser', 'charms', 'products', 'orders', 'settings', 'pixels', 'roadmap', 'boutiques'];
       const activeIdx = tabs.indexOf(tabName);
       if (activeIdx >= 0) {
         document.querySelectorAll('.nav-item')[activeIdx].classList.add('active');
+      }
+      if (tabName === 'boutiques') {
+        renderBoutiquesList();
+      }
+    };
+
+    // Boutiques Management (Kuwait & GCC)
+    const defaultBoutiques = [
+      {
+        id: 'btq_kuwait_avenues',
+        name_ar: 'بوتيك غراند أفينيو - الكويت (الفلاجشيب)',
+        name_en: 'The Avenues Flagship Boutique - Kuwait',
+        country_ar: 'الكويت',
+        country_en: 'Kuwait',
+        city_ar: 'مدينة الكويت',
+        city_en: 'Kuwait City',
+        location_ar: 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي',
+        location_en: 'The Avenues Mall, Prestige District, Ground Floor',
+        hours_ar: 'السبت - الخميس: 10:00 ص – 10:00 م | الجمعة: 1:00 م – 10:00 م',
+        hours_en: 'Sat–Thu: 10:00 AM – 10:00 PM | Fri: 1:00 PM – 10:00 PM',
+        phone: '+965 2200 4455',
+        whatsapp: '+965 9988 7766',
+        map_url: 'https://maps.google.com/?q=The+Avenues+Mall+Kuwait',
+        is_flagship: true,
+        status: 'active'
+      },
+      {
+        id: 'btq_kuwait_salhiya',
+        name_ar: 'بوتيك الصالحية الفاخر - الكويت',
+        name_en: 'Salhiya Luxury Boutique - Kuwait',
+        country_ar: 'الكويت',
+        country_en: 'Kuwait',
+        city_ar: 'العاصمة، الكويت',
+        city_en: 'Capital City, Kuwait',
+        location_ar: 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات',
+        location_en: 'Salhiya Complex, Mezzanine 1, Fine Jewelry Gallery',
+        hours_ar: 'يومياً: 10:00 ص – 9:30 م',
+        hours_en: 'Daily: 10:00 AM – 9:30 PM',
+        phone: '+965 2244 8899',
+        whatsapp: '+965 9988 7766',
+        map_url: 'https://maps.google.com/?q=Salhiya+Complex+Kuwait',
+        is_flagship: false,
+        status: 'active'
+      }
+    ];
+
+    function getAdminBoutiques() {
+      try {
+        const stored = localStorage.getItem('ep_jewelry_boutiques_v1') || localStorage.getItem('niche_boutiques');
+        return stored ? JSON.parse(stored) : defaultBoutiques;
+      } catch (e) {
+        return defaultBoutiques;
+      }
+    }
+
+    function saveAdminBoutiques(list) {
+      localStorage.setItem('ep_jewelry_boutiques_v1', JSON.stringify(list));
+      localStorage.setItem('niche_boutiques', JSON.stringify(list));
+      renderBoutiquesList();
+    }
+
+    window.renderBoutiquesList = function() {
+      const container = document.getElementById('boutiquesListContainer');
+      if (!container) return;
+      const list = getAdminBoutiques();
+
+      container.innerHTML = list.map(b => `
+        <div class="card-box" style="position:relative; border-top: 3px solid ${b.is_flagship ? 'var(--gold-primary)' : 'var(--border-light)'};">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <h3 style="font-size:15px; font-weight:700; color:var(--text-dark);">${b.name_ar}</h3>
+                ${b.is_flagship ? '<span class="badge badge-success">الفلاجشيب الرئيسي ✦</span>' : ''}
+              </div>
+              <div style="font-size:11.5px; color:#888; margin-top:2px;">${b.name_en}</div>
+            </div>
+            <span class="badge ${b.status === 'active' ? 'badge-info' : 'badge-gray'}">${b.status === 'active' ? 'مفتوح ونشط' : 'مغلق مؤقتاً'}</span>
+          </div>
+
+          <div style="font-size:12.5px; line-height:1.7; color:#444; margin-bottom:16px;">
+            <div>📍 <strong>الموقع:</strong> ${b.location_ar} (${b.city_ar})</div>
+            <div>⏰ <strong>ساعات العمل:</strong> ${b.hours_ar}</div>
+            <div>📞 <strong>الهاتف / الكونسيرج:</strong> <span dir="ltr">${b.phone}</span></div>
+            <div>💬 <strong>واتساب المبيعات:</strong> <span dir="ltr">${b.whatsapp}</span></div>
+            ${b.map_url ? `<div>🗺️ <a href="${b.map_url}" target="_blank" style="color:var(--gold-deep); text-decoration:underline;">عرض على خرائط Google Maps ↗</a></div>` : ''}
+          </div>
+
+          <div style="display:flex; gap:8px; border-top:1px solid var(--border-light); padding-top:14px; flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm" onclick="editBoutiquePrompt('${b.id}')">✏️ تعديل البيانات</button>
+            <button class="btn btn-outline btn-sm" onclick="toggleBoutiqueStatus('${b.id}')">${b.status === 'active' ? 'تعطيل مؤقت' : 'تفعيل'}</button>
+            ${!b.is_flagship ? `<button class="btn btn-outline btn-sm" style="color:#d9534f;" onclick="deleteBoutiqueConfirm('${b.id}')">🗑️ حذف</button>` : ''}
+          </div>
+        </div>
+      `).join('');
+    };
+
+    window.editBoutiquePrompt = function(id) {
+      const list = getAdminBoutiques();
+      const b = list.find(x => x.id === id);
+      if (!b) return;
+
+      const newName = prompt('اسم البوتيك بالعربية:', b.name_ar);
+      if (!newName) return;
+      const newLoc = prompt('العنوان والموقع التفصيلي:', b.location_ar);
+      if (!newLoc) return;
+      const newHours = prompt('ساعات العمل:', b.hours_ar);
+      if (!newHours) return;
+      const newPhone = prompt('رقم الهاتف:', b.phone);
+      const newWa = prompt('رقم واتساب الكونسيرج:', b.whatsapp);
+      const newMap = prompt('رابط خرائط جوجل:', b.map_url);
+
+      b.name_ar = newName;
+      b.location_ar = newLoc;
+      b.hours_ar = newHours;
+      if (newPhone) b.phone = newPhone;
+      if (newWa) b.whatsapp = newWa;
+      if (newMap) b.map_url = newMap;
+
+      saveAdminBoutiques(list);
+      showToast('تم تحديث بيانات البوتيك بنجاح ✦');
+    };
+
+    window.toggleBoutiqueStatus = function(id) {
+      const list = getAdminBoutiques();
+      const b = list.find(x => x.id === id);
+      if (b) {
+        b.status = b.status === 'active' ? 'inactive' : 'active';
+        saveAdminBoutiques(list);
+        showToast('تم تغيير حالة البوتيك بنجاح ✦');
+      }
+    };
+
+    window.deleteBoutiqueConfirm = function(id) {
+      if (confirm('هل أنتِ متأكدة من حذف هذا الفرع؟')) {
+        const list = getAdminBoutiques().filter(x => x.id !== id);
+        saveAdminBoutiques(list);
+        showToast('تم حذف الفرع بنجاح ✦');
+      }
+    };
+
+    window.addNewBoutiquePrompt = function() {
+      const name = prompt('اسم البوتيك الجديد بالعربية:');
+      if (!name) return;
+      const city = prompt('المدينة والدولة (مثال: مدينة الكويت / حولي):', 'مدينة الكويت');
+      const location = prompt('العنوان التفصيلي:');
+      const hours = prompt('ساعات العمل:', 'يومياً: 10:00 ص – 10:00 م');
+      const phone = prompt('رقم الهاتف:', '+965 ');
+      const whatsapp = prompt('رقم واتساب:', '+965 ');
+      const map = prompt('رابط خرائط Google Maps:');
+
+      const list = getAdminBoutiques();
+      list.push({
+        id: 'btq_' + Date.now(),
+        name_ar: name,
+        name_en: name,
+        country_ar: 'الكويت',
+        country_en: 'Kuwait',
+        city_ar: city,
+        city_en: city,
+        location_ar: location,
+        location_en: location,
+        hours_ar: hours,
+        hours_en: hours,
+        phone: phone || '+965 2200 4455',
+        whatsapp: whatsapp || '+965 9988 7766',
+        map_url: map || 'https://maps.google.com',
+        is_flagship: false,
+        status: 'active'
+      });
+
+      saveAdminBoutiques(list);
+      showToast('تمت إضافة البوتيك الجديد بنجاح ✦');
+    };
+
+    window.resetBoutiquesToDefault = function() {
+      if (confirm('هل تريدين استرجاع بيانات فروع الكويت الأصلية (الأفنيوز والصالحية)؟')) {
+        saveAdminBoutiques(defaultBoutiques);
+        showToast('تمت استعادة فروع الكويت الأصلية ✦');
       }
     };
 
@@ -882,6 +1083,7 @@
     // Hydrate Settings
     window.addEventListener('DOMContentLoaded', () => {
       renderCharmsTable();
+      renderBoutiquesList();
 
       // Laser toggle
       const laserSaved = localStorage.getItem('niche_enable_laser_engraving') !== 'false';

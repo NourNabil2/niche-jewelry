@@ -10,6 +10,49 @@ window.EP_DB = {
     taxRate: 0.08
   },
 
+  boutiques: [
+    {
+      id: 'btq_kuwait_avenues',
+      name_ar: 'بوتيك غراند أفينيو - الكويت (الفلاجشيب)',
+      name_en: 'The Avenues Flagship Boutique - Kuwait',
+      country_ar: 'الكويت',
+      country_en: 'Kuwait',
+      city_ar: 'مدينة الكويت',
+      city_en: 'Kuwait City',
+      location_ar: 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي',
+      location_en: 'The Avenues Mall, Prestige District, Ground Floor',
+      hours_ar: 'السبت - الخميس: 10:00 ص – 10:00 م | الجمعة: 1:00 م – 10:00 م',
+      hours_en: 'Sat–Thu: 10:00 AM – 10:00 PM | Fri: 1:00 PM – 10:00 PM',
+      phone: '+965 2200 4455',
+      whatsapp: '+965 9988 7766',
+      map_url: 'https://maps.google.com/?q=The+Avenues+Mall+Kuwait',
+      is_flagship: true,
+      status: 'active',
+      services_ar: ['صالة كبار الشخصيات VIP', 'استشارة تصميم 3D مخصصة', 'استلام مباشر وصيانة فورية'],
+      services_en: ['Private VIP Salon', 'Bespoke 3D Atelier Consultation', 'Instant In-Boutique Pickup & Care']
+    },
+    {
+      id: 'btq_kuwait_salhiya',
+      name_ar: 'بوتيك الصالحية الفاخر - الكويت',
+      name_en: 'Salhiya Luxury Boutique - Kuwait',
+      country_ar: 'الكويت',
+      country_en: 'Kuwait',
+      city_ar: 'العاصمة، الكويت',
+      city_en: 'Capital City, Kuwait',
+      location_ar: 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات',
+      location_en: 'Salhiya Complex, Mezzanine 1, Fine Jewelry Gallery',
+      hours_ar: 'يومياً: 10:00 ص – 9:30 م',
+      hours_en: 'Daily: 10:00 AM – 9:30 PM',
+      phone: '+965 2244 8899',
+      whatsapp: '+965 9988 7766',
+      map_url: 'https://maps.google.com/?q=Salhiya+Complex+Kuwait',
+      is_flagship: false,
+      status: 'active',
+      services_ar: ['معاينة التشكيلات الحصرية', 'نقش ليزر تذكاري فوري', 'خدمة الضيافة الملكية'],
+      services_en: ['Exclusive Previews', 'On-Site Laser Inscription', 'Complimentary Concierge Service']
+    }
+  ],
+
   promos: {
     'NICHE15': { code: 'NICHE15', type: 'percent', value: 15, minSubtotal: 0, label: '15% Off Entire Order' },
     'NICH15': { code: 'NICH15', type: 'percent', value: 15, minSubtotal: 0, label: '15% Off Entire Order' },

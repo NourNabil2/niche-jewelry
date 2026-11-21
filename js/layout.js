@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    NICH JEWELRY — GLOBAL HEADER, CART DRAWER, SEARCH & FOOTER
    Bilingual i18n integrated (Arabic & English)
    ========================================================================== */
@@ -89,8 +89,18 @@
 
     // Top Header Markup
     const headerHTML = `
-      <div class="announcement-bar">
-        <span>${T('nav.announcement')}</span>
+      <div class="announcement-bar" id="luxuryAnnouncementBar">
+        <div class="announcement-ticker-track" id="announcementTickerTrack">
+          <div class="announcement-item active">
+            <span>✨ <strong>${lang === 'ar' ? 'الجمعة الذهبية:' : 'GOLDEN FRIDAY:'}</strong> ${lang === 'ar' ? 'خصم 15% إضافي بكود' : 'Extra 15% Off with code'} <strong class="promo-gold-tag" id="topBarPromoCopy">GOLDEN15</strong> <span class="promo-click-hint">${lang === 'ar' ? '(انقري للنسخ ✦)' : '(Click to copy ✦)'}</span></span>
+          </div>
+          <div class="announcement-item">
+            <span>✦ <strong>${lang === 'ar' ? 'شحن فاخر ومؤمّن مجاناً' : 'Complimentary Insured Delivery'}</strong> ${lang === 'ar' ? 'لكافة الطلبات مع تغليف هدايا ملكي' : 'on all fine jewelry orders with gift box'}</span>
+          </div>
+          <div class="announcement-item">
+            <span>💎 <strong>${lang === 'ar' ? 'استوديو التصميم 3D:' : 'Bespoke 3D Studio:'}</strong> ${lang === 'ar' ? 'صممي إسورتكِ الحصرية بلمستكِ ونقش تذكاري مجاني' : 'Craft your custom glider bangle with free engraving'}</span>
+          </div>
+        </div>
       </div>
       <header class="site-header" id="siteHeader">
         <div class="container header-inner">
@@ -103,14 +113,14 @@
             </div>
             <nav class="header-nav">
               <a href="${getRoute('collections.html')}" class="nav-link ${activePage === 'collections.html' ? 'active' : ''}">${T('nav.shop_all')}</a>
-              <a href="${getRoute('customizer.html')}" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">${T('nav.studio_3d')}</a>
+              <a href="${getRoute('customizer.html')}" class="nav-link studio-pill ${activePage === 'customizer.html' ? 'active' : ''}">${T('nav.studio_3d')} ✦</a>
               <a href="${getRoute('collections.html', '?cat=charms')}" class="nav-link">${T('nav.charms')}</a>
               <a href="${getRoute('about.html')}" class="nav-link ${activePage === 'about.html' ? 'active' : ''}">${T('nav.our_story')}</a>
             </nav>
           </div>
 
           <a href="${getRoute('index.html')}" class="brand-logo" aria-label="Niche Jewelry">
-            <img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" class="brand-logo-img">
+            <img src="assets/images/niche-logo-gold.png" alt="Niche Jewelry" class="brand-logo-img" onerror="this.src='assets/images/niche-logo-white.png'">
           </a>
 
           <div class="header-actions">
@@ -140,7 +150,7 @@
       <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <div class="mobile-nav-panel">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <a href="${getRoute('index.html')}" style="display:inline-block;"><img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
+            <a href="${getRoute('index.html')}" style="display:inline-block;"><img src="assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
             <div style="display:flex; align-items:center; gap:8px;">
               ${getLangSwitcher()}
               <button class="icon-btn" id="closeMobileMenu">&times;</button>
@@ -201,6 +211,55 @@
           </a>
         </div>
       </aside>
+
+      <!-- ✦ First-Visit Luxury Campaign Pop-up (L'azurde Golden Friday Style) ✦ -->
+      <div class="promo-modal-backdrop" id="nichPromoModalBackdrop">
+        <div class="promo-modal-card">
+          <button class="promo-modal-close" id="closePromoModalBtn" aria-label="Close offer">&times;</button>
+          <div class="promo-modal-grid">
+            <div class="promo-modal-img-col">
+              <img src="assets/images/promo_popup_golden_friday.jpg" alt="عروض الجمعة الذهبية - NICH Jewelry" class="promo-modal-img">
+              <div class="promo-img-overlay-tag">
+                <span>✦ الجمعة الذهبية</span>
+              </div>
+            </div>
+            <div class="promo-modal-info-col">
+              <div class="promo-modal-badge">${lang === 'ar' ? 'عرض الجمعة الذهبية الحصري ✦' : 'EXCLUSIVE ATELIER INVITATION ✦'}</div>
+              <h3 class="promo-modal-heading">${lang === 'ar' ? 'تألقي ببريق الذهب الخالص' : 'Indulge in Pure Gold Luxury'}</h3>
+              <div class="promo-discount-callout">
+                <span class="discount-big">${lang === 'ar' ? 'خصم 15% إضافي' : 'EXTRA 15% OFF'}</span>
+                <span class="discount-sub">${lang === 'ar' ? 'على كافة أساور جلايدر™ ومجموعات الدلايات المرصعة بالألماس' : 'On all patented glider bangles & natural diamond charms'}</span>
+              </div>
+              
+              <div class="promo-code-capsule">
+                <div class="code-text-group">
+                  <span class="code-lbl">${lang === 'ar' ? 'كود الخصم:' : 'PROMO CODE:'}</span>
+                  <strong class="code-str" id="modalPromoCodeStr">GOLDEN15</strong>
+                </div>
+                <button type="button" class="promo-copy-action-btn" id="modalCopyCodeBtn">
+                  <span id="modalCopyBtnText">${lang === 'ar' ? 'نسخ الكود' : 'Copy Code'}</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+
+              <div class="promo-modal-perks">
+                <div class="promo-perk-item"><span class="perk-icon">✦</span> ${lang === 'ar' ? 'شحن فاخر مؤمّن مجاناً لكافة المدن' : 'Complimentary Insured Delivery'}</div>
+                <div class="promo-perk-item"><span class="perk-icon">✦</span> ${lang === 'ar' ? 'نقش ليزري تذكاري مجاني لكافة القطع' : 'Complimentary Laser Engraving'}</div>
+                <div class="promo-perk-item"><span class="perk-icon">✦</span> ${lang === 'ar' ? 'علبة هدايا جلدية فاخرة مع شهادة أصالة' : 'Atelier Gift Packaging & Gold Certificate'}</div>
+              </div>
+
+              <div class="promo-modal-actions">
+                <a href="${getRoute('collections.html', '?promo=GOLDEN15')}" class="promo-modal-shop-btn" id="modalShopNowBtn">
+                  ${lang === 'ar' ? 'استكشفي عروض الجمعة الذهبية ←' : 'Explore Golden Friday Collection &rarr;'}
+                </a>
+                <a href="${getRoute('customizer.html')}" class="promo-modal-studio-link">
+                  ${lang === 'ar' ? 'أو صممي إسورتكِ في استوديو الـ 3D ✦' : 'Or design your piece in 3D Atelier ✦'}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     `;
 
     // Mount Header
@@ -215,22 +274,29 @@
       footerMount.innerHTML = `
         <footer class="site-footer">
           <div class="container">
-            <!-- Atelier Trust Strip -->
+            <!-- Quiet Luxury Monochromatic Trust Strip -->
             <div class="footer-trust-strip">
               <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_gold')}</div>
               <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_glider')}</div>
               <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_shipping')}</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_warranty')}</div>
+              <div class="trust-pill"><span class="trust-pill-icon">✦</span> 📍 بوتيك الكويت: الأفنيوز - برستيج</div>
             </div>
 
             <div class="footer-grid">
               <div>
-                <a href="${getRoute('index.html')}" style="display:inline-block; margin-bottom:14px;"><img src="/assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:38px; width:auto; display:block;"></a>
+                <a href="${getRoute('index.html')}" style="display:inline-block; margin-bottom:14px;"><img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:36px; width:auto; display:block;"></a>
                 <p class="footer-desc">
                   ${T('footer.brand_desc')}
                 </p>
+                <div style="margin-top:16px; font-size:12px; color:#c5bfb4; line-height:1.6;">
+                  <div>🏛️ <strong>بوتيك الكويت:</strong> ذا أفينوز، برستيج</div>
+                  <div>📞 <strong>الكونسيرج:</strong> <span dir="ltr">+965 2200 4455</span></div>
+                </div>
                 <div style="margin-top:18px; display:flex; gap:10px;">
-                  <a href="${getRoute('customizer.html')}" class="btn btn-gold btn-sm">${T('footer.launch_studio')}</a>
+                  <a href="${getRoute('customizer.html')}" class="btn-sm" style="background:#FAF8F5; color:#0d0d0d; border-radius:999px; font-weight:700; font-size:11.5px; padding:8px 18px; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <span>${T('footer.launch_studio')}</span>
+                    <span style="font-size:9px;">✦</span>
+                  </a>
                 </div>
               </div>
               <div>
@@ -246,6 +312,7 @@
               <div>
                 <div class="footer-col-title">${T('footer.atelier_title')}</div>
                 <ul class="footer-links">
+                  <li><a href="${getRoute('index.html', '#boutiques-section')}">فروعنا وبوتيكات الكويت ✦</a></li>
                   <li><a href="${getRoute('about.html')}">${T('footer.our_ethics')}</a></li>
                   <li><a href="${getRoute('about.html', '#sizing')}">${T('footer.sizing_guide')}</a></li>
                   <li><a href="${getRoute('about.html', '#care')}">${T('footer.gold_care')}</a></li>
@@ -255,7 +322,7 @@
               </div>
               <div>
                 <div class="footer-col-title">${T('footer.collector_title')}</div>
-                <p style="font-size:12px; color:#a9a295;">${T('footer.collector_sub')} <strong style="color:#c59b3f;">NICH15</strong>.</p>
+                <p style="font-size:12px; color:#b5afa3; line-height:1.6;">${T('footer.collector_sub')} <strong style="color:#FAF8F5;">NICH15</strong>.</p>
                 <form class="footer-newsletter-capsule" id="footerNewsletterForm">
                   <input type="email" id="footerNewsletterEmail" placeholder="${T('footer.email_placeholder')}" required aria-label="Email address for collector list">
                   <button type="submit" class="newsletter-submit-btn" aria-label="Join newsletter">
@@ -276,6 +343,13 @@
             </div>
           </div>
         </footer>
+                <span class="pay-tag">${T('footer.tag_silver')}</span>
+                <span class="pay-tag">${T('footer.tag_delivery')}</span>
+                <span class="pay-tag">${T('footer.tag_secure')}</span>
+              </div>
+            </div>
+          </div>
+        </footer>
       `;
     }
 
@@ -284,14 +358,90 @@
   }
 
   function bindGlobalEvents() {
-    // Promo copy click
-    document.getElementById('copyPromoBtn')?.addEventListener('click', () => {
-      navigator.clipboard?.writeText('NICH15').then(() => {
-        showToast(T('cart.promo_applied'), '✦');
+    // 1. Promo copy click (Top Announcement Bar & Ticker)
+    const handleCopyGolden15 = () => {
+      navigator.clipboard?.writeText('GOLDEN15').then(() => {
+        showToast('تم نسخ كوبون الخصم: GOLDEN15 (خصم 15% إضافي)', '✨');
       }).catch(() => {
-        showToast('Code: NICH15', '✦');
+        showToast('Code: GOLDEN15', '✨');
+      });
+    };
+    document.getElementById('copyPromoBtn')?.addEventListener('click', handleCopyGolden15);
+    document.getElementById('topBarPromoCopy')?.addEventListener('click', handleCopyGolden15);
+
+    // 2. Announcement Ticker Auto-Cycle
+    const tickerTrack = document.getElementById('announcementTickerTrack');
+    if (tickerTrack) {
+      const items = tickerTrack.querySelectorAll('.announcement-item');
+      if (items.length > 1) {
+        let currentIdx = 0;
+        setInterval(() => {
+          items[currentIdx].classList.remove('active');
+          currentIdx = (currentIdx + 1) % items.length;
+          items[currentIdx].classList.add('active');
+        }, 4000);
+      }
+    }
+
+    // 3. First-Visit Luxury Campaign Pop-up Modal (L'azurde Golden Friday Style)
+    const promoBackdrop = document.getElementById('nichPromoModalBackdrop');
+    const closePromoBtn = document.getElementById('closePromoModalBtn');
+    const modalCopyBtn = document.getElementById('modalCopyCodeBtn');
+    const modalCopyText = document.getElementById('modalCopyBtnText');
+    const modalShopNow = document.getElementById('modalShopNowBtn');
+
+    function openPromoModal() {
+      if (!promoBackdrop) return;
+      promoBackdrop.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePromoModal() {
+      if (!promoBackdrop) return;
+      promoBackdrop.classList.remove('visible');
+      document.body.style.overflow = '';
+      try {
+        sessionStorage.setItem('nich_golden_popup_seen', 'true');
+      } catch (e) {}
+    }
+
+    window.openPromoPopup = openPromoModal;
+
+    closePromoBtn?.addEventListener('click', closePromoModal);
+    promoBackdrop?.addEventListener('click', (e) => {
+      if (e.target === promoBackdrop) closePromoModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && promoBackdrop?.classList.contains('visible')) {
+        closePromoModal();
+      }
+    });
+
+    modalCopyBtn?.addEventListener('click', () => {
+      navigator.clipboard?.writeText('GOLDEN15').then(() => {
+        if (modalCopyText) modalCopyText.textContent = window.nicheI18n?.getLanguage() === 'en' ? '✓ Copied!' : '✓ تم النسخ!';
+        showToast('تم نسخ كود الخصم: GOLDEN15 بنجاح! ✦', '✨');
+        setTimeout(() => {
+          if (modalCopyText) modalCopyText.textContent = window.nicheI18n?.getLanguage() === 'en' ? 'Copy Code' : 'نسخ الكود';
+        }, 3000);
       });
     });
+
+    modalShopNow?.addEventListener('click', () => {
+      try {
+        sessionStorage.setItem('appliedPromo', 'GOLDEN15');
+      } catch (e) {}
+      closePromoModal();
+    });
+
+    // Check first visit and trigger popup
+    try {
+      const hasSeen = sessionStorage.getItem('nich_golden_popup_seen');
+      if (!hasSeen) {
+        setTimeout(openPromoModal, 1200);
+      }
+    } catch (e) {}
 
     // Mobile nav drawer
     const openMenuBtn = document.getElementById('openMobileMenu');
@@ -490,7 +640,7 @@
       return `
         <div class="cart-item-row" data-cart-id="${item.cartId}">
           <div class="cart-item-media">
-            <img src="${item.image || '/assets/images/bangle_gold_studio.jpg'}" alt="${itemTitle}">
+            <img src="${item.image || 'assets/images/bangle_gold_studio.jpg'}" alt="${itemTitle}">
           </div>
           <div class="cart-item-info">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">

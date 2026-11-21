@@ -64,9 +64,11 @@
     .luxury-tracker-card {
       background: #faf8f5;
       border: 1px solid #e8e3d8;
-      border-radius: 10px;
-      padding: 20px 16px;
-      margin: 18px 0;
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin: 20px 0;
+      overflow: hidden;
+      box-sizing: border-box;
     }
 
     .tracker-header-row {
@@ -102,14 +104,17 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 10px 0 4px 0;
+      padding: 10px 0 6px 0;
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .tracker-timeline-line {
       position: absolute;
       top: 26px;
-      left: 8%;
-      right: 8%;
+      inset-inline-start: 10%;
+      width: 80%;
       height: 2px;
       background: #e2ded5;
       z-index: 1;
@@ -118,9 +123,10 @@
     .tracker-timeline-progress {
       position: absolute;
       top: 26px;
-      inset-inline-start: 8%;
+      inset-inline-start: 10%;
+      max-width: 80%;
       height: 2px;
-      background: linear-gradient(90deg, #c59b3f 0%, #ecbe54 100%);
+      background: #c59b3f;
       z-index: 2;
       transition: width 0.4s ease;
     }
@@ -193,10 +199,11 @@
         align-items: stretch;
         gap: 16px;
         padding-inline-start: 18px;
+        overflow: visible;
       }
       .tracker-timeline-line {
-        top: 10px;
-        bottom: 10px;
+        top: 20px;
+        bottom: 20px;
         inset-inline-start: 34px;
         width: 2px;
         height: auto;
@@ -204,9 +211,11 @@
         left: auto;
       }
       .tracker-timeline-progress {
-        top: 10px;
+        top: 20px;
         inset-inline-start: 34px;
         width: 2px;
+        max-width: none;
+        max-height: calc(100% - 40px);
         right: auto;
         left: auto;
         transition: height 0.4s ease;
@@ -327,6 +336,7 @@
               const dateStr = new Date(o.createdAt).toLocaleDateString(window.nicheI18n?.getLanguage() === 'ar' ? 'ar-EG' : 'en-US', { year:'numeric', month:'short', day:'numeric' });
               const stepIdx = o.stepIndex !== undefined ? Math.min(Math.max(o.stepIndex, 0), stages.length - 1) : 4;
               const progressPct = ((stepIdx) / (stages.length - 1)) * 100;
+              const progressWidthPct = ((stepIdx) / (stages.length - 1)) * 80;
               const kwdPrice = (o.total * 0.308).toFixed(3);
 
               return `
@@ -363,7 +373,7 @@
 
                     <div class="tracker-timeline">
                       <div class="tracker-timeline-line"></div>
-                      <div class="tracker-timeline-progress" style="width: ${progressPct}%;"></div>
+                      <div class="tracker-timeline-progress" style="width: ${progressWidthPct}%;"></div>
 
                       ${stages.map((st, idx) => {
                         const isDone = idx < stepIdx;
@@ -404,10 +414,10 @@
                               </div>
                             ` : ''}
                           </div>
-                          <div style="display:flex; flex-direction:column; gap:6px;">
-                            <button class="btn btn-outline btn-sm" onclick="reorderItem('${o.orderNumber}', ${idx})">${t('common.add_to_bag')}</button>
+                          <div style="display:flex; flex-direction:column; gap:8px; min-width:110px;">
+                            <button class="btn btn-sm" style="background:#181715; color:#ffffff; font-size:11.5px; padding:7px 14px; border-radius:6px; font-weight:600; border:none; cursor:pointer;" onclick="reorderItem('${o.orderNumber}', ${idx})">${t('common.add_to_bag')} ✦</button>
                             ${it.type === 'custom-bangle' ? `
-                              <a href="customizer.html" class="btn btn-ghost btn-sm" style="font-size:11px; text-align:center;">عرض في 3D</a>
+                              <a href="customizer.html" class="btn btn-sm" style="background:transparent; color:#8b661d; border:1px solid rgba(197,155,63,0.45); font-size:11px; padding:6px 12px; border-radius:6px; font-weight:600; text-align:center; text-decoration:none;">عرض في 3D</a>
                             ` : ''}
                           </div>
                         </div>

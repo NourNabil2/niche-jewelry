@@ -335,6 +335,85 @@
     </div>
   </section>
 
+  <!-- 7. Exclusive Boutiques Showcase (Kuwait Flagship & GCC Salons) -->
+  <section class="page-section" id="boutiques-section">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">{{ app()->getLocale() == 'ar' ? '✦ فروعنا وبوتيكات الدار • Exclusive Salons' : '✦ Exclusive Salons & Boutiques' }}</span>
+          <h2 class="section-heading mt-1">{{ app()->getLocale() == 'ar' ? 'فروعنا في الكويت والخليج العربي' : 'Our Kuwait & GCC Boutiques' }}</h2>
+          <p style="font-size:13.5px; color:#666; max-width:600px; margin-top:8px;">
+            {{ app()->getLocale() == 'ar' 
+              ? 'تفضلوا بزيارة صالات العرض الخاصة لتجربة إسورة جلايدر™ بوجهيها، وتصميم القطع حسب الطلب في صالة كبار الشخصيات VIP على أيدي أمهر الصاغة.' 
+              : 'Visit our private boutique salons to experience the dual-track Glider™ Bangle in person, and curate bespoke creations in our private VIP salon.' }}
+          </p>
+        </div>
+        <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك الكويت' : 'Hello, I would like to book a private VIP appointment') }}" target="_blank" class="btn btn-outline btn-sm">
+          <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد VIP ✦' : 'Book VIP Salon ✦' }}</span>
+        </a>
+      </div>
+
+      <div class="boutiques-grid" id="homeBoutiquesGrid">
+        <!-- Rendered dynamically from EP_STORE.getBoutiques() -->
+        <div class="boutique-showcase-card is-flagship">
+          <div class="boutique-card-inner">
+            <div class="boutique-badge-row">
+              <span class="boutique-pill">{{ app()->getLocale() == 'ar' ? '✦ البوتيك الرئيسي • الفلاجشيب' : '✦ Flagship Boutique • Kuwait' }}</span>
+              <span class="boutique-city">{{ app()->getLocale() == 'ar' ? 'مدينة الكويت' : 'Kuwait City' }}</span>
+            </div>
+            <h3 class="boutique-title serif">{{ app()->getLocale() == 'ar' ? 'بوتيك غراند أفينيو - الكويت' : 'The Avenues Flagship Boutique - Kuwait' }}</h3>
+            <p class="boutique-address">📍 {{ app()->getLocale() == 'ar' ? 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي' : 'The Avenues Mall, Prestige District, Ground Floor' }}</p>
+            <div class="boutique-hours">
+              <span class="hours-icon">⏰</span>
+              <span>{{ app()->getLocale() == 'ar' ? 'السبت - الخميس: 10:00 ص – 10:00 م | الجمعة: 1:00 م – 10:00 م' : 'Sat–Thu: 10:00 AM – 10:00 PM | Fri: 1:00 PM – 10:00 PM' }}</span>
+            </div>
+            <div class="boutique-features-row">
+              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'صالة كبار الشخصيات VIP' : 'Private VIP Salon' }}</span>
+              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'استشارة تصميم 3D مخصصة' : 'Bespoke 3D Atelier Consultation' }}</span>
+              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'استلام مباشر وصيانة فورية' : 'Instant In-Boutique Pickup & Care' }}</span>
+            </div>
+            <div class="boutique-actions">
+              <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك غراند أفينيو - الكويت' : 'Hello, I would like to book a private VIP appointment at The Avenues Flagship Boutique') }}" target="_blank" class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-size:12px; font-weight:600; padding:9px 18px; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد VIP خاص ✦' : 'Book VIP Salon ✦' }}</span>
+              </a>
+              <a href="https://maps.google.com/?q=The+Avenues+Mall+Kuwait" target="_blank" class="btn btn-outline btn-sm" style="border-radius:999px; font-size:12px; padding:8px 16px;">
+                <span>{{ app()->getLocale() == 'ar' ? 'الموقع على الخريطة ↗' : 'Directions ↗' }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="boutique-showcase-card">
+          <div class="boutique-card-inner">
+            <div class="boutique-badge-row">
+              <span class="boutique-pill">{{ app()->getLocale() == 'ar' ? 'صالون الدار الفاخر' : 'Luxury Boutique Salon' }}</span>
+              <span class="boutique-city">{{ app()->getLocale() == 'ar' ? 'العاصمة، الكويت' : 'Capital City, Kuwait' }}</span>
+            </div>
+            <h3 class="boutique-title serif">{{ app()->getLocale() == 'ar' ? 'بوتيك الصالحية الفاخر - الكويت' : 'Salhiya Luxury Boutique - Kuwait' }}</h3>
+            <p class="boutique-address">📍 {{ app()->getLocale() == 'ar' ? 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات' : 'Salhiya Complex, Mezzanine 1, Fine Jewelry Gallery' }}</p>
+            <div class="boutique-hours">
+              <span class="hours-icon">⏰</span>
+              <span>{{ app()->getLocale() == 'ar' ? 'يومياً: 10:00 ص – 9:30 م' : 'Daily: 10:00 AM – 9:30 PM' }}</span>
+            </div>
+            <div class="boutique-features-row">
+              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'معاينة التشكيلات الحصرية' : 'Exclusive Previews' }}</span>
+              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'نقش ليزر تذكاري فوري' : 'On-Site Laser Inscription' }}</span>
+              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'خدمة الضيافة الملكية' : 'Complimentary Concierge Service' }}</span>
+            </div>
+            <div class="boutique-actions">
+              <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك الصالحية - الكويت' : 'Hello, I would like to book a private VIP appointment at Salhiya Luxury Boutique') }}" target="_blank" class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-size:12px; font-weight:600; padding:9px 18px; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد VIP خاص ✦' : 'Book VIP Salon ✦' }}</span>
+              </a>
+              <a href="https://maps.google.com/?q=Salhiya+Complex+Kuwait" target="_blank" class="btn btn-outline btn-sm" style="border-radius:999px; font-size:12px; padding:8px 16px;">
+                <span>{{ app()->getLocale() == 'ar' ? 'الموقع على الخريطة ↗' : 'Directions ↗' }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 7. Verified Client Reviews -->
   <section class="page-section" style="padding-top:10px;">
     <div class="container">
@@ -380,24 +459,24 @@
     </div>
   </section>
 
-  <!-- 8. Collector VIP CTA Banner -->
-  <section class="container" style="margin-bottom:80px;">
+  <!-- 8. Collector VIP CTA Banner (Alabaster White & Obsidian Quiet Luxury) -->
+  <section class="container" style="margin-bottom:40px;">
     <div class="vip-cta-banner">
       <div>
-        <span class="eyebrow" style="color:var(--gold-primary);">{{ app()->getLocale() == 'ar' ? 'امتياز انضمام المقتنين الجدد' : 'Atelier Welcome Privilege' }}</span>
-        <h2 class="serif" style="font-size:clamp(26px, 3vw, 38px); font-weight:400; margin-top:6px;">
-          {{ app()->getLocale() == 'ar' ? 'وفري 15% على أول إسورة جلايدر تصممينها' : 'Save 15% on Your First Custom Glider Build' }}
+        <span class="eyebrow" style="color:#737373;">{{ app()->getLocale() == 'ar' ? 'امتياز مقتني الدار • Atelier Privilege' : 'Atelier Welcome Privilege' }}</span>
+        <h2 class="serif" style="font-size:clamp(26px, 2.8vw, 38px); font-weight:400; margin-top:6px; color:#141311;">
+          {{ app()->getLocale() == 'ar' ? 'خصم 15% على أول طلب لإسورة جلايدر™ المخصصة' : 'Save 15% on Your First Custom Glider Build' }}
         </h2>
-        <p style="font-size:13px; color:#c8c1b6; margin-top:6px;">
-          {{ app()->getLocale() == 'ar' ? 'استخدمي الرمز الترويجي' : 'Apply promo code' }} <strong style="color:#c59b3f;">NICH15</strong> {{ app()->getLocale() == 'ar' ? 'في حقيبة التسوق أو عند إتمام الطلب.' : 'inside your bag or at checkout.' }}
+        <p style="font-size:13px; color:#555555; margin-top:6px;">
+          {{ app()->getLocale() == 'ar' ? 'استخدمي كود الخصم الحصري' : 'Apply promo code' }} <strong style="color:#141311; letter-spacing:0.05em;">NICH15</strong> {{ app()->getLocale() == 'ar' ? 'عند إتمام الطلب أو في حقيبة التسوق.' : 'inside your bag or at checkout.' }}
         </p>
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <button class="btn btn-gold" onclick="navigator.clipboard?.writeText('NICH15'); alert('تم نسخ الكود: NICH15');">
-          {{ app()->getLocale() == 'ar' ? 'نسخ الكود: NICH15' : 'Copy Code: NICH15' }}
+        <button class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-weight:700; padding:12px 24px; border:none; cursor:pointer;" onclick="navigator.clipboard?.writeText('NICH15'); alert('{{ app()->getLocale() == 'ar' ? 'تم نسخ كود الخصم: NICH15 ✦' : 'Code NICH15 copied!' }}');">
+          {{ app()->getLocale() == 'ar' ? 'نسخ الكود: NICH15 ✦' : 'Copy Code: NICH15 ✦' }}
         </button>
-        <a href="{{ route('studio') }}" class="btn" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.35);">
-          {{ app()->getLocale() == 'ar' ? 'ابدأي التصميم الآن' : 'Start Designing' }}
+        <a href="{{ route('studio') }}" class="btn btn-outline btn-sm" style="border-radius:999px; padding:11px 22px; color:#141311; border-color:#141311; text-decoration:none;">
+          {{ app()->getLocale() == 'ar' ? 'ابدئي التصميم في الـ 3D' : 'Start Designing' }}
         </a>
       </div>
     </div>

@@ -11,7 +11,8 @@
     REVIEWS: 'ep_jewelry_reviews_v1',
     USER: 'ep_jewelry_user_v1',
     PROMO: 'ep_jewelry_promo_v1',
-    NEWSLETTER: 'ep_jewelry_newsletter_v1'
+    NEWSLETTER: 'ep_jewelry_newsletter_v1',
+    BOUTIQUES: 'ep_jewelry_boutiques_v1'
   };
 
   function readJSON(key, fallback) {
@@ -31,6 +32,7 @@
     if (!localStorage.getItem(STORAGE_KEYS.INIT) && window.EP_DB) {
       writeJSON(STORAGE_KEYS.ORDERS, window.EP_DB.initialOrders || []);
       writeJSON(STORAGE_KEYS.REVIEWS, window.EP_DB.initialReviews || {});
+      writeJSON(STORAGE_KEYS.BOUTIQUES, window.EP_DB.boutiques || []);
 
       // Pre-seed Wishlist with 1 inspiration Custom 3D Design + 1 signature piece
       // so first-time client demos immediately look vivid, while fully editable
@@ -442,6 +444,42 @@
       if (!list.includes(email)) list.push(email);
       writeJSON(STORAGE_KEYS.NEWSLETTER, list);
       return true;
+    },
+
+    // --- BOUTIQUES / BRANCHES ---
+    getBoutiques() {
+      const stored = readJSON(STORAGE_KEYS.BOUTIQUES, null);
+      if (stored && Array.isArray(stored) && stored.length > 0) return stored;
+      return (window.EP_DB && window.EP_DB.boutiques) || [];
+    },
+
+    saveBoutique(boutique) {
+      const list = this.getBoutiques().slice();
+      const existingIdx = list.findIndex(b => b.id === boutique.id);
+      if (existingIdx >= 0) {
+        list[existingIdx] = { ...list[existingIdx], ...boutique };
+      } else {
+        const newId = boutique.id || ('btq_' + Date.now());
+        list.push({ ...boutique, id: newId });
+      }
+      writeJSON(STORAGE_KEYS.BOUTIQUES, list);
+      notify();
+      return list;
+    },
+
+    deleteBoutique(id) {
+      const list = this.getBoutiques().filter(b => b.id !== id);
+      writeJSON(STORAGE_KEYS.BOUTIQUES, list);
+      notify();
+      return list;
+    },
+
+    resetBoutiques() {
+      const def = (window.EP_DB && window.EP_DB.boutiques) || [];
+      writeJSON(STORAGE_KEYS.BOUTIQUES, def);
+      notify();
+      return def;
+    }
     }
   };
 })();
