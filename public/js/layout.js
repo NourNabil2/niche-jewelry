@@ -371,13 +371,11 @@
     function openPromoModal() {
       if (!promoBackdrop) return;
       promoBackdrop.classList.add('visible');
-      document.body.style.overflow = 'hidden';
     }
 
     function closePromoModal() {
       if (!promoBackdrop) return;
       promoBackdrop.classList.remove('visible');
-      document.body.style.overflow = '';
       try {
         sessionStorage.setItem('nich_golden_popup_seen', 'true');
       } catch (e) {}
