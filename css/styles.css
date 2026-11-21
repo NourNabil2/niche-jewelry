@@ -3341,3 +3341,30 @@ html[dir="ltr"] .promo-banner-overlay-badge {
   gap: 10px;
   flex-wrap: wrap;
 }
+
+
+/* VIP Atelier Privilege Banner Button Hover Fix */
+.vip-studio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: #141311 !important;
+  border: 1.5px solid #141311 !important;
+  border-radius: 999px !important;
+  padding: 11px 24px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.vip-studio-btn:hover {
+  background: #141311 !important;
+  color: #ffffff !important;
+  border-color: #141311 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(20, 19, 17, 0.15);
+}

@@ -475,7 +475,7 @@
         <button class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-weight:700; padding:12px 24px; border:none; cursor:pointer;" onclick="navigator.clipboard?.writeText('NICH15'); alert('{{ app()->getLocale() == 'ar' ? 'تم نسخ كود الخصم: NICH15 ✦' : 'Code NICH15 copied!' }}');">
           {{ app()->getLocale() == 'ar' ? 'نسخ الكود: NICH15 ✦' : 'Copy Code: NICH15 ✦' }}
         </button>
-        <a href="{{ route('studio') }}" class="btn btn-outline btn-sm" style="border-radius:999px; padding:11px 22px; color:#141311; border-color:#141311; text-decoration:none;">
+        <a href="{{ route('studio') }}" class="vip-studio-btn">
           {{ app()->getLocale() == 'ar' ? 'ابدئي التصميم في الـ 3D' : 'Start Designing' }}
         </a>
       </div>
