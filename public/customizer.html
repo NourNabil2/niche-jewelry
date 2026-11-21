@@ -453,11 +453,35 @@
       gap: 12px;
       padding: 16px;
       overflow-y: auto;
+      overflow-x: hidden;
       flex: 1;
       min-height: 0;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(197, 155, 63, 0.45) #faf8f5;
+    }
+
+    .atelier-accordion::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .atelier-accordion::-webkit-scrollbar-track {
+      background: #faf8f5;
+      border-radius: 4px;
+    }
+
+    .atelier-accordion::-webkit-scrollbar-thumb {
+      background: rgba(197, 155, 63, 0.4);
+      border-radius: 4px;
+    }
+
+    .atelier-accordion::-webkit-scrollbar-thumb:hover {
+      background: rgba(197, 155, 63, 0.75);
     }
 
     .accordion-step {
+      flex-shrink: 0; /* CRITICAL: prevents flexbox from crushing expanded steps */
       background: #ffffff;
       border: 1px solid #e8e3d8;
       border-radius: 10px;
@@ -1576,6 +1600,13 @@
         border-left: none;
         border-top: 1px solid var(--border-light);
         background: #ffffff;
+      }
+
+      .atelier-accordion {
+        overflow: visible !important;
+        height: auto !important;
+        flex: none !important;
+        padding: 12px;
       }
 
       .sidebar-header {
@@ -3726,6 +3757,12 @@
         setView('front');
       }
       updateUI();
+      setTimeout(() => {
+        const stepEl = document.getElementById(`accStep${stepNum}`);
+        if (stepEl) {
+          stepEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 60);
     };
 
     window.toggleAccordionStep = function(stepNum) {
