@@ -46,9 +46,9 @@ jewelry-3d-bangle-customizer/
 │   ├── images/                  # Bespoke High-Resolution Studio & Editorial Photography
 │   │   ├── hero_editorial.jpg           # Landing hero banner
 │   │   ├── craftsmanship_editorial.jpg  # Craftsmanship split section
-│   │   ├── bangle_gold_studio.jpg       # 14K Gold Bangle studio shot
+│   │   ├── bangle_gold_studio.jpg       # 18K Gold Bangle studio shot
 │   │   ├── bangle_silver_studio.jpg     # 925 Silver Bangle studio shot
-│   │   ├── bangle_rose_studio.jpg       # 14K Rose Gold Bangle studio shot
+│   │   ├── bangle_rose_studio.jpg       # 18K Rose Gold Bangle studio shot
 │   │   ├── necklace_pendant_studio.jpg  # Pavé Heart Necklace shot
 │   │   ├── earrings_huggie_studio.jpg   # Diamond Huggies shot
 │   │   └── ring_solitaire_studio.jpg    # Solitaire Ring shot
@@ -74,11 +74,11 @@ jewelry-3d-bangle-customizer/
 - **Dual Tracks (Front & Back):**
   - **Front Track:** Centered at angle $-\frac{\pi}{2}$ (facing $-Y$, towards default camera position $(0, -0.15, 0.045)$). Spans $\theta \in [-0.85\pi, -0.15\pi]$ ($70\%$ perimeter sweep).
   - **Back Track:** Centered at angle $+\frac{\pi}{2}$ (facing $+Y$, towards back camera position $(0, 0.15, 0.045)$). Spans $\theta \in [+0.15\pi, +0.85\pi]$.
-- **Hardware Details:** Solid hinge clasps with 3 knuckle cylinders, inner 925/14K hallmark stamp decal.
+- **Hardware Details:** Solid hinge clasps with 3 knuckle cylinders, inner 925/18K hallmark stamp decal.
 - **PBR Metallic Alloys:**
-  - `14K Yellow Gold`: Color `#e3b552`, Roughness `0.20`, Metalness `0.95`.
+  - `18K Yellow Gold`: Color `#e3b552`, Roughness `0.20`, Metalness `0.95`.
   - `925 Sterling Silver`: Color `#e8e8e8`, Roughness `0.18`, Metalness `0.98`.
-  - `14K Rose Gold`: Color `#e09f87`, Roughness `0.22`, Metalness `0.94`.
+  - `18K Rose Gold`: Color `#e09f87`, Roughness `0.22`, Metalness `0.94`.
 
 ### B. Standalone 3D Cutout Charms (No Frame / Pure Silhouette)
 - **Problem Solved:** Traditional square/framed charms looked clunky. The user requested pure standalone cutout charms matching real jewelry.
@@ -151,7 +151,7 @@ flowchart TD
    - Craftsmanship split section & verified client testimonials.
 2. **`collections.html` (Catalog):**
    - Filter pills: All, Bangles, Charms, Necklaces, Earrings, Rings.
-   - Metal filter pills (`All`, `14K Yellow`, `925 Silver`, `14K Rose`).
+   - Metal filter pills (`All`, `18K Yellow`, `925 Silver`, `18K Rose`).
    - Live real-time search input + sorting dropdown (Price, Name, Rating).
    - URL hydration (`?cat=...&metal=...&search=...`).
 3. **`product.html` (Product Detail):**
@@ -227,7 +227,7 @@ flowchart TD
    - Storefront English (LTR): **`http://127.0.0.1:8000/en`**
    - 3D Interactive Atelier: **`http://127.0.0.1:8000/ar/atelier`**
    - Collections Catalog: **`http://127.0.0.1:8000/ar/collections`**
-   - Product Page: **`http://127.0.0.1:8000/ar/product/glider-14k-gold`**
+   - Product Page: **`http://127.0.0.1:8000/ar/product/glider-18k-gold`**
    - Checkout Flow: **`http://127.0.0.1:8000/ar/checkout`**
    - Collector Account: **`http://127.0.0.1:8000/ar/account`**
    - Wishlist Vault: **`http://127.0.0.1:8000/ar/wishlist`**
@@ -255,12 +255,12 @@ node server.js
 
 | Feature / Track | Status | Implementation Details |
 |---|---|---|
-| **Quiet Luxury Hero Redesign** | ✅ Complete | Minimalist editorial aesthetic, removed spinning vinyl turntable and AI chips, high-res black panther & 14K gold diamond bangle, responsive mobile layout. |
+| **Quiet Luxury Hero Redesign** | ✅ Complete | Minimalist editorial aesthetic, removed spinning vinyl turntable and AI chips, high-res black panther & 18K gold diamond bangle, responsive mobile layout. |
 | **Storefront Layout & Image Bug Fix** | ✅ Complete | Consolidated component styles into `css/styles.css`, fixed all relative asset paths (`/ar/...` 404 issue) to absolute paths across all Blade views. |
 | **Full Bilingual Blade System** | ✅ Complete | Complete suite of views (`home`, `customizer`, `collections`, `product`, `checkout`, `account`, `wishlist`, `about`) with seamless Arabic RTL and English LTR support. |
 | **Dual Currency Engine (USD & KWD)** | ✅ Complete | Dedicated `price_kwd` schema (3 decimals), `CurrencyService`, `@currency` Blade directive, live currency switcher pill (`$ USD` / `د.ك KWD`), and admin manual/auto pricing. |
 | **Comprehensive Admin Panel Suite** | ✅ Complete | Admin layout with Cartier/Tiffany dark luxury styling, Product CRUD with image uploads, Charm CRUD with active drawer toggles, Order Inspector with 3D specs, and Store Settings. |
-| **3D Bangle CAD & Dual Rails** | ✅ Complete | Procedural ellipse, front/back channels, 925/14K hallmark, PBR alloys. |
+| **3D Bangle CAD & Dual Rails** | ✅ Complete | Procedural ellipse, front/back channels, 925/18K hallmark, PBR alloys. |
 | **Pure Cutout Silhouette Charms** | ✅ Complete | 85 standalone alpha charms, 10-layer micro-extrusion, 90° rotation, collision swap. Fixed all 33 letter/number thumbnail paths. |
 | **Atelier Inner Engraving Studio** | ✅ Complete | Real-time 3D canvas texture (1024×128) with debossed metallic relief, 3 typography fonts (Roman, Script, Modern), "Inside" camera preset, cart/wishlist/checkout receipt sync. |
 | **Bespoke Charm PNG Uploader** | ✅ Complete | Dropzone file reader, instant transparent cutout generation, 10-layer physical 3D mesh placed on track with pricing ($65) and GLB export. |

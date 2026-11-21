@@ -51,11 +51,11 @@
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:18px;">
                 <div>
                     <label style="display:block; font-size:12.5px; font-weight:600; color:#444; margin-bottom:6px;">نص الشارة الذهبية الصغيرة (Badge) - عربي</label>
-                    <input type="text" name="badge_text_ar" value="{{ old('badge_text_ar', $banner->badge_text_ar) }}" placeholder="مثال: استوديو 3D ✦ ذهب 14K" style="width:100%; box-sizing:border-box; padding:10px 14px; border:1px solid #d4cdbf; border-radius:4px; font-family:inherit; font-size:14px;">
+                    <input type="text" name="badge_text_ar" value="{{ old('badge_text_ar', $banner->badge_text_ar) }}" placeholder="مثال: استوديو 3D ✦ ذهب 18K" style="width:100%; box-sizing:border-box; padding:10px 14px; border:1px solid #d4cdbf; border-radius:4px; font-family:inherit; font-size:14px;">
                 </div>
                 <div>
                     <label style="display:block; font-size:12.5px; font-weight:600; color:#444; margin-bottom:6px;">نص الشارة الذهبية الصغيرة (Badge) - إنجليزي</label>
-                    <input type="text" name="badge_text_en" value="{{ old('badge_text_en', $banner->badge_text_en) }}" dir="ltr" placeholder="e.g. 3D Atelier ✦ Solid 14K Gold" style="width:100%; box-sizing:border-box; padding:10px 14px; border:1px solid #d4cdbf; border-radius:4px; font-family:inherit; font-size:14px;">
+                    <input type="text" name="badge_text_en" value="{{ old('badge_text_en', $banner->badge_text_en) }}" dir="ltr" placeholder="e.g. 3D Atelier ✦ Solid 18K Gold" style="width:100%; box-sizing:border-box; padding:10px 14px; border:1px solid #d4cdbf; border-radius:4px; font-family:inherit; font-size:14px;">
                 </div>
             </div>
 

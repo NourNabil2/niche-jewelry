@@ -800,7 +800,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
-      const id = params.get('id') || 'glider-14k-gold';
+      const id = params.get('id') || 'glider-18k-gold';
       currentProduct = window.EP_STORE.getProductById(id) || window.EP_STORE.getProducts()[0];
 
       pdpState.metal = currentProduct.defaultMetal || 'yellow';

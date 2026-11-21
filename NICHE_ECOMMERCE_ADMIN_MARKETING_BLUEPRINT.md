@@ -5,7 +5,7 @@
 ---
 
 ## ١. ملخص المشروع والبيئة التشغيلية (Executive Overview)
-مشروع **دار نيش للمجوهرات الراقية (NICH Jewelry)** هو منصة تجارة إلكترونية فاخرة تجمع بين حرفية صياغة الذهب الخالص عيار 14K وتقنيات الـ 3D التفاعلية الفورية (Three.js WebGL) مع بنية تحتية سحابية متينة مبنية على **PHP Laravel 11**، وقاعدة بيانات **MySQL (MariaDB)**، ونظام قوالب **Blade**، مع تصميم quiet luxury مستوحى من كبرى دور المجوهرات العالمية (Cartier, Van Cleef & Arpels).
+مشروع **دار نيش للمجوهرات الراقية (NICH Jewelry)** هو منصة تجارة إلكترونية فاخرة تجمع بين حرفية صياغة الذهب الخالص عيار 18K وتقنيات الـ 3D التفاعلية الفورية (Three.js WebGL) مع بنية تحتية سحابية متينة مبنية على **PHP Laravel 11**، وقاعدة بيانات **MySQL (MariaDB)**، ونظام قوالب **Blade**، مع تصميم quiet luxury مستوحى من كبرى دور المجوهرات العالمية (Cartier, Van Cleef & Arpels).
 
 ### بيانات الدخول الافتراضية للوحة التحكم (Executive Credentials)
 - **رابط الدخول للوحة التحكم:** `http://localhost:8000/admin/login` (أو `/admin` مع إعادة التوجيه التلقائي الآمن)
@@ -126,11 +126,11 @@
 ### دالة الإطلاق البرمجية الموحدة في الواجهة:
 ```javascript
 window.trackNicheEvent('AddToCart', {
-    content_name: 'Personalized Glider Charm Bangle (14K Gold)',
+    content_name: 'Personalized Glider Charm Bangle (18K Gold)',
     value: 500.00,
     currency: 'USD',
     contents: [
-        { id: 'NJ-BGL-14K', quantity: 1, item_price: 360 },
+        { id: 'NJ-BGL-18K', quantity: 1, item_price: 360 },
         { id: 'BEE_GOLD', quantity: 1, item_price: 70 },
         { id: 'MARTINI_OLIVE', quantity: 1, item_price: 70 }
     ]
@@ -144,7 +144,7 @@ window.trackNicheEvent('AddToCart', {
 ### المرحلة الأولى: بناء الوعي والأصالة (Awareness & Brand Affinity)
 - **المنصات الأساسية:** Instagram Reels, TikTok, Snapchat Lens.
 - **نوع المحتوى الإعلاني:**
-  - فيديوهات سينمائية قصيرة تركز على النمر الأسود مع لمعان الذهب عيار 14K (Macro Gold Texture).
+  - فيديوهات سينمائية قصيرة تركز على النمر الأسود مع لمعان الذهب عيار 18K (Macro Gold Texture).
   - تصوير حِرفي مقرب للأيدي الصائغة أثناء تركيب دلاية عرق اللؤلؤ الطبيعي وسماع صوت الانزلاق السلس (ASMR Gliding Experience).
   - فيديو شاشة تفاعلي يوضح بساطة استوديو الـ 3D: كيف تختار الإسورة، تدير الدلايات أفقياً، وتنقش اسمك بالليزر مجاناً.
 - **الاستهداف الجغرافي:** الكويت (مدينة الكويت، الشويخ، حولي)، السعودية (الرياض، جدة، الخبر)، الإمارات (دبي، أبوظبي)، قطر (الدوحة).

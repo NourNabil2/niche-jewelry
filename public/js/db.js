@@ -62,9 +62,9 @@ window.EP_DB = {
   },
 
   metals: {
-    yellow: { key: 'yellow', name: '14K Yellow Gold', short: '14K Gold', stamp: '14K AU' },
+    yellow: { key: 'yellow', name: '18K Yellow Gold', short: '18K Gold', stamp: '18K AU' },
     white:  { key: 'white',  name: '925 Sterling Silver', short: '925 Silver', stamp: '925 AG' },
-    rose:   { key: 'rose',   name: '14K Rose Gold', short: '14K Rose', stamp: '14K RG' }
+    rose:   { key: 'rose',   name: '18K Rose Gold', short: '18K Rose', stamp: '18K RG' }
   },
 
   sizes: [
@@ -89,7 +89,7 @@ window.EP_DB = {
 
   products: [
     {
-      id: 'glider-14k-gold',
+      id: 'glider-18k-gold',
       sku: 'EP-GLD-001',
       title: 'Personalized Glider Charm Bangle™',
       category: 'Bangles',
@@ -114,9 +114,9 @@ window.EP_DB = {
       hasSizes: true,
       rating: 4.9,
       reviewCount: 142,
-      description: 'Our patented signature hinged bangle engineered with precision dual-sided recessed glider tracks. Slide solid 14K gold initials, Mother of Pearl icons, and natural pavé diamond charms onto both the front and back channels—drag, rotate, and rearrange freely anytime.',
+      description: 'Our patented signature hinged bangle engineered with precision dual-sided recessed glider tracks. Slide solid 18K gold initials, Mother of Pearl icons, and natural pavé diamond charms onto both the front and back channels—drag, rotate, and rearrange freely anytime.',
       specs: [
-        'Solid 14K Recycled Gold or 925 Sterling Silver',
+        'Solid 18K Recycled Gold or 925 Sterling Silver',
         'Dual-track precision glider channel (Front & Back)',
         'Concealed push-button box clasp with safety click',
         'Band Height: 5.0mm • Channel Depth: 0.85mm',
@@ -158,7 +158,7 @@ window.EP_DB = {
     {
       id: 'glider-rose-gold',
       sku: 'EP-RSG-003',
-      title: '14K Rose Gold Blush Glider Bangle',
+      title: '18K Rose Gold Blush Glider Bangle',
       category: 'Bangles',
       categorySlug: 'bangles',
       price: 430,
@@ -179,9 +179,9 @@ window.EP_DB = {
       hasSizes: true,
       rating: 4.9,
       reviewCount: 41,
-      description: 'Cast in warm blush-toned 14K Rose Gold, this slim hinged oval cuff hugs the wrist comfortably while housing our dual-sided charm glider rail.',
+      description: 'Cast in warm blush-toned 18K Rose Gold, this slim hinged oval cuff hugs the wrist comfortably while housing our dual-sided charm glider rail.',
       specs: [
-        'Solid 14K Rose Gold (58.5% Pure Gold alloyed with copper)',
+        'Solid 18K Rose Gold (75% Pure Gold alloyed with copper)',
         'High-gloss mirror interior with embossed hallmark',
         'Dual front & back glider capability'
       ]
@@ -210,7 +210,7 @@ window.EP_DB = {
       hasSizes: true,
       rating: 5.0,
       reviewCount: 34,
-      description: 'Pair our iconic 14K Personalized Glider Bangle with a matching everyday stacking band at preferred atelier pricing. Customize your primary bangle directly in our 3D studio.',
+      description: 'Pair our iconic 18K Personalized Glider Bangle with a matching everyday stacking band at preferred atelier pricing. Customize your primary bangle directly in our 3D studio.',
       specs: [
         'Includes 1x Personalized Glider Bangle + 1x Hammered Mirror Band',
         'Packaged in dual velvet collector presentation box'
@@ -234,9 +234,9 @@ window.EP_DB = {
       hasSizes: false,
       rating: 4.9,
       reviewCount: 93,
-      description: 'Sculpted in solid 14K yellow gold and inlaid with luminous hand-carved white Mother of Pearl wings and glossy black enamel stripes. Engineered to glide smoothly onto any Nich Jewelry bangle track.',
+      description: 'Sculpted in solid 18K yellow gold and inlaid with luminous hand-carved white Mother of Pearl wings and glossy black enamel stripes. Engineered to glide smoothly onto any Nich Jewelry bangle track.',
       specs: [
-        '14K Solid Yellow Gold frame & slider notch',
+        '18K Solid Yellow Gold frame & slider notch',
         'Genuine Iridescent Mother of Pearl wing inlays',
         'Dimensions: 4.6mm x 4.4mm'
       ]
@@ -259,9 +259,9 @@ window.EP_DB = {
       hasSizes: false,
       rating: 5.0,
       reviewCount: 112,
-      description: 'Equal parts playful and refined. Our signature cocktail glider features crisp white enamel and a hand-painted pimento green olive skewer set in 14K solid gold.',
+      description: 'Equal parts playful and refined. Our signature cocktail glider features crisp white enamel and a hand-painted pimento green olive skewer set in 18K solid gold.',
       specs: [
-        '14K Solid Yellow Gold & Italian vitreous enamel',
+        '18K Solid Yellow Gold & Italian vitreous enamel',
         'Fits seamlessly into Front & Back glider tracks'
       ]
     },
@@ -286,7 +286,7 @@ window.EP_DB = {
       description: 'Twelve conflict-free G-H VS natural micro-pavé diamonds set into an airy open heart silhouette. Catches light from every wrist movement.',
       specs: [
         '0.08 ctw Conflict-Free G-H VS Natural Diamonds',
-        'Solid 14K Yellow Gold',
+        'Solid 18K Yellow Gold',
         '4.3mm x 4.2mm glider profile'
       ]
     },
@@ -308,9 +308,9 @@ window.EP_DB = {
       hasSizes: false,
       rating: 4.8,
       reviewCount: 29,
-      description: 'Glossy cherry-red enamel pair suspended from delicate 14K gold stems. Adds a vivid Parisian pop of color to your everyday stack.',
+      description: 'Glossy cherry-red enamel pair suspended from delicate 18K gold stems. Adds a vivid Parisian pop of color to your everyday stack.',
       specs: [
-        '14K Yellow Gold stems & slider channel',
+        '18K Yellow Gold stems & slider channel',
         'Hand-fired cherry crimson & leaf green enamel'
       ]
     },
@@ -332,9 +332,9 @@ window.EP_DB = {
       hasSizes: false,
       rating: 4.9,
       reviewCount: 54,
-      description: 'Hand-crafted protective talisman featuring rich cobalt sapphire enamel, white mother-of-pearl sclera, and a 14K gold outline.',
+      description: 'Hand-crafted protective talisman featuring rich cobalt sapphire enamel, white mother-of-pearl sclera, and a 18K gold outline.',
       specs: [
-        '14K Yellow Gold',
+        '18K Yellow Gold',
         'Precision 4.8mm wide horizontal glider cut'
       ]
     },
@@ -361,7 +361,7 @@ window.EP_DB = {
       specs: [
         'Available in full alphabet A–Z',
         '0.05–0.09 ctw G-H VS Natural Diamonds',
-        'Precision laser-milled 14K gold housing'
+        'Precision laser-milled 18K gold housing'
       ]
     },
     {
@@ -381,9 +381,9 @@ window.EP_DB = {
       hasSizes: false,
       rating: 4.9,
       reviewCount: 47,
-      description: 'Suspended from a luminous 14K solid gold cable chain (adjustable 16"–18"), our Lumière Medallion pairs milky white Mother of Pearl with bezel-set natural diamond stars.',
+      description: 'Suspended from a luminous 18K solid gold cable chain (adjustable 16"–18"), our Lumière Medallion pairs milky white Mother of Pearl with bezel-set natural diamond stars.',
       specs: [
-        '14K Solid Yellow Gold 16"–18" adjustable cable chain',
+        '18K Solid Yellow Gold 16"–18" adjustable cable chain',
         '14mm Natural White Mother of Pearl cabochon',
         '0.04 ctw Bezel-Set Diamonds'
       ]
@@ -405,9 +405,9 @@ window.EP_DB = {
       hasSizes: false,
       rating: 4.8,
       reviewCount: 38,
-      description: 'Chubby, sculptural 14K gold hoops traced along the front arc with continuous sparkle of natural pavé diamonds. Engineered with a seamless snap click closure built for sleeping and showering.',
+      description: 'Chubby, sculptural 18K gold hoops traced along the front arc with continuous sparkle of natural pavé diamonds. Engineered with a seamless snap click closure built for sleeping and showering.',
       specs: [
-        '14K Solid Yellow Gold • Outer Diameter: 12mm',
+        '18K Solid Yellow Gold • Outer Diameter: 12mm',
         '0.16 ctw G-H VS Natural Diamonds',
         'Sold as a matched pair'
       ]
@@ -431,7 +431,7 @@ window.EP_DB = {
       reviewCount: 52,
       description: 'Two effortless stacking silhouettes crafted as one harmonious pair: an oval bezel-set natural diamond solitaire ring and a delicate half-eternity pavé band.',
       specs: [
-        'Solid 14K Yellow Gold',
+        'Solid 18K Yellow Gold',
         'Combined 0.24 ctw Natural White Diamonds',
         'Available in Ring Sizes 5–9 (specify in gift note or checkout)'
       ]
@@ -439,9 +439,9 @@ window.EP_DB = {
   ],
 
   initialReviews: {
-    'glider-14k-gold': [
+    'glider-18k-gold': [
       { id: 'rev_1', author: 'Sophia M.', location: 'New York, NY', rating: 5, date: '2026-10-18', title: 'Even better in person!', body: 'Used the 3D studio to plan my initials on the front and the Bee + Martini charms hidden on the back side. The hinge click feels super solid and luxurious.', verified: true },
-      { id: 'rev_2', author: 'Nadia K.', location: 'Dubai, UAE', rating: 5, date: '2026-10-04', title: 'My everyday staple', body: 'Being able to slide the charms around on the wrist track makes it so fun. Warm 14K gold color matches my Cartier Love bangle seamlessly.', verified: true },
+      { id: 'rev_2', author: 'Nadia K.', location: 'Dubai, UAE', rating: 5, date: '2026-10-04', title: 'My everyday staple', body: 'Being able to slide the charms around on the wrist track makes it so fun. Warm 18K gold color matches my Cartier Love bangle seamlessly.', verified: true },
       { id: 'rev_3', author: 'Claire V.', location: 'London, UK', rating: 5, date: '2026-09-22', title: 'The best anniversary gift', body: 'Ordered XS with 4 pavé diamond initials. Packaging felt like an unwrapping ritual.', verified: true }
     ],
     'charm-bee-mop': [
@@ -478,7 +478,7 @@ window.EP_DB = {
         {
           uid: 'hist_item_1',
           type: 'custom-bangle',
-          productId: 'glider-14k-gold',
+          productId: 'glider-18k-gold',
           title: 'Personalized Glider Charm Bangle™ (Custom 3D)',
           metal: 'yellow',
           size: 'S',

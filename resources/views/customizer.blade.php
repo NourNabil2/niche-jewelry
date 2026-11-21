@@ -2046,7 +2046,7 @@
     <!-- 3D WebGL Viewport -->
     <div class="viewport-panel">
       <div class="product-meta">
-        <div class="tag-eyebrow">Design Yours &bull; 14K Gold</div>
+        <div class="tag-eyebrow">Design Yours &bull; 18K Gold</div>
         <h1 class="product-title">Dual-Sided Glider Charm Bangle™</h1>
       </div>
 
@@ -2109,7 +2109,7 @@
         </div>
         <div class="price-breakdown-panel" id="breakdownPanel">
           <div class="breakdown-line">
-            <span id="baseBangleLabel">14K Skinny Charm Bangle:</span>
+            <span id="baseBangleLabel">18K Skinny Charm Bangle:</span>
             <span id="baseBanglePrice">$410.00</span>
           </div>
           <div class="breakdown-line">
@@ -2137,7 +2137,7 @@
               <span class="acc-step-badge">1</span>
               <div>
                 <div class="acc-title">اختيار المعدن والمقاس</div>
-                <div class="acc-subtitle" id="accSummaryMetal">ذهب أصفر 14K &bull; مقاس XS</div>
+                <div class="acc-subtitle" id="accSummaryMetal">ذهب أصفر 18K &bull; مقاس XS</div>
               </div>
             </div>
             <div class="acc-header-right">
@@ -2150,7 +2150,7 @@
               <div class="metal-card-opt active" data-metal="yellow" onclick="selectMetal('yellow')">
                 <span class="luxury-swatch swatch-gold"></span>
                 <div class="metal-card-info">
-                  <span class="metal-opt-name">ذهب أصفر 14K</span>
+                  <span class="metal-opt-name">ذهب أصفر 18K</span>
                   <span class="metal-opt-price">$410</span>
                 </div>
               </div>
@@ -2164,7 +2164,7 @@
               <div class="metal-card-opt" data-metal="rose" onclick="selectMetal('rose')">
                 <span class="luxury-swatch swatch-rose"></span>
                 <div class="metal-card-info">
-                  <span class="metal-opt-name">ذهب وردي 14K</span>
+                  <span class="metal-opt-name">ذهب وردي 18K</span>
                   <span class="metal-opt-price">$425</span>
                 </div>
               </div>
@@ -2259,7 +2259,7 @@
                 <div style="display:flex; gap:12px; align-items:center;">
                   <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
                     <input type="radio" name="nameCharmsStyle" value="gold" checked style="accent-color:#c59b3f;">
-                    <span style="font-weight:600;">ذهب 14K</span>
+                    <span style="font-weight:600;">ذهب 18K</span>
                   </label>
                   <label style="display:flex; align-items:center; gap:4px; cursor:pointer;">
                     <input type="radio" name="nameCharmsStyle" value="pave" style="accent-color:#c59b3f;">
@@ -2390,7 +2390,7 @@
           </div>
           <div class="accordion-step-body" id="accBody4" style="display:none;">
             <div class="review-box-luxury">
-              <div class="rev-row"><span>المعدن والمقاس:</span><strong id="revMetalAndSize">ذهب أصفر 14K (XS)</strong></div>
+              <div class="rev-row"><span>المعدن والمقاس:</span><strong id="revMetalAndSize">ذهب أصفر 18K (XS)</strong></div>
               <div class="rev-row"><span>دلايات المسار الأمامي:</span><span id="revFrontList">نحلة، مارتيني</span></div>
               <div class="rev-row"><span>دلايات المسار الخلفي:</span><span id="revBackList">لا توجد</span></div>
               @if(!empty($enableLaserEngraving))
@@ -2940,7 +2940,7 @@
       const primaryFill = isWhite ? '#222222' : (isRose ? '#422018' : '#38280b');
       const subtleGlow = isWhite ? 'rgba(255,255,255,0.45)' : (isRose ? 'rgba(255,215,205,0.45)' : 'rgba(255,235,170,0.45)');
 
-      const hallmark = isWhite ? 'NICHE · 925' : (isRose ? 'NICHE · 14K ROSE' : 'NICHE · 14K');
+      const hallmark = isWhite ? 'NICHE · 925' : (isRose ? 'NICHE · 18K ROSE' : 'NICHE · 18K');
       const text = (state.engravingText || '').trim();
 
       sCtx.textBaseline = 'middle';
@@ -3695,7 +3695,7 @@
 
       const revMetal = document.getElementById('revMetal');
       if (revMetal) {
-        revMetal.textContent = metalKey === 'yellow' ? '14K Yellow Gold' : (metalKey === 'white' ? '925 Sterling Silver' : '14K Rose Gold');
+        revMetal.textContent = metalKey === 'yellow' ? '18K Yellow Gold' : (metalKey === 'white' ? '925 Sterling Silver' : '18K Rose Gold');
       }
       document.querySelectorAll('.metal-card-opt, .metal-option').forEach(opt => {
         opt.classList.toggle('active', opt.dataset.metal === metalKey);
@@ -3836,9 +3836,9 @@
       const kwdGrandTotal = (grandTotal * 0.308).toFixed(3);
 
       const metalNames = {
-        yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 14K' : '14K Yellow Gold',
+        yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 18K' : '18K Yellow Gold',
         white: window.nicheI18n?.getLanguage() === 'ar' ? 'فضة إسترليني 925' : '925 Sterling Silver',
-        rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 14K' : '14K Rose Gold'
+        rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 18K' : '18K Rose Gold'
       };
       const activeMetalName = metalNames[state.metal] || state.metal;
 
@@ -4469,7 +4469,7 @@
       const total = computeCurrentTotal();
       const item = {
         type: 'custom-bangle',
-        productId: state.metal === 'white' ? 'glider-925-silver' : (state.metal === 'rose' ? 'glider-rose-gold' : 'glider-14k-gold'),
+        productId: state.metal === 'white' ? 'glider-925-silver' : (state.metal === 'rose' ? 'glider-rose-gold' : 'glider-18k-gold'),
         title: 'Personalized Glider Charm Bangle™ (Custom 3D)',
         metal: state.metal,
         size: state.size,
@@ -4501,7 +4501,7 @@
       if (!window.EP_STORE) return;
       const saved = window.EP_STORE.saveCustomDesignToWishlist({
         id: state.editingDesignId || undefined,
-        title: `Custom ${state.metal === 'white' ? '925 Silver' : (state.metal === 'rose' ? '14K Rose' : '14K Gold')} Glider Bangle`,
+        title: `Custom ${state.metal === 'white' ? '925 Silver' : (state.metal === 'rose' ? '18K Rose' : '18K Gold')} Glider Bangle`,
         metal: state.metal,
         size: state.size,
         price: computeCurrentTotal(),
@@ -4551,9 +4551,9 @@
       const revMetalAndSize = document.getElementById('revMetalAndSize');
       if (revMetalAndSize) {
         const metalNames = {
-          yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 14K' : '14K Yellow Gold',
+          yellow: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب أصفر 18K' : '18K Yellow Gold',
           white: window.nicheI18n?.getLanguage() === 'ar' ? 'فضة إسترليني 925' : '925 Sterling Silver',
-          rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 14K' : '14K Rose Gold'
+          rose: window.nicheI18n?.getLanguage() === 'ar' ? 'ذهب وردي 18K' : '18K Rose Gold'
         };
         const activeMetalName = metalNames[state.metal] || state.metal;
         revMetalAndSize.textContent = `${activeMetalName} (${sizeKey})`;

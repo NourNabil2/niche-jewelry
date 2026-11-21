@@ -7,22 +7,22 @@
   <!-- 1. Editorial Quiet Luxury Hero Banner (Powered by Admin Theme Customizer) -->
   @php
     $isAr = app()->getLocale() == 'ar';
-    $heroBadge = \App\Models\Setting::get($isAr ? 'hero_badge_ar' : 'hero_badge_en', $isAr ? 'استوديو الصياغة ثلاثي الأبعاد ✦ ذهب نقي 14K' : '3D Atelier Studio ✦ Solid 14K Gold');
+    $heroBadge = \App\Models\Setting::get($isAr ? 'hero_badge_ar' : 'hero_badge_en', $isAr ? 'استوديو الصياغة ثلاثي الأبعاد ✦ ذهب نقي 18K' : '3D Atelier Studio ✦ Solid 18K Gold');
     $heroTitle = \App\Models\Setting::get($isAr ? 'hero_title_ar' : 'hero_title_en', $isAr ? 'صُممت لتنزلق بنعومة. صياغة تعبّر عنكِ.' : 'Crafted to glide softly. Jewelry that expresses you.');
-    $heroSubtitle = \App\Models\Setting::get($isAr ? 'hero_subtitle_ar' : 'hero_subtitle_en', $isAr ? 'عيشي تجربة تخصيص المجوهرات الراقية في بيئة ثلاثية الأبعاد تفاعلية فورية. نشقي دلايات عرق اللؤلؤ الطبيعي، الحروف المرصعة بالماس، والأشكال المصنوعة من الذهب الخالص عيار 14K عبر مساري إسورة جلايدر™ بوجهيها الأمامي والخلفي.' : 'Experience fine jewelry personalization in an instant interactive 3D studio. Slide natural mother of pearl charms, diamond-set initials, and solid 14K gold motifs on the dual-track Glider™ bangle.');
+    $heroSubtitle = \App\Models\Setting::get($isAr ? 'hero_subtitle_ar' : 'hero_subtitle_en', $isAr ? 'عيشي تجربة تخصيص المجوهرات الراقية في بيئة ثلاثية الأبعاد تفاعلية فورية. نشقي دلايات عرق اللؤلؤ الطبيعي، الحروف المرصعة بالماس، والأشكال المصنوعة من الذهب الخالص عيار 18K عبر مساري إسورة جلايدر™ بوجهيها الأمامي والخلفي.' : 'Experience fine jewelry personalization in an instant interactive 3D studio. Slide natural mother of pearl charms, diamond-set initials, and solid 18K gold motifs on the dual-track Glider™ bangle.');
     $heroImage = \App\Models\Setting::get('hero_image_url', '/images/products/panther-hero.png');
     $heroCtaPrimary = \App\Models\Setting::get($isAr ? 'hero_cta_primary_ar' : 'hero_cta_primary_en', $isAr ? 'صممي في استوديو الـ 3D' : 'Design in 3D Studio');
     $heroCtaSecondary = \App\Models\Setting::get($isAr ? 'hero_cta_secondary_ar' : 'hero_cta_secondary_en', $isAr ? 'تصفحي المجموعات' : 'Explore Collections');
   @endphp
   <!-- 1. Cartier Panthère Quiet Luxury Editorial Hero (Clean, Breathable & Iconic) -->
   <section class="panthere-hero-section">
-    <img src="{{ asset('assets/images/hero_black_panther.jpg') }}" alt="Majestic Black Panther beside solid 14K gold bangle" class="panthere-hero-bg">
+    <img src="{{ asset('assets/images/hero_black_panther.jpg') }}" alt="Majestic Black Panther beside solid 18K gold bangle" class="panthere-hero-bg">
     <div class="panthere-hero-scrim"></div>
     <div class="panthere-bottom-blend"></div>
     <div class="container">
       <div class="panthere-hero-content">
         <span class="panthere-eyebrow">
-          ✦ {{ app()->getLocale() == 'ar' ? 'ذهب خالص 14K • براءة اختراع جلايدر™' : 'Solid 14K Gold • Patented Glider™' }}
+          ✦ {{ app()->getLocale() == 'ar' ? 'ذهب خالص 18K • براءة اختراع جلايدر™' : 'Solid 18K Gold • Patented Glider™' }}
         </span>
         <h1 class="panthere-title">
           {{ app()->getLocale() == 'ar' ? 'صُممت لتنزلق.' : 'Crafted to Glide.' }}
@@ -44,7 +44,7 @@
 
         <!-- Minimal Atelier Hallmarks -->
         <div class="panthere-hallmarks">
-          <span>✦ {{ app()->getLocale() == 'ar' ? 'عيار 14 قيراط' : 'Solid 14K' }}</span>
+          <span>✦ {{ app()->getLocale() == 'ar' ? 'عيار 18 قيراط' : 'Solid 18K' }}</span>
           <span>✦ {{ app()->getLocale() == 'ar' ? 'نقش ليزر مجاني' : 'Bespoke Engraving' }}</span>
           <span>✦ {{ app()->getLocale() == 'ar' ? 'شحن مؤمّن للخليج' : 'Insured GCC Courier' }}</span>
         </div>
@@ -62,7 +62,7 @@
         <span>Elle Atelier</span>
         <span>Town &amp; Country</span>
       </div>
-      <span style="color:#1b1b1b; font-weight:600;">{{ app()->getLocale() == 'ar' ? 'ضمان حِرفي مدى الحياة • ذهب نقي 14K' : 'Lifetime Track Warranty • Solid 14K Gold' }}</span>
+      <span style="color:#1b1b1b; font-weight:600;">{{ app()->getLocale() == 'ar' ? 'ضمان حِرفي مدى الحياة • ذهب نقي 18K' : 'Lifetime Track Warranty • Solid 18K Gold' }}</span>
     </div>
   </section>
 
@@ -136,9 +136,9 @@
             <div style="display:flex; align-items:center; gap:12px;">
               <span style="font-size:11.5px; font-weight:700; color:#181715;">{{ app()->getLocale() == 'ar' ? 'عيار المعدن:' : 'Metal Alloy:' }}</span>
               <div style="display:flex; gap:10px;">
-                <span class="swatch-sphere gold active" title="14K Yellow Gold" onclick="switchSpotlightMetal('yellow', this)"></span>
+                <span class="swatch-sphere gold active" title="18K Yellow Gold" onclick="switchSpotlightMetal('yellow', this)"></span>
                 <span class="swatch-sphere white" title="925 Sterling Silver" onclick="switchSpotlightMetal('white', this)"></span>
-                <span class="swatch-sphere rose" title="14K Rose Gold" onclick="switchSpotlightMetal('rose', this)"></span>
+                <span class="swatch-sphere rose" title="18K Rose Gold" onclick="switchSpotlightMetal('rose', this)"></span>
               </div>
             </div>
             <a href="{{ route('studio') }}?metal=yellow" id="spotlightOpenStudioBtn" class="btn btn-gold btn-sm">
@@ -152,8 +152,8 @@
           <h2 class="section-heading mt-1">{{ app()->getLocale() == 'ar' ? 'صممي قصتكِ بحرية عبر مساري الإسورة.' : 'Sculpt Your Story on Front & Back Tracks.' }}</h2>
           <p style="font-size:14.5px; color:#555; line-height:1.75; margin-top:14px;">
             {{ app()->getLocale() == 'ar' 
-              ? 'بخلاف أساور الدلايات التقليدية، تتميز إسورتنا المصاغة من الذهب الخالص عيار 14 قيراط بمسارين غائرين دقيقين على الوجهين. اسحبي الدلايات، رتبي المسافات، ودوري القطع بزاوية 90 درجة قبل طلب صياغتها.' 
-              : 'Unlike static charm bracelets, our precision-milled 14K gold bangle features an open recessed glider rail on both faces. Drag charms directly into your preferred spacing, rotate pieces in 90° increments, and inspect every millimeter before commissioning your piece.' }}
+              ? 'بخلاف أساور الدلايات التقليدية، تتميز إسورتنا المصاغة من الذهب الخالص عيار 18 قيراط بمسارين غائرين دقيقين على الوجهين. اسحبي الدلايات، رتبي المسافات، ودوري القطع بزاوية 90 درجة قبل طلب صياغتها.' 
+              : 'Unlike static charm bracelets, our precision-milled 18K gold bangle features an open recessed glider rail on both faces. Drag charms directly into your preferred spacing, rotate pieces in 90° increments, and inspect every millimeter before commissioning your piece.' }}
           </p>
 
           <div class="feature-steps">
@@ -244,7 +244,7 @@
   <section class="page-section" style="background:var(--bg-warm); border-top:1px solid var(--border-light); border-bottom:1px solid var(--border-light);">
     <div class="container">
       <div class="text-center mb-3">
-        <span class="eyebrow">{{ app()->getLocale() == 'ar' ? 'ذهب 14K وألماس طبيعي' : '14K Gold & Natural Diamonds' }}</span>
+        <span class="eyebrow">{{ app()->getLocale() == 'ar' ? 'ذهب 18K وألماس طبيعي' : '18K Gold & Natural Diamonds' }}</span>
         <h2 class="section-heading mt-1">{{ app()->getLocale() == 'ar' ? 'اكتشفي دلايات جلايدر المفرغة' : 'Meet the Cutout Glider Charms' }}</h2>
         <p style="font-size:13.5px; color:#666; max-width:560px; margin:10px auto 0;">
           {{ app()->getLocale() == 'ar' 
@@ -317,11 +317,11 @@
       <div class="split-grid">
         <div>
           <span class="eyebrow">{{ app()->getLocale() == 'ar' ? 'فخامة مسؤولة' : 'Responsible Luxury' }}</span>
-          <h2 class="section-heading mt-1">{{ app()->getLocale() == 'ar' ? 'ذهب 14K معاد تدويره وألماس طبيعي نقي.' : 'Recycled 14K Gold & Conflict-Free Diamonds.' }}</h2>
+          <h2 class="section-heading mt-1">{{ app()->getLocale() == 'ar' ? 'ذهب 18K معاد تدويره وألماس طبيعي نقي.' : 'Recycled 18K Gold & Conflict-Free Diamonds.' }}</h2>
           <p style="font-size:14.5px; color:#555; line-height:1.8; margin:16px 0 24px;">
             {{ app()->getLocale() == 'ar' 
-              ? 'تُصاغ كل قطعة في دار نيش للمجوهرات يدوياً بدقة فائقة من الذهب الخالص عيار 14 والفضة الإسترليني 925. تخضع مسارات الإسورة لفحص مجهري يضمن انسياب الدلايات بنعومة الحرير لعقود قادمة.' 
-              : 'Every NICH JEWELRY piece is cast to order in small batches using 100% recycled 14K solid gold and sterling silver. Each charm track undergoes microscopic tolerance inspection so your charms glide with silk-like smoothness for decades to come.' }}
+              ? 'تُصاغ كل قطعة في دار نيش للمجوهرات يدوياً بدقة فائقة من الذهب الخالص عيار 18 والفضة الإسترليني 925. تخضع مسارات الإسورة لفحص مجهري يضمن انسياب الدلايات بنعومة الحرير لعقود قادمة.' 
+              : 'Every NICH JEWELRY piece is cast to order in small batches using 100% recycled 18K solid gold and sterling silver. Each charm track undergoes microscopic tolerance inspection so your charms glide with silk-like smoothness for decades to come.' }}
           </p>
           <div style="display:flex; gap:14px; flex-wrap:wrap;">
             <a href="{{ route('about') }}" class="btn btn-outline">{{ app()->getLocale() == 'ar' ? 'قصة دار نيش' : 'Read Our Story' }}</a>
@@ -329,7 +329,7 @@
           </div>
         </div>
         <div style="border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid var(--border-light);">
-          <img src="{{ asset('assets/images/craftsmanship_editorial.jpg') }}" alt="14K Gold Jewelry Craftsmanship on Travertine Stone" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <img src="{{ asset('assets/images/craftsmanship_editorial.jpg') }}" alt="18K Gold Jewelry Craftsmanship on Travertine Stone" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
       </div>
     </div>
@@ -433,8 +433,8 @@
           <div style="color:#c59b3f; font-size:14px; letter-spacing:2px;">★★★★★</div>
           <p class="serif" style="font-size:21px; line-height:1.35;">
             {{ app()->getLocale() == 'ar' 
-              ? '“الذهب الإيطالي عيار 14 يتناغم بسلاسة مع أساوري اليومية. قفل الصندوق المخفي قوي ومحكم بشكل مذهل.”' 
-              : '“The warm Italian 14K gold matches my everyday heirloom stack flawlessly. The concealed box clasp feels indestructible.”' }}
+              ? '“الذهب الإيطالي عيار 18 يتناغم بسلاسة مع أساوري اليومية. قفل الصندوق المخفي قوي ومحكم بشكل مذهل.”' 
+              : '“The warm Italian 18K gold matches my everyday heirloom stack flawlessly. The concealed box clasp feels indestructible.”' }}
           </p>
           <div style="margin-top:auto; font-size:11px; color:#737373; font-weight:600; text-transform:uppercase; letter-spacing:0.12em;">
             Nadia K. &bull; Kuwait City &bull; Verified Collector

@@ -164,7 +164,7 @@
       <span class="eyebrow" id="collectionEyebrow" data-i18n="catalog.eyebrow">Fine Jewelry Collection</span>
       <h1 class="section-heading mt-1" id="collectionTitle" data-i18n="catalog.title">Shop All Fine Jewelry</h1>
       <p style="font-size:13.5px; color:#666; max-width:580px; margin:10px auto 0;" id="collectionSubtitle" data-i18n="catalog.sub">
-        Crafted in solid 14K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.
+        Crafted in solid 18K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.
       </p>
     </div>
   </section>
@@ -185,9 +185,9 @@
         <input type="text" id="filterSearchInput" class="control-input" placeholder="Filter pieces..." data-i18n-placeholder="catalog.search_placeholder">
         <select id="filterMetalSelect" class="control-select">
           <option value="all" data-i18n="catalog.all_metals">All Metals</option>
-          <option value="yellow" data-i18n="common.yellow_gold">14K Yellow Gold</option>
+          <option value="yellow" data-i18n="common.yellow_gold">18K Yellow Gold</option>
           <option value="white" data-i18n="common.sterling_silver">925 Sterling Silver</option>
-          <option value="rose" data-i18n="common.rose_gold">14K Rose Gold</option>
+          <option value="rose" data-i18n="common.rose_gold">18K Rose Gold</option>
         </select>
         <select id="filterSortSelect" class="control-select">
           <option value="featured" data-i18n="catalog.sort_featured">Sort: Featured</option>
@@ -214,17 +214,17 @@
   <script>
     const categoryMeta = {
       ar: {
-        all:       { title: 'كافة قطع دار نيش للمجوهرات', desc: 'مصنوعة يدوياً من الذهب الخالص عيار 14K المعاد تدويره والفضة الإسترليني 925. اختاري أي إسورة جلايدر لبدء تخصيصها في استوديو الـ 3D التفاعلي.' },
+        all:       { title: 'كافة قطع دار نيش للمجوهرات', desc: 'مصنوعة يدوياً من الذهب الخالص عيار 18K المعاد تدويره والفضة الإسترليني 925. اختاري أي إسورة جلايدر لبدء تخصيصها في استوديو الـ 3D التفاعلي.' },
         bangles:   { title: 'أساور جلايدر™ بوجهين', desc: 'أساور مفصلية من الذهب الخالص والفضة بمسارين أمامي وخلفي مخصصين لانزلاق الدلايات بحرية.' },
-        charms:    { title: 'دلايات جلايدر المفرغة', desc: 'دلايات من الذهب عيار 14K، عرق اللؤلؤ الطبيعي، وحروف الماس بافيه مصممة لتنزلق بنعومة.' },
+        charms:    { title: 'دلايات جلايدر المفرغة', desc: 'دلايات من الذهب عيار 18K، عرق اللؤلؤ الطبيعي، وحروف الماس بافيه مصممة لتنزلق بنعومة.' },
         necklaces: { title: 'السلاسل والقلائد', desc: 'سلاسل برّاقة يومية وقلائد عرق اللؤلؤ التذكارية لتنسيق طبقات متناغمة.' },
         earrings:  { title: 'أقراط بافيه الدائرية', desc: 'أقراط هوجي مرصعة بأحجار الماس الدقيقة صُممت للأناقة اليومية الدائمة.' },
         rings:     { title: 'خواتم الدار المتراصة', desc: 'خواتم سوليتير وباندات ماسية راقية صُممت لتتكامل وتتراص في إطلالة واحدة.' }
       },
       en: {
-        all:       { title: 'Shop All Fine Jewelry', desc: 'Crafted in solid 14K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.' },
+        all:       { title: 'Shop All Fine Jewelry', desc: 'Crafted in solid 18K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.' },
         bangles:   { title: 'Dual-Sided Glider Bangles', desc: 'Hinged solid gold and silver bracelets with recessed front and back channels designed for interchangeable charms.' },
-        charms:    { title: 'Cutout Glider Charms', desc: 'Solid 14K gold medallions, Mother of Pearl icons, and natural pavé diamond letters engineered to slide freely.' },
+        charms:    { title: 'Cutout Glider Charms', desc: 'Solid 18K gold medallions, Mother of Pearl icons, and natural pavé diamond letters engineered to slide freely.' },
         necklaces: { title: 'Medallion Necklaces', desc: 'Luminous everyday chains and Mother of Pearl keepsake pendants layered effortlessly.' },
         earrings:  { title: 'Diamond Pavé Huggies', desc: 'Sculptural sleepers and micro-pavé diamond hoops made for continuous wear.' },
         rings:     { title: 'Stacking Rings', desc: 'Bezel solitaires and delicate eternity bands built for harmonious mixing and matching.' }

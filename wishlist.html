@@ -210,7 +210,7 @@
       if (!d) return;
       window.EP_STORE.addToCart({
         type: 'custom-bangle',
-        productId: 'glider-14k-gold',
+        productId: 'glider-18k-gold',
         title: d.title,
         metal: d.metal,
         size: d.size,

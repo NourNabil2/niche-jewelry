@@ -6,7 +6,7 @@ A complete interactive luxury jewelry e-commerce storefront and real-time 3D Web
 
 ## Pages & Architecture
 
-- **`index.html`** — Brand Landing Page: Hero editorial, interactive metal showcase spotlight (`14K Yellow Gold`, `925 Sterling Silver`, `14K Rose Gold`), best-seller product cards, cutout charm collection strip, craftsmanship section, testimonials, and VIP newsletter signup.
+- **`index.html`** — Brand Landing Page: Hero editorial, interactive metal showcase spotlight (`18K Yellow Gold`, `925 Sterling Silver`, `18K Rose Gold`), best-seller product cards, cutout charm collection strip, craftsmanship section, testimonials, and VIP newsletter signup.
 - **`collections.html`** — Filterable Catalog & Search: Category pills, metal filter pills, live search bar, sorting, and URL query hydration (`?cat=...&metal=...&search=...`).
 - **`product.html`** — Dynamic Product Detail Page (`?id=...`): Image gallery synced to metal selection, size selector (`XS`–`L`), A–Z initial letter selector for initial charms, personalized gift note, shipping/care accordions, live customer review submission, and related items.
 - **`customizer.html`** — Interactive 3D Glider Bangle Studio:

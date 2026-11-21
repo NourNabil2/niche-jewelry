@@ -31,12 +31,12 @@
         size_guide: 'دليل المقاسات',
         wrist_size: 'قياس المعصم',
         metal_finish: 'نوع ولون المعدن',
-        yellow_gold: 'ذهب أصفر 14K',
+        yellow_gold: 'ذهب أصفر 18K',
         sterling_silver: 'فضة إسترليني 925',
-        rose_gold: 'ذهب وردي 14K',
-        solid_gold_tag: 'ذهب عيار 14 قيراط',
+        rose_gold: 'ذهب وردي 18K',
+        solid_gold_tag: 'ذهب عيار 18 قيراط',
         silver_tag: 'فضة إسترليني 925',
-        rose_gold_tag: 'ذهب وردي 14 قيراط'
+        rose_gold_tag: 'ذهب وردي 18 قيراط'
       },
       nav: {
         shop_all: 'تسوقي الكل',
@@ -73,11 +73,11 @@
         qty: 'الكمية'
       },
       footer: {
-        trust_gold: 'ذهب عيار 14 قيراط مُعاد تدويره',
+        trust_gold: 'ذهب عيار 18 قيراط مُعاد تدويره',
         trust_glider: 'إسورة جلايدر™ بوجهين حصرية',
         trust_shipping: 'شحن مؤمّن مجاني لكافة الوجهات',
         trust_warranty: 'ضمان الدار الحِرفي مدى الحياة',
-        brand_desc: 'مجوهرات راقية مصاغة بعناية فائقة من الذهب الخالص عيار 14 قيراط المعاد تدويره والفضة الإسترليني 925. موطن إسورة جلايدر™ الحاصلة على براءة اختراع.',
+        brand_desc: 'مجوهرات راقية مصاغة بعناية فائقة من الذهب الخالص عيار 18 قيراط المعاد تدويره والفضة الإسترليني 925. موطن إسورة جلايدر™ الحاصلة على براءة اختراع.',
         launch_studio: 'استوديو التصميم الـ 3D ✦',
         shop_title: 'مجموعات الدار',
         bangles: 'أساور جلايدر',
@@ -97,7 +97,7 @@
         join_btn: 'انضمي',
         joined_success: 'أهلاً بكِ في قائمة مقتني الدار ✦',
         copyright: '© 2026 دار نيش للمجوهرات الراقية (niche JEWELRY). صياغة حِرفية متوارثة.',
-        tag_gold: 'ذهب نقي عيار 14',
+        tag_gold: 'ذهب نقي عيار 18',
         tag_silver: 'فضة 925 إسترليني',
         tag_delivery: 'توصيل مؤمّن',
         tag_secure: 'دفع مشفر وآمن'
@@ -118,7 +118,7 @@
         press_town: 'تاون آند كانتري (Town & Country)'
       },
       customizer: {
-        studio_title: 'استوديو جلايدر™ ثلاثي الأبعاد • ذهب خالص 14K',
+        studio_title: 'استوديو جلايدر™ ثلاثي الأبعاد • ذهب خالص 18K',
         back_to_catalog: 'المجموعات',
         front_side: 'الواجهة الأمامية',
         back_side: 'الواجهة الخلفية',
@@ -200,7 +200,7 @@
       catalog: {
         eyebrow: 'تشكيلة المجوهرات الراقية',
         title: 'كافة قطع دار نيش للمجوهرات',
-        sub: 'مصنوعة يدوياً من الذهب الخالص عيار 14K المعاد تدويره والفضة الإسترليني 925. اختاري أي إسورة جلايدر لبدء تخصيصها في استوديو الـ 3D التفاعلي.',
+        sub: 'مصنوعة يدوياً من الذهب الخالص عيار 18K المعاد تدويره والفضة الإسترليني 925. اختاري أي إسورة جلايدر لبدء تخصيصها في استوديو الـ 3D التفاعلي.',
         filter_all: 'كافة القطع',
         filter_bangles: 'أساور جلايدر',
         filter_charms: 'الدلايات',
@@ -357,9 +357,9 @@
         hero_eyebrow: 'صياغة متوارثة وهندسة دقيقة',
         hero_title: 'قطع أصيلة صُممت لتدوم وهُندست في الـ 3D',
         hero_sub: 'وُلدت دار نيش من شغف إعادة ابتكار إسورة الدلايات الكلاسيكية إلى إسورة معمارية يومية تنزلق فيها الدلايات بسلاسة وصمت ودقة متناهية.',
-        craft_eyebrow: 'ذهب خالص عيار 14 قيراط معاد تدويره',
+        craft_eyebrow: 'ذهب خالص عيار 18 قيراط معاد تدويره',
         craft_title: 'ذهب نقي حقيقي • لا طلاء ولا أنابيب مجوفة',
-        craft_p1: 'تُصنع إسورة جلايدر™ المزدوجة من الذهب النقي عيار 14 قيراط أو الفضة الإسترليني 925 عبر تقنيات حفر CNC دقيقة وتشطيب يدوي فائق، دون أي معادن رخيصة مطلية. يبلغ عمق كل مجرى بدقة 0.85 مم لتنزلق الدلايات بنعومة دون أن تعلق بالملابس.',
+        craft_p1: 'تُصنع إسورة جلايدر™ المزدوجة من الذهب النقي عيار 18 قيراط أو الفضة الإسترليني 925 عبر تقنيات حفر CNC دقيقة وتشطيب يدوي فائق، دون أي معادن رخيصة مطلية. يبلغ عمق كل مجرى بدقة 0.85 مم لتنزلق الدلايات بنعومة دون أن تعلق بالملابس.',
         craft_p2: 'تُرصع كافة دلايات الدار بأحجار الماس الطبيعية بدرجة نقاء G-H VS تحت المجهر، مقترنة بعرق اللؤلؤ الطبيعي المتلألئ والمينا الإيطالية المطلية يدوياً.',
         craft_cta: 'تجربة استوديو الـ 3D ←',
         sizing_eyebrow: 'تصميم بيضاوي مريح لمعصمكِ',
@@ -377,7 +377,7 @@
         faq_q1: 'كيف تعمل مسارات انزلاق الدلايات الحاصلة على براءة اختراع؟',
         faq_a1: 'تتميز الإسورة بمسارين محفورين بدقة على الوجهين الأمامي والخلفي. تُثبت الدلايات بأمان وتنزلق بسلاسة فائقة داخل المسار مع الحفاظ على استقرارها وثباتها عند التوقف.',
         faq_q2: 'هل الذهب المستخدم خالص ومستدام؟',
-        faq_a2: 'نعم، نستخدم حصرياً الذهب الخالص عيار 14 قيراط المعاد تدويره والمعتمد من مجلس الصياغة المسؤولة (RJC)، لضمان بريق دائم لا يتغير أبداً مع مرور الزمن.',
+        faq_a2: 'نعم، نستخدم حصرياً الذهب الخالص عيار 18 قيراط المعاد تدويره والمعتمد من مجلس الصياغة المسؤولة (RJC)، لضمان بريق دائم لا يتغير أبداً مع مرور الزمن.',
         faq_q3: 'هل يمكنني تغيير وتبديل الدلايات بنفسي في المنزل؟',
         faq_a3: 'نعم بكل سهولة! يتيح القفل الذكي للإسورة فتح بوابة الإدخال لتغيير الدلايات وتنسيقها حسب رغبتكِ وفي أي مناسبة.'
       }
@@ -408,12 +408,12 @@
         size_guide: 'Size Guide',
         wrist_size: 'Wrist Size',
         metal_finish: 'Metal Finish',
-        yellow_gold: '14K Yellow Gold',
+        yellow_gold: '18K Yellow Gold',
         sterling_silver: '925 Sterling Silver',
-        rose_gold: '14K Rose Gold',
-        solid_gold_tag: '14K Solid Gold',
+        rose_gold: '18K Rose Gold',
+        solid_gold_tag: '18K Solid Gold',
         silver_tag: '925 Sterling Silver',
-        rose_gold_tag: '14K Rose Gold'
+        rose_gold_tag: '18K Rose Gold'
       },
       nav: {
         shop_all: 'Shop All',
@@ -450,11 +450,11 @@
         qty: 'Qty'
       },
       footer: {
-        trust_gold: 'Solid 14K Recycled Gold',
+        trust_gold: 'Solid 18K Recycled Gold',
         trust_glider: 'Patented Dual-Track Glider™',
         trust_shipping: 'Complimentary Insured Shipping',
         trust_warranty: 'Lifetime Atelier Warranty',
-        brand_desc: 'Thoughtfully engineered fine jewelry crafted in solid 14K recycled gold and 925 sterling silver. Home of the patented Dual-Sided Glider Charm Bangle™.',
+        brand_desc: 'Thoughtfully engineered fine jewelry crafted in solid 18K recycled gold and 925 sterling silver. Home of the patented Dual-Sided Glider Charm Bangle™.',
         launch_studio: 'Launch 3D Studio ✦',
         shop_title: 'Shop Jewelry',
         bangles: 'Glider Bangles',
@@ -465,7 +465,7 @@
         atelier_title: 'Atelier & Care',
         our_ethics: 'Our Story & Ethics',
         sizing_guide: 'Wrist Size Guide',
-        gold_care: '14K Gold & Silver Care',
+        gold_care: '18K Gold & Silver Care',
         saved_designs: 'Saved 3D Designs',
         track_order: 'Track Your Order',
         collector_title: 'Join the Collector List',
@@ -474,7 +474,7 @@
         join_btn: 'Join',
         joined_success: 'Welcome to the Collector List ✦',
         copyright: '© 2026 Niche Jewelry Atelier. Handcrafted Excellence.',
-        tag_gold: 'Solid 14K Gold',
+        tag_gold: 'Solid 18K Gold',
         tag_silver: '925 Silver',
         tag_delivery: 'Insured Delivery',
         tag_secure: 'Secure Checkout'
@@ -495,7 +495,7 @@
         press_town: 'Town & Country'
       },
       customizer: {
-        studio_title: '3D Dual-Track Glider Atelier • Solid 14K Gold',
+        studio_title: '3D Dual-Track Glider Atelier • Solid 18K Gold',
         back_to_catalog: 'Collections',
         front_side: 'Front Side',
         back_side: 'Back Side',
@@ -577,7 +577,7 @@
       catalog: {
         eyebrow: 'Fine Jewelry Collection',
         title: 'Shop All Fine Jewelry',
-        sub: 'Crafted in solid 14K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.',
+        sub: 'Crafted in solid 18K recycled gold and 925 sterling silver. Select a Glider Bangle to launch our interactive 3D Studio.',
         filter_all: 'All Pieces',
         filter_bangles: 'Glider Bangles',
         filter_charms: 'Charms',
@@ -734,9 +734,9 @@
         hero_eyebrow: 'Heritage & Engineering',
         hero_title: 'Modern Heirlooms Engineered in 3D',
         hero_sub: 'Born from the desire to reimagine the classic charm bracelet into an architectural everyday bangle with silent gliding precision and limitless expression.',
-        craft_eyebrow: 'Solid 14K Recycled Gold',
+        craft_eyebrow: 'Solid 18K Recycled Gold',
         craft_title: 'No Plating. No Hollow Tubing.',
-        craft_p1: 'Our Dual-Track Glider Bangle is CNC-milled and hand-finished from solid recycled 14K gold or sterling silver—never plated brass. Each recessed channel measures precisely 0.85mm deep so solid gold charms lock smoothly without catching sweaters or hair.',
+        craft_p1: 'Our Dual-Track Glider Bangle is CNC-milled and hand-finished from solid recycled 18K gold or sterling silver—never plated brass. Each recessed channel measures precisely 0.85mm deep so solid gold charms lock smoothly without catching sweaters or hair.',
         craft_p2: 'Every diamond pavé charm uses ethically sourced G-H VS natural stones set under microscope, paired with genuine iridescent Mother of Pearl and hand-fired Italian enamel.',
         craft_cta: 'Experience 3D Studio →',
         sizing_eyebrow: 'Precision Oval Fit',
@@ -754,7 +754,7 @@
         faq_q1: 'How does the patented dual-glider track work?',
         faq_a1: 'Our bangles feature dual recessed channels engineered to 0.85mm depth. Charms glide effortlessly along the track while staying securely captured without risk of falling off.',
         faq_q2: 'Is the gold solid and ethically sourced?',
-        faq_a2: 'Yes, we exclusively cast in certified solid 14K recycled gold and 925 sterling silver, ensuring lifetime value without fading or tarnishing.',
+        faq_a2: 'Yes, we exclusively cast in certified solid 18K recycled gold and 925 sterling silver, ensuring lifetime value without fading or tarnishing.',
         faq_q3: 'Can I add or swap charms myself at home?',
         faq_a3: 'Absolutely! The precision safety clasp includes a secure charm gate that lets you slide new charms on or swap arrangements whenever you like.'
       }

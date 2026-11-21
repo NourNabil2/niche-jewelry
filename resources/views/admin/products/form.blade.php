@@ -45,9 +45,9 @@
         <div>
           <label style="display:block; font-size:12px; font-weight:700; margin-bottom:6px;">المعدن الأساسي</label>
           <select name="material" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; font-family:inherit;">
-            <option value="14k_gold" {{ old('material', $product->material) === '14k_gold' ? 'selected' : '' }}>ذهب أصفر 14K (14K Yellow Gold)</option>
+            <option value="14k_gold" {{ old('material', $product->material) === '14k_gold' ? 'selected' : '' }}>ذهب أصفر 18K (18K Yellow Gold)</option>
             <option value="sterling_silver" {{ old('material', $product->material) === 'sterling_silver' ? 'selected' : '' }}>فضة إسترليني 925 (925 Silver)</option>
-            <option value="rose_gold" {{ old('material', $product->material) === 'rose_gold' ? 'selected' : '' }}>ذهب وردي 14K (14K Rose Gold)</option>
+            <option value="rose_gold" {{ old('material', $product->material) === 'rose_gold' ? 'selected' : '' }}>ذهب وردي 18K (18K Rose Gold)</option>
           </select>
         </div>
       </div>

@@ -172,7 +172,7 @@
         <div class="search-modal">
           <div class="search-input-row">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="globalSearchInput" placeholder="${lang === 'ar' ? 'ابحثي في أساور 14K، دلاية النحلة، الحروف، الخواتم...' : 'Search 14K bangles, bee charm, pavé initials, rings...'}" autocomplete="off">
+            <input type="text" id="globalSearchInput" placeholder="${lang === 'ar' ? 'ابحثي في أساور 18K، دلاية النحلة، الحروف، الخواتم...' : 'Search 18K bangles, bee charm, pavé initials, rings...'}" autocomplete="off">
             <button class="icon-btn" id="closeSearchBtn" style="font-size:22px;">&times;</button>
           </div>
           <div class="search-results" id="globalSearchResults"></div>

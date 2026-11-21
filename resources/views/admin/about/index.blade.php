@@ -49,12 +49,12 @@
                 </h3>
 
                 <div style="margin-bottom:18px;">
-                    <label style="display:block; font-size:12.5px; font-weight:600; color:#444; margin-bottom:6px;">تفاصيل الصياغة اليدوية والذهب 14K (عربي)</label>
+                    <label style="display:block; font-size:12.5px; font-weight:600; color:#444; margin-bottom:6px;">تفاصيل الصياغة اليدوية والذهب 18K (عربي)</label>
                     <textarea name="about_craft_ar" rows="3" style="width:100%; box-sizing:border-box; padding:10px 14px; border:1px solid #d4cdbf; border-radius:4px; font-family:inherit; font-size:14px; line-height:1.6;">{{ old('about_craft_ar', $about['about_craft_ar']) }}</textarea>
                 </div>
 
                 <div style="margin-bottom:18px;">
-                    <label style="display:block; font-size:12.5px; font-weight:600; color:#444; margin-bottom:6px;">تفاصيل الصياغة اليدوية والذهب 14K (إنجليزي)</label>
+                    <label style="display:block; font-size:12.5px; font-weight:600; color:#444; margin-bottom:6px;">تفاصيل الصياغة اليدوية والذهب 18K (إنجليزي)</label>
                     <textarea name="about_craft_en" rows="3" dir="ltr" style="width:100%; box-sizing:border-box; padding:10px 14px; border:1px solid #d4cdbf; border-radius:4px; font-family:inherit; font-size:14px; line-height:1.6;">{{ old('about_craft_en', $about['about_craft_en']) }}</textarea>
                 </div>
 

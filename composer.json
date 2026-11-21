@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "niche-jewelry/atelier",
     "type": "project",
-    "description": "Niche Jewelry Atelier - 14K Glider Bangle Fine Jewelry E-Commerce & 3D Customizer",
+    "description": "Niche Jewelry Atelier - 18K Glider Bangle Fine Jewelry E-Commerce & 3D Customizer",
     "keywords": ["laravel", "jewelry", "ecommerce", "threejs", "3d"],
     "license": "MIT",
     "require": {

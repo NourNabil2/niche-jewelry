@@ -11,8 +11,8 @@ class ThemeManagerController extends Controller
     public function index()
     {
         $themeSettings = [
-            'hero_badge_ar' => Setting::get('hero_badge_ar', 'استوديو الصياغة ثلاثي الأبعاد ✦ ذهب نقي 14K'),
-            'hero_badge_en' => Setting::get('hero_badge_en', '3D Atelier Studio ✦ Solid 14K Gold'),
+            'hero_badge_ar' => Setting::get('hero_badge_ar', 'استوديو الصياغة ثلاثي الأبعاد ✦ ذهب نقي 18K'),
+            'hero_badge_en' => Setting::get('hero_badge_en', '3D Atelier Studio ✦ Solid 18K Gold'),
             'hero_title_ar' => Setting::get('hero_title_ar', 'صُممت لتنزلق بنعومة. صياغة تعبّر عنكِ.'),
             'hero_title_en' => Setting::get('hero_title_en', 'Crafted to glide softly. Jewelry that expresses you.'),
             'hero_subtitle_ar' => Setting::get('hero_subtitle_ar', 'عيشي تجربة تخصيص المجوهرات الراقية في بيئة ثلاثية الأبعاد تفاعلية فورية.'),

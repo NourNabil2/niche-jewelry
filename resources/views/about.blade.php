@@ -139,7 +139,7 @@
       <img src="{{ asset('assets/images/craftsmanship_editorial.jpg') }}" alt="NICH JEWELRY Atelier Craftsmanship" style="width:100%; display:block;">
     </div>
     <div>
-      <span class="eyebrow" style="color:var(--gold-primary);">{{ $isAr ? 'ذهب نقي عيار 14K • بدون تفريغ' : 'Solid 14K Gold • No Hollow Casts' }}</span>
+      <span class="eyebrow" style="color:var(--gold-primary);">{{ $isAr ? 'ذهب نقي عيار 18K • بدون تفريغ' : 'Solid 18K Gold • No Hollow Casts' }}</span>
       <h2 class="section-heading mt-1">{{ $isAr ? '18 مرحلة صياغة يدوية فائقة الدقة' : '18 Precision Atelier Craft Stages' }}</h2>
       <p style="font-size:14.5px; color:#555; line-height:1.8; margin:18px 0;">
         {{ $craft }}
@@ -262,8 +262,8 @@
         </button>
         <div class="faq-a">
           {{ $isAr
-            ? 'نعم بكل تأكيد، نستخدم حصرياً الذهب الخالص عيار 14K النقي وغير المفرغ والفضة الإسترلينية 925، ومختومة بختم الأتيليه الكويتي الرسمي مع بطاقة ضمان وتوثيق لكل قطعة.'
-            : 'Absolutely. We exclusively cast in solid 14K gold and 925 sterling silver, hallmarked with official atelier stamps and accompanied by an authenticity certificate.' }}
+            ? 'نعم بكل تأكيد، نستخدم حصرياً الذهب الخالص عيار 18K النقي وغير المفرغ والفضة الإسترلينية 925، ومختومة بختم الأتيليه الكويتي الرسمي مع بطاقة ضمان وتوثيق لكل قطعة.'
+            : 'Absolutely. We exclusively cast in solid 18K gold and 925 sterling silver, hallmarked with official atelier stamps and accompanied by an authenticity certificate.' }}
         </div>
       </div>
       <div class="faq-item">
