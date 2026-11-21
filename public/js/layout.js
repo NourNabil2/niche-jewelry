@@ -212,51 +212,29 @@
         </div>
       </aside>
 
-      <!-- ✦ First-Visit Luxury Campaign Pop-up (L'azurde Golden Friday Style) ✦ -->
+      <!-- ✦ First-Visit Luxury Campaign Pop-up (Minimalist Banner & Copy Code) ✦ -->
       <div class="promo-modal-backdrop" id="nichPromoModalBackdrop">
         <div class="promo-modal-card">
           <button class="promo-modal-close" id="closePromoModalBtn" aria-label="Close offer">&times;</button>
-          <div class="promo-modal-grid">
-            <div class="promo-modal-img-col">
-              <img src="assets/images/promo_popup_golden_friday.jpg" alt="عروض الجمعة الذهبية - NICH Jewelry" class="promo-modal-img">
-              <div class="promo-img-overlay-tag">
-                <span>✦ الجمعة الذهبية</span>
-              </div>
+          
+          <!-- Clickable Image Banner: Clicks act just like the button -->
+          <a href="${getRoute('collections.html', '?promo=GOLDEN15')}" class="promo-banner-link" id="modalBannerClickable" title="${lang === 'ar' ? 'انقري للتسوق وتفعيل الخصم ✦' : 'Click to shop and activate code ✦'}">
+            <img src="assets/images/promo_popup_golden_friday.jpg" alt="NICH Jewelry • Golden Atelier Offer" class="promo-banner-img">
+            <div class="promo-banner-overlay-badge">
+              <span>✦ ${lang === 'ar' ? 'خصم 15% إضافي بكود' : 'EXTRA 15% OFF WITH'} <strong>GOLDEN15</strong></span>
             </div>
-            <div class="promo-modal-info-col">
-              <div class="promo-modal-badge">${lang === 'ar' ? 'عرض الجمعة الذهبية الحصري ✦' : 'EXCLUSIVE ATELIER INVITATION ✦'}</div>
-              <h3 class="promo-modal-heading">${lang === 'ar' ? 'تألقي ببريق الذهب الخالص' : 'Indulge in Pure Gold Luxury'}</h3>
-              <div class="promo-discount-callout">
-                <span class="discount-big">${lang === 'ar' ? 'خصم 15% إضافي' : 'EXTRA 15% OFF'}</span>
-                <span class="discount-sub">${lang === 'ar' ? 'على كافة أساور جلايدر™ ومجموعات الدلايات المرصعة بالألماس' : 'On all patented glider bangles & natural diamond charms'}</span>
-              </div>
-              
-              <div class="promo-code-capsule">
-                <div class="code-text-group">
-                  <span class="code-lbl">${lang === 'ar' ? 'كود الخصم:' : 'PROMO CODE:'}</span>
-                  <strong class="code-str" id="modalPromoCodeStr">GOLDEN15</strong>
-                </div>
-                <button type="button" class="promo-copy-action-btn" id="modalCopyCodeBtn">
-                  <span id="modalCopyBtnText">${lang === 'ar' ? 'نسخ الكود' : 'Copy Code'}</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                </button>
-              </div>
+          </a>
 
-              <div class="promo-modal-perks">
-                <div class="promo-perk-item"><span class="perk-icon">✦</span> ${lang === 'ar' ? 'شحن فاخر مؤمّن مجاناً لكافة المدن' : 'Complimentary Insured Delivery'}</div>
-                <div class="promo-perk-item"><span class="perk-icon">✦</span> ${lang === 'ar' ? 'نقش ليزري تذكاري مجاني لكافة القطع' : 'Complimentary Laser Engraving'}</div>
-                <div class="promo-perk-item"><span class="perk-icon">✦</span> ${lang === 'ar' ? 'علبة هدايا جلدية فاخرة مع شهادة أصالة' : 'Atelier Gift Packaging & Gold Certificate'}</div>
-              </div>
-
-              <div class="promo-modal-actions">
-                <a href="${getRoute('collections.html', '?promo=GOLDEN15')}" class="promo-modal-shop-btn" id="modalShopNowBtn">
-                  ${lang === 'ar' ? 'استكشفي عروض الجمعة الذهبية ←' : 'Explore Golden Friday Collection &rarr;'}
-                </a>
-                <a href="${getRoute('customizer.html')}" class="promo-modal-studio-link">
-                  ${lang === 'ar' ? 'أو صممي إسورتكِ في استوديو الـ 3D ✦' : 'Or design your piece in 3D Atelier ✦'}
-                </a>
-              </div>
+          <!-- Minimalist Bottom Bar: Code + Copy Button -->
+          <div class="promo-modal-bottom-bar">
+            <div class="promo-code-display">
+              <span class="promo-code-label">${lang === 'ar' ? 'كود الخصم:' : 'PROMO CODE:'}</span>
+              <strong class="promo-code-val" id="modalPromoCodeStr">GOLDEN15</strong>
             </div>
+            <button type="button" class="promo-copy-action-btn" id="modalCopyCodeBtn">
+              <span id="modalCopyBtnText">${lang === 'ar' ? 'نسخ الكود' : 'Copy Code'}</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -383,12 +361,12 @@
       }
     }
 
-    // 3. First-Visit Luxury Campaign Pop-up Modal (L'azurde Golden Friday Style)
+    // 3. First-Visit Luxury Campaign Pop-up Modal (Minimalist Banner & Copy Code)
     const promoBackdrop = document.getElementById('nichPromoModalBackdrop');
     const closePromoBtn = document.getElementById('closePromoModalBtn');
     const modalCopyBtn = document.getElementById('modalCopyCodeBtn');
     const modalCopyText = document.getElementById('modalCopyBtnText');
-    const modalShopNow = document.getElementById('modalShopNowBtn');
+    const modalBanner = document.getElementById('modalBannerClickable');
 
     function openPromoModal() {
       if (!promoBackdrop) return;
@@ -418,21 +396,37 @@
       }
     });
 
-    modalCopyBtn?.addEventListener('click', () => {
+    // Copy Code Button
+    modalCopyBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
       navigator.clipboard?.writeText('GOLDEN15').then(() => {
-        if (modalCopyText) modalCopyText.textContent = window.nicheI18n?.getLanguage() === 'en' ? '✓ Copied!' : '✓ تم النسخ!';
-        showToast('تم نسخ كود الخصم: GOLDEN15 بنجاح! ✦', '✨');
+        if (modalCopyText) {
+          modalCopyText.textContent = window.nicheI18n?.getLanguage() === 'en' ? '✓ Copied!' : '✓ تم النسخ!';
+        }
+        showToast(window.nicheI18n?.getLanguage() === 'en' ? 'Code copied: GOLDEN15 (15% OFF) ✦' : 'تم نسخ كود الخصم: GOLDEN15 (خصم 15%) ✦', '✨');
+        try {
+          sessionStorage.setItem('appliedPromo', 'GOLDEN15');
+        } catch (err) {}
         setTimeout(() => {
-          if (modalCopyText) modalCopyText.textContent = window.nicheI18n?.getLanguage() === 'en' ? 'Copy Code' : 'نسخ الكود';
+          if (modalCopyText) {
+            modalCopyText.textContent = window.nicheI18n?.getLanguage() === 'en' ? 'Copy Code' : 'نسخ الكود';
+          }
         }, 3000);
       });
     });
 
-    modalShopNow?.addEventListener('click', () => {
+    // Clicking image acts just like clicking the action button: copies code, applies discount & opens shop
+    modalBanner?.addEventListener('click', (e) => {
+      e.preventDefault();
       try {
         sessionStorage.setItem('appliedPromo', 'GOLDEN15');
-      } catch (e) {}
+      } catch (err) {}
+      navigator.clipboard?.writeText('GOLDEN15').catch(() => {});
+      showToast(window.nicheI18n?.getLanguage() === 'en' ? 'Promo code GOLDEN15 applied! ✨' : 'تم تفعيل كود الخصم: GOLDEN15 بنجاح! ✨', '✨');
       closePromoModal();
+      setTimeout(() => {
+        window.location.href = getRoute('collections.html', '?promo=GOLDEN15');
+      }, 300);
     });
 
     // Check first visit and trigger popup

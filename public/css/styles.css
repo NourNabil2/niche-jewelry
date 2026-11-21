@@ -3036,20 +3036,23 @@ html[dir="rtl"] .panthere-hero-scrim {
 }
 
 /* 5. FIRST-VISIT PROMO POPUP MODAL (L'azurde Golden Friday Style) */
+/* ==========================================================================
+   FIRST-VISIT LUXURY CAMPAIGN POP-UP (Minimalist Banner & Copy Code)
+   ========================================================================== */
 .promo-modal-backdrop {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(8, 7, 6, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 9, 8, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .promo-modal-backdrop.visible {
@@ -3059,15 +3062,17 @@ html[dir="rtl"] .panthere-hero-scrim {
 
 .promo-modal-card {
   position: relative;
-  background: #14120e;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 20px;
-  max-width: 820px;
+  background: #141311;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  max-width: 440px;
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 50px rgba(212, 175, 55, 0.25);
-  transform: scale(0.92) translateY(20px);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transform: scale(0.96) translateY(10px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .promo-modal-backdrop.visible .promo-modal-card {
@@ -3076,220 +3081,152 @@ html[dir="rtl"] .panthere-hero-scrim {
 
 .promo-modal-close {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   z-index: 10;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(18, 16, 14, 0.75);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  font-size: 22px;
+  font-size: 20px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
-html[dir= ltr] .promo-modal-close {
+html[dir="ltr"] .promo-modal-close {
   left: auto;
-  right: 14px;
+  right: 12px;
 }
 .promo-modal-close:hover {
-  background: #c59b3f;
-  color: #000000;
-  transform: rotate(90deg);
+  background: #ffffff;
+  color: #11100e;
+  transform: scale(1.05);
 }
 
-.promo-modal-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  min-height: 440px;
-}
-
-@media (max-width: 720px) {
-  .promo-modal-grid {
-    grid-template-columns: 1fr;
-  }
-  .promo-modal-img-col {
-    height: 220px;
-  }
-}
-
-.promo-modal-img-col {
+/* Clickable Banner Image */
+.promo-banner-link {
+  display: block;
   position: relative;
-  overflow: hidden;
-  background: #1a1713;
-}
-
-.promo-modal-img {
   width: 100%;
-  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  background: #1c1a17;
+  text-decoration: none;
+}
+
+.promo-banner-img {
+  display: block;
+  width: 100%;
+  height: 480px;
+  max-height: 58vh;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
+  transition: transform 0.4s ease;
 }
 
-.promo-img-overlay-tag {
+.promo-banner-link:hover .promo-banner-img {
+  transform: scale(1.02);
+}
+
+.promo-banner-overlay-badge {
   position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: rgba(14, 12, 10, 0.82);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  color: #fcedc5;
-  font-size: 11px;
-  font-weight: 700;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(18, 16, 14, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(197, 155, 63, 0.45);
+  color: #FAF8F5;
+  font-size: 11.5px;
+  font-weight: 600;
   padding: 5px 12px;
-  border-radius: 999px;
-  letter-spacing: 0.06em;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
 }
-
-.promo-modal-info-col {
-  padding: 36px 32px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #ffffff;
-  text-align: right;
+html[dir="ltr"] .promo-banner-overlay-badge {
+  right: auto;
+  left: 12px;
 }
-html[dir=ltr] .promo-modal-info-col {
-  text-align: left;
-}
-
-.promo-modal-badge {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+.promo-banner-overlay-badge strong {
   color: #dfc88e;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.promo-modal-heading {
-  font-family: 'Amiri', 'Tajawal', var(--font-serif), serif;
-  font-size: 26px;
   font-weight: 700;
-  line-height: 1.25;
-  color: #ffffff;
-  margin-bottom: 8px;
 }
 
-.promo-discount-callout {
-  margin-bottom: 18px;
-}
-.discount-big {
-  display: block;
-  font-family: 'Tajawal', var(--font-sans), sans-serif;
-  font-size: 32px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #fff2d1 0%, #dfc88e 50%, #c59b3f 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.15;
-}
-.discount-sub {
-  display: block;
-  font-size: 13px;
-  color: #a8a095;
-  margin-top: 4px;
-}
-
-.promo-code-capsule {
+/* Minimalist Bottom Bar */
+.promo-modal-bottom-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px dashed rgba(212, 175, 55, 0.45);
-  border-radius: 12px;
-  padding: 10px 16px;
-  margin-bottom: 18px;
   gap: 12px;
+  padding: 13px 18px;
+  background: #181613;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
-.code-text-group {
+
+.promo-code-display {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: baseline;
+  gap: 6px;
 }
-.code-lbl {
-  font-size: 12px;
-  color: #b5ad9e;
+
+.promo-code-label {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a9388;
 }
-.code-str {
-  font-family: monospace, sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  color: #fcedc5;
+
+.promo-code-val {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.1em;
+  color: #dfc88e;
 }
+
 .promo-copy-action-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #c59b3f;
-  color: #0c0b09;
+  background: #FAF8F5;
+  color: #11100e;
   border: none;
-  border-radius: 8px;
-  padding: 7px 14px;
+  border-radius: 6px;
+  padding: 8px 14px;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
+
 .promo-copy-action-btn:hover {
-  background: #e4cca0;
-  transform: scale(1.03);
+  background: #dfc88e;
+  color: #11100e;
 }
 
-.promo-modal-perks {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 22px;
-  font-size: 12px;
-  color: #cfc8be;
-}
-.promo-perk-item .perk-icon {
-  color: #dfc88e;
-  margin-inline-end: 6px;
+.promo-copy-action-btn:active {
+  transform: scale(0.98);
 }
 
-.promo-modal-shop-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #fcedc5 0%, #dfc88e 40%, #c59b3f 100%);
-  color: #0a0907;
-  font-family: 'Tajawal', var(--font-sans), sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  padding: 13px 24px;
-  border-radius: 999px;
-  text-decoration: none;
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
-  transition: all 0.25s ease;
-  margin-bottom: 12px;
-}
-.promo-modal-shop-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.6);
-  color: #000000;
-}
-
-.promo-modal-studio-link {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: #b8b0a2;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.promo-modal-studio-link:hover {
-  color: #dfc88e;
-  text-decoration: underline;
+@media (max-width: 480px) {
+  .promo-modal-card {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  .promo-banner-img {
+    height: 380px;
+    max-height: 50vh;
+  }
+  .promo-modal-bottom-bar {
+    padding: 10px 14px;
+  }
 }
 
 
