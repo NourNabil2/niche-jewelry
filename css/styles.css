@@ -1147,42 +1147,15 @@ button, input, select, textarea {
 .site-footer {
   background: #0c0b0a;
   color: #FAF8F5;
-  padding: 64px 0 36px;
-  margin-top: 70px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 56px 0 36px;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
 }
 
 .site-footer::before {
   display: none;
-}
-
-.footer-trust-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding-bottom: 40px;
-  margin-bottom: 44px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.trust-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #FAF8F5;
-}
-
-.trust-pill-icon {
-  color: #ffffff;
-  font-size: 9px;
 }
 
 .footer-grid {
@@ -1194,11 +1167,6 @@ button, input, select, textarea {
 }
 
 @media (max-width: 960px) {
-  .footer-trust-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 24px;
-  }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
@@ -1206,12 +1174,6 @@ button, input, select, textarea {
 }
 
 @media (max-width: 560px) {
-  .footer-trust-strip {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding-bottom: 28px;
-    margin-bottom: 32px;
-  }
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 28px;

@@ -252,30 +252,14 @@
       footerMount.innerHTML = `
         <footer class="site-footer">
           <div class="container">
-            <!-- Quiet Luxury Monochromatic Trust Strip -->
-            <div class="footer-trust-strip">
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_gold')}</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_glider')}</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> ${T('footer.trust_shipping')}</div>
-              <div class="trust-pill"><span class="trust-pill-icon">✦</span> 📍 بوتيك الكويت: الأفنيوز - برستيج</div>
-            </div>
-
             <div class="footer-grid">
               <div>
-                <a href="${getRoute('index.html')}" style="display:inline-block; margin-bottom:14px;"><img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:36px; width:auto; display:block;"></a>
+                <a href="${getRoute('index.html')}" style="display:inline-block; margin-bottom:20px;">
+                  <img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:48px; width:auto; display:block;">
+                </a>
                 <p class="footer-desc">
                   ${T('footer.brand_desc')}
                 </p>
-                <div style="margin-top:16px; font-size:12px; color:#c5bfb4; line-height:1.6;">
-                  <div>🏛️ <strong>بوتيك الكويت:</strong> ذا أفينوز، برستيج</div>
-                  <div>📞 <strong>الكونسيرج:</strong> <span dir="ltr">+965 2200 4455</span></div>
-                </div>
-                <div style="margin-top:18px; display:flex; gap:10px;">
-                  <a href="${getRoute('customizer.html')}" class="btn-sm" style="background:#FAF8F5; color:#0d0d0d; border-radius:999px; font-weight:700; font-size:11.5px; padding:8px 18px; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                    <span>${T('footer.launch_studio')}</span>
-                    <span style="font-size:9px;">✦</span>
-                  </a>
-                </div>
               </div>
               <div>
                 <div class="footer-col-title">${T('footer.shop_title')}</div>
@@ -290,6 +274,7 @@
               <div>
                 <div class="footer-col-title">${T('footer.atelier_title')}</div>
                 <ul class="footer-links">
+                  <li><a href="${getRoute('customizer.html')}">${T('nav.studio_3d')} ✦</a></li>
                   <li><a href="${getRoute('index.html', '#boutiques-section')}">فروعنا وبوتيكات الكويت ✦</a></li>
                   <li><a href="${getRoute('about.html')}">${T('footer.our_ethics')}</a></li>
                   <li><a href="${getRoute('about.html', '#sizing')}">${T('footer.sizing_guide')}</a></li>
@@ -300,7 +285,7 @@
               </div>
               <div>
                 <div class="footer-col-title">${T('footer.collector_title')}</div>
-                <p style="font-size:12px; color:#b5afa3; line-height:1.6;">${T('footer.collector_sub')} <strong style="color:#FAF8F5;">NICH15</strong>.</p>
+                <p style="font-size:12px; color:#b5afa3; line-height:1.6; margin-bottom:12px;">${T('footer.collector_sub')} <strong style="color:#FAF8F5;">NICH15</strong>.</p>
                 <form class="footer-newsletter-capsule" id="footerNewsletterForm">
                   <input type="email" id="footerNewsletterEmail" placeholder="${T('footer.email_placeholder')}" required aria-label="Email address for collector list">
                   <button type="submit" class="newsletter-submit-btn" aria-label="Join newsletter">
@@ -314,13 +299,6 @@
               <span class="footer-copy">${T('footer.copyright')}</span>
               <div class="footer-payment-tags">
                 <span class="pay-tag">${T('footer.tag_gold')}</span>
-                <span class="pay-tag">${T('footer.tag_silver')}</span>
-                <span class="pay-tag">${T('footer.tag_delivery')}</span>
-                <span class="pay-tag">${T('footer.tag_secure')}</span>
-              </div>
-            </div>
-          </div>
-        </footer>
                 <span class="pay-tag">${T('footer.tag_silver')}</span>
                 <span class="pay-tag">${T('footer.tag_delivery')}</span>
                 <span class="pay-tag">${T('footer.tag_secure')}</span>
