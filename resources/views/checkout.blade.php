@@ -11,7 +11,7 @@
   <script src="/js/db.js"></script>
   <script src="/js/store.js"></script>
   <script src="/js/i18n.js"></script>
-  <script src="/js/layout.js"></script>
+  <script src="//js/layout.js?v=darklogo"></script>
   <style>
     .checkout-layout {
       display: grid;

@@ -134,7 +134,7 @@
     <script src="{{ asset('js/db.js') }}"></script>
     <script src="{{ asset('js/store.js') }}"></script>
     <script src="{{ asset('js/i18n.js') }}"></script>
-    <script src="{{ asset('js/layout.js') }}"></script>
+    <script src="{{ asset('/js/layout.js?v=darklogo') }}"></script>
 
     <style>
       .atelier-top-switchers {
