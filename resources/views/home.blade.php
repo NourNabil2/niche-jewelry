@@ -357,26 +357,24 @@
         <!-- Rendered dynamically from EP_STORE.getBoutiques() -->
         <div class="boutique-showcase-card is-flagship">
           <div class="boutique-card-inner">
-            <div class="boutique-badge-row">
-              <span class="boutique-pill">{{ app()->getLocale() == 'ar' ? '✦ البوتيك الرئيسي • الفلاجشيب' : '✦ Flagship Boutique • Kuwait' }}</span>
-              <span class="boutique-city">{{ app()->getLocale() == 'ar' ? 'مدينة الكويت' : 'Kuwait City' }}</span>
+            <div class="boutique-eyebrow">
+              <span class="boutique-eyebrow-dot">✦</span>
+              <span>{{ app()->getLocale() == 'ar' ? 'مدينة الكويت • الفلاجشيب' : 'Kuwait City • Flagship' }}</span>
             </div>
-            <h3 class="boutique-title serif">{{ app()->getLocale() == 'ar' ? 'بوتيك غراند أفينيو - الكويت' : 'The Avenues Flagship Boutique - Kuwait' }}</h3>
-            <p class="boutique-address">📍 {{ app()->getLocale() == 'ar' ? 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي' : 'The Avenues Mall, Prestige District, Ground Floor' }}</p>
+            <h3 class="boutique-title serif">{{ app()->getLocale() == 'ar' ? 'بوتيك غراند أفينيو' : 'The Avenues Flagship Boutique' }}</h3>
+            <p class="boutique-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8b661d" stroke-width="1.8" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{{ app()->getLocale() == 'ar' ? 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي' : 'The Avenues Mall, Prestige District, Ground Floor' }}</span>
+            </p>
             <div class="boutique-hours">
-              <span class="hours-icon">⏰</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b661d" stroke-width="1.8" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               <span>{{ app()->getLocale() == 'ar' ? 'السبت - الخميس: 10:00 ص – 10:00 م | الجمعة: 1:00 م – 10:00 م' : 'Sat–Thu: 10:00 AM – 10:00 PM | Fri: 1:00 PM – 10:00 PM' }}</span>
             </div>
-            <div class="boutique-features-row">
-              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'صالة كبار الشخصيات VIP' : 'Private VIP Salon' }}</span>
-              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'استشارة تصميم 3D مخصصة' : 'Bespoke 3D Atelier Consultation' }}</span>
-              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'استلام مباشر وصيانة فورية' : 'Instant In-Boutique Pickup & Care' }}</span>
-            </div>
             <div class="boutique-actions">
-              <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك غراند أفينيو - الكويت' : 'Hello, I would like to book a private VIP appointment at The Avenues Flagship Boutique') }}" target="_blank" class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-size:12px; font-weight:600; padding:9px 18px; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد VIP خاص ✦' : 'Book VIP Salon ✦' }}</span>
+              <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك غراند أفينيو - الكويت' : 'Hello, I would like to book a private VIP appointment at The Avenues Flagship Boutique') }}" target="_blank" class="boutique-action-primary">
+                <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد خاص' : 'Book Private Appointment' }}</span> &rarr;
               </a>
-              <a href="https://maps.google.com/?q=The+Avenues+Mall+Kuwait" target="_blank" class="btn btn-outline btn-sm" style="border-radius:999px; font-size:12px; padding:8px 16px;">
+              <a href="https://maps.google.com/?q=The+Avenues+Mall+Kuwait" target="_blank" class="boutique-action-secondary">
                 <span>{{ app()->getLocale() == 'ar' ? 'الموقع على الخريطة ↗' : 'Directions ↗' }}</span>
               </a>
             </div>
@@ -385,26 +383,24 @@
 
         <div class="boutique-showcase-card">
           <div class="boutique-card-inner">
-            <div class="boutique-badge-row">
-              <span class="boutique-pill">{{ app()->getLocale() == 'ar' ? 'صالون الدار الفاخر' : 'Luxury Boutique Salon' }}</span>
-              <span class="boutique-city">{{ app()->getLocale() == 'ar' ? 'العاصمة، الكويت' : 'Capital City, Kuwait' }}</span>
+            <div class="boutique-eyebrow">
+              <span class="boutique-eyebrow-dot">✦</span>
+              <span>{{ app()->getLocale() == 'ar' ? 'العاصمة • مجمع الصالحية' : 'Capital • Salhiya Complex' }}</span>
             </div>
-            <h3 class="boutique-title serif">{{ app()->getLocale() == 'ar' ? 'بوتيك الصالحية الفاخر - الكويت' : 'Salhiya Luxury Boutique - Kuwait' }}</h3>
-            <p class="boutique-address">📍 {{ app()->getLocale() == 'ar' ? 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات' : 'Salhiya Complex, Mezzanine 1, Fine Jewelry Gallery' }}</p>
+            <h3 class="boutique-title serif">{{ app()->getLocale() == 'ar' ? 'بوتيك الصالحية الفاخر' : 'Salhiya Luxury Boutique' }}</h3>
+            <p class="boutique-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8b661d" stroke-width="1.8" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{{ app()->getLocale() == 'ar' ? 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات' : 'Salhiya Complex, Mezzanine 1, Fine Jewelry Gallery' }}</span>
+            </p>
             <div class="boutique-hours">
-              <span class="hours-icon">⏰</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b661d" stroke-width="1.8" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               <span>{{ app()->getLocale() == 'ar' ? 'يومياً: 10:00 ص – 9:30 م' : 'Daily: 10:00 AM – 9:30 PM' }}</span>
             </div>
-            <div class="boutique-features-row">
-              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'معاينة التشكيلات الحصرية' : 'Exclusive Previews' }}</span>
-              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'نقش ليزر تذكاري فوري' : 'On-Site Laser Inscription' }}</span>
-              <span class="boutique-feature-chip">✦ {{ app()->getLocale() == 'ar' ? 'خدمة الضيافة الملكية' : 'Complimentary Concierge Service' }}</span>
-            </div>
             <div class="boutique-actions">
-              <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك الصالحية - الكويت' : 'Hello, I would like to book a private VIP appointment at Salhiya Luxury Boutique') }}" target="_blank" class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-size:12px; font-weight:600; padding:9px 18px; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد VIP خاص ✦' : 'Book VIP Salon ✦' }}</span>
+              <a href="https://wa.me/96599887766?text={{ urlencode(app()->getLocale() == 'ar' ? 'مرحباً، أود حجز موعد استشارة خاصة في بوتيك الصالحية - الكويت' : 'Hello, I would like to book a private VIP appointment at Salhiya Luxury Boutique') }}" target="_blank" class="boutique-action-primary">
+                <span>{{ app()->getLocale() == 'ar' ? 'حجز موعد خاص' : 'Book Private Appointment' }}</span> &rarr;
               </a>
-              <a href="https://maps.google.com/?q=Salhiya+Complex+Kuwait" target="_blank" class="btn btn-outline btn-sm" style="border-radius:999px; font-size:12px; padding:8px 16px;">
+              <a href="https://maps.google.com/?q=Salhiya+Complex+Kuwait" target="_blank" class="boutique-action-secondary">
                 <span>{{ app()->getLocale() == 'ar' ? 'الموقع على الخريطة ↗' : 'Directions ↗' }}</span>
               </a>
             </div>
