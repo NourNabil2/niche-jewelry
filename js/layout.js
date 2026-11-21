@@ -120,7 +120,7 @@
           </div>
 
           <a href="${getRoute('index.html')}" class="brand-logo" aria-label="Niche Jewelry">
-            <img src="assets/images/niche-logo-gold.png" alt="Niche Jewelry" class="brand-logo-img" onerror="this.src='assets/images/niche-logo-white.png'">
+            <img src="assets/images/niche-logo-dark.png" alt="Niche Jewelry" class="brand-logo-img" onerror="this.src='assets/images/niche-logo-gold.png'">
           </a>
 
           <div class="header-actions">
