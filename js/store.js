@@ -480,6 +480,5 @@
       notify();
       return def;
     }
-    }
   };
 })();
