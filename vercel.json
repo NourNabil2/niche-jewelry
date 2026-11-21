@@ -2,43 +2,186 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/admin", "destination": "/admin/index.html" },
-    { "source": "/admin/(.*)", "destination": "/admin/index.html" },
-    { "source": "/ar/admin", "destination": "/admin/index.html" },
-    { "source": "/en/admin", "destination": "/admin/index.html" },
-    { "source": "/ar/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/en/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/ar/css/(.*)", "destination": "/css/$1" },
-    { "source": "/en/css/(.*)", "destination": "/css/$1" },
-    { "source": "/ar/js/(.*)", "destination": "/js/$1" },
-    { "source": "/en/js/(.*)", "destination": "/js/$1" },
-    { "source": "/ar/downloads/(.*)", "destination": "/downloads/$1" },
-    { "source": "/en/downloads/(.*)", "destination": "/downloads/$1" },
-    { "source": "/ar", "destination": "/index.html" },
-    { "source": "/en", "destination": "/index.html" },
-    { "source": "/atelier", "destination": "/customizer" },
-    { "source": "/ar/atelier", "destination": "/customizer" },
-    { "source": "/en/atelier", "destination": "/customizer" },
-    { "source": "/ar/customizer", "destination": "/customizer" },
-    { "source": "/en/customizer", "destination": "/customizer" },
-    { "source": "/collections", "destination": "/collections" },
-    { "source": "/ar/collections", "destination": "/collections" },
-    { "source": "/en/collections", "destination": "/collections" },
-    { "source": "/about", "destination": "/about" },
-    { "source": "/ar/about", "destination": "/about" },
-    { "source": "/en/about", "destination": "/about" },
-    { "source": "/checkout", "destination": "/checkout" },
-    { "source": "/ar/checkout", "destination": "/checkout" },
-    { "source": "/en/checkout", "destination": "/checkout" },
-    { "source": "/account", "destination": "/account" },
-    { "source": "/ar/account", "destination": "/account" },
-    { "source": "/en/account", "destination": "/account" },
-    { "source": "/wishlist", "destination": "/wishlist" },
-    { "source": "/ar/wishlist", "destination": "/wishlist" },
-    { "source": "/en/wishlist", "destination": "/wishlist" },
-    { "source": "/quotation", "destination": "/quotation" },
-    { "source": "/product", "destination": "/product" },
-    { "source": "/ar/product", "destination": "/product" },
-    { "source": "/en/product", "destination": "/product" }
+    {
+      "source": "/admin",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/ar/admin",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/en/admin",
+      "destination": "/admin/index.html"
+    },
+    {
+      "source": "/ar/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
+      "source": "/en/assets/(.*)",
+      "destination": "/assets/$1"
+    },
+    {
+      "source": "/ar/css/(.*)",
+      "destination": "/css/$1"
+    },
+    {
+      "source": "/en/css/(.*)",
+      "destination": "/css/$1"
+    },
+    {
+      "source": "/ar/js/(.*)",
+      "destination": "/js/$1"
+    },
+    {
+      "source": "/en/js/(.*)",
+      "destination": "/js/$1"
+    },
+    {
+      "source": "/ar/downloads/(.*)",
+      "destination": "/downloads/$1"
+    },
+    {
+      "source": "/en/downloads/(.*)",
+      "destination": "/downloads/$1"
+    },
+    {
+      "source": "/ar",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/atelier",
+      "destination": "/customizer"
+    },
+    {
+      "source": "/ar/atelier",
+      "destination": "/customizer"
+    },
+    {
+      "source": "/en/atelier",
+      "destination": "/customizer"
+    },
+    {
+      "source": "/ar/customizer",
+      "destination": "/customizer"
+    },
+    {
+      "source": "/en/customizer",
+      "destination": "/customizer"
+    },
+    {
+      "source": "/collections",
+      "destination": "/collections"
+    },
+    {
+      "source": "/ar/collections",
+      "destination": "/collections"
+    },
+    {
+      "source": "/en/collections",
+      "destination": "/collections"
+    },
+    {
+      "source": "/about",
+      "destination": "/about"
+    },
+    {
+      "source": "/ar/about",
+      "destination": "/about"
+    },
+    {
+      "source": "/en/about",
+      "destination": "/about"
+    },
+    {
+      "source": "/checkout",
+      "destination": "/checkout"
+    },
+    {
+      "source": "/ar/checkout",
+      "destination": "/checkout"
+    },
+    {
+      "source": "/en/checkout",
+      "destination": "/checkout"
+    },
+    {
+      "source": "/account",
+      "destination": "/account"
+    },
+    {
+      "source": "/ar/account",
+      "destination": "/account"
+    },
+    {
+      "source": "/en/account",
+      "destination": "/account"
+    },
+    {
+      "source": "/wishlist",
+      "destination": "/wishlist"
+    },
+    {
+      "source": "/ar/wishlist",
+      "destination": "/wishlist"
+    },
+    {
+      "source": "/en/wishlist",
+      "destination": "/wishlist"
+    },
+    {
+      "source": "/quotation",
+      "destination": "/quotation"
+    },
+    {
+      "source": "/product",
+      "destination": "/product"
+    },
+    {
+      "source": "/ar/product",
+      "destination": "/product"
+    },
+    {
+      "source": "/en/product",
+      "destination": "/product"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    }
   ]
 }
