@@ -2469,10 +2469,11 @@ html[dir="rtl"] .accordion-hero-panel.active .panel-scrim {
 .panthere-hero-section {
   position: relative;
   width: 100%;
-  min-height: 84vh;
-  max-height: 840px;
+  min-height: 88vh;
+  max-height: 900px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: center;
   overflow: hidden;
   background: #090807;
 }
@@ -2483,34 +2484,34 @@ html[dir="rtl"] .accordion-hero-panel.active .panel-scrim {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% 42%;
+  object-position: center 28%;
+  filter: blur(1.5px);
+  transform: scale(1.03);
   animation: panthereCinematicZoom 24s ease-in-out infinite alternate;
   transform-origin: center center;
-  will-change: transform;
+  will-change: transform, filter;
 }
 
 @keyframes panthereCinematicZoom {
-  0% { transform: scale(1.0); }
-  100% { transform: scale(1.05); }
+  0% { transform: scale(1.03); }
+  100% { transform: scale(1.07); }
 }
 
-/* Atmospheric Depth of Field Scrim: Soft atmospheric blur behind typography while keeping Black Panther and 18K glider bracelet crystal sharp */
+/* Atmospheric Bottom-to-Top Scrim: leaves top 70% of image completely clear */
 .panthere-hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.70) 42%, rgba(8, 7, 6, 0.18) 75%, rgba(8, 7, 6, 0.02) 100%);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  mask-image: linear-gradient(90deg, #000000 0%, #000000 44%, transparent 78%);
-  -webkit-mask-image: linear-gradient(90deg, #000000 0%, #000000 44%, transparent 78%);
+  background: linear-gradient(180deg, rgba(8, 7, 6, 0.02) 0%, rgba(8, 7, 6, 0.12) 35%, rgba(8, 7, 6, 0.65) 70%, rgba(8, 7, 6, 0.95) 100%) !important;
   pointer-events: none;
   z-index: 2;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
 }
 
 html[dir="rtl"] .panthere-hero-scrim {
-  background: linear-gradient(270deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.70) 42%, rgba(8, 7, 6, 0.18) 75%, rgba(8, 7, 6, 0.02) 100%);
-  mask-image: linear-gradient(270deg, #000000 0%, #000000 44%, transparent 78%);
-  -webkit-mask-image: linear-gradient(270deg, #000000 0%, #000000 44%, transparent 78%);
+  background: linear-gradient(180deg, rgba(8, 7, 6, 0.02) 0%, rgba(8, 7, 6, 0.12) 35%, rgba(8, 7, 6, 0.65) 70%, rgba(8, 7, 6, 0.95) 100%) !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
 }
 
 .panthere-bottom-blend {
@@ -2527,9 +2528,15 @@ html[dir="rtl"] .panthere-hero-scrim {
 .panthere-hero-content {
   position: relative;
   z-index: 4;
-  max-width: 560px;
+  max-width: 800px;
+  width: 100%;
   color: #ffffff;
-  padding: 80px 0;
+  padding: 0 20px 48px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   animation: panthereFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2648,15 +2655,16 @@ html[dir="rtl"] .panthere-hero-scrim {
   }
 
   .panthere-hero-bg {
-    object-position: 72% 26%; /* Positions panther's piercing eyes and face beautifully in top half */
+    object-position: center 25% !important;
+    filter: blur(1.5px) !important;
   }
 
   .panthere-hero-scrim {
-    background: linear-gradient(180deg, rgba(8, 7, 6, 0.04) 0%, rgba(8, 7, 6, 0.45) 40%, rgba(8, 7, 6, 0.96) 82%) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    mask-image: linear-gradient(180deg, transparent 0%, transparent 32%, #000000 64%) !important;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 32%, #000000 64%) !important;
+    background: linear-gradient(180deg, rgba(8, 7, 6, 0.02) 0%, rgba(8, 7, 6, 0.20) 40%, rgba(8, 7, 6, 0.75) 75%, rgba(8, 7, 6, 0.98) 100%) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
 
   .panthere-hero-content {
@@ -2898,61 +2906,28 @@ html[dir="rtl"] .panthere-hero-scrim {
   font-weight: 800 !important;
 }
 
-/* 3. HERO CONTENT & TYPOGRAPHY */
+/* 3. HERO CONTENT & TYPOGRAPHY (Clean Minimalist Glassmorphic Quiet Luxury) */
 .panthere-hero-content {
   position: relative;
   z-index: 4;
-  max-width: 580px !important;
-  color: #ffffff;
-  padding: 70px 0 !important;
-  animation: panthereFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.panthere-eyebrow-wrap {
-  display: inline-flex !important;
+  margin: 0 auto 52px auto !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  gap: 10px !important;
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 7px 18px !important;
-  border-radius: 999px !important;
-  margin-bottom: 22px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
-}
-
-.panthere-eyebrow-accent {
-  color: #dfc88e !important;
-  font-size: 11px !important;
-}
-
-.panthere-eyebrow-text {
-  font-family: 'Tajawal', var(--font-sans), sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.08em !important;
-  color: #FAF8F5 !important;
-  text-transform: uppercase !important;
-}
-
-.panthere-eyebrow-gold-tag {
-  background: #dfc88e !important;
-  color: #121110 !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  padding: 3px 10px !important;
-  border-radius: 999px !important;
-  letter-spacing: 0.04em !important;
+  max-width: 800px !important;
 }
 
 .panthere-title {
   font-family: 'Amiri', 'Tajawal', var(--font-serif), serif !important;
-  font-size: clamp(38px, 4.8vw, 62px) !important;
+  font-size: clamp(34px, 4.5vw, 56px) !important;
   font-weight: 700 !important;
-  line-height: 1.18 !important;
+  line-height: 1.15 !important;
   color: #ffffff !important;
-  margin-bottom: 18px !important;
+  margin: 0 auto 12px auto !important;
+  text-align: center !important;
   letter-spacing: -0.01em !important;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.85), 0 0 40px rgba(197, 155, 63, 0.2) !important;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9), 0 0 40px rgba(197, 155, 63, 0.25) !important;
 }
 
 .panthere-title .gold-accent {
@@ -2964,30 +2939,35 @@ html[dir="rtl"] .panthere-hero-scrim {
 
 .panthere-sub {
   font-family: 'Tajawal', var(--font-sans), sans-serif !important;
-  font-size: clamp(14px, 1.2vw, 16px) !important;
-  color: rgba(240, 235, 225, 0.9) !important;
-  line-height: 1.75 !important;
-  margin-bottom: 32px !important;
-  max-width: 500px !important;
+  font-size: clamp(14px, 1.3vw, 17px) !important;
+  color: rgba(240, 235, 225, 0.92) !important;
+  line-height: 1.6 !important;
+  margin: 0 auto 28px auto !important;
+  max-width: 620px !important;
   font-weight: 400 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7) !important;
+  text-align: center !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85) !important;
 }
 
 .panthere-cta-row {
   display: flex !important;
   align-items: center !important;
-  gap: 14px !important;
+  justify-content: center !important;
+  gap: 16px !important;
   flex-wrap: wrap !important;
-  margin-bottom: 34px !important;
+  margin: 0 auto !important;
 }
 
+/* Glassmorphic Liquid Glass Primary CTA */
 .panthere-btn-gold {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 10px !important;
-  background: #FAF8F5 !important;
-  color: #141311 !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  color: #ffffff !important;
   font-family: 'Tajawal', var(--font-sans), sans-serif !important;
   font-size: 13.5px !important;
   font-weight: 700 !important;
@@ -2995,51 +2975,54 @@ html[dir="rtl"] .panthere-hero-scrim {
   padding: 14px 34px !important;
   border-radius: 999px !important;
   text-decoration: none !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
-  border: 1.5px solid #FAF8F5 !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: 1.5px solid rgba(223, 200, 142, 0.6) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   position: relative !important;
   overflow: hidden !important;
 }
 
 .panthere-btn-gold .btn-sparkle {
-  color: #8b661d !important;
+  color: #dfc88e !important;
 }
 
 .panthere-btn-gold:hover {
   transform: translateY(-2px) !important;
-  background: #ffffff !important;
+  background: rgba(223, 200, 142, 0.28) !important;
   border-color: #dfc88e !important;
-  color: #000000 !important;
-  box-shadow: 0 10px 30px rgba(223, 200, 142, 0.35) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 36px rgba(223, 200, 142, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
 }
 
+/* Glassmorphic Liquid Glass Secondary CTA */
 .panthere-btn-glass {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 10px !important;
-  background: rgba(255, 255, 255, 0.07) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  color: #ffffff !important;
+  background: rgba(18, 16, 14, 0.45) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  color: #f7f3ec !important;
   font-family: 'Tajawal', var(--font-sans), sans-serif !important;
   font-size: 13px !important;
   font-weight: 600 !important;
   letter-spacing: 0.04em !important;
-  padding: 14px 28px !important;
+  padding: 14px 30px !important;
   border-radius: 999px !important;
   text-decoration: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .panthere-btn-glass:hover {
-  background: rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(223, 200, 142, 0.8) !important;
-  color: #fcedc5 !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(223, 200, 142, 0.75) !important;
+  color: #ffffff !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6) !important;
 }
 
 .panthere-trust-pills {
