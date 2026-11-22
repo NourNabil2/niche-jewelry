@@ -2280,11 +2280,11 @@
               </button>
             </div>
 
-            <!-- Step 1.2: Edge Gemstone Setting (ترصيع الحواف والأطراف من الجانبين) -->
+            <!-- Step 1.2: Edge Gemstone Setting (ترصيع الحواف بالألماس البافيه النقي) -->
             <div style="margin-top:20px; padding-top:16px; border-top:1px solid #ede8e0;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <span class="acc-inner-label" style="font-weight:700; color:#181715;">ترصيع الحواف والأطراف (مجوهرات الجانبين):</span>
-                <span style="font-size:10.5px; font-weight:700; color:#8b661d; background:rgba(197,155,63,0.12); padding:2px 8px; border-radius:12px;">3D Setting ✦</span>
+                <span class="acc-inner-label" style="font-weight:700; color:#181715;">ترصيع الحواف والأطراف (ألماس بافيه نقي):</span>
+                <span style="font-size:10.5px; font-weight:700; color:#8b661d; background:rgba(197,155,63,0.12); padding:2px 8px; border-radius:12px;">3D Diamond Setting ✦</span>
               </div>
               <div class="edge-selector-grid">
                 <div class="edge-opt-card active" data-edge="none" onclick="setEdgeSetting('none')">
@@ -2300,18 +2300,9 @@
                   <div class="edge-card-radio"></div>
                   <div class="edge-card-info">
                     <div class="edge-card-name">ألماس بافيه نقي (Pavé Diamond Rims)</div>
-                    <div class="edge-card-desc">صفان من الألماس البافيه النقي على كامل الحافتين العلوية والسفلية</div>
+                    <div class="edge-card-desc">صفان متلألئان من الألماس الأبيض النقي على كامل الحافتين العلوية والسفلية</div>
                   </div>
-                  <div class="edge-card-price">+$450</div>
-                </div>
-
-                <div class="edge-opt-card" data-edge="rainbow_gems" onclick="setEdgeSetting('rainbow_gems')">
-                  <div class="edge-card-radio"></div>
-                  <div class="edge-card-info">
-                    <div class="edge-card-name">ياقوت ملون وسافير (Rainbow Sapphires)</div>
-                    <div class="edge-card-desc">أحجار ياقوت ملونة فاخرة مع حواف ألماس مثل الصورة</div>
-                  </div>
-                  <div class="edge-card-price">+$520</div>
+                  <div class="edge-card-price" id="paveDiamondPriceTag">+$450</div>
                 </div>
               </div>
             </div>
@@ -2633,12 +2624,35 @@
     window.NICHE_LASER_ENGRAVING_ENABLED = (localStorage.getItem('niche_enable_laser_engraving') !== 'false');
 
     // State
+    // Admin Pricing Config for Customizer
+    const DEFAULT_CUSTOMIZER_PRICING = {
+      pave_diamond_price: 450,
+      bangle_base_price: 410,
+      custom_charm_price: 65
+    };
+
+    function getCustomizerPricing() {
+      try {
+        const saved = localStorage.getItem('niche_customizer_pricing');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          return Object.assign({}, DEFAULT_CUSTOMIZER_PRICING, parsed);
+        }
+      } catch (e) {
+        console.warn('Error reading niche_customizer_pricing:', e);
+      }
+      return Object.assign({}, DEFAULT_CUSTOMIZER_PRICING);
+    }
+
+    const initialPricing = getCustomizerPricing();
+
+    // State
     const state = {
       metal: 'yellow',
       size: 'XS',
-      basePrice: 410,
+      basePrice: initialPricing.bangle_base_price,
       charmPrice: 45,
-      edgeSetting: 'none', // 'none' | 'pave_diamonds' | 'rainbow_gems'
+      edgeSetting: 'none', // 'none' | 'pave_diamonds'
       edgePrice: 0,
       currentStep: 1, // 1: Front, 2: Back, 3: Review
       activeSide: 'front', // 'front' | 'back'
@@ -2962,7 +2976,7 @@
     rootGroup.add(bangleMesh);
 
     // =========================================================================
-    // 3.5. Pavé Diamond & Rainbow Gemstone Edge Setting (Dual Outer Rims)
+    // 3.5. Pavé Brilliant White Diamond Edge Setting (Dual Outer Rims)
     // =========================================================================
     const edgeGemstonesGroup = new THREE.Group();
     bangleMesh.add(edgeGemstonesGroup); // Child of bangleMesh to rotate seamlessly!
@@ -2971,41 +2985,24 @@
     const TOTAL_EDGE_STONES = NUM_EDGE_STONES_PER_RIM * 2;
     const stoneGeom = new THREE.OctahedronGeometry(0.00068, 1);
 
+    // Pure Brilliant White Pavé Diamond Material (Natural Diamond Sparkle, IOR 2.417)
     const diamondEdgeMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
       emissive: 0x333333,
       emissiveIntensity: 0.16,
-      roughness: 0.05,
-      metalness: 0.08,
-      transmission: 0.88,
+      roughness: 0.04,
+      metalness: 0.05,
+      transmission: 0.72,
       ior: 2.417,
-      reflectivity: 0.96,
+      reflectivity: 0.98,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.04,
-      envMapIntensity: 3.2
-    });
-
-    const rainbowEdgeMaterial = new THREE.MeshStandardMaterial({
-      roughness: 0.10,
-      metalness: 0.15,
-      envMapIntensity: 2.5
+      clearcoatRoughness: 0.02,
+      envMapIntensity: 3.6
     });
 
     const edgeInstancedMesh = new THREE.InstancedMesh(stoneGeom, diamondEdgeMaterial, TOTAL_EDGE_STONES);
     edgeInstancedMesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
     edgeInstancedMesh.castShadow = true;
-
-    // Vibrant Rainbow Sapphire & Gemstone Palette
-    const rainbowColors = [
-      new THREE.Color('#e8b931'), // Canary Yellow Sapphire
-      new THREE.Color('#e56a22'), // Spessartite Mandarin
-      new THREE.Color('#d41b36'), // Ruby Red
-      new THREE.Color('#d94e8f'), // Hot Pink Sapphire
-      new THREE.Color('#b55fe6'), // Purple Violet Sapphire
-      new THREE.Color('#1a6fd4'), // Royal Blue Sapphire
-      new THREE.Color('#22b88a'), // Mint Paraiba Tourmaline
-      new THREE.Color('#2eb848')  // Emerald Green
-    ];
 
     const dMat = new THREE.Matrix4();
     const dPos = new THREE.Vector3();
@@ -3018,6 +3015,7 @@
     const edgeZ = [0.00248, -0.00248]; // Top rim & bottom rim
 
     let eIdx = 0;
+    const pureWhite = new THREE.Color(0xffffff);
     edgeZ.forEach(zVal => {
       for (let i = 0; i < NUM_EDGE_STONES_PER_RIM; i++) {
         const theta = (i / NUM_EDGE_STONES_PER_RIM) * Math.PI * 2;
@@ -3028,7 +3026,7 @@
         dQuat.setFromAxisAngle(zAxis, rotZ);
         dMat.compose(dPos, dQuat, dScale);
         edgeInstancedMesh.setMatrixAt(eIdx, dMat);
-        edgeInstancedMesh.setColorAt(eIdx, rainbowColors[i % rainbowColors.length]);
+        edgeInstancedMesh.setColorAt(eIdx, pureWhite); // Pure Sparkling White Diamonds Only!
         eIdx++;
       }
     });
@@ -3040,6 +3038,7 @@
     edgeGemstonesGroup.visible = false; // Initially 'none'
 
     window.setEdgeSetting = function(type) {
+      const pricing = getCustomizerPricing();
       state.edgeSetting = type;
       if (type === 'none') {
         edgeGemstonesGroup.visible = false;
@@ -3047,11 +3046,7 @@
       } else if (type === 'pave_diamonds') {
         edgeGemstonesGroup.visible = true;
         edgeInstancedMesh.material = diamondEdgeMaterial;
-        state.edgePrice = 450;
-      } else if (type === 'rainbow_gems') {
-        edgeGemstonesGroup.visible = true;
-        edgeInstancedMesh.material = rainbowEdgeMaterial;
-        state.edgePrice = 520;
+        state.edgePrice = pricing.pave_diamond_price || 450;
       }
 
       document.querySelectorAll('.edge-opt-card').forEach(card => {
@@ -3061,9 +3056,9 @@
       updateUI();
       if (window.EP_UI?.toast) {
         const isAr = window.nicheI18n?.getLanguage() === 'ar';
-        const label = type === 'pave_diamonds' ? (isAr ? 'تم تفعيل ترصيع الألماس البافيه على الحافتين ✦' : 'Pavé Diamond Rims activated ✦')
-                    : type === 'rainbow_gems' ? (isAr ? 'تم تفعيل أحجار الياقوت الملونة على الحافتين ✦' : 'Rainbow Gemstone Rims activated ✦')
-                    : (isAr ? 'حواف الذهب الخالص السادة' : 'Smooth Solid Gold Rims');
+        const label = type === 'pave_diamonds'
+          ? (isAr ? 'تم تفعيل ترصيع الألماس البافيه النقي على الحافتين ✦' : 'Pure Pavé Diamond Rims activated ✦')
+          : (isAr ? 'حواف الذهب الخالص السادة' : 'Smooth Solid Gold Rims');
         window.EP_UI.toast(label, '✦');
       }
     };
@@ -3873,7 +3868,8 @@
     // Update Metal Finish
     function setMetal(metalKey) {
       state.metal = metalKey;
-      state.basePrice = metalKey === 'white' ? 225.00 : (metalKey === 'rose' ? 425.00 : 410.00);
+      const customizerBase = getCustomizerPricing().bangle_base_price || 410.00;
+      state.basePrice = metalKey === 'white' ? Math.round(customizerBase * 0.55) : (metalKey === 'rose' ? customizerBase + 20.00 : customizerBase);
       const conf = metalColors[metalKey];
       bandMaterial.color.set(conf.main);
       bandMaterial.roughness = conf.roughness;
@@ -3916,7 +3912,8 @@
         opt.classList.toggle('active', opt.dataset.metal === metalKey);
       });
 
-      state.basePrice = metalKey === 'white' ? 225 : (metalKey === 'rose' ? 430 : 410);
+      const customizerBase2 = getCustomizerPricing().bangle_base_price || 410;
+      state.basePrice = metalKey === 'white' ? Math.round(customizerBase2 * 0.55) : (metalKey === 'rose' ? customizerBase2 + 20 : customizerBase2);
 
       const revMetal = document.getElementById('revMetal');
       if (revMetal) {
@@ -4068,9 +4065,7 @@
       const accSummaryMetal = document.getElementById('accSummaryMetal');
       if (accSummaryMetal) {
         const edgeLabel = state.edgeSetting === 'pave_diamonds'
-          ? (window.nicheI18n?.getLanguage() === 'ar' ? ' • ألماس بافيه' : ' • Pavé Diamonds')
-          : state.edgeSetting === 'rainbow_gems'
-          ? (window.nicheI18n?.getLanguage() === 'ar' ? ' • ياقوت ملون' : ' • Rainbow Gems')
+          ? (window.nicheI18n?.getLanguage() === 'ar' ? ' • ألماس بافيه نقي' : ' • Pavé Diamonds')
           : '';
         accSummaryMetal.textContent = `${activeMetalName} • ${window.nicheI18n?.getLanguage() === 'ar' ? 'مقاس' : 'Size'} ${state.size}${edgeLabel}`;
       }
@@ -4495,7 +4490,7 @@
         id: 'bespoke_' + Date.now(),
         title: title,
         imgUrl: pendingCustomCharm.imgUrl,
-        price: 65,
+        price: getCustomizerPricing().custom_charm_price || 65,
         widthMm: 4.8,
         heightMm: 4.8,
         isCustom: true

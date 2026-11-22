@@ -640,6 +640,52 @@
               <strong>1 KWD = 3.25 USD</strong> &bull; <strong>1 USD = 0.308 KWD</strong>
             </p>
           </div>
+          <div style="margin-top:16px;">
+            <button class="btn btn-gold btn-sm" onclick="saveCurrencySettings()">حفظ إعدادات العملة ✦</button>
+          </div>
+        </div>
+
+        <!-- 3D Customizer & Pavé Diamond Pricing Card -->
+        <div class="card-box" style="max-width:700px; margin-top:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid #ede8e0; padding-bottom:12px;">
+            <div>
+              <h3 style="margin:0; font-size:15px; color:#181715;">✦ إدارة تسعير استوديو الـ 3D وترصيع الألماس (3D Customizer Pricing)</h3>
+              <p style="font-size:12px; color:#777; margin:4px 0 0 0;">التحكم الكامل والمباشر في تسعير خيارات الاستوديو ثلاثي الأبعاد وترصيع حواف الألماس الأبيض النقي</p>
+            </div>
+            <span class="badge badge-gold">مربوط بالاستوديو 3D</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom:18px;">
+            <label style="font-weight:700; color:#181715;">سعر ترصيع حواف الألماس البافيه النقي (Pavé Diamond Rims) بالدولار ($):</label>
+            <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+              <input type="number" id="cfgPavePrice" class="form-control" style="max-width:180px; font-weight:700;" min="0" step="10" placeholder="450" oninput="updatePricingKwdPreview()">
+              <span style="font-size:13px; color:#555;">USD $ &bull; يعادل <strong id="cfgPaveKwd" style="color:var(--gold-deep);">138.600</strong> د.ك KWD</span>
+            </div>
+            <span style="font-size:11.5px; color:#888; display:block; margin-top:4px;">يُضاف تلقائياً عند اختيار ترصيع الحافتين العلوية والسفلية بصفين من الألماس الأبيض النقي في الاستوديو.</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom:18px;">
+            <label style="font-weight:700; color:#181715;">السعر الأساسي لإسورة جلايدر™ بوجهين عيار 18K (Base Bangle Price) بالدولار ($):</label>
+            <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+              <input type="number" id="cfgBanglePrice" class="form-control" style="max-width:180px; font-weight:700;" min="0" step="10" placeholder="410" oninput="updatePricingKwdPreview()">
+              <span style="font-size:13px; color:#555;">USD $ &bull; يعادل <strong id="cfgBangleKwd" style="color:var(--gold-deep);">126.280</strong> د.ك KWD</span>
+            </div>
+            <span style="font-size:11.5px; color:#888; display:block; margin-top:4px;">سعر هيكل الإسورة الذهبية عيار 18K قبل إضافة الدلايات وترصيع الألماس.</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom:20px;">
+            <label style="font-weight:700; color:#181715;">رسم تصميم وتصنيع دلاية 3D مخصصة (Custom 3D Charm Upload) بالدولار ($):</label>
+            <div style="display:flex; align-items:center; gap:12px; margin-top:6px;">
+              <input type="number" id="cfgCustomCharmPrice" class="form-control" style="max-width:180px; font-weight:700;" min="0" step="5" placeholder="65" oninput="updatePricingKwdPreview()">
+              <span style="font-size:13px; color:#555;">USD $ &bull; يعادل <strong id="cfgCustomCharmKwd" style="color:var(--gold-deep);">20.020</strong> د.ك KWD</span>
+            </div>
+            <span style="font-size:11.5px; color:#888; display:block; margin-top:4px;">الرسم المحتسب لكل دلاية يرفعها العميل لتصنيعها خصيصاً في الأتيليه.</span>
+          </div>
+
+          <div style="display:flex; gap:12px;">
+            <button class="btn btn-gold" onclick="saveCustomizerPricing()">حفظ وتطبيق أسعار الاستوديو فوراً ✦</button>
+            <button class="btn btn-outline" onclick="resetCustomizerPricing()">استعادة الأسعار الافتراضية</button>
+          </div>
         </div>
       </section>
 
@@ -812,6 +858,7 @@
       charms[index].allow_upright = isAllowed;
       localStorage.setItem('niche_admin_charms', JSON.stringify(charms));
       renderCharmsTable();
+      hydrateCustomizerPricing();
       showToast('تم تحديث اتجاه الدلاية وتطبيقه في الأتيليه ✦');
     };
 
@@ -821,6 +868,7 @@
         charms[index].price = parseFloat(p);
         localStorage.setItem('niche_admin_charms', JSON.stringify(charms));
         renderCharmsTable();
+      hydrateCustomizerPricing();
         showToast('تم حفظ التسعيرة الجديدة للدلاية بنجاح ✦');
       }
     };
@@ -844,6 +892,7 @@
       });
       localStorage.setItem('niche_admin_charms', JSON.stringify(charms));
       renderCharmsTable();
+      hydrateCustomizerPricing();
       showToast('تمت إضافة الدلاية الجديدة للاستوديو بنجاح ✦');
     };
 
@@ -1053,6 +1102,63 @@
     };
 
     // Currency Settings
+    
+    // 3D Customizer Pricing Management
+    const DEFAULT_CUSTOMIZER_PRICING = {
+      pave_diamond_price: 450,
+      bangle_base_price: 410,
+      custom_charm_price: 65
+    };
+
+    window.getCustomizerPricing = function() {
+      try {
+        const saved = localStorage.getItem('niche_customizer_pricing');
+        if (saved) return Object.assign({}, DEFAULT_CUSTOMIZER_PRICING, JSON.parse(saved));
+      } catch(e) {}
+      return Object.assign({}, DEFAULT_CUSTOMIZER_PRICING);
+    };
+
+    window.updatePricingKwdPreview = function() {
+      const pave = parseFloat(document.getElementById('cfgPavePrice')?.value) || 0;
+      const bangle = parseFloat(document.getElementById('cfgBanglePrice')?.value) || 0;
+      const charm = parseFloat(document.getElementById('cfgCustomCharmPrice')?.value) || 0;
+
+      const rate = 0.308;
+      if (document.getElementById('cfgPaveKwd')) document.getElementById('cfgPaveKwd').textContent = (pave * rate).toFixed(3);
+      if (document.getElementById('cfgBangleKwd')) document.getElementById('cfgBangleKwd').textContent = (bangle * rate).toFixed(3);
+      if (document.getElementById('cfgCustomCharmKwd')) document.getElementById('cfgCustomCharmKwd').textContent = (charm * rate).toFixed(3);
+    };
+
+    window.saveCustomizerPricing = function() {
+      const pave = parseFloat(document.getElementById('cfgPavePrice').value) || DEFAULT_CUSTOMIZER_PRICING.pave_diamond_price;
+      const bangle = parseFloat(document.getElementById('cfgBanglePrice').value) || DEFAULT_CUSTOMIZER_PRICING.bangle_base_price;
+      const charm = parseFloat(document.getElementById('cfgCustomCharmPrice').value) || DEFAULT_CUSTOMIZER_PRICING.custom_charm_price;
+
+      const data = {
+        pave_diamond_price: pave,
+        bangle_base_price: bangle,
+        custom_charm_price: charm
+      };
+      localStorage.setItem('niche_customizer_pricing', JSON.stringify(data));
+      showToast('تم حفظ وتطبيق أسعار استوديو الـ 3D وترصيع الألماس بنجاح ✦');
+      updatePricingKwdPreview();
+    };
+
+    window.resetCustomizerPricing = function() {
+      if (!confirm('هل تريد استعادة أسعار الاستوديو الافتراضية ($450 للألماس، $410 للإسورة، $65 للدلاية)؟')) return;
+      localStorage.setItem('niche_customizer_pricing', JSON.stringify(DEFAULT_CUSTOMIZER_PRICING));
+      hydrateCustomizerPricing();
+      showToast('تمت استعادة الأسعار الافتراضية للاستوديو بنجاح ✦');
+    };
+
+    window.hydrateCustomizerPricing = function() {
+      const pricing = getCustomizerPricing();
+      if (document.getElementById('cfgPavePrice')) document.getElementById('cfgPavePrice').value = pricing.pave_diamond_price;
+      if (document.getElementById('cfgBanglePrice')) document.getElementById('cfgBanglePrice').value = pricing.bangle_base_price;
+      if (document.getElementById('cfgCustomCharmPrice')) document.getElementById('cfgCustomCharmPrice').value = pricing.custom_charm_price;
+      updatePricingKwdPreview();
+    };
+
     window.saveCurrencySettings = function() {
       const isKwd = document.getElementById('currKWD').checked;
       const curr = isKwd ? 'KWD' : 'USD';
@@ -1083,6 +1189,7 @@
     // Hydrate Settings
     window.addEventListener('DOMContentLoaded', () => {
       renderCharmsTable();
+      hydrateCustomizerPricing();
       renderBoutiquesList();
 
       // Laser toggle
