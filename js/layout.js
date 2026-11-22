@@ -92,13 +92,13 @@
       <div class="announcement-bar" id="luxuryAnnouncementBar">
         <div class="announcement-ticker-track" id="announcementTickerTrack">
           <div class="announcement-item active">
-            <span>✨ <strong>${lang === 'ar' ? 'الجمعة الذهبية:' : 'GOLDEN FRIDAY:'}</strong> ${lang === 'ar' ? 'خصم 15% إضافي بكود' : 'Extra 15% Off with code'} <strong class="promo-gold-tag" id="topBarPromoCopy">GOLDEN15</strong> <span class="promo-click-hint">${lang === 'ar' ? '(انقري للنسخ ✦)' : '(Click to copy ✦)'}</span></span>
+            <span>✦ <strong>${lang === 'ar' ? 'الجمعة الذهبية:' : 'GOLDEN FRIDAY:'}</strong> ${lang === 'ar' ? 'خصم 15% إضافي بكود' : 'Extra 15% Off with code'} <strong class="promo-gold-tag" id="topBarPromoCopy">GOLDEN15</strong> <span class="promo-click-hint">${lang === 'ar' ? '(انقري للنسخ ✦)' : '(Click to copy ✦)'}</span></span>
           </div>
           <div class="announcement-item">
             <span>✦ <strong>${lang === 'ar' ? 'شحن فاخر ومؤمّن مجاناً' : 'Complimentary Insured Delivery'}</strong> ${lang === 'ar' ? 'لكافة الطلبات مع تغليف هدايا ملكي' : 'on all fine jewelry orders with gift box'}</span>
           </div>
           <div class="announcement-item">
-            <span>💎 <strong>${lang === 'ar' ? 'استوديو التصميم 3D:' : 'Bespoke 3D Studio:'}</strong> ${lang === 'ar' ? 'صممي إسورتكِ الحصرية بلمستكِ ونقش تذكاري مجاني' : 'Craft your custom glider bangle with free engraving'}</span>
+            <span>✦ <strong>${lang === 'ar' ? 'استوديو التصميم <bdi>3D</bdi>:' : 'Bespoke 3D Studio:'}</strong> ${lang === 'ar' ? 'صممي إسورتكِ الحصرية بلمستكِ ونقش تذكاري مجاني' : 'Craft your custom glider bangle with free engraving'}</span>
           </div>
         </div>
       </div>

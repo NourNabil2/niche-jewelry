@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=leopard-luxury">
-  <script src="/js/db.js?v=18k-luxury"></script>
+  <link rel="stylesheet" href="css/styles.css?v=kuwaiti-luxury">
+  <script src="/js/db.js?v=kuwaiti-luxury"></script>
   <script src="js/store.js"></script>
-  <script src="/js/i18n.js?v=18k-luxury"></script>
-  <script src="/js/layout.js?v=leopard-luxury"></script>
+  <script src="/js/i18n.js?v=kuwaiti-luxury"></script>
+  <script src="/js/layout.js?v=kuwaiti-luxury"></script>
   <style>
     /* VIP Atelier Privilege Banner Button Hover Fix */
     .vip-studio-btn {
@@ -671,34 +671,47 @@
       <div class="panthere-hero-content">
         <div class="panthere-eyebrow-wrap">
           <span class="panthere-eyebrow-accent">✦</span>
-          <span class="panthere-eyebrow-text">مجموعة البانثر الفاخرة • براءة اختراع جلايدر™</span>
-          <span class="panthere-eyebrow-gold-tag">ذهب خالص 18K</span>
+          <span class="panthere-eyebrow-text" data-i18n="hero.eyebrow">صياغة كويتية فاخرة • براءة اختراع جلايدر™</span>
+          <span class="panthere-eyebrow-gold-tag" data-i18n="hero.tag_18k">ذهب خالص 18K</span>
         </div>
-        <h1 class="panthere-title">
-          صُممت لتنزلق <span class="gold-accent">بمهابة</span>.
+        <h1 class="panthere-title" data-i18n="hero.title">
+          صُممت لتنزلق <span class="gold-accent">بمَهابة</span>
         </h1>
-        <p class="panthere-sub">
-          إسورة جلايدر™ الأيقونية بوجهين من الذهب الخالص وعرق اللؤلؤ الطبيعي، مرصّعة بالألماس ومبتكرة لتعانق معصمكِ بسلاسة وتأسر القلوب.
+        <p class="panthere-sub" data-i18n="hero.sub">
+          إسورة جلايدر™ الأيقونية بوجهين من الذهب الخالص عيار 18 قيراط وعرق اللؤلؤ الطبيعي، مرصّعة بالألماس ومبتكرة لتعانق معصمج بانسيابية وتأسر القلوب.
         </p>
         <div class="panthere-cta-row">
           <a href="customizer.html" class="panthere-btn-gold">
             <span class="btn-sparkle">✦</span>
-            <span>صممي في استوديو الـ 3D</span>
+            <span data-i18n="hero.cta_studio">صممي في استوديو <bdi>3D</bdi></span>
             <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
           </a>
           <a href="collections.html" class="panthere-btn-glass">
-            <span>استكشفي المجموعات</span>
+            <span data-i18n="hero.cta_shop">استكشفي المجموعات</span>
             <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
           </a>
         </div>
 
-        <!-- Luxury Atelier Hallmarks -->
+        <!-- Luxury Atelier Hallmarks (Hairline SVGs - Zero Emojis) -->
         <div class="panthere-trust-pills">
-          <div class="trust-pill-item"><span class="pill-dot">✦</span> عيار 18 قيراط نقي</div>
-          <div class="trust-pill-item"><span class="pill-dot">💎</span> ألماس ولؤلؤ طبيعي</div>
-          <div class="trust-pill-item"><span class="pill-dot">🖋️</span> نقش ليزر مجاني</div>
-          <div class="trust-pill-item"><span class="pill-dot">🛡️</span> شحن فاخر مؤمّن</div>
+          <div class="trust-pill-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span data-i18n="hero.hallmark_gold">ذهب خالص عيار 18K</span>
+          </div>
+          <div class="trust-pill-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/><path d="M10 3l-2 6 4 12 4-12-2-6"/></svg>
+            <span data-i18n="hero.hallmark_glide">ألماس ولؤلؤ طبيعي</span>
+          </div>
+          <div class="trust-pill-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
+            <span data-i18n="hero.hallmark_engraving">نقش ليزري مجاني</span>
+          </div>
+          <div class="trust-pill-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span data-i18n="hero.hallmark_shipping">توصيل فاخر ومؤمّن</span>
+          </div>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -706,14 +719,14 @@
   <!-- Press & Guarantee Strip -->
   <section class="press-strip">
     <div class="container press-inner">
-      <span>مُحتفى بها عالمياً في</span>
+      <span data-i18n="press.celebrated">مُحتفى بها عالمياً في</span>
       <div class="press-logos">
         <span>Vogue</span>
         <span>Harper&rsquo;s Bazaar</span>
         <span>Elle Atelier</span>
         <span>Town &amp; Country</span>
       </div>
-      <span style="color:#8b661d; font-weight:600;">ضمان حِرفي مدى الحياة • ذهب خالص عيار 18</span>
+      <span style="color:#8b661d; font-weight:600;" data-i18n="press.guarantee">ضمان حِرفي مدى الحياة • ذهب خالص عيار 18K</span>
     </div>
   </section>
 
@@ -726,11 +739,11 @@
           <img src="assets/images/promo_popup_golden_friday.jpg" alt="عروض الجمعة الذهبية - NICH Jewelry" class="campaign-banner-bg">
           <div class="campaign-banner-scrim"></div>
           <div class="campaign-banner-content">
-            <span class="campaign-badge">✦ عروض حصرية لفترة محدودة</span>
-            <h3 class="campaign-title">الجمعة الذهبية • خصومات حتى 35%</h3>
-            <p class="campaign-sub">تألقي بأرقى تشكيلات أساور الذهب عيار 18 المرصعة بالألماس مع شحن مجاني.</p>
+            <span class="campaign-badge" data-i18n="campaign.badge1">✦ عروض حصرية لمقتني الدار في الكويت</span>
+            <h3 class="campaign-title" data-i18n="campaign.title1">الجمعة الذهبية • خصومات حتى 35%</h3>
+            <p class="campaign-sub" data-i18n="campaign.sub1">تألقي بأرقى تشكيلات أساور الذهب عيار 18 المرصعة بالألماس مع توصيل مجاني لباب بيتج.</p>
             <span class="campaign-cta-link">
-              <span>تسوقي عروض الجمعة الذهبية</span>
+              <span data-i18n="campaign.cta1">تسوقي عروض الجمعة الذهبية</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
             </span>
           </div>
@@ -741,11 +754,11 @@
           <img src="assets/images/bangle_gold_studio.jpg" alt="استوديو التصميم 3D - NICH Jewelry" class="campaign-banner-bg">
           <div class="campaign-banner-scrim"></div>
           <div class="campaign-banner-content">
-            <span class="campaign-badge">✦ براءة اختراع جلايدر™</span>
-            <h3 class="campaign-title">استوديو التصميم ثلاثي الأبعاد 3D</h3>
-            <p class="campaign-sub">اختاري الذهب، نوع اللؤلؤ، وركبي دلاياتكِ التذكارية بحرية مع معاينة حية 360°.</p>
+            <span class="campaign-badge" data-i18n="campaign.badge2">✦ ابتكار استوديو 3D المباشر</span>
+            <h3 class="campaign-title" data-i18n="campaign.title2">مجموعة الدلايات والأحرف الملكية</h3>
+            <p class="campaign-sub" data-i18n="campaign.sub2">دلايات النحلة الملكية وأحرف الألماس صُممت لتتحرك بانسيابية مع كل حركة لمعصمج.</p>
             <span class="campaign-cta-link">
-              <span>انطلقي لاستوديو التصميم ✦</span>
+              <span data-i18n="campaign.cta2">استكشفي تشكيلة الدلايات</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
             </span>
           </div>
@@ -773,8 +786,8 @@
   <section class="page-section lazurde-category-section">
     <div class="container">
       <div class="lazurde-cat-header">
-        <h2 class="lazurde-cat-main-title">تسوقوا حسب الفئة</h2>
-        <a href="collections.html" class="lazurde-cat-all-link">استكشفي كافة التشكيلات &larr;</a>
+        <h2 class="lazurde-cat-main-title" data-i18n="categories.heading">تسوقي حسب الفئة</h2>
+        <a href="collections.html" class="lazurde-cat-all-link" data-i18n="categories.all_link">استكشفي كافة التشكيلات &larr;</a>
       </div>
 
       <div class="category-grid lazurde-category-grid">
@@ -782,42 +795,42 @@
           <div class="cat-card-img lazurde-img-wrap">
             <img src="assets/images/necklace_pendant_studio.jpg" alt="سلاسل، عقود وقلادات" loading="lazy">
           </div>
-          <div class="cat-card-title lazurde-card-name">سلاسل، عقود وقلادات</div>
+          <div class="cat-card-title lazurde-card-name" data-i18n="categories.necklaces">سلاسل، عقود وقلادات</div>
         </a>
 
         <a href="collections.html?cat=rings" class="cat-card lazurde-card">
           <div class="cat-card-img lazurde-img-wrap">
             <img src="assets/images/ring_solitaire_studio.jpg" alt="خواتم متراصة" loading="lazy">
           </div>
-          <div class="cat-card-title lazurde-card-name">خواتم متراصة</div>
+          <div class="cat-card-title lazurde-card-name" data-i18n="categories.rings">خواتم متراصة</div>
         </a>
 
         <a href="collections.html?cat=bangles" class="cat-card lazurde-card">
           <div class="cat-card-img lazurde-img-wrap">
             <img src="assets/images/bangle_gold_studio.jpg" alt="أساور وخلاخيل جلايدر™" loading="lazy">
           </div>
-          <div class="cat-card-title lazurde-card-name">أساور وخلاخيل جلايدر™</div>
+          <div class="cat-card-title lazurde-card-name" data-i18n="categories.bangles">أساور وخلاخيل جلايدر™</div>
         </a>
 
         <a href="collections.html?cat=earrings" class="cat-card lazurde-card">
           <div class="cat-card-img lazurde-img-wrap">
             <img src="assets/images/earrings_huggie_studio.jpg" alt="أقراط بافيه دائرية" loading="lazy">
           </div>
-          <div class="cat-card-title lazurde-card-name">أقراط بافيه دائرية</div>
+          <div class="cat-card-title lazurde-card-name" data-i18n="categories.earrings">أقراط بافيه دائرية</div>
         </a>
 
         <a href="collections.html?cat=charms" class="cat-card lazurde-card">
           <div class="cat-card-img lazurde-img-wrap">
             <img src="assets/images/craftsmanship_editorial.jpg" alt="دلايات جلايدر المفرغة" loading="lazy">
           </div>
-          <div class="cat-card-title lazurde-card-name">دلايات جلايدر المفرغة</div>
+          <div class="cat-card-title lazurde-card-name" data-i18n="categories.charms">دلايات جلايدر المفرغة</div>
         </a>
 
         <a href="collections.html" class="cat-card lazurde-card">
           <div class="cat-card-img lazurde-img-wrap">
             <img src="assets/images/hero_editorial.jpg" alt="أطقم المقتنين الفاخرة" loading="lazy">
           </div>
-          <div class="cat-card-title lazurde-card-name">أطقم المقتنين الفاخرة</div>
+          <div class="cat-card-title lazurde-card-name" data-i18n="categories.sets">أطقم المقتنين الفاخرة</div>
         </a>
       </div>
     </div>
@@ -859,36 +872,34 @@
         </div>
 
         <div>
-          <span class="eyebrow">هندسة المسار المزدوج الحائزة على براءة اختراع</span>
-          <h2 class="section-heading mt-1">صممي قصتكِ بحرية على مساري الإسورة الأمامي والخلفي.</h2>
-          <p style="font-size:14px; color:#555; line-height:1.75; margin-top:14px;">
-            بخلاف أساور الدلايات التقليدية، تتميز إسورتنا المصاغة بدقة من الذهب الخالص عيار 18 قيراط بمسارين غائرين دقيقين على الوجهين. اسحبي الدلايات، رتبي المسافات، ودوري القطع بزاوية 90 درجة قبل طلب صياغتها المخصصة.
-          </p>
+          <span class="eyebrow" data-i18n="spotlight.eyebrow">هندسة المسار المزدوج الحائزة على براءة اختراع</span>
+          <h2 class="section-heading mt-1" data-i18n="spotlight.heading">صممي قصتج بحرية على مساري الإسورة الأمامي والخلفي.</h2>
+          <p style="font-size:14px; color:#555; line-height:1.75; margin-top:14px;" data-i18n="spotlight.desc">بخلاف أساور الدلايات التقليدية، تتميز إسورتنا المصاغة بدقة من الذهب الخالص عيار 18 قيراط بمسارين غائرين دقيقين على الوجهين. اسحبي الدلايات، رتبي المسافات، ودوري القطع بزاوية 90 درجة قبل طلب صياغتها المخصصة.</p>
 
           <div class="feature-steps">
             <div class="feature-step-box">
               <div class="feature-step-num">01</div>
-              <div class="feature-step-title">مساران أمامي وخلفي</div>
-              <div class="feature-step-desc">صممي حروف اسمك في الواجهة الأمامية واحفظي رموزك التذكارية الخاصة في الواجهة الخلفية.</div>
+              <div class="feature-step-title" data-i18n="spotlight.step1_title">مساران أمامي وخلفي</div>
+              <div class="feature-step-desc" data-i18n="spotlight.step1_desc">صممي حروف اسمج في الواجهة الأمامية واحفظي رموزج التذكارية الخاصة في الواجهة الخلفية.</div>
             </div>
             <div class="feature-step-box">
               <div class="feature-step-num">02</div>
-              <div class="feature-step-title">سحب وإفلات ثلاثي الأبعاد</div>
-              <div class="feature-step-desc">أمسكي أي دلاية وحركيها بسلاسة على مسار الإسورة بانسيابية تامة في بيئة 3D حية.</div>
+              <div class="feature-step-title" data-i18n="spotlight.step2_title">سحب وإفلات ثلاثي الأبعاد</div>
+              <div class="feature-step-desc" data-i18n="spotlight.step2_desc">أمسكي أي دلاية وحركيها بسلاسة على مسار الإسورة بانسيابية تامة في بيئة 3D حية.</div>
             </div>
             <div class="feature-step-box">
               <div class="feature-step-num">03</div>
-              <div class="feature-step-title">تدوير دقيق 90 درجة</div>
-              <div class="feature-step-desc">اختاري توجيه الرموز والدلايات أفقياً أو رأسياً بنقرة زر واحدة لتناسب ذوقكِ.</div>
+              <div class="feature-step-title" data-i18n="spotlight.step3_title">تدوير دقيق 90 درجة</div>
+              <div class="feature-step-desc" data-i18n="spotlight.step3_desc">اختاري توجيه الرموز والدلايات أفقياً أو رأسياً بنقرة زر واحدة لتناسب ذوقج.</div>
             </div>
             <div class="feature-step-box">
               <div class="feature-step-num">04</div>
-              <div class="feature-step-title">حفظ وتصدير ملف 3D</div>
-              <div class="feature-step-desc">احفظي تصميمكِ في قائمة الرغبات أو صدري ملف التصميم ثلاثي الأبعاد مباشرة قبل الصياغة.</div>
+              <div class="feature-step-title" data-i18n="spotlight.step4_title">حفظ وتصدير ملف 3D</div>
+              <div class="feature-step-desc" data-i18n="spotlight.step4_desc">احفظي تصميمج في قائمة الرغبات أو صدري ملف التصميم ثلاثي الأبعاد مباشرة قبل الصياغة.</div>
             </div>
           </div>
 
-          <a href="customizer.html" class="btn btn-primary" style="margin-top:20px; display:inline-flex;">ابدئي التخصيص الكامل في الاستوديو &larr;</a>
+          <a href="customizer.html" class="btn btn-primary" style="margin-top:20px; display:inline-flex;" data-i18n="spotlight.btn_full_studio">ابدأي التخصيص الكامل في الاستوديو &larr;</a>
         </div>
       </div>
     </div>
@@ -899,10 +910,10 @@
     <div class="container">
       <div class="section-header-row">
         <div>
-          <span class="eyebrow">مختارات الأتيليه الأكثر طلباً</span>
-          <h2 class="section-heading mt-1">القطع الأكثر مبيعاً وإقبالاً</h2>
+          <span class="eyebrow" data-i18n="bestsellers.eyebrow">مختارات الأتيليه الأكثر طلباً في الكويت</span>
+          <h2 class="section-heading mt-1" data-i18n="bestsellers.heading">القطع الأكثر مبيعاً وإقبالاً</h2>
         </div>
-        <a href="collections.html" class="btn btn-outline btn-sm">تسوقي كافة القطع &larr;</a>
+        <a href="collections.html" class="btn btn-outline btn-sm" data-i18n="bestsellers.view_all">تسوقي كافة القطع &larr;</a>
       </div>
       <div class="product-grid" id="homeBestSellersGrid"></div>
     </div>
@@ -949,14 +960,12 @@
     <div class="container">
       <div class="section-header-row">
         <div>
-          <span class="eyebrow">✦ فروعنا وبوتيكات الدار • Exclusive Salons</span>
-          <h2 class="section-heading mt-1">فروعنا في الكويت والخليج العربي</h2>
-          <p style="font-size:13.5px; color:#666; max-width:600px; margin-top:8px;">
-            تفضلوا بزيارة صالات العرض الخاصة لتجربة إسورة جلايدر™ بوجهيها، وتصميم القطع حسب الطلب في صالة كبار الشخصيات VIP على أيدي أمهر الصاغة.
-          </p>
+          <span class="eyebrow" data-i18n="boutiques.eyebrow">✦ فروعنا وبوتيكات الدار • Exclusive Salons</span>
+          <h2 class="section-heading mt-1" data-i18n="boutiques.heading">فروعنا في الكويت والخليج العربي</h2>
+          <p style="font-size:13.5px; color:#666; max-width:600px; margin-top:8px;" data-i18n="boutiques.sub">تفضلوا بزيارة صالات العرض الخاصة لتجربة إسورة جلايدر™ بوجهيها، وتصميم القطع حسب الطلب في صالة كبار الشخصيات VIP على أيدي أمهر الصاغة.</p>
         </div>
         <a href="https://wa.me/96599887766?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AE%D8%A7%D8%B5%D8%A9%20%D9%81%D9%8A%20%D8%A8%D9%88%D8%AA%D9%8A%D9%83%20%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA" target="_blank" class="btn btn-outline btn-sm">
-          <span>حجز موعد VIP ✦</span>
+          <span data-i18n="boutiques.btn_vip">حجز موعد VIP ✦</span>
         </a>
       </div>
 
@@ -1053,20 +1062,18 @@
   <section class="container" style="margin-bottom:40px;">
     <div class="vip-cta-banner">
       <div>
-        <span class="eyebrow" style="color:#737373;">امتياز مقتني الدار • Atelier Privilege</span>
+        <span class="eyebrow" style="color:#737373;" data-i18n="privilege.eyebrow">امتياز مقتني الدار • ATELIER PRIVILEGE</span>
         <h2 class="serif" style="font-size:clamp(26px, 2.8vw, 38px); font-weight:400; margin-top:6px; color:#141311;">
-          خصم 15% على أول طلب لإسورة جلايدر™ المخصصة
+          <span data-i18n="privilege.title">خصم 15% على أول طلب لإسورة جلايدر™ المخصصة</span>
         </h2>
-        <p style="font-size:13px; color:#555555; margin-top:6px;">
-          استخدمي كود الخصم الحصري <strong style="color:#141311; letter-spacing:0.05em;">NICH15</strong> عند إتمام الطلب أو في حقيبة التسوق.
-        </p>
+        <p style="font-size:13px; color:#555555; margin-top:6px;" data-i18n="privilege.sub">استخدمي كود الخصم الحصري NICH15 عند إتمام الطلب • توصيل سريع ومؤمّن لكافة مناطق الكويت</p>
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <button class="btn btn-sm" style="background:#141311; color:#FAF8F5; border-radius:999px; font-weight:700; padding:12px 24px; border:none; cursor:pointer;" onclick="navigator.clipboard?.writeText('NICH15'); EP_UI.toast('تم نسخ كود الخصم: NICH15 ✦');">
-          نسخ الكود: NICH15 ✦
+          <span data-i18n="privilege.btn_copy">نسخ الكود: NICH15 ✦</span>
         </button>
         <a href="customizer.html" class="vip-studio-btn">
-          ابدئي التصميم في الـ 3D
+          <span data-i18n="privilege.btn_studio">ابدأي التصميم في <bdi>3D</bdi></span>
         </a>
       </div>
     </div>

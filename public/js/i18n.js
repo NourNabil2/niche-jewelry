@@ -103,19 +103,154 @@
         tag_secure: 'دفع مشفر وآمن'
       },
       hero: {
-        eyebrow: '✦ مجموعة البانثر الفاخرة • براءة اختراع جلايدر™',
-        title: 'صُممت لتنزلق بمهابة.',
-        sub: 'إسورة جلايدر™ الأيقونية بوجهين من الذهب الخالص وعرق اللؤلؤ الطبيعي، مرصّعة بالألماس ومبتكرة لتعانق معصمكِ بسلاسة.',
-        cta_studio: 'صممي في استوديو الـ 3D ✦',
-        cta_shop: 'استكشفي المجموعات ←',
-        hallmark_gold: '✦ ذهب خالص عيار 18K',
-        hallmark_glide: '✦ ألماس ولؤلؤ طبيعي',
-        hallmark_engraving: '✦ نقش ليزر مجاني',
-        hallmark_shipping: '✦ شحن فاخر مؤمّن بالكامل',
+        eyebrow: 'صياغة كويتية فاخرة • براءة اختراع جلايدر™',
+        tag_18k: 'ذهب خالص 18K',
+        title: 'صُممت لتنزلق <span class="gold-accent">بمَهابة</span>',
+        sub: 'إسورة جلايدر™ الأيقونية بوجهين من الذهب الخالص عيار 18 قيراط وعرق اللؤلؤ الطبيعي، مرصّعة بالألماس ومبتكرة لتعانق معصمج بانسيابية وتأسر القلوب.',
+        cta_studio: 'صممي في استوديو <bdi>3D</bdi>',
+        cta_shop: 'استكشفي المجموعات',
+        hallmark_gold: 'ذهب خالص عيار 18K',
+        hallmark_glide: 'ألماس ولؤلؤ طبيعي',
+        hallmark_engraving: 'نقش ليزري مجاني',
+        hallmark_shipping: 'توصيل فاخر ومؤمّن',
         press_vogue: 'ڤوغ (Vogue)',
         press_harpers: 'هاربرز بازار (Harper\'s Bazaar)',
         press_elle: 'إل أتيليه (Elle Atelier)',
         press_town: 'تاون آند كانتري (Town & Country)'
+      },
+      press: {
+        celebrated: 'مُحتفى بها عالمياً في',
+        guarantee: 'ضمان حِرفي مدى الحياة • ذهب خالص عيار 18K'
+      },
+      campaign: {
+        badge1: '✦ عروض حصرية لمقتني الدار في الكويت',
+        title1: 'الجمعة الذهبية • خصومات حتى 35%',
+        sub1: 'تألقي بأرقى تشكيلات أساور الذهب عيار 18 المرصعة بالألماس مع توصيل مجاني لباب بيتج.',
+        cta1: 'تسوقي عروض الجمعة الذهبية',
+        badge2: '✦ ابتكار استوديو 3D المباشر',
+        title2: 'مجموعة الدلايات والأحرف الملكية',
+        sub2: 'دلايات النحلة الملكية وأحرف الألماس صُممت لتتحرك بانسيابية مع كل حركة لمعصمج.',
+        cta2: 'استكشفي تشكيلة الدلايات'
+      },
+      categories: {
+        heading: 'تسوقي حسب الفئة',
+        all_link: 'استكشفي كافة التشكيلات ←',
+        necklaces: 'سلاسل، عقود وقلادات',
+        rings: 'خواتم متراصة',
+        bangles: 'أساور وخلاخيل جلايدر™',
+        earrings: 'أقراط بافيه دائرية',
+        charms: 'دلايات جلايدر المفرغة',
+        sets: 'أطقم المقتنين الفاخرة'
+      },
+      spotlight: {
+        badge: '✦ استوديو 3D المباشر',
+        eyebrow: 'هندسة المسار المزدوج الحائزة على براءة اختراع',
+        heading: 'صممي قصتج بحرية على مساري الإسورة الأمامي والخلفي.',
+        desc: 'بخلاف أساور الدلايات التقليدية، تتميز إسورتنا المصاغة بدقة من الذهب الخالص عيار 18 قيراط بمسارين غائرين دقيقين على الوجهين. اسحبي الدلايات، رتبي المسافات، ودوري القطع بزاوية 90 درجة قبل طلب صياغتها المخصصة.',
+        step1_title: 'مساران أمامي وخلفي',
+        step1_desc: 'صممي حروف اسمج في الواجهة الأمامية واحفظي رموزج التذكارية الخاصة في الواجهة الخلفية.',
+        step2_title: 'سحب وإفلات ثلاثي الأبعاد',
+        step2_desc: 'أمسكي أي دلاية وحركيها بسلاسة على مسار الإسورة بانسيابية تامة في بيئة 3D حية.',
+        step3_title: 'تدوير دقيق 90 درجة',
+        step3_desc: 'اختاري توجيه الرموز والدلايات أفقياً أو رأسياً بنقرة زر واحدة لتناسب ذوقج.',
+        step4_title: 'حفظ وتصدير ملف 3D',
+        step4_desc: 'احفظي تصميمج في قائمة الرغبات أو صدري ملف التصميم ثلاثي الأبعاد مباشرة قبل الصياغة.',
+        btn_full_studio: 'ابدأي التخصيص الكامل في الاستوديو ←'
+      },
+      bestsellers: {
+        eyebrow: 'مختارات الأتيليه الأكثر طلباً في الكويت',
+        heading: 'القطع الأكثر مبيعاً وإقبالاً',
+        view_all: 'تسوقي كافة القطع ←'
+      },
+      boutiques: {
+        eyebrow: '✦ فروعنا وبوتيكات الدار • Exclusive Salons',
+        heading: 'فروعنا في الكويت والخليج العربي',
+        sub: 'تفضلوا بزيارة صالات العرض الخاصة لتجربة إسورة جلايدر™ بوجهيها، وتصميم القطع حسب الطلب في صالة كبار الشخصيات VIP على أيدي أمهر الصاغة.',
+        btn_vip: 'حجز موعد VIP ✦',
+        flagship_title: 'بوتيك غراند أفينيو',
+        flagship_eyebrow: 'مدينة الكويت • الفلاجشيب',
+        flagship_address: 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي',
+        flagship_hours: 'السبت - الخميس: 10:00 ص – 10:00 م | الجمعة: 1:00 م – 10:00 م',
+        salhiya_title: 'بوتيك الصالحية الفاخر',
+        salhiya_eyebrow: 'العاصمة • مجمع الصالحية',
+        salhiya_address: 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات الراقية',
+        salhiya_hours: 'يومياً: 10:00 ص – 9:30 م',
+        btn_book: 'حجز موعد خاص ←',
+        btn_map: 'الموقع على الخريطة ↗'
+      },
+      privilege: {
+        eyebrow: 'امتياز مقتني الدار • ATELIER PRIVILEGE',
+        title: 'خصم 15% حصري على أول طلب لإسورة جلايدر™',
+        sub: 'استخدمي كود الخصم الحصري NICH15 عند إتمام الطلب • توصيل سريع ومؤمّن لكافة مناطق الكويت',
+        btn_copy: 'نسخ الكود: NICH15',
+        btn_studio: 'ابدأي التصميم في 3D'
+      },
+      press: {
+        celebrated: 'مُحتفى بها عالمياً في',
+        guarantee: 'ضمان حِرفي مدى الحياة • ذهب خالص عيار 18K'
+      },
+      campaign: {
+        badge1: '✦ عروض حصرية لمقتني الدار في الكويت',
+        title1: 'الجمعة الذهبية • خصومات حتى 35%',
+        sub1: 'تألقي بأرقى تشكيلات أساور الذهب عيار 18 المرصعة بالألماس مع توصيل مجاني لباب بيتج.',
+        cta1: 'تسوقي عروض الجمعة الذهبية',
+        badge2: '✦ ابتكار استوديو 3D المباشر',
+        title2: 'مجموعة الدلايات والأحرف الملكية',
+        sub2: 'دلايات النحلة الملكية وأحرف الألماس صُممت لتتحرك بانسيابية مع كل حركة لمعصمج.',
+        cta2: 'استكشفي تشكيلة الدلايات'
+      },
+      categories: {
+        heading: 'تسوقي حسب الفئة',
+        all_link: 'استكشفي كافة التشكيلات ←',
+        necklaces: 'سلاسل، عقود وقلادات',
+        rings: 'خواتم متراصة',
+        bangles: 'أساور وخلاخيل جلايدر™',
+        earrings: 'أقراط بافيه دائرية',
+        charms: 'دلايات جلايدر المفرغة',
+        sets: 'أطقم المقتنين الفاخرة'
+      },
+      spotlight: {
+        badge: '✦ استوديو 3D المباشر',
+        eyebrow: 'هندسة المسار المزدوج الحائزة على براءة اختراع',
+        heading: 'صممي قصتج بحرية على مساري الإسورة الأمامي والخلفي.',
+        desc: 'بخلاف أساور الدلايات التقليدية، تتميز إسورتنا المصاغة بدقة من الذهب الخالص عيار 18 قيراط بمسارين غائرين دقيقين على الوجهين. اسحبي الدلايات، رتبي المسافات، ودوري القطع بزاوية 90 درجة قبل طلب صياغتها المخصصة.',
+        step1_title: 'مساران أمامي وخلفي',
+        step1_desc: 'صممي حروف اسمج في الواجهة الأمامية واحفظي رموزج التذكارية الخاصة في الواجهة الخلفية.',
+        step2_title: 'سحب وإفلات ثلاثي الأبعاد',
+        step2_desc: 'أمسكي أي دلاية وحركيها بسلاسة على مسار الإسورة بانسيابية تامة في بيئة 3D حية.',
+        step3_title: 'تدوير دقيق 90 درجة',
+        step3_desc: 'اختاري توجيه الرموز والدلايات أفقياً أو رأسياً بنقرة زر واحدة لتناسب ذوقج.',
+        step4_title: 'حفظ وتصدير ملف 3D',
+        step4_desc: 'احفظي تصميمج في قائمة الرغبات أو صدري ملف التصميم ثلاثي الأبعاد مباشرة قبل الصياغة.',
+        btn_full_studio: 'ابدأي التخصيص الكامل في الاستوديو ←'
+      },
+      bestsellers: {
+        eyebrow: 'مختارات الأتيليه الأكثر طلباً في الكويت',
+        heading: 'القطع الأكثر مبيعاً وإقبالاً',
+        view_all: 'تسوقي كافة القطع ←'
+      },
+      boutiques: {
+        eyebrow: '✦ فروعنا وبوتيكات الدار • Exclusive Salons',
+        heading: 'فروعنا في الكويت والخليج العربي',
+        sub: 'تفضلوا بزيارة صالات العرض الخاصة لتجربة إسورة جلايدر™ بوجهيها، وتصميم القطع حسب الطلب في صالة كبار الشخصيات VIP على أيدي أمهر الصاغة.',
+        btn_vip: 'حجز موعد VIP ✦',
+        flagship_title: 'بوتيك غراند أفينيو',
+        flagship_eyebrow: 'مدينة الكويت • الفلاجشيب',
+        flagship_address: 'مجمع الأفنيوز، منطقة برستيج (Prestige District)، الدور الأرضي',
+        flagship_hours: 'السبت - الخميس: 10:00 ص – 10:00 م | الجمعة: 1:00 م – 10:00 م',
+        salhiya_title: 'بوتيك الصالحية الفاخر',
+        salhiya_eyebrow: 'العاصمة • مجمع الصالحية',
+        salhiya_address: 'مجمع الصالحية التجاري، الميزانين الأول، ردهة المجوهرات الراقية',
+        salhiya_hours: 'يومياً: 10:00 ص – 9:30 م',
+        btn_book: 'حجز موعد خاص ←',
+        btn_map: 'الموقع على الخريطة ↗'
+      },
+      privilege: {
+        eyebrow: 'امتياز مقتني الدار • ATELIER PRIVILEGE',
+        title: 'خصم 15% حصري على أول طلب لإسورة جلايدر™',
+        sub: 'استخدمي كود الخصم الحصري NICH15 عند إتمام الطلب • توصيل سريع ومؤمّن لكافة مناطق الكويت',
+        btn_copy: 'نسخ الكود: NICH15',
+        btn_studio: 'ابدأي التصميم في 3D'
       },
       customizer: {
         studio_title: 'استوديو جلايدر™ ثلاثي الأبعاد • ذهب خالص 18K',
@@ -480,19 +615,87 @@
         tag_secure: 'Secure Checkout'
       },
       hero: {
-        eyebrow: '✦ The Royal Panther Collection • Patented Glider™',
-        title: 'Crafted to Glide in Majesty.',
-        sub: 'The iconic dual-track 18K solid gold bangle adorned with natural mother-of-pearl, hand-set diamonds, and bespoke engraving.',
-        cta_studio: 'Design in 3D Studio ✦',
-        cta_shop: 'Explore Collections →',
-        hallmark_gold: '✦ Solid 18K Gold',
-        hallmark_glide: '✦ Natural Diamonds & Pearls',
-        hallmark_engraving: '✦ Complimentary Laser Inscription',
-        hallmark_shipping: '✦ Fully Insured White-Glove Shipping',
+        eyebrow: 'Kuwaiti Haute Joaillerie • Patented Glider™',
+        tag_18k: 'Solid 18K Gold',
+        title: 'Crafted to Glide with <span class="gold-accent">Majesty</span>',
+        sub: 'The iconic dual-track 18K solid gold bangle adorned with natural mother-of-pearl, hand-set diamonds, and bespoke engraving engineered to embrace your wrist.',
+        cta_studio: 'Design in <bdi>3D</bdi> Studio',
+        cta_shop: 'Explore Collections',
+        hallmark_gold: 'Solid 18K Gold',
+        hallmark_glide: 'Diamonds & Pearls',
+        hallmark_engraving: 'Complimentary Engraving',
+        hallmark_shipping: 'Insured Delivery',
         press_vogue: 'Vogue',
         press_harpers: 'Harper\'s Bazaar',
         press_elle: 'Elle Atelier',
         press_town: 'Town & Country'
+      },
+      press: {
+        celebrated: 'Celebrated globally in',
+        guarantee: 'Lifetime Artisan Warranty • Solid 18K Gold'
+      },
+      campaign: {
+        badge1: '✦ Exclusive Kuwait Atelier Privilege',
+        title1: 'Golden Friday • Privileges up to 35% Off',
+        sub1: 'Indulge in 18K solid gold glider bangles and diamond charms with insured delivery to your doorstep.',
+        cta1: 'Explore Golden Friday Offers',
+        badge2: '✦ Live 3D Studio Experience',
+        title2: 'Royal Charms & Initial Medallions',
+        sub2: 'Royal bee motifs and diamond initials engineered to glide fluidly with every motion of your wrist.',
+        cta2: 'Explore Charms Collection'
+      },
+      categories: {
+        heading: 'Shop by Category',
+        all_link: 'Explore All Pieces →',
+        necklaces: 'Necklaces & Pendants',
+        rings: 'Stacking Rings',
+        bangles: 'Glider™ Bangles & Bracelets',
+        earrings: 'Pavé Huggie Earrings',
+        charms: 'Cutout Glider™ Charms',
+        sets: 'Collector Sets & High Jewelry'
+      },
+      spotlight: {
+        badge: '✦ Live 3D Atelier',
+        eyebrow: 'Patented Dual-Track Architecture',
+        heading: 'Compose your personal story on front and back channels.',
+        desc: 'Unlike traditional charm bracelets, our patented solid 18K gold bangle features dual recessed precision channels. Slide charms, adjust spacing, and rotate elements 90 degrees before custom forging.',
+        step1_title: 'Dual Front & Back Channels',
+        step1_desc: 'Curate your initials on the front track and keep intimate talismans close on the reverse.',
+        step2_title: 'Interactive 3D Drag & Drop',
+        step2_desc: 'Select any medallion and glide it freely along the bangle with fluid physics in real-time 3D.',
+        step3_title: '90-Degree Precision Rotation',
+        step3_desc: 'Toggle charms between horizontal and vertical alignment with a single tap to suit your aesthetic.',
+        step4_title: 'Save & Export 3D File',
+        step4_desc: 'Store your configuration in your Wishlist or export the GLB model prior to master goldsmithing.',
+        btn_full_studio: 'Launch Full 3D Studio Atelier →'
+      },
+      bestsellers: {
+        eyebrow: 'Most Coveted in Kuwait & The Gulf',
+        heading: 'Best Sellers & Iconic Creations',
+        view_all: 'Shop All Fine Jewelry →'
+      },
+      boutiques: {
+        eyebrow: '✦ Our Flagship & Exclusive Salons',
+        heading: 'Boutiques in Kuwait & The Gulf',
+        sub: 'We invite you to experience our private salons for bespoke consultations and hands-on fitting of the dual-sided Glider™ bangle.',
+        btn_vip: 'Book Private Appointment ✦',
+        flagship_title: 'Grand Avenue Flagship',
+        flagship_eyebrow: 'Kuwait City • Flagship',
+        flagship_address: 'The Avenues, Prestige District, Ground Floor',
+        flagship_hours: 'Sat – Thu: 10:00 AM – 10:00 PM | Fri: 1:00 PM – 10:00 PM',
+        salhiya_title: 'Salhiya Luxury Salon',
+        salhiya_eyebrow: 'Capital • Salhiya Complex',
+        salhiya_address: 'Salhiya Commercial Complex, Mezzanine 1, Fine Jewelry Concourse',
+        salhiya_hours: 'Daily: 10:00 AM – 9:30 PM',
+        btn_book: 'Book Consultation →',
+        btn_map: 'View on Map ↗'
+      },
+      privilege: {
+        eyebrow: 'Atelier Privilege • Collector Exclusive',
+        title: '15% Off Your First Patented Glider™ Bangle',
+        sub: 'Apply exclusive code NICH15 at checkout • Complimentary insured white-glove delivery across Kuwait.',
+        btn_copy: 'Copy Code: NICH15',
+        btn_studio: 'Design in 3D Atelier'
       },
       customizer: {
         studio_title: '3D Dual-Track Glider Atelier • Solid 18K Gold',
@@ -816,6 +1019,12 @@
       window.dispatchEvent(new CustomEvent('niche:languageChange', {
         detail: { lang, dir: lang === 'ar' ? 'rtl' : 'ltr' }
       }));
+      // Smooth immediate reload to ensure all static & dynamically injected components refresh cleanly
+      setTimeout(() => {
+        if (window.location && typeof window.location.reload === 'function') {
+          window.location.reload();
+        }
+      }, 50);
     }
   }
 

@@ -2494,17 +2494,23 @@ html[dir="rtl"] .accordion-hero-panel.active .panel-scrim {
   100% { transform: scale(1.05); }
 }
 
-/* Atmospheric Chiaroscuro Scrim: Leaves panther clear, gives text velvety legibility */
+/* Atmospheric Depth of Field Scrim: Soft atmospheric blur behind typography while keeping Black Panther and 18K glider bracelet crystal sharp */
 .panthere-hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.72) 42%, rgba(8, 7, 6, 0.22) 75%, rgba(8, 7, 6, 0.04) 100%);
+  background: linear-gradient(90deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.70) 42%, rgba(8, 7, 6, 0.18) 75%, rgba(8, 7, 6, 0.02) 100%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  mask-image: linear-gradient(90deg, #000000 0%, #000000 44%, transparent 78%);
+  -webkit-mask-image: linear-gradient(90deg, #000000 0%, #000000 44%, transparent 78%);
   pointer-events: none;
   z-index: 2;
 }
 
 html[dir="rtl"] .panthere-hero-scrim {
-  background: linear-gradient(270deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.72) 42%, rgba(8, 7, 6, 0.22) 75%, rgba(8, 7, 6, 0.04) 100%);
+  background: linear-gradient(270deg, rgba(8, 7, 6, 0.94) 0%, rgba(8, 7, 6, 0.70) 42%, rgba(8, 7, 6, 0.18) 75%, rgba(8, 7, 6, 0.02) 100%);
+  mask-image: linear-gradient(270deg, #000000 0%, #000000 44%, transparent 78%);
+  -webkit-mask-image: linear-gradient(270deg, #000000 0%, #000000 44%, transparent 78%);
 }
 
 .panthere-bottom-blend {
@@ -2646,7 +2652,11 @@ html[dir="rtl"] .panthere-hero-scrim {
   }
 
   .panthere-hero-scrim {
-    background: linear-gradient(180deg, rgba(8, 7, 6, 0.15) 0%, rgba(8, 7, 6, 0.45) 40%, rgba(8, 7, 6, 0.94) 85%) !important;
+    background: linear-gradient(180deg, rgba(8, 7, 6, 0.04) 0%, rgba(8, 7, 6, 0.45) 40%, rgba(8, 7, 6, 0.96) 82%) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    mask-image: linear-gradient(180deg, transparent 0%, transparent 32%, #000000 64%) !important;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 32%, #000000 64%) !important;
   }
 
   .panthere-hero-content {
@@ -2989,20 +2999,27 @@ html[dir="rtl"] .panthere-hero-scrim {
 .trust-pill-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(223, 200, 142, 0.22);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 11px;
-  color: #ded8ce;
-  letter-spacing: 0.03em;
+  font-size: 11.5px;
+  color: #f2ede4;
+  letter-spacing: 0.02em;
   font-weight: 500;
+  transition: all 0.25s ease;
 }
-.trust-pill-item .pill-dot {
+.trust-pill-item:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(223, 200, 142, 0.45);
+}
+.trust-pill-item svg {
   color: #dfc88e;
+  stroke: #dfc88e;
+  flex-shrink: 0;
 }
 
 /* 4. CAMPAIGN PROMOTIONAL BANNERS GRID */
