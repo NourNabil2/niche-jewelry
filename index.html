@@ -817,32 +817,36 @@
     <div class="container">
       <div class="split-grid">
         <div class="glider-interactive-card">
-          <div class="studio-preview-img-wrap" style="position:relative;">
-            <span class="product-badge is-3d">✦ استوديو 3D المباشر</span>
+          <div class="studio-preview-img-wrap">
+            <div class="studio-preview-badge">
+              <span class="badge-sparkle">✦</span>
+              <span data-i18n="spotlight.badge">استوديو <bdi>3D</bdi> المباشر</span>
+            </div>
             <img src="assets/images/bangle_gold_studio.jpg" id="spotlightMetalImg" alt="معاينة تشطيب إسورة جلايدر ثلاثية الأبعاد">
             
             <!-- Floating Mini Charms Rail Teaser -->
-            <div style="position:absolute; bottom:12px; left:12px; right:12px; background:rgba(255,255,255,0.92); border-radius:30px; padding:6px 14px; display:flex; align-items:center; justify-content:space-between; border:1px solid #ded8cc; box-shadow:0 4px 12px rgba(0,0,0,0.04);">
-              <span style="font-size:11px; font-weight:600; color:#181715;">دلايات جلايدر™ على المسار:</span>
-              <div style="display:flex; gap:8px; align-items:center;">
-                <img src="assets/charms/bee_gold.png" style="width:20px; height:20px; object-fit:contain;" alt="">
-                <img src="assets/charms/heart_gold.png" style="width:18px; height:18px; object-fit:contain;" alt="">
-                <img src="assets/charms/star_gold.png" style="width:18px; height:18px; object-fit:contain;" alt="">
-                <img src="assets/charms/letter_n_gold.png" style="width:17px; height:17px; object-fit:contain;" alt="">
+            <div class="spotlight-rail-pill">
+              <span class="rail-pill-label" data-i18n="spotlight.rail_label">دلايات جلايدر™ على المسار:</span>
+              <div class="rail-pill-icons">
+                <img src="assets/charms/bee_gold.png" alt="دلاية النحلة">
+                <img src="assets/charms/heart_gold.png" alt="دلاية القلب">
+                <img src="assets/charms/star_gold.png" alt="دلاية النجمة">
+                <img src="assets/charms/letter_n_gold.png" alt="دلاية الحرف N">
               </div>
             </div>
           </div>
           <div class="metal-preview-bar">
-            <div style="display:flex; align-items:center; gap:12px;">
-              <span style="font-size:11.5px; font-weight:700; color:#181715;">معدن الصياغة:</span>
-              <div style="display:flex; gap:10px;">
+            <div class="metal-selector-wrap">
+              <span class="metal-label" data-i18n="spotlight.metal_label">معدن الصياغة:</span>
+              <div class="metal-swatches-group">
                 <span class="swatch-sphere gold active" title="ذهب أصفر 18K" onclick="switchSpotlightMetal('yellow', this)"></span>
                 <span class="swatch-sphere white" title="فضة إسترليني 925" onclick="switchSpotlightMetal('white', this)"></span>
                 <span class="swatch-sphere rose" title="ذهب وردي 18K" onclick="switchSpotlightMetal('rose', this)"></span>
               </div>
             </div>
-            <a href="customizer.html?metal=yellow" id="spotlightOpenStudioBtn" class="btn btn-sm" style="background:#181715; color:#ffffff; border-radius:999px; padding:9px 18px; font-size:12px; font-weight:600; text-decoration:none;">
-              افتحي استوديو الـ 3D ✦
+            <a href="customizer.html?metal=yellow" id="spotlightOpenStudioBtn" class="spotlight-cta-btn" data-i18n="spotlight.open_studio_btn">
+              <span>افتحي استوديو الـ <bdi>3D</bdi></span>
+              <span class="cta-sparkle">✦</span>
             </a>
           </div>
         </div>

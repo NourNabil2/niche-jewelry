@@ -2166,23 +2166,133 @@ html[dir="rtl"] .hero-scrim {
   border-bottom: 1px solid #ede8e0 !important;
 }
 
-/* Floating 3D Glider Teaser Card */
+/* Floating 3D Glider Teaser Card with Balanced Luxury Padding & Spacing */
 .glider-interactive-card {
   background: #ffffff !important;
-  border: 1px solid #e5ded0 !important;
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(24, 23, 21, 0.04);
+  border: 1px solid #e7e2d7 !important;
+  border-radius: 18px !important;
+  padding: 16px !important;
+  box-shadow: 0 10px 30px rgba(24, 23, 21, 0.04);
   overflow: hidden;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .glider-interactive-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 155, 63, 0.1);
+  box-shadow: 0 14px 36px rgba(197, 155, 63, 0.10);
+}
+
+.studio-preview-img-wrap {
+  aspect-ratio: 1;
+  background: #fbf9f5;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(229, 222, 208, 0.6);
+}
+
+.studio-preview-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.25s ease;
+  display: block;
+}
+
+/* Luxury 3D Badge with Isolated BiDi */
+.studio-preview-badge {
+  position: absolute;
+  top: 14px;
+  inset-inline-start: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(24, 23, 21, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #dfba6c;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 155, 63, 0.25);
+  z-index: 3;
+  unicode-bidi: isolate;
+}
+
+/* Floating Charms Rail Pill: Generous, Balanced Frosted Glass */
+.spotlight-rail-pill {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(222, 216, 204, 0.85);
+  border-radius: 999px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  z-index: 3;
+}
+
+.rail-pill-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #181715;
+  letter-spacing: -0.01em;
+  unicode-bidi: isolate;
+}
+
+.rail-pill-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rail-pill-icons img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+}
+
+/* Bottom Controls Bar: Spacious Padding & Clean Alignment */
+.metal-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding: 6px 4px 2px;
+  border-top: none !important;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.metal-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.metal-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #181715;
+  unicode-bidi: isolate;
+}
+
+.metal-swatches-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .swatch-sphere {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
@@ -2190,13 +2300,43 @@ html[dir="rtl"] .hero-scrim {
   transition: all 0.2s ease;
   box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 2px 5px rgba(0,0,0,0.15);
 }
+
 .swatch-sphere:hover, .swatch-sphere.active {
-  transform: scale(1.18);
-  border-color: var(--text-dark);
+  transform: scale(1.15);
+  border-color: #181715;
+  box-shadow: 0 0 0 2px rgba(197, 155, 63, 0.4);
 }
 .swatch-sphere.gold { background: linear-gradient(135deg, #f3dfa2, #c59b3f 65%, #8b661d); }
 .swatch-sphere.white { background: linear-gradient(135deg, #ffffff, #dedede 65%, #a8a8a8); }
 .swatch-sphere.rose { background: linear-gradient(135deg, #f9dfd5, #e59d87 65%, #b46752); }
+
+.spotlight-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #181715;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  unicode-bidi: isolate;
+}
+
+.spotlight-cta-btn:hover {
+  background: #8b661d;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(139, 102, 29, 0.25);
+}
+
+.cta-sparkle {
+  color: #dfba6c;
+  font-size: 11px;
+}
 
 /* ==========================================================================
    INTERACTIVE EDITORIAL ACCORDION HERO BANNER
