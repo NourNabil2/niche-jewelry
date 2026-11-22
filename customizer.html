@@ -2976,65 +2976,142 @@
     rootGroup.add(bangleMesh);
 
     // =========================================================================
-    // 3.5. Pavé Brilliant White Diamond Edge Setting (Dual Outer Rims)
-    // =========================================================================
+    // 3.5. Pavé Brilliant White Diamond Edge Setting (Haute Joaillerie Micro-Pavé Rims)
     const edgeGemstonesGroup = new THREE.Group();
     bangleMesh.add(edgeGemstonesGroup); // Child of bangleMesh to rotate seamlessly!
 
-    const NUM_EDGE_STONES_PER_RIM = 130;
-    const TOTAL_EDGE_STONES = NUM_EDGE_STONES_PER_RIM * 2;
-    const stoneGeom = new THREE.OctahedronGeometry(0.00068, 1);
+    // Procedural Brilliant-Cut Diamond Geometry (Table, Crown facets, Girdle, and Pavilion cone)
+    function buildBrilliantDiamondGeometry(girdleR = 0.00027, tableR = 0.00016, crownH = 0.00009, pavH = 0.00018, segs = 8) {
+      const positions = [];
+      const tc = [0.0, crownH, 0.0];
+      const tRing = [];
+      const gRing = [];
+      for (let i = 0; i < segs; i++) {
+        const ang = (i / segs) * Math.PI * 2;
+        tRing.push([tableR * Math.cos(ang), crownH, tableR * Math.sin(ang)]);
+        gRing.push([girdleR * Math.cos(ang), 0.0, girdleR * Math.sin(ang)]);
+      }
+      const culet = [0.0, -pavH, 0.0];
+      function addTri(p1, p2, p3) {
+        positions.push(p1[0], p1[1], p1[2], p2[0], p2[1], p2[2], p3[0], p3[1], p3[2]);
+      }
+      for (let i = 0; i < segs; i++) {
+        const next = (i + 1) % segs;
+        // Table facet
+        addTri(tc, tRing[i], tRing[next]);
+        // Crown triangular facets
+        addTri(tRing[i], gRing[i], gRing[next]);
+        addTri(tRing[i], gRing[next], tRing[next]);
+        // Pavilion facet pointing into gold
+        addTri(culet, gRing[next], gRing[i]);
+      }
+      const geom = new THREE.BufferGeometry();
+      geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
+      geom.computeVertexNormals();
+      return geom;
+    }
 
-    // Pure Brilliant White Pavé Diamond Material (Natural Diamond Sparkle, IOR 2.417)
+    const NUM_EDGE_STONES_PER_RIM = 220;
+    const TOTAL_EDGE_STONES = NUM_EDGE_STONES_PER_RIM * 2;
+    const diamondGeom = buildBrilliantDiamondGeometry(0.00027, 0.00016, 0.00009, 0.00018, 8);
+
+    // Natural High-Refraction Diamond Material (Pure Crystal Fire, IOR 2.417, Zero Emission)
     const diamondEdgeMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
-      emissive: 0x333333,
-      emissiveIntensity: 0.16,
-      roughness: 0.04,
-      metalness: 0.05,
-      transmission: 0.72,
+      emissive: 0x000000,
+      roughness: 0.0,
+      metalness: 0.02,
+      transmission: 0.90,
       ior: 2.417,
-      reflectivity: 0.98,
+      reflectivity: 1.0,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.02,
-      envMapIntensity: 3.6
+      clearcoatRoughness: 0.0,
+      thickness: 0.0008,
+      envMapIntensity: 4.8
     });
 
-    const edgeInstancedMesh = new THREE.InstancedMesh(stoneGeom, diamondEdgeMaterial, TOTAL_EDGE_STONES);
+    const edgeInstancedMesh = new THREE.InstancedMesh(diamondGeom, diamondEdgeMaterial, TOTAL_EDGE_STONES);
     edgeInstancedMesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
     edgeInstancedMesh.castShadow = true;
+
+    // Micro-Prong Gold Grain Setting (Tiny gold beads between each diamond)
+    const TOTAL_PRONGS = TOTAL_EDGE_STONES * 2;
+    const prongGeom = new THREE.SphereGeometry(0.00008, 6, 6);
+    const prongInstancedMesh = new THREE.InstancedMesh(prongGeom, bandMaterial, TOTAL_PRONGS);
+    prongInstancedMesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
 
     const dMat = new THREE.Matrix4();
     const dPos = new THREE.Vector3();
     const dQuat = new THREE.Quaternion();
     const dScale = new THREE.Vector3(1, 1, 1);
-    const zAxis = new THREE.Vector3(0, 0, 1);
+    const pMat = new THREE.Matrix4();
+    const pPos = new THREE.Vector3();
 
-    const rA = (28.5 + Dd - 0.5) * 0.001; // ~0.0304m
-    const rB = (24.0 + Dd - 0.5) * 0.001; // ~0.0259m
-    const edgeZ = [0.00248, -0.00248]; // Top rim & bottom rim
+    // Coordinates of the 18K solid gold lips (centered at Z = ±2.06mm, outer radius ~30.9mm / ~26.4mm)
+    const rA = (28.5 + Dd) * 0.001 - 0.00004; // ~0.03086m
+    const rB = (24.0 + Dd) * 0.001 - 0.00004; // ~0.02636m
+    const edgeZ = [0.00206, -0.00206]; // Flush within top and bottom gold lips
 
     let eIdx = 0;
-    const pureWhite = new THREE.Color(0xffffff);
+    let pIdx = 0;
+    const upVec = new THREE.Vector3(0, 0, 1);
+    const fwdVec = new THREE.Vector3();
+    const rightVec = new THREE.Vector3();
+    const basisMat = new THREE.Matrix4();
+
     edgeZ.forEach(zVal => {
       for (let i = 0; i < NUM_EDGE_STONES_PER_RIM; i++) {
         const theta = (i / NUM_EDGE_STONES_PER_RIM) * Math.PI * 2;
         const px = rA * Math.cos(theta);
         const py = rB * Math.sin(theta);
+
+        // Outward normal vector of the ellipse
+        const nx = rB * Math.cos(theta);
+        const ny = rA * Math.sin(theta);
+        const nLen = Math.hypot(nx, ny) || 1.0;
+        const normX = nx / nLen;
+        const normY = ny / nLen;
+
+        // Position diamond flush with outer gold lip
         dPos.set(px, py, zVal);
-        const rotZ = Math.atan2(py, px);
-        dQuat.setFromAxisAngle(zAxis, rotZ);
+
+        // Orthonormal basis: table points OUTWARD along normal, girdle aligns with rim & height
+        fwdVec.set(normX, normY, 0).normalize();
+        rightVec.crossVectors(fwdVec, upVec).normalize();
+        basisMat.makeBasis(rightVec, fwdVec, upVec);
+        dQuat.setFromRotationMatrix(basisMat);
+
         dMat.compose(dPos, dQuat, dScale);
         edgeInstancedMesh.setMatrixAt(eIdx, dMat);
-        edgeInstancedMesh.setColorAt(eIdx, pureWhite); // Pure Sparkling White Diamonds Only!
         eIdx++;
+
+        // Place micro-prongs at junction between stones (half-step angle)
+        const halfTheta = theta + (Math.PI / NUM_EDGE_STONES_PER_RIM);
+        const prongPx = rA * Math.cos(halfTheta);
+        const prongPy = rB * Math.sin(halfTheta);
+        const pnx = rB * Math.cos(halfTheta);
+        const pny = rA * Math.sin(halfTheta);
+        const pnLen = Math.hypot(pnx, pny) || 1.0;
+        const pNormX = (pnx / pnLen) * 0.00004;
+        const pNormY = (pny / pnLen) * 0.00004;
+
+        // Top prong bead
+        pPos.set(prongPx + pNormX, prongPy + pNormY, zVal + 0.00028);
+        pMat.compose(pPos, dQuat, dScale);
+        prongInstancedMesh.setMatrixAt(pIdx++, pMat);
+
+        // Bottom prong bead
+        pPos.set(prongPx + pNormX, prongPy + pNormY, zVal - 0.00028);
+        pMat.compose(pPos, dQuat, dScale);
+        prongInstancedMesh.setMatrixAt(pIdx++, pMat);
       }
     });
 
     edgeInstancedMesh.instanceMatrix.needsUpdate = true;
-    if (edgeInstancedMesh.instanceColor) edgeInstancedMesh.instanceColor.needsUpdate = true;
+    prongInstancedMesh.instanceMatrix.needsUpdate = true;
 
     edgeGemstonesGroup.add(edgeInstancedMesh);
+    edgeGemstonesGroup.add(prongInstancedMesh);
     edgeGemstonesGroup.visible = false; // Initially 'none'
 
     window.setEdgeSetting = function(type) {
@@ -3877,6 +3954,7 @@
       bandMaterial.emissive.set(conf.emissive);
       bandMaterial.emissiveIntensity = conf.emissiveIntensity;
       bandMaterial.envMapIntensity = conf.envMapIntensity;
+      if (typeof prongInstancedMesh !== 'undefined') prongInstancedMesh.material = bandMaterial;
 
       channelMaterial.color.set(conf.channel);
       channelMaterial.roughness = conf.channelRoughness;
