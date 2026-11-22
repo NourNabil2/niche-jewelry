@@ -141,6 +141,35 @@
       padding: 44px 36px;
       box-shadow: var(--shadow-md);
     }
+  
+    /* Kuwait KYC Component Styles */
+    .kyc-tab-btn {
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .kyc-tab-btn:hover {
+      border-color: var(--gold-primary);
+    }
+    .kyc-tab-btn.active {
+      background: var(--gold-soft);
+      border-color: var(--gold-primary);
+      color: var(--gold-deep);
+    }
+    .kyc-verify-box {
+      background: #faf8f5;
+      border: 1px solid #ebd9b5;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
   </style>
 </head>
 <body>
@@ -264,6 +293,63 @@
                   <div style="font-size:11px; color:#737373;">${t('checkout.shipping_express_sub')}</div>
                 </div>
                 <strong style="direction:ltr;">$25.00</strong>
+              </div>
+            </div>
+
+            <!-- 2.5. Kuwait KYC & AML Security Verification (مطابقة الهوية المدنية) -->
+            <div class="checkout-panel" id="kycPanel">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+                <div>
+                  <h2 class="checkout-step-heading" style="margin-bottom:3px;">
+                    <span>🔐 مطابقة الهوية ومكافحة غسيل الأموال (Kuwait KYC)</span>
+                  </h2>
+                  <div style="font-size:11.5px; color:#737373;">
+                    متطلب تنظيمي صادر عن وزارة التجارة والصناعة لمبيعات المعادن الثمينة والأحجار الكريمة
+                  </div>
+                </div>
+                <span id="kycStatusBadge" style="background:#eef7ee; color:#1e7e34; border:1px solid #c3e6cb; font-size:11px; padding:3px 10px; border-radius:12px; font-weight:700;">
+                  ● جاهز للمصادقة
+                </span>
+              </div>
+
+              <!-- KYC Method Tabs -->
+              <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
+                <button type="button" class="kyc-tab-btn ${window.kycMode !== 'otp' && window.kycMode !== 'upload' ? 'active' : ''}" onclick="setKycMode('paci')">
+                  📱 تطبيق هويتي (Kuwait Mobile ID)
+                </button>
+                <button type="button" class="kyc-tab-btn ${window.kycMode === 'otp' ? 'active' : ''}" onclick="setKycMode('otp')">
+                  💬 رمز التحقق (SMS OTP)
+                </button>
+                <button type="button" class="kyc-tab-btn ${window.kycMode === 'upload' ? 'active' : ''}" onclick="setKycMode('upload')">
+                  🪪 صورة البطاقة المدنية (Civil ID)
+                </button>
+              </div>
+
+              <!-- KYC Dynamic Box -->
+              <div class="kyc-verify-box" id="kycActionBox">
+                ${(window.kycMode === 'otp') ? `
+                  <div style="font-size:12px; color:#555; margin-bottom:8px;">إرسال كود تحقق لحظي لرقم هاتفك الكويتي المسجل:</div>
+                  <div style="display:flex; gap:8px;">
+                    <input type="text" id="kycPhoneInput" placeholder="+965 xxxxxxxx" value="${document.getElementById('chkPhone')?.value || '+965 99887766'}" style="flex:1; padding:8px 12px; font-size:12.5px; border:1px solid #ccc; border-radius:6px; direction:ltr;">
+                    <button type="button" class="btn" style="padding:8px 16px; font-size:12px; background:var(--gold-deep); color:#fff; border:none; border-radius:6px; cursor:pointer;" onclick="triggerKycOtp()">إرسال الرمز</button>
+                  </div>
+                  <div id="kycOtpStatus" style="font-size:11.5px; color:#1e7e34; margin-top:8px; display:none;">✓ تم إرسال الرمز إلى هاتفك بنجاح (كود التجربة: 8492)</div>
+                ` : (window.kycMode === 'upload') ? `
+                  <div style="font-size:12px; color:#555; margin-bottom:8px;">إرفاق صورة البطاقة المدنية الكويتية (الوجهين) للمطابقة:</div>
+                  <input type="file" id="kycFileInput" accept="image/*" style="font-size:12px; padding:6px; border:1px dashed #c59b3f; border-radius:6px; width:100%; background:#fff;" onchange="triggerKycUpload(this)">
+                  <div id="kycUploadStatus" style="font-size:11.5px; color:#1e7e34; margin-top:8px; display:none;">✓ تم استلام مستند الهوية وجارٍ مطابقته مع بيانات الطلب</div>
+                ` : `
+                  <div style="font-size:12px; color:#555; margin-bottom:8px;">المصادقة الفورية الآمنة عبر تطبيق "هويتي" المعتمد من الهيئة العامة للمعلومات المدنية (PACI):</div>
+                  <div style="display:flex; gap:8px;">
+                    <input type="text" id="kycCivilIdInput" placeholder="أدخلي الرقم المدني (12 رقماً)" maxlength="12" value="295081403214" style="flex:1; padding:8px 12px; font-size:12.5px; border:1px solid #ccc; border-radius:6px; direction:ltr; font-weight:600;">
+                    <button type="button" class="btn" id="btnPaciAuth" style="padding:8px 16px; font-size:12px; background:var(--gold-deep); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:700;" onclick="triggerPaciAuth()">
+                      مصادقة هويتي 📲
+                    </button>
+                  </div>
+                  <div id="paciStatusMsg" style="font-size:11.5px; color:#1e7e34; margin-top:8px; font-weight:600; display:none;">
+                    ✓ تم استلام المصادقة بنجاح من تطبيق هويتي (سارة أحمد المطيري • موثق رسمياً)
+                  </div>
+                `}
               </div>
             </div>
 
@@ -492,6 +578,50 @@
 
     window.addEventListener('niche:languageChange', renderCheckoutPage);
     document.addEventListener('DOMContentLoaded', renderCheckoutPage);
-  </script>
+  
+    // KYC Interactive Functions for Kuwait Compliance
+    window.kycMode = 'paci';
+    window.currentKycStatus = 'Kuwait Mobile ID (هويتي - موثق رسمياً)';
+
+    window.setKycMode = function(mode) {
+      window.kycMode = mode;
+      renderCheckoutPage();
+    };
+
+    window.triggerPaciAuth = function() {
+      const btn = document.getElementById('btnPaciAuth');
+      const msg = document.getElementById('paciStatusMsg');
+      const badge = document.getElementById('kycStatusBadge');
+      if (btn) btn.textContent = 'جارٍ طلب المصادقة...';
+      setTimeout(() => {
+        if (btn) { btn.textContent = 'تم التوثيق ✓'; btn.style.background = '#28a745'; }
+        if (msg) msg.style.display = 'block';
+        if (badge) { badge.textContent = '● موثق عبر هويتي ✓'; badge.style.background = '#d4edda'; badge.style.color = '#155724'; }
+        window.currentKycStatus = 'Kuwait Mobile ID (PACI Verified ✓)';
+        window.EP_UI?.toast ? window.EP_UI.toast('تمت مصادقة الهوية عبر تطبيق هويتي بنجاح!', '✓') : null;
+      }, 700);
+    };
+
+    window.triggerKycOtp = function() {
+      const status = document.getElementById('kycOtpStatus');
+      const badge = document.getElementById('kycStatusBadge');
+      if (status) status.style.display = 'block';
+      if (badge) { badge.textContent = '● موثق عبر OTP ✓'; badge.style.background = '#d4edda'; badge.style.color = '#155724'; }
+      window.currentKycStatus = 'SMS OTP Verified ✓';
+      window.EP_UI?.toast ? window.EP_UI.toast('تم إرسال رمز التحقق لهاتفك!', '📱') : null;
+    };
+
+    window.triggerKycUpload = function(input) {
+      const status = document.getElementById('kycUploadStatus');
+      const badge = document.getElementById('kycStatusBadge');
+      if (input.files && input.files.length > 0) {
+        if (status) status.style.display = 'block';
+        if (badge) { badge.textContent = '● مستند الهوية مرفق ✓'; badge.style.background = '#d4edda'; badge.style.color = '#155724'; }
+        window.currentKycStatus = 'Civil ID Document Uploaded ✓';
+        window.EP_UI?.toast ? window.EP_UI.toast('تم إرفاق البطاقة المدنية بنجاح!', '🪪') : null;
+      }
+    };
+
+</script>
 </body>
 </html>
