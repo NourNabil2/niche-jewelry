@@ -120,7 +120,7 @@
           </div>
 
           <a href="${getRoute('index.html')}" class="brand-logo" aria-label="Niche Jewelry">
-            <img src="/assets/images/niche-logo-dark.png" alt="Niche Jewelry" class="brand-logo-img">
+            <img src="/assets/images/niche-logo-gold.png" alt="Niche Jewelry" class="brand-logo-img">
           </a>
 
           <div class="header-actions">
@@ -150,7 +150,7 @@
       <div class="mobile-nav-drawer" id="mobileNavDrawer">
         <div class="mobile-nav-panel">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-            <a href="${getRoute('index.html')}" style="display:inline-block;"><img src="assets/images/niche-logo-dark.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block;"></a>
+            <a href="${getRoute('index.html')}" style="display:inline-block;"><img src="assets/images/niche-logo-gold.png" alt="Niche Jewelry" style="height:34px; width:auto; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));"></a>
             <div style="display:flex; align-items:center; gap:8px;">
               ${getLangSwitcher()}
               <button class="icon-btn" id="closeMobileMenu">&times;</button>

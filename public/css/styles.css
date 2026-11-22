@@ -2726,8 +2726,11 @@ html[dir="rtl"] .panthere-hero-scrim {
 
 /* 1. ANNOUNCEMENT BAR & TICKER */
 .announcement-bar {
-  background: #090807 !important;
-  color: #f4efe6 !important;
+  background: #24050b !important;
+  background-image: linear-gradient(90deg, rgba(28, 4, 9, 0.92) 0%, rgba(42, 6, 14, 0.65) 50%, rgba(28, 4, 9, 0.92) 100%), url('../assets/images/burgundy_leopard_appbar.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  color: #faf5ed !important;
   font-size: 11px !important;
   font-weight: 500 !important;
   letter-spacing: 0.08em !important;
@@ -2735,9 +2738,10 @@ html[dir="rtl"] .panthere-hero-scrim {
   padding: 9px 14px !important;
   overflow: hidden !important;
   width: 100% !important;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.22) !important;
+  border-bottom: 1px solid rgba(223, 200, 142, 0.3) !important;
   position: relative !important;
   z-index: 91 !important;
+  box-shadow: 0 1px 8px rgba(18, 2, 6, 0.4) !important;
 }
 
 .announcement-ticker-track {
@@ -2797,52 +2801,91 @@ html[dir="rtl"] .panthere-hero-scrim {
   }
 }
 
-/* 2. STICKY LIGHT LUXURY HEADER (Ivory & Alabaster Quiet Luxury) */
+/* 2. STICKY BURGUNDY LEOPARD VELVET HEADER (Cartier Panthère Haute Joaillerie) */
 .site-header {
-  background: rgba(255, 255, 255, 0.96) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid #ede8e0 !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  background-color: #26050c !important;
+  background-image: linear-gradient(135deg, rgba(32, 4, 10, 0.90) 0%, rgba(48, 7, 15, 0.82) 48%, rgba(28, 3, 9, 0.92) 100%), url('../assets/images/burgundy_leopard_appbar.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(223, 200, 142, 0.28) !important;
+  box-shadow: 0 4px 20px rgba(18, 2, 6, 0.45) !important;
   transform: translateZ(0);
 }
 
 .site-header .nav-link {
-  color: #1a1918 !important;
-  font-size: 11px !important;
+  color: #f7f3ec !important;
+  font-size: 11.5px !important;
   font-weight: 600 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  transition: color 0.2s ease !important;
+  transition: all 0.2s ease !important;
 }
 
 .site-header .nav-link:hover, .site-header .nav-link.active {
-  color: #8b661d !important;
-  text-shadow: none !important;
+  color: #dfc88e !important;
+  text-shadow: 0 0 12px rgba(223, 200, 142, 0.45) !important;
 }
 
 .site-header .nav-link.studio-pill {
-  background: #fbf9f4 !important;
-  border: 1.5px solid #c59b3f !important;
-  color: #8b661d !important;
+  background: rgba(223, 200, 142, 0.14) !important;
+  border: 1.5px solid rgba(223, 200, 142, 0.65) !important;
+  color: #f3dfae !important;
   padding: 5px 14px !important;
   border-radius: 999px !important;
   font-weight: 700 !important;
-  box-shadow: none !important;
+  backdrop-filter: blur(6px) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.25s ease !important;
 }
 
 .site-header .nav-link.studio-pill:hover {
-  background: #181715 !important;
-  color: #c59b3f !important;
-  border-color: #181715 !important;
+  background: linear-gradient(135deg, #e4cca0 0%, #c59b3f 100%) !important;
+  color: #1a060a !important;
+  border-color: #dfc88e !important;
+  box-shadow: 0 4px 16px rgba(223, 200, 142, 0.4) !important;
 }
 
 .site-header .icon-btn {
-  color: #1a1918 !important;
+  color: #f7f3ec !important;
+  transition: all 0.2s ease !important;
 }
 .site-header .icon-btn:hover {
-  color: #8b661d !important;
+  color: #dfc88e !important;
   transform: translateY(-1px);
+  filter: drop-shadow(0 0 6px rgba(223, 200, 142, 0.45));
+}
+
+.site-header .brand-logo-img {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  height: 40px;
+  width: auto;
+  transition: transform 0.25s ease;
+}
+.site-header .brand-logo-img:hover {
+  transform: scale(1.03);
+}
+
+.site-header .lang-switcher-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(223, 200, 142, 0.35) !important;
+  color: #f7f3ec !important;
+}
+.site-header .lang-switcher-btn .lang-opt.active {
+  background: #dfc88e !important;
+  color: #1a060a !important;
+  font-weight: 700 !important;
+}
+.site-header .lang-switcher-btn:hover {
+  border-color: #dfc88e !important;
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+.site-header .icon-badge {
+  background: #dfc88e !important;
+  color: #1a060a !important;
+  font-weight: 800 !important;
 }
 
 /* 3. HERO CONTENT & TYPOGRAPHY */
