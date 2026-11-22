@@ -2618,7 +2618,16 @@ html[dir="rtl"] .accordion-hero-panel.active .panel-scrim {
   background: #090807;
 }
 
-.panthere-hero-bg {
+.panthere-hero-picture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.panthere-hero-bg,
+.panthere-hero-picture .panthere-hero-bg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -2817,30 +2826,50 @@ html[dir="rtl"] .panthere-hero-scrim {
 /* Mobile Quiet Luxury: clean, spacious, zero clutter */
 @media (max-width: 900px) {
   .panthere-hero-section {
-    min-height: 80vh;
-    max-height: 640px;
-    align-items: flex-end;
+    min-height: 86vh !important;
+    max-height: 740px !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding-bottom: 24px !important;
   }
 
+  .panthere-hero-picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .panthere-hero-picture .panthere-hero-bg,
   .panthere-hero-bg {
-    object-position: center 25% !important;
-    filter: contrast(1.04) brightness(0.96) saturate(1.05) !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    filter: contrast(1.04) brightness(0.98) saturate(1.05) !important;
   }
 
   .panthere-hero-scrim {
-    background: linear-gradient(180deg, rgba(8, 7, 6, 0.02) 0%, rgba(8, 7, 6, 0.20) 40%, rgba(8, 7, 6, 0.75) 75%, rgba(8, 7, 6, 0.98) 100%) !important;
+    background: linear-gradient(180deg, transparent 0%, transparent 46%, rgba(9, 8, 7, 0.45) 66%, rgba(9, 8, 7, 0.95) 90%, #090807 100%) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
   }
 
+  .panthere-bottom-blend {
+    height: 60px !important;
+  }
+
   .panthere-hero-content {
-    padding: 0 20px 36px;
-    text-align: center;
-    max-width: 100%;
-    margin: 0 auto;
-    width: 100%;
+    padding: 0 16px !important;
+    margin: 0 auto 16px auto !important;
+    text-align: center !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   .panthere-eyebrow {
@@ -2853,35 +2882,36 @@ html[dir="rtl"] .panthere-hero-scrim {
   }
 
   .panthere-title {
-    font-size: 34px;
-    line-height: 1.18;
-    margin-bottom: 8px;
+    font-size: clamp(26px, 6.5vw, 32px) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 8px !important;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 0, 0, 0.9) !important;
   }
 
   .panthere-sub {
-    font-size: 13px;
-    line-height: 1.5;
-    margin: 0 auto 20px;
-    max-width: 320px;
-    color: #e4dfd7;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin: 0 auto 18px auto !important;
+    max-width: 320px !important;
+    color: #e4dfd7 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
   }
 
   .panthere-cta-row {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
   }
 
-  .panthere-btn-gold {
-    width: 100%;
-    padding: 14px 20px;
-    font-size: 13px;
-  }
-
+  .panthere-btn-gold,
+  .panthere-btn-glass,
   .panthere-btn-outline {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 12px;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 12px 20px !important;
+    font-size: 13px !important;
   }
 
   .panthere-hallmarks {

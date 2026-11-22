@@ -16,7 +16,10 @@
   @endphp
   <!-- 1. Cartier Panthère Quiet Luxury Editorial Hero (Clean, Breathable & Iconic) -->
   <section class="panthere-hero-section">
-    <img src="{{ asset('assets/images/hero_black_panther.jpg') }}" alt="Majestic Black Panther beside solid 18K gold bangle" class="panthere-hero-bg">
+    <picture class="panthere-hero-picture">
+      <source media="(max-width: 768px)" srcset="{{ asset('assets/images/hero_black_panther_mobile.jpg') }}?v=crisp-luxury-mob-v1">
+      <img src="{{ asset('assets/images/hero_black_panther.jpg') }}" alt="Majestic Black Panther beside solid 18K gold bangle" class="panthere-hero-bg">
+    </picture>
     <div class="panthere-hero-scrim"></div>
     <div class="panthere-bottom-blend"></div>
     <div class="container">
