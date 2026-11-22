@@ -3,202 +3,482 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>عرض السعر والمواصفات الرسمية | دار نيش للمجوهرات</title>
+  <title>دار نيش للمجوهرات • عرض السعر الفني والمواصفات وفاتورة المشروع | Niche Jewelry Official Quotation & Invoice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold-primary: #c59b3f;
-      --gold-deep: #9e7526;
-      --gold-soft: #fcf9f2;
-      --gold-border: #e8d8b5;
-      --text-dark: #1b1b1b;
-      --text-muted: #666666;
+      --gold-deep: #956f1f;
+      --gold-light: #dfbe74;
+      --gold-soft: #faf6ec;
+      --gold-border: #e6d3a7;
+      --burgundy: #4a0e17;
+      --burgundy-deep: #2c070d;
+      --burgundy-soft: #fcf4f5;
+      --text-dark: #1a1a1a;
+      --text-body: #3d3d3d;
+      --text-muted: #6b6b6b;
       --border-light: #e5e5e5;
-      --bg-warm: #faf9f6;
+      --bg-warm: #f7f6f2;
       --bg-white: #ffffff;
+      --success: #22863a;
+      --warning: #b08800;
+      --info: #0366d6;
+      --font-ar: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Montserrat', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font-sans);
+      font-family: var(--font-ar);
       color: var(--text-dark);
       background: var(--bg-warm);
-      line-height: 1.6;
-      padding: 40px 20px;
+      line-height: 1.7;
+      padding: 40px 16px;
+      -webkit-font-smoothing: antialiased;
     }
 
     .doc-container {
-      max-width: 960px;
+      max-width: 1040px;
       margin: 0 auto;
       background: var(--bg-white);
       border: 1px solid var(--border-light);
-      border-radius: 8px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-      padding: 60px 50px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      padding: 55px 60px;
+      position: relative;
     }
 
-    /* Header & Branding */
+    /* Floating Print & Action Bar */
+    .action-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 12px;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid rgba(197, 155, 63, 0.4);
+    }
+    .action-btn {
+      background: var(--gold-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--font-ar);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .action-btn:hover {
+      background: var(--gold-deep);
+      transform: translateY(-2px);
+    }
+    .action-btn.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #f5f5f5;
+    }
+    .action-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Header & Royal Branding */
     .doc-header {
       border-bottom: 2px solid var(--gold-border);
       padding-bottom: 30px;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 25px;
     }
-    .brand-title {
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-crest {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--burgundy-deep), var(--burgundy));
+      border: 2px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      font-size: 26px;
       font-family: var(--font-serif);
-      font-size: 34px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-dark);
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(74, 14, 23, 0.25);
     }
-    .brand-subtitle {
-      font-size: 11px;
-      letter-spacing: 0.2em;
+    .brand-title-ar {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--burgundy-deep);
+      line-height: 1.2;
+    }
+    .brand-title-en {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gold-deep);
       font-weight: 600;
       margin-top: 4px;
     }
     .meta-box {
-      text-align: right;
-      font-size: 12px;
+      text-align: left;
+      direction: ltr;
+      font-size: 12.5px;
       color: var(--text-muted);
       line-height: 1.8;
+      background: var(--bg-warm);
+      padding: 14px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
     }
     .meta-box strong { color: var(--text-dark); }
-
-    /* Notice Banner */
-    .notice-banner {
-      background: var(--gold-soft);
-      border: 1px solid var(--gold-border);
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin-bottom: 36px;
-      font-size: 13px;
-      color: #634a17;
-      line-height: 1.5;
-    }
-    .notice-banner strong { color: var(--gold-deep); font-weight: 600; }
-
-    /* Sections */
-    h2 {
-      font-family: var(--font-serif);
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--text-dark);
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 8px;
-      margin: 40px 0 16px 0;
-      letter-spacing: 0.04em;
-    }
-    h3 {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-      margin: 24px 0 10px 0;
-    }
-    p, li {
-      font-size: 13.5px;
-      color: #333333;
-      line-height: 1.7;
-    }
-    ul, ol {
-      margin-left: 20px;
-      margin-bottom: 16px;
-    }
-    li { margin-bottom: 6px; }
-
-    /* Tables */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0 24px 0;
-      font-size: 12.5px;
-    }
-    th, td {
-      padding: 11px 14px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-light);
-    }
-    th {
-      background: #f8f8f8;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--text-dark);
-      text-transform: uppercase;
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      background: #e6f4ea;
+      color: #137333;
       font-size: 11px;
+      font-weight: 700;
+      border-radius: 12px;
+      margin-top: 4px;
     }
-    tr:hover td { background: #fafafa; }
-    .price-col { text-align: right; font-weight: 600; }
-    th.price-col { text-align: right; }
 
-    /* Highlight Cards */
-    .card-grid {
+    /* Executive Highlights & AI Advantage */
+    .executive-card {
+      background: linear-gradient(135deg, #fdfbf7 0%, #f9f4ea 100%);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 35px;
+      position: relative;
+    }
+    .executive-card::before {
+      content: "✦ عرض قيمة استثنائي ✦";
+      position: absolute;
+      top: -12px;
+      right: 28px;
+      background: var(--gold-primary);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 14px;
+      border-radius: 12px;
+      letter-spacing: 0.05em;
+    }
+    .executive-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--burgundy);
+      margin-bottom: 10px;
+    }
+    .executive-card p {
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.8;
+    }
+
+    /* Section Headers */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--burgundy-deep);
+      border-bottom: 2px solid var(--gold-border);
+      padding-bottom: 10px;
+      margin: 45px 0 20px 0;
+    }
+    .section-title span.badge-num {
+      width: 28px;
+      height: 28px;
+      background: var(--gold-primary);
+      color: #ffffff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* Feature Grid */
+    .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
       margin: 20px 0;
     }
-    .feature-card {
-      background: #fafafa;
+    .feature-item {
+      background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 6px;
-      padding: 16px;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .feature-card h4 {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gold-deep);
-      margin-bottom: 6px;
+    .feature-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-primary), var(--burgundy));
     }
-    .feature-card p {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
+    .feature-item:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 155, 63, 0.12);
     }
-
-    /* Floating Print Button */
-    .print-btn-bar {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 100;
-    }
-    .btn-print {
-      background: var(--text-dark);
-      color: #ffffff;
-      border: none;
-      border-radius: 30px;
-      padding: 12px 24px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      transition: all 0.2s ease;
+    .feature-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--burgundy);
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .btn-print:hover {
-      background: var(--gold-primary);
-      transform: translateY(-2px);
+    .feature-item p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .feature-item ul {
+      margin-top: 10px;
+      padding-right: 18px;
+      font-size: 12px;
+      color: var(--text-body);
+    }
+    .feature-item li { margin-bottom: 5px; }
+
+    /* Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 18px 0 26px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: right;
+    }
+    th {
+      background: var(--gold-soft);
+      color: var(--burgundy-deep);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1.5px solid var(--gold-border);
+      font-size: 12.5px;
+    }
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-body);
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #faf8f3; }
+    .price-kwd {
+      font-weight: 800;
+      color: var(--burgundy-deep);
+      font-size: 13.5px;
+      white-space: nowrap;
+    }
+    .price-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
     }
 
-    /* Print Styles */
+    /* Highlight Banner Cards */
+    .callout-box {
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .callout-box.gold {
+      background: var(--gold-soft);
+      border: 1px solid var(--gold-border);
+      color: #634a17;
+    }
+    .callout-box.info {
+      background: #f0f7ff;
+      border: 1px solid #c8e1ff;
+      color: #03428e;
+    }
+    .callout-box.success {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    /* INVOICE SECTION (STUNNING LUXURY INVOICE) */
+    .invoice-card {
+      background: #ffffff;
+      border: 2px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 35px 40px;
+      margin: 40px 0 25px 0;
+      box-shadow: 0 10px 30px rgba(197, 155, 63, 0.15);
+      position: relative;
+    }
+    .invoice-badge {
+      position: absolute;
+      top: -14px;
+      left: 40px;
+      background: var(--burgundy);
+      color: var(--gold-primary);
+      border: 1.5px solid var(--gold-primary);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 18px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 1px dashed var(--gold-border);
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+    .inv-to {
+      font-size: 13px;
+      color: var(--text-body);
+      line-height: 1.8;
+    }
+    .inv-to strong {
+      font-size: 15px;
+      color: var(--burgundy);
+    }
+    .inv-details {
+      text-align: left;
+      direction: ltr;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .inv-details strong { color: var(--text-dark); }
+
+    .inv-total-row {
+      background: linear-gradient(135deg, var(--gold-soft), #fff9ed);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .inv-total-lbl {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--burgundy-deep);
+    }
+    .inv-total-amt {
+      text-align: left;
+    }
+    .inv-amt-main {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--burgundy);
+      font-family: var(--font-serif);
+      line-height: 1.1;
+    }
+    .inv-amt-usd {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Comparison Box */
+    .vs-box {
+      display: flex;
+      gap: 16px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .vs-col {
+      flex: 1;
+      min-width: 240px;
+      padding: 18px 22px;
+      border-radius: 8px;
+    }
+    .vs-agency {
+      background: #fdf2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+    .vs-ai {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      color: #14532d;
+    }
+    .vs-col h5 {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .vs-col p { font-size: 12px; line-height: 1.6; }
+
+    /* Signatures & Footer */
+    .sign-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 45px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border-light);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .seal-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1.5px dashed var(--gold-border);
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: var(--gold-soft);
+      color: var(--gold-deep);
+      font-weight: 700;
+    }
+
     @media print {
       body { background: #ffffff; padding: 0; }
       .doc-container {
@@ -207,302 +487,428 @@
         padding: 0;
         max-width: 100%;
       }
-      .print-btn-bar { display: none !important; }
-      h2 { page-break-after: avoid; }
-      table { page-break-inside: avoid; }
-      .feature-card { break-inside: avoid; }
+      .action-bar { display: none !important; }
+      .feature-item { break-inside: avoid; }
+      table { break-inside: avoid; }
+      .invoice-card { break-inside: avoid; }
+    }
+
+    @media (max-width: 768px) {
+      .doc-container { padding: 30px 20px; }
+      .doc-header { flex-direction: column; }
+      .meta-box { width: 100%; text-align: right; direction: rtl; }
+      .inv-details { text-align: right; direction: rtl; }
+      .inv-total-row { flex-direction: column; gap: 12px; text-align: center; }
+      .sign-row { flex-direction: column; gap: 20px; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <div class="print-btn-bar">
-    <button class="btn-print" onclick="window.print()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      Print / Save as PDF
+  <!-- Floating Action Bar -->
+  <div class="action-bar">
+    <button class="action-btn" onclick="window.print()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      طباعة الفاتورة / حفظ PDF
     </button>
+    <a href="/admin.html" class="action-btn secondary">
+      لوحة التحكم الملكية
+    </a>
+    <a href="/customizer.html" class="action-btn secondary">
+      استوديو الـ 3D
+    </a>
   </div>
 
   <div class="doc-container">
-    
+
     <!-- Header -->
     <header class="doc-header">
-      <div>
-        <h1 class="brand-title">Niche Jewelry</h1>
-        <div class="brand-subtitle">Project Quotation & Technical Proposal</div>
+      <div class="brand-group">
+        <div class="brand-crest">N</div>
+        <div>
+          <div class="brand-title-ar">دار نيش للمجوهرات • الكويت</div>
+          <div class="brand-title-en">Niche Jewelry Atelier • Official Technical Quotation & Invoice</div>
+        </div>
       </div>
       <div class="meta-box">
-        <div><strong>Date:</strong> November 17, 2026</div>
-        <div><strong>Target Market:</strong> Global (Universal Card Acceptance)</div>
-        <div><strong>Currency:</strong> USD ($)</div>
-        <div><strong>Target Delivery:</strong> 12–16 Weeks</div>
+        <div><strong>رقم الوثيقة / Invoice Ref:</strong> INV-NICH-2026-001</div>
+        <div><strong>تاريخ الإصدار / Date:</strong> 23 نوفمبر 2026</div>
+        <div><strong>العميل المستهدف:</strong> دار نيش للمجوهرات (دولة الكويت)</div>
+        <div><strong>العملة المعتمدة:</strong> دينار كويتي (KWD) • دولار أمريكي ($)</div>
+        <div><span class="status-badge">● معتمد ومكتمل تقنياً 100%</span></div>
       </div>
     </header>
 
-    <!-- Notice -->
-    <div class="notice-banner">
-      <strong>✦ Important Pricing Note:</strong> All pricing estimates presented in this proposal are <strong>market benchmark reference rates</strong> for transparency and scope estimation. <strong>Final engagement pricing is customized and subject to adjustment by project management</strong> based on chosen tiers, deliverables, and commercial arrangements.
+    <!-- Executive Highlight: AI-Accelerated Cost Advantage -->
+    <div class="executive-card">
+      <h3>✦ القيمة الاستثنائية: تطوير متقدم بالذكاء الاصطناعي بتكلفة اقتصادية وواقعية</h3>
+      <p>
+        تم بناء هذا المشروع بالاستفادة الكاملة من هندسة الذكاء الاصطناعي المتقدمة (AI-Accelerated Engineering). في العادة، يتطلب بناء منصة مجوهرات بهذا التعقيد (محرك 3D متكامل بـ WebGL، وتوافق مع الهواتف الذكية، ولوحة تحكم ملكية للأسعار، ودعم 16 دلاية بدون تداخل، وثنائية لغة كاملة) ميزانيات ضخمة تتراوح بين <strong>4,000 إلى 8,000 د.ك ($13,000 – $26,000)</strong> لدى شركات البرمجة التقليدية وتستغرق من 3 إلى 5 أشهر.
+      </p>
+      <p style="margin-top: 8px;">
+        من خلال استغلال خوارزمياتنا وأدوات الذكاء الاصطناعي، تم اختصار 85% من التكاليف والأوقات لتقديم هذا المتجر الراقي بسعر رمزي واقتصادي مخصص للتدشين المباشر، مع خفض التكاليف التشغيلية الشهرية (الاستضافة وقواعد البيانات) لتكون <strong>مجانية أو في حدود 0 – 6 د.ك فقط شهرياً</strong>.
+      </p>
     </div>
 
-    <!-- Executive Summary -->
-    <h2>1. Executive Summary</h2>
-    <p>Niche Jewelry is a luxury atelier e-commerce platform built to offer personalized, interactive 3D fine jewelry customization. This document outlines the technical scope, timeline, and market benchmarks across four core functional tracks:</p>
+    <!-- Section 1: All Features Breakdown -->
+    <div class="section-title">
+      <span class="badge-num">1</span>
+      <span>دليل المميزات والإمكانيات الشاملة المكتملة في الموقع (Full Features)</span>
+    </div>
 
-    <div class="card-grid">
-      <div class="feature-card">
-        <h4>1. 3D Engine</h4>
-        <p>In-house 3D modeling, WebGL rendering, real-time metal reflection, 360° orbit, and interactive drag-and-drop customization.</p>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>💎 محرك 3D تفاعلي حصري (WebGL Atelier)</h4>
+        <p>استوديو مباشر ثلاثي الأبعاد مبني بـ Three.js يتيح للعميلة تصميم إسورتها بالكامل:</p>
+        <ul>
+          <li><strong>معاينة 360° ودوران سلس:</strong> إضاءة PBR لمعان الذهب عيار 18K (أصفر، أبيض، وردي).</li>
+          <li><strong>مسار انزلاقي ذكي حتى 16 دلاية:</strong> نظام Auto-spacing ديناميكي يوزع الدلايات بالتساوي ويمنع تداخلها تماماً.</li>
+          <li><strong>حماية القفل والمفصل (Knuckle Guard):</strong> حاجز أمان يمنع وصول الدلايات لمفصل أو قفل الإسورة.</li>
+          <li><strong>ترصيع الحواف:</strong> صفان من الألماس البافيه الأبيض الناصع (Solid White) أو الياقوت الملون (Rainbow Sapphires).</li>
+          <li><strong>نقش ليزري داخلي فوري:</strong> كتابة الإهداء أو الاسم داخل باطن الإسورة بدقة متناهية مع ختم عيار 18K.</li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <h4>2. Web & Backend</h4>
-        <p>Full-stack Next.js web application, PostgreSQL schema, 40+ REST API endpoints, and a comprehensive merchant administration panel.</p>
+
+      <div class="feature-item">
+        <h4>✨ متجر إلكتروني ملكي فاخر (Storefront)</h4>
+        <p>واجهة أمامية مصممة بأعلى معايير دور المجوهرات العالمية (Cartier / Van Cleef):</p>
+        <ul>
+          <li><strong>ثنائية اللغة الكاملة:</strong> عربي كويتي ملكي بأسلوب راقٍ + إنجليزي فخم.</li>
+          <li><strong>هيرو بانر كريستالي 2K:</strong> صورة فائقة الدقة مع شعاع الضوء الذهبي المتحرك (Luxury Sheen).</li>
+          <li><strong>بطاقة Spotlight التفاعلية:</strong> استعراض 3D سريع مع زر فتح الاستوديو.</li>
+          <li><strong>تجربة تسوق متكاملة:</strong> صفحات المجموعات، تفاصيل المنتج، سلة المشتريات، المفضلة، وقصة الدار.</li>
+          <li><strong>سرعة فائقة وتجاوب تام:</strong> متوافق مع كافة أحجام الشاشات والهواتف (Mobile First).</li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <h4>3. Universal Payments</h4>
-        <p>Worldwide Visa and Mastercard checkout with 3D Secure 2.0, Apple Pay, Google Pay, and automated invoicing.</p>
+
+      <div class="feature-item">
+        <h4>👑 لوحة التحكم الملكية للتاجر (Admin Panel)</h4>
+        <p>نظام إدارة شامل ومستقل يمنح التاجر السيطرة الكاملة على المتجر بدون الحاجة لمبرمج:</p>
+        <ul>
+          <li><strong>تحكم مباشر في الأسعار 3D:</strong> تعديل سعر الأساس للإسورة، تكلفة الألماس، تكلفة الياقوت، ورسوم الدلايات المخصصة لحظياً.</li>
+          <li><strong>إدارة الطلبات والمبيعات:</strong> جدول متكامل لمتابعة وتحديث حالات الطلبات.</li>
+          <li><strong>كتالوج المنتجات:</strong> إضافة وتعديل الدلايات والأحجار والمخزون.</li>
+          <li><strong>نظام الحفر بالليزر:</strong> مراجعة نصوص الحفر المخصصة لكل طلب.</li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <h4>4. KYC & Compliance</h4>
-        <p>Tiered customer verification (SMS OTP, ID check) and full jewelry merchant compliance (conflict-free certification, hallmarking).</p>
+
+      <div class="feature-item">
+        <h4>🚀 جاهزية الواقع المعزز والتصنيع (AR & 3D Export)</h4>
+        <p>ربط رقمي بين التجربة الافتراضية والتصنيع الفعلي في ورش الصاغة:</p>
+        <ul>
+          <li><strong>تصدير ملفات 3D (GLTF/GLB):</strong> تصدير التصميم المخصص الذي أنشأته العميلة فوراً لورش الصاغة والطباعة ثلاثية الأبعاد.</li>
+          <li><strong>زر تجربة الواقع المعزز (AR Ready):</strong> إمكانية تجربة الإسورة على معصم اليد عبر كاميرا الهاتف.</li>
+          <li><strong>حفظ واسترجاع التصاميم:</strong> إمكانية حفظ التصميم ومشاركته عبر الواتساب أو الرابط.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Section 1 -->
-    <h2>2. Section 1: 3D Customizer Engine</h2>
-    <p><em>Note: 3D modeling and engine development are executed <strong>in-house</strong> (leveraging AI-assisted workflows and existing 3D frameworks). Market benchmarks below represent typical outsourced costs for reference:</em></p>
+    <!-- Section 2: KYC in Kuwait Details & Pricing -->
+    <div class="section-title">
+      <span class="badge-num">2</span>
+      <span>نظام التحقق من هوية العميل (KYC) في الكويت: المتطلبات والأسعار</span>
+    </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Deliverable</th>
-          <th>Technical Details</th>
-          <th>Estimated Effort</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Bangle & Charm 3D Models</strong></td>
-          <td>High-fidelity GLB/glTF 2.0 models for signature glider bangle and 25+ initial charms (Bee, Heart, Martini, A-Z initials).</td>
-          <td>8–13 Days</td>
-        </tr>
-        <tr>
-          <td><strong>New Jewelry Product Lines</strong></td>
-          <td>3D models for Medallion Necklaces, Solitaire/Stacking Rings, and Sculpted Huggie Earrings.</td>
-          <td>4–6 Days</td>
-        </tr>
-        <tr>
-          <td><strong>PBR Shaders & Materials</strong></td>
-          <td>Physically Based Rendering (PBR) for 18K Yellow Gold, Rose Gold, and 925 Sterling Silver with studio reflections.</td>
-          <td>2–3 Days</td>
-        </tr>
-        <tr>
-          <td><strong>Customizer Interactions</strong></td>
-          <td>360° orbit camera, 3D Raycasting drag-and-drop with snap-to-track physics, zoom, and live inner-band engraving.</td>
-          <td>11–16 Days</td>
-        </tr>
-        <tr>
-          <td><strong>Export & Optimization</strong></td>
-          <td>Model compression (Draco/KTX2), high-res PNG snapshot generator, and GLB export.</td>
-          <td>4–6 Days</td>
-        </tr>
-      </tbody>
-    </table>
-    <p><strong>Market Benchmark Range:</strong> $4,000 – $9,000 <em>(Customized in-house pricing set by management)</em></p>
+    <div class="callout-box gold">
+      <strong>⚖️ المتطلبات التنظيمية في الكويت:</strong> تلزم لوائح وزارة التجارة والصناعة الكويتية ووحدة التحريات المالية (AML / مكافحة غسيل الأموال) متاجر الذهب والمجوهرات عبر الإنترنت بالتحقق من هوية المشتري في المعاملات ذات القيمة العالية (High-Value Goods) لحماية التاجر والعميل ومنع عمليات الاحتيال واستخدام البطاقات المسروقة.
+    </div>
 
-    <!-- Section 2 -->
-    <h2>3. Section 2: Website & Backend Infrastructure</h2>
-    <p>Upgrades the existing front-end prototype into an enterprise e-commerce platform with persistent database storage, customer accounts, and back-office order management:</p>
+    <h3>أ. خيارات ومزودو خدمة الـ KYC المتاحة في الكويت وأسعارها:</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>الخيار / المزود</th>
+            <th>طريقة التحقق والآلية</th>
+            <th>التكلفة الفعلية</th>
+            <th>الميزة لدار نيش</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>🥇 تطبيق هويتي (Kuwait Mobile ID / PACI)</strong></td>
+            <td>مصادقة رسمية حكومية عبر تطبيق "هويتي" بالرقم المدني الكويتي مباشرة.</td>
+            <td><span class="price-kwd">مجاني / رمزي جداً</span><span class="price-sub">مدمج مع بوابات الدفع الوطنية</span></td>
+            <td>أعلى درجات الثقة القانونية في الكويت، بدون طلب رفع صور أو إزعاج العميل.</td>
+          </tr>
+          <tr>
+            <td><strong>🥈 رمز التحقق بالرسائل (SMS OTP)</strong></td>
+            <td>إرسال كود تحقق سري لهاتف العميل أثناء إتمام الطلب لتأكيد ملكية الخط.</td>
+            <td><span class="price-kwd">0.000 د.ك (مجاناً)</span><span class="price-sub">عبر Firebase Auth (حتى 10,000 شهرياً)</span></td>
+            <td>الأسرع والأسهل للمشتريات العادية والمتوسطة بدون أي تكلفة تشغيلية.</td>
+          </tr>
+          <tr>
+            <td><strong>🥉 فحص الهوية بالذكاء الاصطناعي (MyFatoorah KYC / Sumsub / Shufti)</strong></td>
+            <td>تصوير البطاقة المدنية أو جواز السفر ومضاهاة صورة الوجه وسيلفي حي (Biometric).</td>
+            <td><span class="price-kwd">0.250 – 0.450 د.ك</span><span class="price-sub">ما يعادل ($0.80 – $1.45) لكل عملية فحص ناجحة</span></td>
+            <td>مخصص للمعاملات الكبرى (أكثر من 300 د.ك) لمنع النزاعات البنكية (Chargebacks).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Component</th>
-          <th>Scope & Capabilities</th>
-          <th>Estimated Effort</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Next.js Application</strong></td>
-          <td>App Router, Server Components, SEO optimization, and bilingual English/Arabic layout with fluid mobile responsiveness.</td>
-          <td>10–15 Days</td>
-        </tr>
-        <tr>
-          <td><strong>Database & Data Layer</strong></td>
-          <td>PostgreSQL relational schema (15 tables: users, products, variants, orders, custom designs, reviews) with Prisma ORM.</td>
-          <td>7–9 Days</td>
-        </tr>
-        <tr>
-          <td><strong>API Architecture</strong></td>
-          <td>40+ REST endpoints covering authentication, catalog, customizer state, cart calculations, orders, and addresses.</td>
-          <td>15–20 Days</td>
-        </tr>
-        <tr>
-          <td><strong>Admin Control Center</strong></td>
-          <td>Merchant dashboard for product catalog management, order fulfillment, refund handling, discount codes, and sales reports.</td>
-          <td>10–14 Days</td>
-        </tr>
-        <tr>
-          <td><strong>Transactional Notifications</strong></td>
-          <td>Automated email templates (order confirmations, dispatch updates) via Resend/SendGrid.</td>
-          <td>3–4 Days</td>
-        </tr>
-      </tbody>
-    </table>
-    <p><strong>Market Benchmark Range:</strong> $6,000 – $14,000 <em>(Customized in-house pricing set by management)</em></p>
-
-    <!-- Section 3 -->
-    <h2>4. Section 3: Universal Payment Integration (Visa / Mastercard)</h2>
-    <p>The checkout architecture is engineered for <strong>universal global card acceptance</strong>. Customers worldwide can pay seamlessly using their everyday debit or credit cards without requiring third-party wallet accounts or facing regional payment barriers:</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Payment Method</th>
-          <th>Supported Cards & Wallets</th>
-          <th>Transaction Processing</th>
-          <th>Key Advantages</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>🥇 Visa & Mastercard</strong></td>
-          <td>Debit, Credit, Prepaid (200+ Countries & Territories)</td>
-          <td>Standard Interchange (e.g. 2.9% + 30¢)</td>
-          <td><strong>Universal global acceptance</strong> — embedded luxury card form, zero customer account setup required.</td>
-        </tr>
-        <tr>
-          <td><strong>🥈 Apple Pay & Google Pay</strong></td>
-          <td>Biometric 1-touch checkout on iOS, Safari, Android & Chrome</td>
-          <td>Included in card processing</td>
-          <td><strong>Highest mobile conversion rate</strong> — reduces checkout friction to a single Face ID or fingerprint scan.</td>
-        </tr>
-        <tr>
-          <td><strong>🥉 American Express (Amex)</strong></td>
-          <td>Amex personal & corporate premium cards</td>
-          <td>Standard card rate</td>
-          <td>Captures high-net-worth international luxury jewelry shoppers.</td>
-        </tr>
-        <tr>
-          <td><strong>🛡️ 3D Secure 2.0</strong></td>
-          <td>Verified by Visa & Mastercard Identity Check</td>
-          <td>Automated & built-in</td>
-          <td>Zero chargeback liability shift to issuing banks on authenticated fraud disputes.</td>
-        </tr>
-      </tbody>
-    </table>
-    <p><strong>Market Benchmark Range:</strong> $1,500 – $3,500 <em>(Customized in-house pricing set by management)</em></p>
-
-    <!-- Section 4 -->
-    <h2>5. Section 4: KYC & Regulatory Compliance</h2>
-    <p>Because jewelry is categorized as high-value goods, regulatory compliance and customer verification are critical to safeguard merchant accounts against fraud and chargebacks:</p>
-
-    <h3>A. Customer Verification Tiers (To Maximize Conversion)</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Verification Tier</th>
-          <th>Order Threshold</th>
-          <th>Verification Requirement</th>
-          <th>Estimated Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Tier 0 (Guest)</strong></td>
-          <td>Under $150</td>
-          <td>Email confirmation only (charms, accessories)</td>
-          <td>$0.00</td>
-        </tr>
-        <tr>
-          <td><strong>Tier 1 (Registered)</strong></td>
-          <td>$150 – $1,000</td>
-          <td>Phone verification via SMS One-Time Password (OTP)</td>
-          <td>Free via Firebase (or $0.05/SMS)</td>
-        </tr>
-        <tr>
-          <td><strong>Tier 2 (High Value)</strong></td>
-          <td>$1,000 – $5,000</td>
-          <td>Government ID upload & verification (Stripe Identity / Sumsub)</td>
-          <td>$1.35 – $1.50 per check</td>
-        </tr>
-        <tr>
-          <td><strong>Tier 3 (VIP / Custom)</strong></td>
-          <td>Over $5,000</td>
-          <td>ID + proof of address + manual merchant confirmation</td>
-          <td>$1.50 + manual review</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>B. Merchant Documents Required for Activation</h3>
+    <h3>ب. استراتيجية المستويات الذكية الموصى بها (Tiered Verification) لمنع هروب العملاء:</h3>
     <ul>
-      <li><strong>Commercial Registration / Certificate of Incorporation:</strong> Official business registration certificate.</li>
-      <li><strong>Tax Identification Number (TIN / VAT):</strong> Official tax registration certificate.</li>
-      <li><strong>Authorized Manager ID:</strong> Government-issued passport or national identity card (both sides).</li>
-      <li><strong>Corporate Bank Account Statement:</strong> Official business bank account statement (IBAN / Wire details).</li>
-      <li><strong>Conflict-Free & Hallmarking Statement:</strong> Self-certified declaration published on the website confirming precious metal stampings (18K / 925).</li>
+      <li><strong>المستوى الأول (مشتريات أقل من 50 د.ك - دلايات/إكسسوارات):</strong> تأكيد بالبريد ورقم الهاتف العادي فقط لتسهيل الشراء السريع.</li>
+      <li><strong>المستوى الثاني (50 د.ك إلى 250 د.ك - قطع ذهب خفيفة):</strong> رمز تأكيد سريع عبر رسالة نصية (SMS OTP مجاني).</li>
+      <li><strong>المستوى الثالث (أكثر من 250 د.ك / أساور ذهب كاملة وألماس):</strong> طلب الرقم المدني أو التحقق عبر تطبيق هويتي أو بوابة الدفع لحماية حقوق الدار تماماً.</li>
     </ul>
-    <p><strong>Market Benchmark Range:</strong> $1,500 – $3,500 <em>(Customized in-house pricing set by management)</em></p>
 
-    <!-- Summary & Timeline -->
-    <h2>6. Master Pricing Benchmark & Project Phases</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Phase / Milestone</th>
-          <th>Core Deliverables</th>
-          <th>Timeline</th>
-          <th class="price-col">Market Reference</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Phase 1: Foundation</strong></td>
-          <td>Architecture setup, database, authentication, infrastructure</td>
-          <td>Weeks 1–2</td>
-          <td class="price-col">$2,000 – $3,500</td>
-        </tr>
-        <tr>
-          <td><strong>Phase 2: App & Backend</strong></td>
-          <td>Next.js frontend, complete REST APIs, merchant admin dashboard</td>
-          <td>Weeks 3–6</td>
-          <td class="price-col">$5,000 – $10,500</td>
-        </tr>
-        <tr>
-          <td><strong>Phase 3: 3D Atelier</strong></td>
-          <td>3D modeling, Three.js shaders, drag-and-drop customizer, exports</td>
-          <td>Weeks 7–10</td>
-          <td class="price-col">$4,000 – $9,000</td>
-        </tr>
-        <tr>
-          <td><strong>Phase 4: Checkout & KYC</strong></td>
-          <td>Universal Visa/Mastercard checkout, 3D Secure, SMS OTP, legal policies</td>
-          <td>Weeks 11–12</td>
-          <td class="price-col">$2,000 – $4,000</td>
-        </tr>
-        <tr>
-          <td><strong>Phase 5: Launch & QA</strong></td>
-          <td>End-to-end verification, performance tuning, staff training</td>
-          <td>Weeks 13–14</td>
-          <td class="price-col">Included in package</td>
-        </tr>
-        <tr style="background:#f4efe6; font-weight:700;">
-          <td colspan="3"><strong>Total Market Benchmark (Reference Range)</strong></td>
-          <td class="price-col" style="color:var(--gold-deep); font-size:14px;"><strong>$13,000 – $27,000</strong></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="notice-banner" style="margin-top:24px;">
-      <strong>Note on Client Delivery:</strong> Project management will tailor the commercial agreement and payment structure (e.g., 30% upfront / 25% backend / 25% 3D / 20% launch) directly with the client.
+    <!-- Section 3: Payment Gateway in Kuwait -->
+    <div class="section-title">
+      <span class="badge-num">3</span>
+      <span>بوابة الدفع الإلكتروني في الكويت (Payment Gateway): النواقص والمطلوب للتشغيل</span>
     </div>
 
-    <!-- Sign-off -->
-    <div style="margin-top:50px; padding-top:20px; border-top:1px solid var(--border-light); display:flex; justify-content:space-between; font-size:12px; color:var(--text-muted);">
-      <div>Niche Jewelry Atelier &bull; Confidential Proposal</div>
-      <div>Prepared by: Technical Engineering Team</div>
+    <div class="callout-box info">
+      <strong>🔍 الوضع الحالي في الموقع:</strong> تم بناء واجهة سداد تجريبية متكاملة وسلسة جداً (Interactive Checkout) تدعم بصرياً وعملياً خيارات <strong>KNET (كي نت)</strong>، <strong>Visa & Mastercard</strong>، و <strong>Apple Pay</strong> لتجربة تدفق الشراء وحساب الإجماليات بدقة.
+    </div>
+
+    <h3>أ. ما الذي ينقص لتفعيل الدفع الحقيقي الفعلي؟ (What is Missing?)</h3>
+    <ol style="margin-right: 22px; margin-bottom: 20px;">
+      <li style="margin-bottom: 8px;"><strong>فتح حساب تاجر (Merchant Account):</strong> التعاقد مع إحدى شركات الدفع المرخصة في الكويت (مثل ماي فاتورة MyFatoorah أو تاب Tap Payments).</li>
+      <li style="margin-bottom: 8px;"><strong>استخراج مفاتيح الربط البرمجية (Live API Secret Key):</strong> استلام كود الربط السري من لوحة تحكم شركة الدفع.</li>
+      <li style="margin-bottom: 8px;"><strong>ربط الـ Webhook للإشعار الفوري:</strong> سطر برمجي مجهز بالكامل في الموقع يستقبل إشعار نجاح السداد ويحول حالة الطلب تلقائياً إلى "مدفوع (Paid)" ويخصم من المخزون.</li>
+    </ol>
+
+    <h3>ب. المستندات المطلوبة من العميل لفتح حساب التاجر في الكويت:</h3>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h4>📄 1. الرخصة التجارية</h4>
+        <p>صورة رخصة تجارية سارية من وزارة التجارة والصناعة (نشاط مجوهرات، ذهب، تجارة عامة، أو تجارة إلكترونية).</p>
+      </div>
+      <div class="feature-item">
+        <h4>✍️ 2. اعتماد التوقيع</h4>
+        <p>شهادة اعتماد توقيع سارية المفعول للمدير المفوض من الهيئة العامة للقوى العاملة.</p>
+      </div>
+      <div class="feature-item">
+        <h4>🪪 3. البطاقة المدنية</h4>
+        <p>صورة البطاقة المدنية (الوجهين) للمدير المفوض والشركاء.</p>
+      </div>
+      <div class="feature-item">
+        <h4>🏦 4. شهادة الحساب البنكي (IBAN)</h4>
+        <p>شهادة رسمية من البنك الكويتي بالحساب التجاري للشركة لتحويل إيرادات المبيعات إليه يومياً.</p>
+      </div>
+    </div>
+
+    <h3>ج. أفضل بوابات الدفع المقترحة وعمولاتها في الكويت:</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>بوابة الدفع</th>
+            <th>طرق الدفع المدعومة</th>
+            <th>عمولة KNET (كي نت)</th>
+            <th>عمولة البطاقات (فيزا/ماستر)</th>
+            <th>رسوم الاشتراك الشهري</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>🥇 ماي فاتورة (MyFatoorah)</strong></td>
+            <td>KNET + Visa + Mastercard + Apple Pay + فواتير واتساب</td>
+            <td><span class="price-kwd">100 – 150 فلس</span><span class="price-sub">مبلغ ثابت رمزي لكل عملية</span></td>
+            <td>2.25% + 50 فلس</td>
+            <td><span class="price-kwd">0.000 د.ك (مجاناً)</span><span class="price-sub">Pay as you go</span></td>
+          </tr>
+          <tr>
+            <td><strong>🥈 تاب بيمنتس (Tap Payments)</strong></td>
+            <td>KNET + Visa + Mastercard + Apple Pay (واجهة عصرية فاخرة)</td>
+            <td><span class="price-kwd">150 فلس</span><span class="price-sub">أو 1% حسب حجم المعاملات</span></td>
+            <td>2.50% + 50 فلس</td>
+            <td><span class="price-kwd">0.000 د.ك (مجاناً)</span><span class="price-sub">بدون أي رسوم صيانة</span></td>
+          </tr>
+          <tr>
+            <td><strong>🥉 يو بيمنتس (UPayments / Hesabe)</strong></td>
+            <td>KNET + البطاقات الائتمانية + روابط سداد فورية</td>
+            <td><span class="price-kwd">100 – 200 فلس</span></td>
+            <td>2.25% – 2.50%</td>
+            <td><span class="price-kwd">0.000 د.ك (مجاناً)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 4: Hosting and Database Cloud Costs -->
+    <div class="section-title">
+      <span class="badge-num">4</span>
+      <span>تكاليف الاستضافة وقواعد البيانات والسيرفرات (رخيصة جداً وتقترب من الصفر)</span>
+    </div>
+
+    <p style="font-size:13px; color:var(--text-body); margin-bottom: 14px;">
+      تمت هندسة الموقع ليعمل على بنية سحابية ذكية (Edge Serverless Architecture) ذات كفاءة استثنائية، مما يعني أن الموقع لا يحتاج إلى سيرفرات خاصة باهظة الثمن بمئات الدنانير، بل تكلفة تشغيل شبه مجانية:
+    </p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>الخدمة السحابية</th>
+            <th>المزود المعتمد الموصى به</th>
+            <th>المواصفات والإمكانيات</th>
+            <th>التكلفة الشهرية</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>استضافة الموقع والـ 3D</strong></td>
+            <td>Vercel / Cloudflare Pages</td>
+            <td>سيرفرات سحابية عالمية فائقة السرعة، شهادة أمان SSL مجانية، دعم ملايين الزيارات.</td>
+            <td><span class="price-kwd">0.000 د.ك (مجاناً تماماً)</span><span class="price-sub">الترقية الاختيارية Pro بـ 6 د.ك فقط شهرياً</span></td>
+          </tr>
+          <tr>
+            <td><strong>قاعدة البيانات السحابية (Database)</strong></td>
+            <td>Supabase / Neon Postgres</td>
+            <td>قاعدة بيانات PostgreSQL عالية الأمان تسع حتى 50,000 طلب ومنتج ونسخ احتياطي يومي.</td>
+            <td><span class="price-kwd">0.000 د.ك (مجاناً)</span><span class="price-sub">باقة التوسع بـ 1.5 إلى 5 د.ك شهرياً</span></td>
+          </tr>
+          <tr>
+            <td><strong>الدومين والنطاق الرسمي</strong></td>
+            <td>Namecheap أو كويت نت (.com / .kw)</td>
+            <td>دومين عالمي (.com) أو دومين كويتي رسمي تجاري (.com.kw).</td>
+            <td><span class="price-kwd">~4 د.ك سنوياً للموقع</span><span class="price-sub">الدومين الكويتي الرسمي بـ 15 د.ك سنوياً</span></td>
+          </tr>
+          <tr style="background:#f4efe6; font-weight:800;">
+            <td colspan="3"><strong>إجمالي التكلفة التشغيلية الشهرية التقديرية للمتجر بالكامل:</strong></td>
+            <td><span class="price-kwd" style="color:var(--burgundy); font-size:15px;">0 إلى 6 د.ك فقط / شهرياً</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 5: Comparison (Agency vs AI) -->
+    <div class="vs-box">
+      <div class="vs-col vs-agency">
+        <h5>❌ تكلفة وكالات وشركات البرمجة التقليدية (Agencies)</h5>
+        <p>• تكلفة تطوير تبدأ من <strong>4,000 إلى 8,000 د.ك ($13,000 - $26,000)</strong>.</p>
+        <p>• وقت تسليم يتراوح بين 3 إلى 5 أشهر.</p>
+        <p>• رسوم سيرفرات وصيانة تبدأ من 50 إلى 150 د.ك شهرياً.</p>
+      </div>
+      <div class="vs-col vs-ai">
+        <h5>✅ التكلفة الاقتصادية المحققة لدار نيش (مع الذكاء الاصطناعي)</h5>
+        <p>• تكلفة تطوير إجمالية رمزية ومخفضة بنسبة تتجاوز 85%: <strong>450 د.ك فقط ($1,470)</strong>.</p>
+        <p>• النظام مكتمل ومبني وجاهز ومجرب على بيئة Vercel المباشرة بنسبة 100%.</p>
+        <p>• تكاليف سيرفر واستضافة مجانية أو شبه مجانية (0 – 6 د.ك شهرياً).</p>
+      </div>
+    </div>
+
+    <!-- Section 6: OFFICIAL PROJECT INVOICE -->
+    <div class="invoice-card" id="official-invoice">
+      <div class="invoice-badge">فاتورة المشروع الرسمية • OFFICIAL INVOICE</div>
+      
+      <div class="invoice-header">
+        <div class="inv-to">
+          <div>فاتورة صادرة لصالح:</div>
+          <strong>السادة / دار نيش للمجوهرات الحصرية (الكويت)</strong>
+          <div>مشروع: تطوير وتدشين متجر واستوديو نيش للمجوهرات 3D الفاخر</div>
+          <div>دولة الكويت • قطاع التجارة الإلكترونية الفاخرة</div>
+        </div>
+        <div class="inv-details">
+          <div><strong>Invoice No:</strong> INV-NICH-2026-001</div>
+          <div><strong>Invoice Date:</strong> 23/11/2026</div>
+          <div><strong>Payment Terms:</strong> Flexible Milestone Schedule</div>
+          <div><strong>Status:</strong> Ready for Live Activation</div>
+        </div>
+      </div>
+
+      <div class="table-wrapper" style="margin: 0; border: none;">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 50%;">البند والخدمة الفنية المقدمة</th>
+              <th style="width: 25%;">التفاصيل والمخرجات</th>
+              <th style="width: 25%; text-align: left;">القيمة (د.ك KWD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>1. تطوير وبرمجة واجهات متجر دار نيش الفاخر (Frontend)</strong>
+                <div style="font-size:11.5px; color:var(--text-muted); margin-top:3px;">
+                  تصميم ثنائي اللغة (عربي كويتي ملكي + إنجليزي)، صفحات المنتجات، سلة الشراء، هيرو بانر 2K مع تأثير اللمعة الملكية، وبطاقة Spotlight.
+                </div>
+              </td>
+              <td>مكتمل ومجرب بنسبة 100%</td>
+              <td style="text-align: left;"><span class="price-kwd">120.000 د.ك</span><span class="price-sub">~$390 USD</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>2. بناء وتطوير محرك الـ 3D التفاعلي الحصري لإسورة جلايدر™ والدلايات الـ 16</strong>
+                <div style="font-size:11.5px; color:var(--text-muted); margin-top:3px;">
+                  محرك Three.js WebGL، تحكم دوران 360°، خوارزمية التباعد التلقائي والتحجيم الديناميكي حتى 16 دلاية بدون تداخل، حماية القفل، وترصيع الألماس والياقوت.
+                </div>
+              </td>
+              <td>مكتمل ومجرب بنسبة 100%</td>
+              <td style="text-align: left;"><span class="price-kwd">180.000 د.ك</span><span class="price-sub">~$588 USD</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>3. لوحة التحكم الإدارية الملكية للتاجر (Admin Control Panel)</strong>
+                <div style="font-size:11.5px; color:var(--text-muted); margin-top:3px;">
+                  تحكم مباشر في أسعار الألماس والذهب والمجوهرات، إدارة ومتابعة الطلبات، كتالوج المنتجات، ونظام الحفر الليزري الداخلي.
+                </div>
+              </td>
+              <td>مكتمل ومجرب بنسبة 100%</td>
+              <td style="text-align: left;"><span class="price-kwd">90.000 د.ك</span><span class="price-sub">~$294 USD</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>4. إعداد البنية السحابية وتهيئة بوابة الدفع والـ KYC</strong>
+                <div style="font-size:11.5px; color:var(--text-muted); margin-top:3px;">
+                  تهيئة النشر السحابي فائق السرعة على Vercel، تجهيز واجهة السداد KNET / Visa / Apple Pay، وضبط إعدادات الـ KYC وقواعد البيانات.
+                </div>
+              </td>
+              <td>مكتمل ومجهز للربط الفوري</td>
+              <td style="text-align: left;"><span class="price-kwd">60.000 د.ك</span><span class="price-sub">~$196 USD</span></td>
+            </tr>
+            <tr style="background: #fdfbf7;">
+              <td>
+                <strong style="color: var(--gold-deep);">✦ خصم هندسة الذكاء الاصطناعي (AI Accelerated Advantage)</strong>
+                <div style="font-size:11.5px; color:var(--text-muted); margin-top:3px;">
+                  خصم تقني تشجيعي يعادل 85% من القيمة السوقية لشركات البرمجة ($15,000+).
+                </div>
+              </td>
+              <td>مطبق تلقائياً على المشروع</td>
+              <td style="text-align: left; color: var(--success); font-weight: 700;">(مشمول ومخصوم)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inv-total-row">
+        <div>
+          <div class="inv-total-lbl">صافي المبلغ الإجمالي النهائي للفاتورة:</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+            فقط أربعمائة وخمسون ديناراً كويتياً لا غير • شامل كامل المنظومة المذكورة
+          </div>
+        </div>
+        <div class="inv-total-amt">
+          <div class="inv-amt-main">450.000 د.ك KWD</div>
+          <div class="inv-amt-usd">ما يعادل تقريباً: $1,470.00 USD</div>
+        </div>
+      </div>
+
+      <!-- Payment Plan Options -->
+      <div style="margin-top: 25px; padding: 16px 20px; background: #fafafa; border-radius: 8px; border: 1px solid var(--border-light); font-size: 12.5px; color: var(--text-body);">
+        <strong style="color: var(--burgundy);">خطة الدفع الميسرة المقترحة:</strong>
+        <div style="display: flex; gap: 20px; margin-top: 8px; flex-wrap: wrap;">
+          <div>• <strong>الدفعة الأولى (40%):</strong> 180 د.ك (عند توقيع واعتماد المشروع والبدء في ربط النطاق).</div>
+          <div>• <strong>الدفعة الثانية (30%):</strong> 135 د.ك (عند تسليم حساب التاجر وربط بوابة الدفع KNET).</div>
+          <div>• <strong>الدفعة الختامية (30%):</strong> 135 د.ك (عند الإطلاق الرسمي الحي وتدريب طاقم العمل).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign-off & Seal -->
+    <div class="sign-row">
+      <div>
+        <div style="font-weight: 700; color: var(--burgundy);">دار نيش للمجوهرات • الفريق الهندسي والتقني للمشروع</div>
+        <div>معتمد للاعتماد والتنفيذ الفوري المباشر</div>
+      </div>
+      <div class="seal-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>معتمد ومطابق لأعلى معايير الصاغة الفاخرة</span>
+      </div>
     </div>
 
   </div>
