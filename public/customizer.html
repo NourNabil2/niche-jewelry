@@ -2981,7 +2981,7 @@
     bangleMesh.add(edgeGemstonesGroup); // Child of bangleMesh to rotate seamlessly!
 
     // Procedural Brilliant-Cut Diamond Geometry (Table, Crown facets, Girdle, and Pavilion cone)
-    function buildBrilliantDiamondGeometry(girdleR = 0.00027, tableR = 0.00016, crownH = 0.00009, pavH = 0.00018, segs = 8) {
+    function buildBrilliantDiamondGeometry(girdleR = 0.00032, tableR = 0.00020, crownH = 0.00010, pavH = 0.00016, segs = 8) {
       const positions = [];
       const tc = [0.0, crownH, 0.0];
       const tRing = [];
@@ -3013,21 +3013,20 @@
 
     const NUM_EDGE_STONES_PER_RIM = 220;
     const TOTAL_EDGE_STONES = NUM_EDGE_STONES_PER_RIM * 2;
-    const diamondGeom = buildBrilliantDiamondGeometry(0.00027, 0.00016, 0.00009, 0.00018, 8);
+    const diamondGeom = buildBrilliantDiamondGeometry(0.00032, 0.00020, 0.00010, 0.00016, 8);
 
-    // Natural High-Refraction Diamond Material (Pure Crystal Fire, IOR 2.417, Zero Emission)
+    // Brilliant White Pavé Diamond Material (Pure Sparkling White, Non-Transparent, Natural Diamond Luster)
     const diamondEdgeMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xffffff,
-      emissive: 0x000000,
-      roughness: 0.0,
-      metalness: 0.02,
-      transmission: 0.90,
-      ior: 2.417,
-      reflectivity: 1.0,
+      emissive: 0x2a2a2a,
+      emissiveIntensity: 0.35,
+      roughness: 0.04,
+      metalness: 0.06,
+      transmission: 0.0, // Non-transparent pure white body
+      reflectivity: 0.98,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.0,
-      thickness: 0.0008,
-      envMapIntensity: 4.8
+      clearcoatRoughness: 0.02,
+      envMapIntensity: 3.8
     });
 
     const edgeInstancedMesh = new THREE.InstancedMesh(diamondGeom, diamondEdgeMaterial, TOTAL_EDGE_STONES);
