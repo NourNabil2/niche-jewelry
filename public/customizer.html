@@ -3296,19 +3296,17 @@
 
     redrawInnerEngraving();
 
-    // 4. Glider Rail Math for BOTH Front & Back Channels
+    // 4. Glider Rail Math for BOTH Front & Back Channels (Accurately bounded safe arc)
     const majorA = (28.5 + Dd - 0.55) * 0.001;
     const minorB = (24.0 + Dd - 0.55) * 0.001;
+    const RAIL_ARC_SPAN = Math.PI * 0.76; // Safe channel span leaving ~10mm clearance from hinge and clasp knuckles
 
     function getRailCurve(side, t) {
-      let angle;
-      if (side === 'front') {
-        // Front channel facing camera at -Y
-        angle = -Math.PI * 0.85 + t * (Math.PI * 0.70);
-      } else {
-        // Back channel facing camera at +Y
-        angle = Math.PI * 0.15 + t * (Math.PI * 0.70);
-      }
+      const centerAngle = side === 'front' ? -Math.PI / 2 : Math.PI / 2;
+      const startAngle = centerAngle - RAIL_ARC_SPAN / 2;
+      // Strictly clamp t in [0, 1] so charms NEVER overflow past the safe channel or collide with knuckles
+      const clampedT = Math.max(0.0, Math.min(1.0, Number.isFinite(t) ? t : 0.5));
+      const angle = startAngle + clampedT * RAIL_ARC_SPAN;
 
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
@@ -3442,7 +3440,26 @@
     const railGuideBack = createRailGuideRibbon('back');
     rootGroup.add(railGuideBack);
 
-    // 7. Update Charm Positions on both Front and Back Tracks
+    // 7. Dynamic Scaling & Auto-Spacing System for up to 16 Glider Charms
+    function getCharmScale(count) {
+      if (count <= 5) return 1.0;
+      // Gracefully scale from 1.0 down to 0.68 for 6 to 16 charms so they fit luxuriously without clipping or crowding
+      const s = 1.0 - (count - 5) * 0.029;
+      return Math.max(0.68, Math.min(1.0, s));
+    }
+
+    function getTrackCharmSpacing(count) {
+      if (count <= 1) return 0;
+      // Max total track span = 0.86, perfectly centered within safe margins [0.07, 0.93]
+      const maxSpan = 0.86;
+      const idealSpacing = 0.082;
+      const fittedSpacing = maxSpan / (count - 1);
+      return Math.min(idealSpacing, fittedSpacing);
+    }
+
+    const MIN_SAFE_S = 0.05;
+    const MAX_SAFE_S = 0.95;
+
     function updateCharmPlacements(sideToUpdate = null, forceEvenSpacing = false) {
       const sides = sideToUpdate ? [sideToUpdate] : ['front', 'back'];
 
@@ -3451,27 +3468,42 @@
         const count = list.length;
         if (count === 0) return;
 
+        const scale = getCharmScale(count);
+        const spacing = getTrackCharmSpacing(count);
+        const totalSpan = (count - 1) * spacing;
+        const startS = 0.5 - totalSpan / 2;
+
         if (forceEvenSpacing) {
-          const spacing = Math.min(0.10, 0.74 / Math.max(1, count));
-          const startT = 0.5 - ((count - 1) * spacing) / 2;
           list.forEach((charm, index) => {
-            charm.s = Math.max(0.10, Math.min(0.90, startT + index * spacing));
+            charm.s = count === 1 ? 0.5 : (startS + index * spacing);
+            charm.s = Math.max(MIN_SAFE_S, Math.min(MAX_SAFE_S, charm.s));
           });
         } else {
-          // Dynamic spacing accommodating up to 16 charms
-          const spacing = Math.min(0.08, 0.74 / Math.max(1, count));
-          const startT = 0.5 - ((count - 1) * spacing) / 2;
+          // If any charm lacks coordinate or count changed significantly, ensure valid bounds & spacing
+          let hasUnassigned = false;
           list.forEach((charm, index) => {
             if (charm.s === null || charm.s === undefined) {
-              charm.s = Math.max(0.10, Math.min(0.90, startT + index * spacing));
+              charm.s = count === 1 ? 0.5 : (startS + index * spacing);
+              hasUnassigned = true;
             }
+            charm.s = Math.max(MIN_SAFE_S, Math.min(MAX_SAFE_S, charm.s));
           });
+          if (hasUnassigned) {
+            // Sort list by s and auto-balance
+            list.sort((a, b) => a.s - b.s);
+            list.forEach((charm, index) => {
+              charm.s = count === 1 ? 0.5 : (startS + index * spacing);
+            });
+          }
         }
 
         list.forEach(charm => {
           const t = charm.s !== undefined ? charm.s : 0.5;
           const rail = getRailCurve(side, t);
           const lift = charm.liftCurrent || 0;
+
+          // Uniform dynamic scale based on total rail charm count (proportional Haute Joaillerie fit)
+          charm.mesh.scale.set(scale, scale, scale);
 
           // Position charm with track offset + physical lift when dragged
           charm.mesh.position.copy(rail.position).addScaledVector(rail.outward, 0.00035 + lift);
@@ -3492,62 +3524,65 @@
       updateUI();
     };
 
-    // Collision & Sliding Physics along the Rail
-    const MIN_SPACING = 0.082;
-    const MIN_S = 0.10;
-    const MAX_S = 0.90;
-
+    // Collision & Sliding Physics along the Rail (Dynamic min-spacing per charm count)
     function updateDragPositions(list, draggedIdx, targetS) {
-      let k = draggedIdx;
-      const rawS = Math.max(0.02, Math.min(0.98, targetS));
+      const count = list.length;
+      if (count <= 1) {
+        if (list[0]) list[0].s = 0.5;
+        return 0;
+      }
 
-      // Reorder cleanly even when neighbor is near track boundary (MIN_S / MAX_S)
-      while (k < list.length - 1 && rawS > list[k + 1].s + MIN_SPACING * 0.25) {
+      const minSpacing = getTrackCharmSpacing(count) * 0.94;
+      let k = draggedIdx;
+      const rawS = Math.max(MIN_SAFE_S, Math.min(MAX_SAFE_S, targetS));
+
+      // Reorder cleanly with adjacent neighbors
+      while (k < list.length - 1 && rawS > list[k + 1].s + minSpacing * 0.25) {
         const tmp = list[k];
         list[k] = list[k + 1];
         list[k + 1] = tmp;
         k++;
       }
 
-      while (k > 0 && rawS < list[k - 1].s - MIN_SPACING * 0.25) {
+      while (k > 0 && rawS < list[k - 1].s - minSpacing * 0.25) {
         const tmp = list[k];
         list[k] = list[k - 1];
         list[k - 1] = tmp;
         k--;
       }
 
-      list[k].s = Math.max(MIN_S, Math.min(MAX_S, rawS));
+      list[k].s = Math.max(MIN_SAFE_S, Math.min(MAX_SAFE_S, rawS));
 
       // Push forward to avoid overlap
       for (let i = k + 1; i < list.length; i++) {
-        if (list[i].s < list[i - 1].s + MIN_SPACING) {
-          list[i].s = list[i - 1].s + MIN_SPACING;
+        if (list[i].s < list[i - 1].s + minSpacing) {
+          list[i].s = list[i - 1].s + minSpacing;
         }
       }
 
       // Right boundary clamp
-      if (list[list.length - 1].s > MAX_S) {
-        list[list.length - 1].s = MAX_S;
+      if (list[list.length - 1].s > MAX_SAFE_S) {
+        list[list.length - 1].s = MAX_SAFE_S;
         for (let i = list.length - 2; i >= 0; i--) {
-          if (list[i].s > list[i + 1].s - MIN_SPACING) {
-            list[i].s = list[i + 1].s - MIN_SPACING;
+          if (list[i].s > list[i + 1].s - minSpacing) {
+            list[i].s = list[i + 1].s - minSpacing;
           }
         }
       }
 
       // Push backward to avoid overlap
       for (let i = k - 1; i >= 0; i--) {
-        if (list[i].s > list[i + 1].s - MIN_SPACING) {
-          list[i].s = list[i + 1].s - MIN_SPACING;
+        if (list[i].s > list[i + 1].s - minSpacing) {
+          list[i].s = list[i + 1].s - minSpacing;
         }
       }
 
       // Left boundary clamp
-      if (list[0].s < MIN_S) {
-        list[0].s = MIN_S;
+      if (list[0].s < MIN_SAFE_S) {
+        list[0].s = MIN_SAFE_S;
         for (let i = 1; i < list.length; i++) {
-          if (list[i].s < list[i - 1].s + MIN_SPACING) {
-            list[i].s = list[i - 1].s + MIN_SPACING;
+          if (list[i].s < list[i - 1].s + minSpacing) {
+            list[i].s = list[i - 1].s + minSpacing;
           }
         }
       }
@@ -3636,7 +3671,8 @@
       let dAngle = theta - centerAngle;
       while (dAngle > Math.PI) dAngle -= 2 * Math.PI;
       while (dAngle < -Math.PI) dAngle += 2 * Math.PI;
-      return 0.5 + dAngle / (Math.PI * 0.70);
+      const rawT = 0.5 + dAngle / RAIL_ARC_SPAN;
+      return Math.max(MIN_SAFE_S, Math.min(MAX_SAFE_S, rawT));
     }
 
     // Start Drag / Select (Capture phase so it runs BEFORE OrbitControls captures the pointer!)
@@ -3778,7 +3814,7 @@
       list.push(charmData);
 
       state.selectedCharmIndex = -1;
-      updateCharmPlacements(side);
+      updateCharmPlacements(side, true); // Re-distribute evenly and apply dynamic scaling
       updateUI();
     }
 
@@ -3891,7 +3927,7 @@
         if (state.selectedCharmIndex === index) state.selectedCharmIndex = -1;
         else if (state.selectedCharmIndex > index) state.selectedCharmIndex--;
 
-        updateCharmPlacements(side);
+        updateCharmPlacements(side, true); // Re-distribute evenly and re-scale
         updateUI();
       }
     };
