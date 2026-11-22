@@ -2980,8 +2980,8 @@
     const edgeGemstonesGroup = new THREE.Group();
     bangleMesh.add(edgeGemstonesGroup); // Child of bangleMesh to rotate seamlessly!
 
-    // Procedural Brilliant-Cut Diamond Geometry (Table, Crown facets, Girdle, and Pavilion cone)
-    function buildBrilliantDiamondGeometry(girdleR = 0.00032, tableR = 0.00020, crownH = 0.00010, pavH = 0.00016, segs = 8) {
+    // Procedural Brilliant-Cut Diamond Geometry (Corrected Outward Normals)
+    function buildBrilliantDiamondGeometry(girdleR = 0.00034, tableR = 0.00022, crownH = 0.00010, pavH = 0.00016, segs = 8) {
       const positions = [];
       const tc = [0.0, crownH, 0.0];
       const tRing = [];
@@ -2997,13 +2997,13 @@
       }
       for (let i = 0; i < segs; i++) {
         const next = (i + 1) % segs;
-        // Table facet
-        addTri(tc, tRing[i], tRing[next]);
-        // Crown triangular facets
-        addTri(tRing[i], gRing[i], gRing[next]);
-        addTri(tRing[i], gRing[next], tRing[next]);
+        // Table facet (Counter-clockwise winding for +Y outward normal)
+        addTri(tc, tRing[next], tRing[i]);
+        // Crown triangular facets (Counter-clockwise winding for outward normal)
+        addTri(tRing[i], gRing[next], gRing[i]);
+        addTri(tRing[i], tRing[next], gRing[next]);
         // Pavilion facet pointing into gold
-        addTri(culet, gRing[next], gRing[i]);
+        addTri(culet, gRing[i], gRing[next]);
       }
       const geom = new THREE.BufferGeometry();
       geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
@@ -3013,20 +3013,17 @@
 
     const NUM_EDGE_STONES_PER_RIM = 220;
     const TOTAL_EDGE_STONES = NUM_EDGE_STONES_PER_RIM * 2;
-    const diamondGeom = buildBrilliantDiamondGeometry(0.00032, 0.00020, 0.00010, 0.00016, 8);
+    const diamondGeom = buildBrilliantDiamondGeometry(0.00034, 0.00022, 0.00010, 0.00016, 8);
 
-    // Brilliant White Pavé Diamond Material (Pure Sparkling White, Non-Transparent, Natural Diamond Luster)
-    const diamondEdgeMaterial = new THREE.MeshPhysicalMaterial({
+    // Solid Brilliant White Pavé Diamond Material (Pure Crisp White, Non-Transparent, Double-Sided)
+    const diamondEdgeMaterial = new THREE.MeshStandardMaterial({
       color: 0xffffff,
-      emissive: 0x2a2a2a,
-      emissiveIntensity: 0.35,
-      roughness: 0.04,
-      metalness: 0.06,
-      transmission: 0.0, // Non-transparent pure white body
-      reflectivity: 0.98,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.02,
-      envMapIntensity: 3.8
+      emissive: 0x444444,
+      emissiveIntensity: 0.45,
+      roughness: 0.12,
+      metalness: 0.08,
+      side: THREE.DoubleSide, // Guarantees all facets are rendered without culling
+      envMapIntensity: 3.5
     });
 
     const edgeInstancedMesh = new THREE.InstancedMesh(diamondGeom, diamondEdgeMaterial, TOTAL_EDGE_STONES);
@@ -3035,7 +3032,7 @@
 
     // Micro-Prong Gold Grain Setting (Tiny gold beads between each diamond)
     const TOTAL_PRONGS = TOTAL_EDGE_STONES * 2;
-    const prongGeom = new THREE.SphereGeometry(0.00008, 6, 6);
+    const prongGeom = new THREE.SphereGeometry(0.00007, 6, 6);
     const prongInstancedMesh = new THREE.InstancedMesh(prongGeom, bandMaterial, TOTAL_PRONGS);
     prongInstancedMesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
 
@@ -3047,9 +3044,9 @@
     const pPos = new THREE.Vector3();
 
     // Coordinates of the 18K solid gold lips (centered at Z = ±2.06mm, outer radius ~30.9mm / ~26.4mm)
-    const rA = (28.5 + Dd) * 0.001 - 0.00004; // ~0.03086m
-    const rB = (24.0 + Dd) * 0.001 - 0.00004; // ~0.02636m
-    const edgeZ = [0.00206, -0.00206]; // Flush within top and bottom gold lips
+    const rA = (28.5 + Dd) * 0.001 + 0.00002; // Flush with outer gold face
+    const rB = (24.0 + Dd) * 0.001 + 0.00002;
+    const edgeZ = [0.00206, -0.00206]; // Centered in gold lip
 
     let eIdx = 0;
     let pIdx = 0;
