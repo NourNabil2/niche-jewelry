@@ -255,7 +255,7 @@
             <div class="footer-grid">
               <div>
                 <a href="${getRoute('index.html')}" style="display:inline-block; margin-bottom:20px;">
-                  <img src="assets/images/niche-logo-white.png" alt="Niche Jewelry" style="height:48px; width:auto; display:block;">
+                  <img src="assets/images/niche-logo-gold.png" alt="Niche Jewelry" style="height:48px; width:auto; display:block; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));">
                 </a>
                 <p class="footer-desc">
                   ${T('footer.brand_desc')}
