@@ -2801,13 +2801,12 @@ html[dir="rtl"] .panthere-hero-scrim {
 
 /* 2. STICKY BURGUNDY FINE LEOPARD VELVET HEADER (Cartier Panthère Haute Joaillerie) */
 .site-header {
-  background-color: #200409 !important;
+  background-color: #1e0307 !important;
   background-image: 
-    linear-gradient(135deg, rgba(24, 3, 8, 0.88) 0%, rgba(42, 5, 14, 0.82) 50%, rgba(20, 2, 7, 0.90) 100%),
-    url('../assets/images/burgundy_leopard_appbar.jpg') !important;
-  background-size: auto, 160px 160px !important;
-  background-repeat: no-repeat, repeat !important;
-  background-position: center, 0 0 !important;
+    linear-gradient(135deg, rgba(20, 2, 6, 0.80) 0%, rgba(36, 4, 11, 0.70) 50%, rgba(18, 2, 5, 0.82) 100%),
+    url('../assets/images/burgundy_leopard_appbar.jpg?v=panoramic-fine-leopard-v4') !important;
+  background-size: cover !important;
+  background-position: center 35% !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border-bottom: 1px solid rgba(223, 200, 142, 0.30) !important;
