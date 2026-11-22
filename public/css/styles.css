@@ -2485,16 +2485,44 @@ html[dir="rtl"] .accordion-hero-panel.active .panel-scrim {
   height: 100%;
   object-fit: cover;
   object-position: center 28%;
-  filter: blur(1.5px);
-  transform: scale(1.03);
-  animation: panthereCinematicZoom 24s ease-in-out infinite alternate;
+  filter: contrast(1.04) brightness(0.96) saturate(1.05);
+  transform: scale(1);
+  animation: panthereCinematicSubtle 28s ease-in-out infinite alternate;
   transform-origin: center center;
-  will-change: transform, filter;
+  image-rendering: -webkit-optimize-contrast;
+  will-change: transform;
 }
 
-@keyframes panthereCinematicZoom {
-  0% { transform: scale(1.03); }
-  100% { transform: scale(1.07); }
+@keyframes panthereCinematicSubtle {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.018); }
+}
+
+/* Atmospheric Editorial Vignette: Soft luxury framing around borders without blur */
+.panthere-hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 95% 85% at 50% 36%, rgba(0, 0, 0, 0) 52%, rgba(8, 7, 6, 0.32) 82%, rgba(8, 7, 6, 0.72) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Ultra-Luxury Light Shimmer Sweep (High Jewelry Diamond & Gold Studio Gleam) */
+.panthere-luxury-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255, 230, 160, 0.05) 50%, rgba(255, 255, 255, 0.14) 53%, rgba(255, 230, 160, 0.05) 56%, transparent 64%, transparent 100%);
+  background-size: 250% 100%;
+  pointer-events: none;
+  z-index: 3;
+  animation: luxurySheenSweep 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes luxurySheenSweep {
+  0%, 25% { background-position: 200% 0; opacity: 0; }
+  32% { opacity: 1; }
+  58% { background-position: -100% 0; opacity: 1; }
+  65%, 100% { background-position: -100% 0; opacity: 0; }
 }
 
 /* Atmospheric Bottom-to-Top Scrim: leaves top 70% of image completely clear */
@@ -2656,7 +2684,7 @@ html[dir="rtl"] .panthere-hero-scrim {
 
   .panthere-hero-bg {
     object-position: center 25% !important;
-    filter: blur(1.5px) !important;
+    filter: contrast(1.04) brightness(0.96) saturate(1.05) !important;
   }
 
   .panthere-hero-scrim {
